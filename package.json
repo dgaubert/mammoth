@@ -1,0 +1,18 @@
+{
+  "name": "mammoth",
+  "description": "A simple personal web",
+  "version": "0.0.1",
+  "homepage": "http://dgaubert.com",
+  "author": "Daniel García Aubert (danielgarciaaubert@gmail.com)",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.0rc3",
+    "mongoose": "3.0.3",
+    "stylus": "0.29.0",
+    "connect-mongodb": "1.1.5",
+    "jade": "0.27.2"
+  }
+}
