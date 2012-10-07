@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  div.blog
+    - each post in posts
+      div.post
+        div.post-title
+          h2.title #{post.title}         
+          div.created #{post.created}
+          div.author #{post.author}
+        div.abstract #{post.abstract}
+        div.tags    
+        - each tag in post.tags
+          div.tag #{tag}
+        br
+
+    ul#pagination.ui-widget.ui-helper-clearfix
+      li.ui-state-default.ui-corner-all
+        span.ui-icon.ui-icon-carat-1-w
+      li.pagination-info
+        span #{pagination}
+      li.ui-state-default.ui-corner-all    
+        span.ui-icon.ui-icon-carat-1-e
