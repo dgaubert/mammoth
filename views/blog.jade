@@ -7,18 +7,19 @@ block content
       div.post
         div.post-title
           h2.title #{post.title}         
-          div.created #{post.created}
-          div.author #{post.author}
+          h3.created [ #{post.created} - 
+          h3.author #{post.author} ]
         div.abstract #{post.abstract}
-        div.tags    
-        - each tag in post.tags
-          div.tag #{tag}
-        br
+        div.tags
+          span.more
+            a.to-post(href='/blog/') [Leer mas]
+          - each tag in post.tags
+            h3.tag #{tag}
 
-    ul#pagination.ui-widget.ui-helper-clearfix
-      li.ui-state-default.ui-corner-all
+    ul.pagination.ui-widget.ui-helper-clearfix
+      li.pagination-icon.ui-state-default.ui-corner-all
         span.ui-icon.ui-icon-carat-1-w
       li.pagination-info
-        span #{pagination}
-      li.ui-state-default.ui-corner-all    
+        span.pagination-info-text #{pagination}
+      li.pagination-icon.ui-state-default.ui-corner-all    
         span.ui-icon.ui-icon-carat-1-e

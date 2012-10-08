@@ -1,26 +1,46 @@
-div.blog {
-  padding: 50px;
-}
-div.post {
-  padding: 50px;
-}
-div.post-title {
-  display: inline;
-  border-bottom: 1px solid #f81b1b;
-}
-ul#pagination {
+* {
   margin: 0;
   padding: 0;
 }
-ul#pagination li {
+div.blog {
+  width: 100%;
+}
+div.post {
+  width: 100%;
+  padding: 0 0 20px 0;
+}
+div.post-title {
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 4px;
+}
+h2.title {
+  display: inline;
+}
+h3.created,
+h3.author {
+  display: inline;
+  font-size: 0.9em;
+  color: #ccc;
+}
+h3.tag {
+  display: inline;
+}
+ul.pagination {
+  float: right;
+}
+ul.pagination li {
   margin: 2px;
   position: relative;
-  padding: 4px 0;
   cursor: pointer;
   float: left;
   list-style: none;
 }
-ul#pagination span.ui-icon {
-  float: left;
-  margin: 0 4px;
+span.ui-icon {
+  margin: 4px 4px;
+}
+span.pagination-info-text {
+  font-size: 0.9em;
+}
+span.pagination-info-text:hover {
+  color: #888;
 }
