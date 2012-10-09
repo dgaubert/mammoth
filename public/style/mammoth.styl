@@ -2,24 +2,63 @@
 *
   margin 0
   padding 0
+// Blog
 div.blog
+  font-family Verdana, Arial, Helvetica, sans-serif 
+  font-size 0.9em
+  width 700px
+  margin auto
+// Filter
+div.filter
   width 100%
+  padding 0 0 20px 0
+
 // Post
 div.post
   width 100%
   padding 0 0 20px 0
+// Title
 div.post-title
   border-bottom 1px solid #ccc
-  padding 0 0 4px
+  padding 0 0 5px
+  margin 0 0 10px
 h2.title
   display inline
 h3.created
 h3.author
   display inline
   font-size 0.9em
-  color #ccc
+  color #888
+// Abstract
+div.post-abstract
+  text-align justify
+// Action  
+div.post-action
+  padding 5px 0 0 0
+a.link
+  &:hover
+    color #222
+    border 1px solid #222
+  text-decoration none
+  color #888
+  background #fff
+  font-size 0.9em
+  border 1px solid #ccc
+  margin 0 10px 0 0
+  padding 0 4px 0 4px
 h3.tag
+  &:hover
+    color #222
+    border 1px solid #222
+  cursor pointer
   display inline
+  color #888
+  background #e6e6e6
+  font-size 0.9em
+  border 1px solid #ccc
+  margin 0 5px 0 0
+  padding 0 4px 0 4px
+
 // Pagination
 ul.pagination
   float right
@@ -33,5 +72,7 @@ ul.pagination
       margin 4px 4px
     span.pagination-info-text
       &:hover
-        color #888
+        color #222
+      color #888
       font-size 0.9em
+      vertical-align sub

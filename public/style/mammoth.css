@@ -3,7 +3,14 @@
   padding: 0;
 }
 div.blog {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  width: 700px;
+  margin: auto;
+}
+div.filter {
   width: 100%;
+  padding: 0 0 20px 0;
 }
 div.post {
   width: 100%;
@@ -11,7 +18,8 @@ div.post {
 }
 div.post-title {
   border-bottom: 1px solid #ccc;
-  padding: 0 0 4px;
+  padding: 0 0 5px;
+  margin: 0 0 10px;
 }
 h2.title {
   display: inline;
@@ -20,10 +28,40 @@ h3.created,
 h3.author {
   display: inline;
   font-size: 0.9em;
-  color: #ccc;
+  color: #888;
+}
+div.post-abstract {
+  text-align: justify;
+}
+div.post-action {
+  padding: 5px 0 0 0;
+}
+a.link {
+  text-decoration: none;
+  color: #888;
+  background: #fff;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  margin: 0 10px 0 0;
+  padding: 0 4px 0 4px;
+}
+a.link:hover {
+  color: #222;
+  border: 1px solid #222;
 }
 h3.tag {
+  cursor: pointer;
   display: inline;
+  color: #888;
+  background: #e6e6e6;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  margin: 0 5px 0 0;
+  padding: 0 4px 0 4px;
+}
+h3.tag:hover {
+  color: #222;
+  border: 1px solid #222;
 }
 ul.pagination {
   float: right;
@@ -39,8 +77,10 @@ span.ui-icon {
   margin: 4px 4px;
 }
 span.pagination-info-text {
+  color: #888;
   font-size: 0.9em;
+  vertical-align: sub;
 }
 span.pagination-info-text:hover {
-  color: #888;
+  color: #222;
 }

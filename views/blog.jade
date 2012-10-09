@@ -3,18 +3,19 @@ extends layout
 block content
 
   div.blog
+    div.filter
+      div.fiel
     - each post in posts
       div.post
         div.post-title
           h2.title #{post.title}         
           h3.created [ #{post.created} - 
           h3.author #{post.author} ]
-        div.abstract #{post.abstract}
-        div.tags
-          span.more
-            a.to-post(href='/blog/') [Leer mas]
+        div.post-abstract #{post.abstract}
+        div.post-action
+          a.link.ui-corner-all(href='/blog/#{post.slug}') Leer m&aacutes
           - each tag in post.tags
-            h3.tag #{tag}
+            h3.tag.ui-corner-all #{tag}
 
     ul.pagination.ui-widget.ui-helper-clearfix
       li.pagination-icon.ui-state-default.ui-corner-all
