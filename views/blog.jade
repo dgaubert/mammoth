@@ -1,10 +1,26 @@
 extends layout
 
 block content
-
+    
   div.blog
     div.filter
-      div.fiel
+      div.row
+        label.field
+          span Title:
+          input.ui-corner-all(size=58)
+        label.field
+          span Autor:
+          input.ui-corner-all(size=26)
+      div.row
+        label.field
+          span Inicio:
+          input.date.ui-corner-all(size=10)
+        label.field
+          span Fin:
+          input.date.ui-corner-all(size=10)
+        label.field
+          span Tags:
+          input.ui-corner-all(size=50)
     - each post in posts
       div.post
         div.post-title

@@ -2,6 +2,19 @@
   margin: 0;
   padding: 0;
 }
+input {
+  color: #888;
+  background: #e6e6e6 url("images/ui-bg_inset-soft_75_e6e6e6_1x100.png") 50% 50% repeat-x;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  margin: 0 5px 0 0;
+  padding: 2px 5px 2px 5px;
+}
+input:focus {
+  background: #fff;
+  border: 1px solid #888;
+  outline: none;
+}
 div.blog {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 0.9em;
@@ -10,7 +23,16 @@ div.blog {
 }
 div.filter {
   width: 100%;
-  padding: 0 0 20px 0;
+  padding: 20px 0 10px 0;
+  margin: 0 5px 0 0;
+}
+div.filter div.row {
+  width: 100%;
+  padding: 0 0 10px 0;
+}
+div.filter div.row label span {
+  font-weight: bold;
+  padding: 0 5px 0 0;
 }
 div.post {
   width: 100%;
@@ -53,7 +75,7 @@ h3.tag {
   cursor: pointer;
   display: inline;
   color: #888;
-  background: #e6e6e6;
+  background: #e6e6e6 url("images/ui-bg_inset-soft_75_e6e6e6_1x100.png") 50% 50% repeat-x;
   font-size: 0.9em;
   border: 1px solid #ccc;
   margin: 0 5px 0 0;
