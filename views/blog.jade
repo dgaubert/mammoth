@@ -7,24 +7,26 @@ block content
       div.row
         label.field
           span Title:
-          input.ui-corner-all(size=58)
+          input#title.ui-corner-all
         label.field
           span Autor:
-          input.ui-corner-all(size=26)
+          input#author.ui-corner-all
       div.row
         label.field
           span Inicio:
-          input.date.ui-corner-all(size=10)
+          input#start.date.ui-corner-all
         label.field
           span Fin:
-          input.date.ui-corner-all(size=10)
+          input#end.date.ui-corner-all
         label.field
-          span Tags:
-          input.ui-corner-all(size=50)
+          span Tag:
+          input#tag.ui-corner-all
+      div.row.search
+        a#search(href="#") Buscar
     - each post in posts
       div.post
         div.post-title
-          h2.title #{post.title}         
+          h2.title #{post.title}
           h3.created [ #{post.created} - 
           h3.author #{post.author} ]
         div.post-abstract #{post.abstract}
@@ -32,6 +34,7 @@ block content
           a.link.ui-corner-all(href='/blog/#{post.slug}') Leer m&aacutes
           - each tag in post.tags
             h3.tag.ui-corner-all #{tag}
+            h3.tag1 #{tag}
 
     ul.pagination.ui-widget.ui-helper-clearfix
       li.pagination-icon.ui-state-default.ui-corner-all

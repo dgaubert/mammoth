@@ -24,10 +24,42 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.85);
   width: 100%;
   height: 55px;
   z-index: 100;
+}
+header section.menu {
+  width: 700px;
+  margin: auto;
+}
+header section.menu section.logo {
+  float: left;
+}
+header section.menu section.logo span.title {
+  padding: 15px 10px 0 0;
+  font-size: 2.2em;
+  font-weight: bold;
+}
+header section.menu section.logo span.description {
+  color: #888;
+  font-size: 0.9em;
+}
+header section.menu nav {
+  text-align: right;
+  padding: 15px 0 0 0;
+}
+header section.menu nav a {
+  color: #888;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0 0 0 40px;
+}
+header section.menu nav a:hover {
+  color: #222;
+}
+header section.menu nav .active {
+  color: #f81b1b;
 }
 div.content {
   padding: 0 0 60px;
@@ -50,12 +82,31 @@ div.filter div.row label span {
   font-weight: bold;
   padding: 0 5px 0 0;
 }
+div.filter .search {
+  text-align: right;
+}
+div.filter input#title {
+  width: 350px;
+}
+div.filter input#author {
+  width: 210px;
+}
+div.filter input#start {
+  width: 150px;
+}
+div.filter input#end {
+  width: 150px;
+}
+div.filter input#tag {
+  width: 220px;
+}
 div.post {
   width: 100%;
   padding: 0 0 20px 0;
 }
 div.post-title {
   border-bottom: 1px solid #ccc;
+  box-shadow: 0 0 4px #ddd;
   padding: 0 0 5px;
   margin: 0 0 10px;
 }
@@ -117,7 +168,7 @@ span.ui-icon {
 span.pagination-info-text {
   color: #888;
   font-size: 0.9em;
-  vertical-align: sub;
+  vertical-align: middle;
 }
 span.pagination-info-text:hover {
   color: #222;
