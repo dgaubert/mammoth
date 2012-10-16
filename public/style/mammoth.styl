@@ -2,9 +2,10 @@
 *
   margin 0
   padding 0
+
 // General
 body
-  font: 400 14px/1.6 "Open Sans", sans-serif;
+  font 400 14px/1.6 "Open Sans", sans-serif
 input
   &:focus
     background #ffffff
@@ -17,6 +18,19 @@ input
   margin 0 5px 0 0
   padding 2px 5px 2px 5px
 
+// Redefine JQuery values
+span.ui-button-text
+  display inline !important
+
+div.ui-buttonset 
+  margin 0px !important
+  a.ui-button
+    margin 0px !important
+
+.ui-menu
+  position absolute
+  width 100px
+  
 // Header
 header
   border-bottom 1px solid #ccc
@@ -52,6 +66,7 @@ header
         padding 0 0 0 40px
       .active
         color #f81b1b
+
 // Content
 div.content
   padding 0 0 60px
@@ -73,7 +88,7 @@ div.filter
         font-weight bold
         padding 0 5px 0 0
       input
-		margin 0 5px 0 0
+        margin 0 5px 0 0
   .search
     text-align right
   input#title
@@ -84,6 +99,8 @@ div.filter
     width 150px
   input#end
     width 150px
+  input.date
+     font bold 12px/1 "Open Sans", sans-serif
   input#tag
     width 220px
 // Post
@@ -93,7 +110,6 @@ div.post
 // Title
 div.post-title
   border-bottom 1px solid #ccc
-  box-shadow 0 0 4px #ddd
   padding 0 0 5px
   margin 0 0 10px
 h2.title
@@ -110,47 +126,22 @@ div.post-abstract
 div.post-action
   padding 5px 0 0 0
 a.link
-  &:hover
-    color #222
-    border 1px solid #222
-  text-decoration none
-  color #888
-  background #fff
-  font-size 0.9em
-  border 1px solid #ccc
   margin 0 10px 0 0
-  padding 0 4px 0 4px
-h3.tag
-  &:hover
-    color #222
-    border 1px solid #222
-  cursor pointer
-  display inline
-  color #888
-  background #e6e6e6 url(images/ui-bg_inset-soft_75_e6e6e6_1x100.png) 50% 50% repeat-x;
-  font-size 0.9em
-  border 1px solid #ccc
+  font bold 12px/1 "Open Sans", sans-serif
+  background #fff
+a.tag
   margin 0 5px 0 0
-  padding 0 4px 0 4px
+  font bold 12px/1 "Open Sans", sans-serif
 
 // Pagination
-ul.pagination
+div.paginator
   float right
-  li
-    margin 2px
-    position relative
-    cursor pointer
-    float left
-    list-style none
-	span.ui-icon
-      margin 4px 4px
-    span.pagination-info-text
-      &:hover
-        color #222
-      color #888
-      font-size 0.9em
-      vertical-align middle
-
+a#page-selector
+  background #fff
+a#previous
+  height 100%
+a#next
+  height 100%  
 // Footer
 footer div.footer-content
   border-top 1px solid #ccc
