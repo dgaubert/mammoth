@@ -1,8 +1,8 @@
 div.paginator
-  a#previous(href="#")
-  a#page-selector(href="#") #{pagination.selected}
-  a#next(href="#")
+  a#previous(href='#')
+  a#page-selector(href='#') #{pagination.selected}
+  a#next(href='#')
   ul#pages
     - each page in pagination.pages
       li
-        a(href="#") #{page}
+        a(href='#') #{page}

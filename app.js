@@ -33,6 +33,7 @@ app.get('/', home.view);
 
 /** Blog **/
 app.get('/blog', blog.view);
+app.get('/blog/titles', blog.titles);
 //app.get('/blog/:id', blog.view);
 
 http.createServer(app).listen(app.get('port'), function(){

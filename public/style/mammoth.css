@@ -3,7 +3,7 @@
   padding: 0;
 }
 body {
-  font: 400 14px/1.6 "Open Sans", sans-serif;
+  font: 400 14px/1.6 'Open Sans', sans-serif;
 }
 input {
   color: #888;
@@ -28,7 +28,11 @@ div.ui-buttonset a.ui-button {
   margin: 0px !important;
 }
 .ui-datepicker {
-  font: 12px "Open Sans", sans-serif;
+  font: 12px 'Open Sans', sans-serif;
+}
+.ui-datepicker-prev-hover,
+.ui-datepicker-next-hover {
+  border: 1px solid rgba(0,0,0,0) !important;
 }
 .ui-menu {
   position: absolute;
@@ -116,7 +120,7 @@ div.filter input#end {
   width: 150px;
 }
 div.filter input.date {
-  font: bold 12px/1 "Open Sans", sans-serif;
+  font: bold 12px/1 'Open Sans', sans-serif;
 }
 div.filter input#tag {
   width: 220px;
@@ -147,12 +151,12 @@ div.post-action {
 }
 a.link {
   margin: 0 10px 0 0;
-  font: bold 12px/1 "Open Sans", sans-serif;
+  font: bold 12px/1 'Open Sans', sans-serif;
   background: #fff;
 }
 a.tag {
   margin: 0 5px 0 0;
-  font: bold 12px/1 "Open Sans", sans-serif;
+  font: bold 12px/1 'Open Sans', sans-serif;
 }
 div.paginator {
   float: right;

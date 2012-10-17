@@ -36,3 +36,14 @@ exports.view = function(req, res){
   };
   res.render('blog', { title: 'Blog de Daniel García Aubert', posts: posts, pagination: pagination });
 };
+
+exports.titles = function(req, res){
+  var titles = [
+    'Git model branching',
+    'LispyScript Macros',
+    'TinyOS 2.x'
+  ];
+  var body = JSON.stringify(titles);
+  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
+  res.end(body);
+};
