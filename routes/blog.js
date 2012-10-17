@@ -47,3 +47,18 @@ exports.titles = function(req, res){
   res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
   res.end(body);
 };
+
+exports.tags = function(req, res){
+  var tags = [
+    'git',
+    'wsn',
+    'tinyos',
+    'sensor',
+    'workflow',
+    'macros',
+    'script'
+  ];
+  var body = JSON.stringify(tags);
+  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
+  res.end(body);
+};

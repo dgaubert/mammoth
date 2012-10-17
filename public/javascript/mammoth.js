@@ -54,5 +54,12 @@ $(document).ready(function() {
       source: titles
     });
   });
+
+  /* Tags */
+  $.getJSON('/blog/tags', function(tags) {
+    $('input#tag').autocomplete({
+      source: tags
+    });
+  });
   
 });
