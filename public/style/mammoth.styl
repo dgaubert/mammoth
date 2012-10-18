@@ -33,7 +33,13 @@ div.ui-buttonset
 .ui-datepicker-prev-hover
 .ui-datepicker-next-hover
   border 1px solid rgba(0,0,0,0) !important
-  
+
+.ui-autocomplete
+  max-height 200px
+  overflow-y auto
+  // Prevent horizontal scrollbar
+  overflow-x hidden
+
 .ui-menu
   position absolute
   width 100px
@@ -123,9 +129,11 @@ h2.title
   display inline
 h3.created
 h3.author
+h3.comments
   display inline
   font-size 0.9em
   color #888
+
 // Abstract
 div.post-abstract
   text-align justify
