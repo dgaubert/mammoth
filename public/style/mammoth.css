@@ -18,6 +18,9 @@ input:focus {
   border: 1px solid #888;
   outline: none;
 }
+.ui-widget {
+  font-size: 1em;
+}
 span.ui-button-text {
   display: inline !important;
 }
@@ -28,11 +31,11 @@ div.ui-buttonset a.ui-button {
   margin: 0px !important;
 }
 .ui-datepicker {
-  font: 12px 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .ui-datepicker-prev-hover,
 .ui-datepicker-next-hover {
-  border: 1px solid rgba(0,0,0,0.00) !important;
+  border: 1px solid rgba(0,0,0,0) !important;
 }
 .ui-autocomplete {
   max-height: 200px;
@@ -51,7 +54,7 @@ header {
   left: 0;
   background: rgba(255,255,255,0.85);
   width: 100%;
-  height: 55px;
+  height: 45px;
   z-index: 100;
 }
 header section.menu {
@@ -61,14 +64,15 @@ header section.menu {
 header section.menu section.logo {
   float: left;
 }
-header section.menu section.logo span.title {
-  padding: 15px 10px 0 0;
-  font-size: 2.2em;
-  font-weight: bold;
+header section.menu section.logo h1.title {
+  display: inline;
+  font-size: 2em;
 }
-header section.menu section.logo span.description {
+header section.menu section.logo h2.description {
+  display: inline;
   color: #888;
-  font-size: 0.9em;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
 }
 header section.menu nav {
   text-align: right;
@@ -134,7 +138,7 @@ div.post {
   width: 100%;
   padding: 0 0 20px 0;
 }
-div.post-title {
+hgroup.post-title {
   border-bottom: 1px solid #ccc;
   padding: 0 0 5px;
   margin: 0 0 10px;

@@ -19,6 +19,9 @@ input
   padding 2px 5px 2px 5px
 
 // Redefine JQuery values
+.ui-widget
+  font-size 1em
+
 span.ui-button-text
   display inline !important
 
@@ -28,7 +31,7 @@ div.ui-buttonset
     margin 0px !important
 
 .ui-datepicker
-  font 12px 'Open Sans', sans-serif
+  font-family 'Open Sans', sans-serif
 
 .ui-datepicker-prev-hover
 .ui-datepicker-next-hover
@@ -53,20 +56,21 @@ header
   left 0
   background rgba(255, 255, 255, .85)
   width 100%
-  height 55px
+  height 45px
   z-index 100
   section.menu
     width 700px
     margin auto
     section.logo
       float left
-      span.title
-        padding 15px 10px 0 0
-        font-size 2.2em
-        font-weight bold
-      span.description
+      h1.title
+        display inline
+        font-size 2em
+      h2.description
+        display inline
         color #888
-        font-size 0.9em
+        font-size 0.8em
+        margin 0 0 0 10px
     nav
       text-align right
       padding 15px 0 0 0
@@ -121,7 +125,7 @@ div.post
   width 100%
   padding 0 0 20px 0
 // Title
-div.post-title
+hgroup.post-title
   border-bottom 1px solid #ccc
   padding 0 0 5px
   margin 0 0 10px
