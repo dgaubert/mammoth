@@ -18,6 +18,9 @@ input:focus {
   border: 1px solid #888;
   outline: none;
 }
+p {
+  text-align: justify;
+}
 .ui-widget {
   font-size: 1em;
 }
@@ -102,37 +105,46 @@ div.filter {
   width: 100%;
   padding: 20px 0 10px 0;
 }
-div.filter div.row {
+div.filter div.first-column {
+  display: inline-block;
+  width: 400px;
+}
+div.filter div.first-column div.row {
   width: 100%;
   padding: 0 0 10px 0;
 }
-div.filter div.row label span {
+div.filter div.first-column div.row label span {
+  width: 45px;
+  display: inline-block;
   font-weight: bold;
   padding: 0 5px 0 0;
 }
-div.filter div.row label input {
+div.filter div.first-column div.row label input {
   margin: 0 5px 0 0;
 }
-div.filter .search {
+div.filter div.first-column .search {
   text-align: right;
 }
-div.filter input#title {
-  width: 350px;
+div.filter div.first-column input#title {
+  width: 330px;
 }
-div.filter input#author {
-  width: 210px;
-}
-div.filter input#start {
+div.filter div.first-column input#start {
   width: 150px;
 }
-div.filter input#end {
+div.filter div.first-column input#end {
   width: 150px;
 }
-div.filter input.date {
+div.filter div.first-column input.date {
   font: bold 12px/1 'Open Sans', sans-serif;
 }
-div.filter input#tag {
-  width: 220px;
+div.filter div.first-column input#tag {
+  width: 330px;
+}
+div.filter div.second-column {
+  width: 250px;
+  padding: 0 0 0 50px;
+  display: inline-block;
+  vertical-align: top;
 }
 div.post {
   width: 100%;

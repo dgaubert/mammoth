@@ -17,7 +17,9 @@ input
   border 1px solid #ccc
   margin 0 5px 0 0
   padding 2px 5px 2px 5px
-
+p
+  text-align justify
+  
 // Redefine JQuery values
 .ui-widget
   font-size 1em
@@ -97,29 +99,37 @@ div.blog
 div.filter
   width 100%
   padding 20px 0 10px 0
-  div.row
-    width 100%
-    padding 0 0 10px 0
-    label
-      span
-        font-weight bold
-        padding 0 5px 0 0
-      input
-        margin 0 5px 0 0
-  .search
-    text-align right
-  input#title
-    width 350px
-  input#author
-    width 210px
-  input#start
-    width 150px
-  input#end
-    width 150px
-  input.date
-     font bold 12px/1 'Open Sans', sans-serif
-  input#tag
-    width 220px
+  div.first-column
+    display inline-block
+    width 400px
+    div.row
+      width 100%
+      padding 0 0 10px 0
+      label
+        span
+          width 45px
+          display inline-block
+          font-weight bold
+          padding 0 5px 0 0
+        input
+          margin 0 5px 0 0
+    .search
+      text-align right
+    input#title
+      width 330px
+    input#start
+      width 150px
+    input#end
+      width 150px
+    input.date
+       font bold 12px/1 'Open Sans', sans-serif
+    input#tag
+      width 330px
+  div.second-column
+    width 250px
+    padding 0 0 0 50px
+    display inline-block
+    vertical-align top
 // Post
 div.post
   width 100%
