@@ -5,15 +5,17 @@
 body {
   font: 400 14px/1.6 'Open Sans', sans-serif;
 }
-input {
+input,
+select {
   color: #888;
-  background: #e6e6e6 url("images/ui-bg_inset-soft_75_e6e6e6_1x100.png") 50% 50% repeat-x;
+  background: #e6e6e6 url("images/ui-bg_inset-soft_75_e6e6e6_1x100.png") 50% 50% repeat-x !important;
   font-size: 0.9em;
   border: 1px solid #ccc;
   margin: 0 5px 0 0;
   padding: 2px 5px 2px 5px;
 }
-input:focus {
+input:focus,
+select:focus {
   background: #fff;
   border: 1px solid #888;
   outline: none;
@@ -107,26 +109,31 @@ div.filter {
 }
 div.filter div.first-column {
   display: inline-block;
-  width: 400px;
+  width: 430px;
 }
 div.filter div.first-column div.row {
   width: 100%;
   padding: 0 0 10px 0;
 }
 div.filter div.first-column div.row label span {
-  width: 45px;
+  width: 70px;
   display: inline-block;
   font-weight: bold;
   padding: 0 5px 0 0;
 }
-div.filter div.first-column div.row label input {
+div.filter div.first-column div.row label input,
+div.filter div.first-column div.row label select {
   margin: 0 5px 0 0;
 }
 div.filter div.first-column .search {
   text-align: right;
+  padding-right: 5px;
 }
 div.filter div.first-column input#title {
   width: 330px;
+}
+div.filter div.first-column select#category {
+  width: 340px;
 }
 div.filter div.first-column input#start {
   width: 150px;
@@ -141,8 +148,8 @@ div.filter div.first-column input#tag {
   width: 330px;
 }
 div.filter div.second-column {
-  width: 250px;
-  padding: 0 0 0 50px;
+  width: 220px;
+  padding: 0 0 0 30px;
   display: inline-block;
   vertical-align: top;
 }

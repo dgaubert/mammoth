@@ -35,7 +35,8 @@ app.get('/', home.view);
 app.get('/blog', blog.view);
 app.get('/blog/titles', blog.titles);
 app.get('/blog/tags', blog.tags);
-//app.get('/blog/:id', blog.view);
+app.get('/blog/categories', blog.categories);
+//app.get('/blog/:id', post.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Server listening on port " + app.get('port'));

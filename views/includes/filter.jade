@@ -1,24 +1,29 @@
 div.filter
   div.first-column
-    div.row
-      label.field
-        span Title:
-        input#title
-    div.row
-      label.field
-        span Inicio:
-        input#start.date
-    div.row
-      label.field
-        span Fin:
-        input#end.date
-    div.row
-      label.field
-        span Tag:
-        input#tag
-    div.row.search
-      a#search(href='#') Buscar
+    form#filter
+      div.row
+        label.field
+          span T&iacute;tulo:
+          input#title(name='title')
+      div.row
+        label.field
+          span Categor&iacute;a:
+          select#category(name='category')
+      div.row
+        label.field
+          span Inicio:
+          input#start.date(name='start')
+      div.row
+        label.field
+          span Fin:
+          input#end.date(name='end')
+      div.row
+        label.field
+          span Tag:
+          input#tag(name='tag')
+      div.row.search
+        a#search(href='#') Buscar
   div.second-column
       span.ui-icon.ui-icon-info(style='float: left; margin-top: .3em;')
       h3 &iquest;Buscas algo en particular?
-      p Utiliza el filtro de art&iacuteculos y busca por t&iacutetulo, tags o categorias. Adem&aacutes puedes acotar la b&uacutesqueda por fechas. &iexclPruebalo, es f&aacutecil!
+      p Utiliza el filtro de art&iacute;culos y busca por t&iacute;tulo, tags o categor&iacute;as. Adem&aacute;s puedes acotar la b&uacute;squeda por fechas. &iexcl;Pruebalo, es f&aacute;cil!

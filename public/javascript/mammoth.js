@@ -1,7 +1,7 @@
 $(document).ready(function() {
   
   /*** Inputs ***/ 
-  $('input').addClass('ui-corner-all');
+  $('input,select').addClass('ui-corner-all');
   
   $('input.date').datepicker({
     dateFormat: 'dd/mm/yy',
@@ -80,6 +80,16 @@ $(document).ready(function() {
   $.getJSON('/blog/tags', function(tags) {
     $('input#tag').autocomplete({
       source: tags
+    });
+  });
+  
+  /* Categories */
+  $.getJSON('/blog/categories', function(categories) {
+    $.each(categories, function(count, category) {   
+      $('select#category')
+         .append($("<option></option>")
+         .attr("value",category)
+         .text(category));
     });
   });
   

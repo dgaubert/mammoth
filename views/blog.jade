@@ -1,11 +1,7 @@
 extends layout
-
 block content
-    
   div.blog
-  
     include includes/filter
-    
     - each post in posts
       div.post
         hgroup.post-title
@@ -14,9 +10,8 @@ block content
           h3.author #{post.author} ]
         div.post-abstract #{post.abstract}
         div.post-action
-          a.link(href='/blog/#{post.slug}') Leer m&aacutes  
+          a.link(href='/blog/#{post.slug}') Leer m&aacutes
           - each tag in post.tags
             a.tag #{tag}
           h3.comments [ #{post.comments} Comentarios ]
-
     include includes/paginator
