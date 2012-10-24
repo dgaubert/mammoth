@@ -92,6 +92,7 @@ $(document).ready(function() {
          .attr("value",category)
          .text(category));
     });
+    $('select#category').chosen();
   });
   
 });
