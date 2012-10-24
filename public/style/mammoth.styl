@@ -13,11 +13,13 @@ select
     border 1px solid #888
     outline none
   color #888
-  background #e6e6e6 url(images/ui-bg_inset-soft_75_e6e6e6_1x100.png) 50% 50% repeat-x !important
+  background #e6e6e6 url(images/ui-bg_inset-soft_75_e6e6e6_1x100.png) 50% 50% repeat-x
   font-size 0.9em
   border 1px solid #ccc
   margin 0 5px 0 0
   padding 2px 5px 2px 5px
+select  
+  background #e6e6e6 !important
 p
   text-align justify
   
@@ -117,11 +119,12 @@ div.filter
           margin 0 5px 0 0
     .search
       text-align right
-      padding-right 5px
+      a#search
+        margin-right 12px
     input#title
       width 330px
     select#category
-      width 340px
+      width 342px
     input#start
       width 150px
     input#end
@@ -131,8 +134,8 @@ div.filter
     input#tag
       width 330px
   div.second-column
-    width 220px
-    padding 0 0 0 30px
+    width 250px
+    padding 0 0 0 20px
     display inline-block
     vertical-align top
 // Post
@@ -152,6 +155,8 @@ h3.comments
   display inline
   font-size 0.9em
   color #888
+h3.comments
+  margin 0 0 0 15px
 
 // Abstract
 div.post-abstract
@@ -160,12 +165,17 @@ div.post-abstract
 div.post-action
   padding 5px 0 0 0
 a.link
-  margin 0 10px 0 0
+  margin 0 15px 0 0
+  color #222
   font bold 12px/1 'Open Sans', sans-serif
   background #fff
 a.tag
   margin 0 5px 0 0
   font bold 12px/1 'Open Sans', sans-serif
+a.category
+  margin 0 15px 0 0
+  font bold 12px/1 'Open Sans', sans-serif
+  background #fff
 
 // Pagination
 div.paginator

@@ -36,6 +36,7 @@ $(document).ready(function() {
   });
   $('a.link').button();
   $('a.tag').button();
+  $('a.category').button();
   
   /*** Paginator ***/
   $('a#previous').button({

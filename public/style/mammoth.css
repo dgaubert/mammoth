@@ -8,7 +8,7 @@ body {
 input,
 select {
   color: #888;
-  background: #e6e6e6 url("images/ui-bg_inset-soft_75_e6e6e6_1x100.png") 50% 50% repeat-x !important;
+  background: #e6e6e6 url("images/ui-bg_inset-soft_75_e6e6e6_1x100.png") 50% 50% repeat-x;
   font-size: 0.9em;
   border: 1px solid #ccc;
   margin: 0 5px 0 0;
@@ -19,6 +19,9 @@ select:focus {
   background: #fff;
   border: 1px solid #888;
   outline: none;
+}
+select {
+  background: #e6e6e6 !important;
 }
 p {
   text-align: justify;
@@ -127,13 +130,15 @@ div.filter div.first-column div.row label select {
 }
 div.filter div.first-column .search {
   text-align: right;
-  padding-right: 5px;
+}
+div.filter div.first-column .search a#search {
+  margin-right: 12px;
 }
 div.filter div.first-column input#title {
   width: 330px;
 }
 div.filter div.first-column select#category {
-  width: 340px;
+  width: 342px;
 }
 div.filter div.first-column input#start {
   width: 150px;
@@ -148,8 +153,8 @@ div.filter div.first-column input#tag {
   width: 330px;
 }
 div.filter div.second-column {
-  width: 220px;
-  padding: 0 0 0 30px;
+  width: 250px;
+  padding: 0 0 0 20px;
   display: inline-block;
   vertical-align: top;
 }
@@ -172,6 +177,9 @@ h3.comments {
   font-size: 0.9em;
   color: #888;
 }
+h3.comments {
+  margin: 0 0 0 15px;
+}
 div.post-abstract {
   text-align: justify;
 }
@@ -179,13 +187,19 @@ div.post-action {
   padding: 5px 0 0 0;
 }
 a.link {
-  margin: 0 10px 0 0;
+  margin: 0 15px 0 0;
+  color: #222;
   font: bold 12px/1 'Open Sans', sans-serif;
   background: #fff;
 }
 a.tag {
   margin: 0 5px 0 0;
   font: bold 12px/1 'Open Sans', sans-serif;
+}
+a.category {
+  margin: 0 15px 0 0;
+  font: bold 12px/1 'Open Sans', sans-serif;
+  background: #fff;
 }
 div.paginator {
   float: right;
