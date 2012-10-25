@@ -2,25 +2,15 @@ div.filter
   div.first-column
     form#filter
       div.row
-        label.field
-          span T&iacute;tulo:
-          input#title(name='title')
+        select#title(name='title')
       div.row
-        label.field
-          span Categor&iacute;a:
-          select#category(name='category')
+        select#category(name='category', data-placeholder='Busca por categoria')
       div.row
-        label.field
-          span Inicio:
-          input#start.date(name='start')
+        input#start.date(name='start', data-placeholder='Busca por categoria')
       div.row
-        label.field
-          span Fin:
-          input#end.date(name='end')
+        input#end.date(name='end')
       div.row
-        label.field
-          span Tag:
-          input#tag(name='tag')
+        select#tag(name='tag', multiple='multiple', data-placeholder='Busca por tags')
       div.row.search
         a#search(href='#') Buscar
   div.second-column

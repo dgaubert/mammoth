@@ -1,7 +1,7 @@
 $(document).ready(function() {
   
   /*** Inputs ***/ 
-  $('input,select').addClass('ui-corner-all');
+  $('input').addClass('ui-corner-all');
   
   $('input.date').datepicker({
     dateFormat: 'dd/mm/yy',
@@ -72,27 +72,55 @@ $(document).ready(function() {
   
   /* Titles */
   $.getJSON('/blog/titles', function(titles) {
-    $('input#title').autocomplete({
-      source: titles
+    $.each(titles, function(i, title) {
+      if ( i == 0 )
+        $('select#title').append($('<option></option>'));
+      $('select#title')
+         .append($('<option></option>')
+         .attr('value',title)
+         .text(title));
     });
-  });
-
-  /* Tags */
-  $.getJSON('/blog/tags', function(tags) {
-    $('input#tag').autocomplete({
-      source: tags
-    });
+    $('select#title')
+      .attr('data-placeholder', 'Busca por titulo')
+      .chosen({
+        no_results_text: 'Sin resultados',
+        allow_single_deselect: true
+      })
+    ;
   });
   
   /* Categories */
   $.getJSON('/blog/categories', function(categories) {
-    $.each(categories, function(count, category) {   
+    $.each(categories, function(i, category) {
+      if ( i == 0 )
+        $('select#category').append($('<option></option>'));
       $('select#category')
-         .append($("<option></option>")
-         .attr("value",category)
+         .append($('<option></option>')
+         .attr('value',category)
          .text(category));
     });
-    $('select#category').chosen();
+    $('select#category')
+      .attr('data-placeholder', 'Busca por categoria')
+      .chosen({
+        no_results_text: 'Sin resultados',
+        allow_single_deselect: true
+      })
+    ;
+  });
+
+  /* Tags */
+  $.getJSON('/blog/tags', function(tags) {
+    $.each(tags, function(i, tag) {
+      if ( i == 0 )
+        $('select#tag').append($('<option></option>'));
+      $('select#tag')
+         .append($('<option></option>')
+         .attr('value',tag)
+         .text(tag));
+    });
+    $('select#tag').chosen({
+      no_results_text: 'Sin resultados'
+    });
   });
   
 });

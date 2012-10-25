@@ -70,7 +70,6 @@ exports.tags = function(req, res){
 
 exports.categories = function(req, res){
   var tags = [
-    'todas las categorias',
     'desarrollo',
     'miscelanea'
   ];
