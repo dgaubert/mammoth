@@ -3,10 +3,7 @@ $(document).ready(function() {
   /*** Inputs ***/ 
   $('input').addClass('ui-corner-all');
   
-  $('input.date').datepicker({
-    dateFormat: 'dd/mm/yy',
-    firstDay: 1
-  });
+  $('input.date').datepicker();
   
   /*** Location ***/
   $.datepicker.regional['es'] = {clearText: 'Limpiar', clearStatus: '',
@@ -24,7 +21,7 @@ $(document).ready(function() {
     dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
     dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
     dayStatus: 'DD', dateStatus: 'D, M d',
-    dateFormat: 'dd/mm/yy', firstDay: 0, 
+    dateFormat: 'dd/mm/yy', firstDay: 1, 
     initStatus: '', isRTL: false};
   $.datepicker.setDefaults($.datepicker.regional['es']);
   
@@ -108,6 +105,10 @@ $(document).ready(function() {
     ;
   });
 
+  $('input#start').attr('placeholder', 'Desde');
+  
+  $('input#end').attr('placeholder', 'Hasta');
+  
   /* Tags */
   $.getJSON('/blog/tags', function(tags) {
     $.each(tags, function(i, tag) {
@@ -118,9 +119,12 @@ $(document).ready(function() {
          .attr('value',tag)
          .text(tag));
     });
-    $('select#tag').chosen({
-      no_results_text: 'Sin resultados'
-    });
+    $('select#tag')
+      .attr('data-placeholder', 'Busca por tags')
+      .chosen({
+        no_results_text: 'Sin resultados'
+      })
+    ;
   });
   
 });

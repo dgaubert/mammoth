@@ -7,21 +7,25 @@
 body
   font 400 14px/1.6 'Open Sans', sans-serif
 input
-select
   &:focus
-    background #ffffff
+    background-image: -webkit-linear-gradient(top, #EEE 20%, white 80%);
+    background-image: -moz-linear-gradient(top, #EEE 20%, white 80%);
+    background-image: -o-linear-gradient(top, #EEE 20%, white 80%);
+    background-image: linear-gradient(#EEE 20%, white 80%);
     border 1px solid #888
     outline none
-  color #888
-  background #e6e6e6 url(images/ui-bg_inset-soft_75_e6e6e6_1x100.png) 50% 50% repeat-x
-  font-size 0.9em
-  border 1px solid #ccc
-  margin 0 5px 0 0
-  padding 2px 5px 2px 5px
-select  
-  background #e6e6e6 !important
-input.date
-  font bold 12px/1 'Open Sans', sans-serif
+  color #999
+  border 1px solid #aaa
+  padding 3px 6px 3px 6px
+  border-radius 3px
+  background-image: -webkit-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  background-image: -moz-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  background-image: -o-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  background-image: linear-gradient(white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  -webkit-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+  -moz-box-shadow   : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+  box-shadow        : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+
 p
   text-align justify
   
@@ -116,9 +120,9 @@ div.filter
     select
       width 100%
     input#start
-      width 150px
+      width 196px
     input#end
-      width 150px
+      width 196px
   div.second-column
     width 250px
     padding 0 0 0 20px

@@ -29,9 +29,9 @@
   background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
   background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
   background-image: linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%); 
-  -webkit-border-radius: 5px;
-  -moz-border-radius   : 5px;
-  border-radius        : 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius   : 3px;
+  border-radius        : 3px;
   -moz-background-clip   : padding;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
@@ -113,9 +113,9 @@
   font-size: 1em;
 }
 .chzn-container-single .chzn-drop {
-  -webkit-border-radius: 0 0 4px 4px;
-  -moz-border-radius   : 0 0 4px 4px;
-  border-radius        : 0 0 4px 4px;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius   : 0 0 3px 3px;
+  border-radius        : 0 0 3px 3px;
   -moz-background-clip   : padding;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
@@ -130,11 +130,23 @@
 /* @group Multi Chosen */
 .chzn-container-multi .chzn-choices {
   background-color: #fff;
+  /*
   background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
   background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
+  */
+  background-image: -webkit-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  background-image: -moz-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  background-image: -o-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  background-image: linear-gradient(white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
+  -webkit-border-radius: 3px;
+  -moz-border-radius   : 3px;
+  border-radius        : 3px;
+  -webkit-box-shadow: 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
+  -moz-box-shadow   : 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
+  box-shadow        : 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
   border: 1px solid #aaa;
   margin: 0;
   padding: 0;

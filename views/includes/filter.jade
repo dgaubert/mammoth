@@ -4,13 +4,13 @@ div.filter
       div.row
         select#title(name='title')
       div.row
-        select#category(name='category', data-placeholder='Busca por categoria')
+        select#category(name='category')
       div.row
-        input#start.date(name='start', data-placeholder='Busca por categoria')
-      div.row
+        input#start.date(name='start')
+        div(style='display: inline; padding: 5px;')
         input#end.date(name='end')
       div.row
-        select#tag(name='tag', multiple='multiple', data-placeholder='Busca por tags')
+        select#tag(name='tag', multiple='multiple')
       div.row.search
         a#search(href='#') Buscar
   div.second-column
