@@ -5,32 +5,8 @@
 body {
   font: 400 14px/1.6 'Open Sans', sans-serif;
 }
-input {
-  color: #999;
-  border: 1px solid #aaa;
-  padding: 3px 6px 3px 6px;
-  border-radius: 3px;
-  background-image: -webkit-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  background-image: -moz-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  background-image: -o-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  background-image: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
-  -moz-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
-  box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
-}
-input:focus {
-  background-image: -webkit-linear-gradient(top, #eee 20%, #fff 80%);
-  background-image: -moz-linear-gradient(top, #eee 20%, #fff 80%);
-  background-image: -o-linear-gradient(top, #eee 20%, #fff 80%);
-  background-image: linear-gradient(#eee 20%, #fff 80%);
-  border: 1px solid #888;
-  outline: none;
-}
 p {
   text-align: justify;
-}
-.ui-widget {
-  font-size: 1em;
 }
 span.ui-button-text {
   display: inline !important;
@@ -44,26 +20,24 @@ div.ui-buttonset a.ui-button {
 .ui-datepicker {
   font-family: 'Open Sans', sans-serif;
 }
-.ui-datepicker-prev-hover,
-.ui-datepicker-next-hover {
-  border: 1px solid rgba(0,0,0,0) !important;
-}
-.ui-autocomplete {
-  max-height: 200px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
 .ui-menu {
   position: absolute;
   width: 100px;
 }
+.ui-state-hover {
+  color: #3875d7;
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  border: 1px solid #5897fb;
+}
 header {
   border-bottom: 1px solid #ccc;
-  box-shadow: 0 0 4px #ddd;
+  box-shadow: 0 0 4px 0 #ddd;
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   width: 100%;
   height: 45px;
   z-index: 100;
@@ -76,6 +50,7 @@ header section.menu section.logo {
   float: left;
 }
 header section.menu section.logo h1.title {
+  color: #3875d7;
   display: inline;
   font-size: 2em;
 }
@@ -99,7 +74,7 @@ header section.menu nav a:hover {
   color: #222;
 }
 header section.menu nav .active {
-  color: #f81b1b;
+  color: #3875d7;
 }
 div.content {
   padding: 0 0 60px;
@@ -139,17 +114,42 @@ div.filter div.second-column {
   display: inline-block;
   vertical-align: top;
 }
+div.filter input {
+  color: #444;
+  border: 1px solid #aaa;
+  padding: 3px 6px 3px 6px;
+  border-radius: 3px;
+  background-image: -webkit-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
+  background-image: -moz-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
+  background-image: -o-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
+  background-image: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
+  -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
+  -moz-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
+  box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
+}
+div.filter input:focus {
+  background-image: -webkit-linear-gradient(top, #eee 20%, #fff 80%);
+  background-image: -moz-linear-gradient(top, #eee 20%, #fff 80%);
+  background-image: -o-linear-gradient(top, #eee 20%, #fff 80%);
+  background-image: linear-gradient(#eee 20%, #fff 80%);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  border: 1px solid #5897fb;
+  outline: none;
+}
 div.post {
   width: 100%;
   padding: 0 0 20px 0;
 }
 hgroup.post-title {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #888;
   padding: 0 0 5px;
   margin: 0 0 10px;
 }
 h2.title {
   display: inline;
+  color: #444;
 }
 h3.created,
 h3.author,
@@ -169,7 +169,6 @@ div.post-action {
 }
 a.link {
   margin: 0 15px 0 0;
-  color: #222;
   font: bold 12px/1 'Open Sans', sans-serif;
   background: #fff;
 }
@@ -180,6 +179,8 @@ a.tag {
 a.category {
   margin: 0 15px 0 0;
   font: bold 12px/1 'Open Sans', sans-serif;
+}
+a.category:hover {
   background: #fff;
 }
 div.paginator {

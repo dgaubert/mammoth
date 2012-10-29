@@ -361,6 +361,10 @@
   -moz-box-shadow   : 0 0 5px rgba(0,0,0,.3);
   box-shadow        : 0 0 5px rgba(0,0,0,.3);
   border: 1px solid #5897fb;
+  background-image: -webkit-linear-gradient(top, #EEE 20%, white 80%);
+  background-image: -moz-linear-gradient(top, #EEE 20%, white 80%);
+  background-image: -o-linear-gradient(top, #EEE 20%, white 80%);
+  background-image: linear-gradient(#EEE 20%, white 80%);
 }
 .chzn-container-active .chzn-choices .search-field input {
   color: #111 !important;

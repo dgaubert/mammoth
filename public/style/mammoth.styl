@@ -6,32 +6,10 @@
 // General
 body
   font 400 14px/1.6 'Open Sans', sans-serif
-input
-  &:focus
-    background-image: -webkit-linear-gradient(top, #EEE 20%, white 80%);
-    background-image: -moz-linear-gradient(top, #EEE 20%, white 80%);
-    background-image: -o-linear-gradient(top, #EEE 20%, white 80%);
-    background-image: linear-gradient(#EEE 20%, white 80%);
-    border 1px solid #888
-    outline none
-  color #999
-  border 1px solid #aaa
-  padding 3px 6px 3px 6px
-  border-radius 3px
-  background-image: -webkit-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
-  background-image: -moz-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
-  background-image: -o-linear-gradient(top, white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
-  background-image: linear-gradient(white 20%, #F6F6F6 50%, #EEE 52%, #F4F4F4 100%);
-  -webkit-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
-  -moz-box-shadow   : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
-  box-shadow        : 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
-
 p
   text-align justify
   
 // Redefine JQuery values
-.ui-widget
-  font-size 1em
 
 span.ui-button-text
   display inline !important
@@ -44,28 +22,25 @@ div.ui-buttonset
 .ui-datepicker
   font-family 'Open Sans', sans-serif
 
-.ui-datepicker-prev-hover
-.ui-datepicker-next-hover
-  border 1px solid rgba(0,0,0,0) !important
-
-.ui-autocomplete
-  max-height 200px
-  overflow-y auto
-  // Prevent horizontal scrollbar
-  overflow-x hidden
-
 .ui-menu
   position absolute
   width 100px
   
+.ui-state-hover
+  color #3875d7
+  -webkit-box-shadow 0 0 3px rgba(0,0,0,.3)
+  -moz-box-shadow 0 0 3px rgba(0,0,0,.3)
+  box-shadow 0 0 3px rgba(0,0,0,.3)
+  border 1px solid #5897fb
+  
 // Header
 header
   border-bottom 1px solid #ccc
-  box-shadow 0 0 4px #ddd
+  box-shadow 0 0 4px 0 #ddd
   position fixed
   top 0
   left 0
-  background rgba(255, 255, 255, .85)
+  background rgba(255, 255, 255, .9)
   width 100%
   height 45px
   z-index 100
@@ -75,6 +50,7 @@ header
     section.logo
       float left
       h1.title
+        color #3875d7
         display inline
         font-size 2em
       h2.description
@@ -93,7 +69,7 @@ header
         font-weight bold
         padding 0 0 0 40px
       .active
-        color #f81b1b
+        color #3875d7
 
 // Content
 div.content
@@ -128,17 +104,41 @@ div.filter
     padding 0 0 0 20px
     display inline-block
     vertical-align top
+  input
+    &:focus
+      background-image -webkit-linear-gradient(top, #eee 20%, #fff 80%)
+      background-image -moz-linear-gradient(top, #eee 20%, #fff 80%)
+      background-image -o-linear-gradient(top, #eee 20%, #fff 80%)
+      background-image linear-gradient(#eee 20%, #fff 80%)
+      -webkit-box-shadow 0 0 5px rgba(0,0,0,.3)
+      -moz-box-shadow 0 0 5px rgba(0,0,0,.3)
+      box-shadow 0 0 5px rgba(0,0,0,.3)
+      border 1px solid #5897fb
+      outline none
+    color #444
+    border 1px solid #aaa
+    padding 3px 6px 3px 6px
+    border-radius 3px
+    background-image -webkit-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    background-image -moz-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    background-image -o-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    background-image linear-gradient(white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    -webkit-box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
+    -moz-box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
+    box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
+    
 // Post
 div.post
   width 100%
   padding 0 0 20px 0
 // Title
 hgroup.post-title
-  border-bottom 1px solid #ccc
+  border-bottom 1px solid #888
   padding 0 0 5px
   margin 0 0 10px
 h2.title
   display inline
+  color #444
 h3.created
 h3.author
 h3.comments
@@ -156,16 +156,16 @@ div.post-action
   padding 5px 0 0 0
 a.link
   margin 0 15px 0 0
-  color #222
   font bold 12px/1 'Open Sans', sans-serif
   background #fff
 a.tag
   margin 0 5px 0 0
   font bold 12px/1 'Open Sans', sans-serif
 a.category
+  &:hover
+    background #fff
   margin 0 15px 0 0
   font bold 12px/1 'Open Sans', sans-serif
-  background #fff
 
 // Pagination
 div.paginator
