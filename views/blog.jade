@@ -1,7 +1,9 @@
 extends layout
 block content
-  include includes/filter
+  div.wrapper-filter
+    include includes/filter
   div.blog
     - each post in posts
-      include includes/post.jade
+      include includes/post
     include includes/paginator
+  div(style='clear:both')

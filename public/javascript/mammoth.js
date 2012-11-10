@@ -34,6 +34,11 @@ $(document).ready(function() {
   $('a.link').button();
   $('a.tag').button();
   $('a.category').button();
+  $('a#mailto').button({
+    icons: {
+      primary: 'ui-icon-mail-closed'
+    }
+  });
   
   /*** Paginator ***/
   $('a#previous').button({

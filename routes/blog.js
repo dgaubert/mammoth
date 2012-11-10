@@ -39,7 +39,7 @@ exports.view = function(req, res){
     selected: '1-10 de 34',
     pages: ['11-20','21-30','31-34']
   };
-  res.render('blog', { title: 'Blog de Daniel García Aubert', posts: posts, pagination: pagination });
+  res.render('blog', { title: 'Blog de Daniel García Aubert', section: 'blog', posts: posts, pagination: pagination });
 };
 
 exports.titles = function(req, res){
@@ -69,11 +69,11 @@ exports.tags = function(req, res){
 };
 
 exports.categories = function(req, res){
-  var tags = [
+  var categories = [
     'desarrollo',
     'miscelanea'
   ];
-  var body = JSON.stringify(tags);
+  var body = JSON.stringify(categories);
   res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
   res.end(body);
 };

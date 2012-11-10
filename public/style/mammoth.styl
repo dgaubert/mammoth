@@ -1,23 +1,74 @@
+@font-face
+  font-family 'Fredericka the Great'
+  font-style normal
+  font-weight 400
+  src local('Fredericka the Great'), local('FrederickatheGreat'), url(/style/fonts/FrederickatheGreat.woff) format('woff')
+
+@font-face 
+  font-family 'Annie Use Your Telescope'
+  font-style normal
+  font-weight 400
+  src local('Annie Use Your Telescope'), local('AnnieUseYourTelescope'), url(/style/fonts/AnnieUseYourTelescope.woff) format('woff')
+
 // Reset
 *
   margin 0
   padding 0
 
+// Functions
+centerer(w,p=0)
+  width w
+  margin auto
+  if p != 0
+    padding 0 0 20px 0
+
+wrapper(p, w, b=0, bb=0, bs=0)
+  padding p
+  width w
+  if b != 0
+    background b
+  if bb != 0
+    border-bottom bb
+  if bs != 0
+    box-shadow bs
+
+columner(w,p)
+  vertical-align top
+  display inline-block
+  width w
+  padding p
+
+titler(s)
+  font-family 'Annie Use Your Telescope', cursive
+  font-size s
+
 // General
 body
-  font 400 14px/1.6 'Open Sans', sans-serif
+  font-family 'Open Sans', sans-serif
 p
+  font-size 14px
+  line-height 1.6
   text-align justify
+  color #444
+  padding 0 0 20px 0
+a
+  text-decoration none
+
+h1
+  titler(2.5em)
+h2
+  titler(2em)
+h3
+  titler(1.5em)
+  
   
 // Redefine JQuery values
 
 span.ui-button-text
   display inline !important
 
-div.ui-buttonset 
+div.ui-buttonset a.ui-button
   margin 0px !important
-  a.ui-button
-    margin 0px !important
 
 .ui-datepicker
   font-family 'Open Sans', sans-serif
@@ -40,50 +91,122 @@ header
   position fixed
   top 0
   left 0
-  background rgba(255, 255, 255, .9)
+  background rgba(255, 255, 255, .8)
   width 100%
-  height 45px
+  height 65px
   z-index 100
   section.menu
-    width 700px
-    margin auto
+    centerer(800px)
     section.logo
+      margin 14px 100px 0 0
       float left
       h1.title
-        color #3875d7
-        display inline
-        font-size 2em
+        line-height 1
+        color #666
+        font-size 2.4em
+        display inline-block
       h2.description
-        display inline
         color #888
-        font-size 0.8em
+        font-size 1.2em
+        line-height 1
         margin 0 0 0 10px
+        display inline-block
     nav
-      text-align right
-      padding 15px 0 0 0
+      display inline-block
+      margin 26px 0 0 0
       a
         &:hover
           color #222
         color #888
-        text-decoration none
+        font-family 'Fredericka the Great', cursive
+        font-size 1em
         font-weight bold
-        padding 0 0 0 40px
+        margin 0 20px 0 20px
       .active
         color #3875d7
-
-// Content
-div.content
-  padding 0 0 60px
+    section.social
+      float right
+      margin 18px 0 0 0
+      a.social
+        &:hover
+          opacity .9
+        display inline-block 
+        opacity .5
+        width 24px 
+        height 24px
+        margin 0 0 0 15px
+        background-repeat no-repeat
+      a.github
+        background-image url('/images/github-black-24.png')
+      a.linkedin
+        background-image url('/images/linkedin-black-24.png')
+      a.twitter
+        background-image url('/images/twitter-black-24.png')
 
 // Blog
 div.blog
-  width 700px
-  margin auto
-  
+  centerer(700px)
+
+div.wrapper-presentation
+  wrapper(100px 0 20px 0, 100%, #dbe3e7, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+// Presentation
+div.presentation
+  centerer(700px)
+  div.text-column
+    columner(225px,0 0 0 40px)
+    a#mailto
+      text-align right
+      margin 10px 0 0 0
+
+div.wrapper-latest
+  wrapper(20px 0 0 0, 100%, #fff, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+div.blog-latest
+  centerer(700px,0 0 20px 0)
+  div.post-latest
+    width 550px
+    display inline-block
+  div.categories
+    columner(110px, 20px 0 0 40px)
+    text-align center
+    ul
+      list-style-type none
+      li 
+        padding 0 0 0 10px
+        a
+          &:hover
+            color #5897fb
+          text-decoration none
+          color #444
+
+div.wrapper-projects
+  wrapper(20px 0 0 0, 100%, #d7e6fc, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+div.projects
+  centerer(700px,0 0 20px 0)
+  div.first-column
+    columner(340px, 10px 10px 10px 0)
+  div.second-column
+    columner(340px, 10px 0 10px 10px)
+
+div.wrapper-technologies
+  wrapper(20px 0 0 0, 100%)
+
+
+div.technologies
+  centerer(700px,0 0 20px 0)
+  div.column
+    columner(30%, 10px 10px 10px 10px)
+    p
+      padding 0 0 20px 0
+
 // Filter
+div.wrapper-filter
+  wrapper(100px 0 20px 0, 100%, #dbe3e7, 1px solid #ccc, 0 0 4px 0 #ddd)
+
 div.filter
-  width 700px
-  margin auto
+  centerer(700px)
   div.first-column
     display inline-block
     width 430px
@@ -99,10 +222,7 @@ div.filter
     input#end
       width 196px
   div.second-column
-    width 250px
-    padding 0 0 0 20px
-    display inline-block
-    vertical-align top
+    columner(250px, 0 0 0 20px)
   input
     &:focus
       background-image -webkit-linear-gradient(top, #eee 20%, #fff 80%)
@@ -129,13 +249,14 @@ div.filter
 // Post
 div.post
   width 100%
-  padding 0 0 20px 0
+  padding 20px 0 0 0
 // Title
 hgroup.post-title
   border-bottom 1px solid #888
   padding 0 0 5px
   margin 0 0 10px
 h2.title
+  font-size 2em
   display inline
   color #444
 h3.created
@@ -153,45 +274,32 @@ div.post-abstract
 // Action  
 div.post-action
   padding 5px 0 0 0
-a.link
-  margin 0 15px 0 0
-  font bold 12px/1 'Open Sans', sans-serif
-  background #fff
-a.tag
-  margin 0 5px 0 0
-  font bold 12px/1 'Open Sans', sans-serif
-a.category
-  &:hover
+  a
+    line-height 1 !important
+    font-size 12px
+    margin 0 15px 0 0
+  a.link
     background #fff
-  margin 0 15px 0 0
-  font bold 12px/1 'Open Sans', sans-serif
-
-// Subheader
-div.subheader  
-  width 100%
-  height 200px
-  background #eee
-// Subheader2
-div.subheader2
-  padding 60px 0 0 0
-  width 100%
-  background #c8daf8
-section.center
-  width 700px
-  margin auto
-  
+  a.tag
+    margin 0 5px 0 0
+  a.category
+    &:hover
+      background #fff
 
 // Pagination
 div.paginator
+  margin 20px 0 20px 0
   float right
+  
 a#page-selector
   background #fff
  
 // Footer
 footer div.footer-content
+  background #eee
   border-top 1px solid #ccc
   box-shadow 0 0 4px #ddd
   p
     padding 20px 0
     text-align center
-    color #888
+    color #444
