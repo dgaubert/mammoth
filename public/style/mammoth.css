@@ -56,11 +56,15 @@ div.ui-buttonset a.ui-button {
   color: #3875d7;
   -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   box-shadow: 0 0 3px rgba(0,0,0,0.3);
   border: 1px solid #5897fb;
 }
 header {
   border-bottom: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 4px 0 #ddd;
+  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
   position: fixed;
   top: 0;
@@ -141,6 +145,8 @@ div.wrapper-presentation {
   width: 100%;
   background: #dbe3e7;
   border-bottom: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 4px 0 #ddd;
+  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 div.presentation {
@@ -162,6 +168,8 @@ div.wrapper-latest {
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 4px 0 #ddd;
+  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 div.blog-latest {
@@ -198,6 +206,8 @@ div.wrapper-projects {
   width: 100%;
   background: #d7e6fc;
   border-bottom: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 4px 0 #ddd;
+  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 div.projects {
@@ -240,6 +250,8 @@ div.wrapper-filter {
   width: 100%;
   background: #dbe3e7;
   border-bottom: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 4px 0 #ddd;
+  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 div.filter {
@@ -276,7 +288,6 @@ div.filter input {
   color: #444;
   border: 1px solid #aaa;
   padding: 3px 6px 3px 6px;
-  border-radius: 3px;
   background-image: -webkit-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
   background-image: -moz-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
   background-image: -o-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
@@ -284,6 +295,9 @@ div.filter input {
   -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
   -moz-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
   box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 div.filter input:focus {
   background-image: -webkit-linear-gradient(top, #eee 20%, #fff 80%);
@@ -350,6 +364,8 @@ a#page-selector {
 footer div.footer-content {
   background: #eee;
   border-top: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 4px #ddd;
+  -moz-box-shadow: 0 0 4px #ddd;
   box-shadow: 0 0 4px #ddd;
 }
 footer div.footer-content p {

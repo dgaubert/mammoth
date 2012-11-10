@@ -42,6 +42,17 @@ titler(s)
   font-family 'Annie Use Your Telescope', cursive
   font-size s
 
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  {prop} args
+
+border-radius()
+  vendor('border-radius', arguments)
+
+box-shadow()
+  vendor('box-shadow', arguments)
+  
 // General
 body
   font-family 'Open Sans', sans-serif
@@ -193,7 +204,6 @@ div.projects
 div.wrapper-technologies
   wrapper(20px 0 0 0, 100%)
 
-
 div.technologies
   centerer(700px,0 0 20px 0)
   div.column
@@ -229,22 +239,18 @@ div.filter
       background-image -moz-linear-gradient(top, #eee 20%, #fff 80%)
       background-image -o-linear-gradient(top, #eee 20%, #fff 80%)
       background-image linear-gradient(#eee 20%, #fff 80%)
-      -webkit-box-shadow 0 0 5px rgba(0,0,0,.3)
-      -moz-box-shadow 0 0 5px rgba(0,0,0,.3)
       box-shadow 0 0 5px rgba(0,0,0,.3)
       border 1px solid #5897fb
       outline none
     color #444
     border 1px solid #aaa
     padding 3px 6px 3px 6px
-    border-radius 3px
     background-image -webkit-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
     background-image -moz-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
     background-image -o-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
     background-image linear-gradient(white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
-    -webkit-box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
-    -moz-box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
     box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
+    border-radius 3px
     
 // Post
 div.post
