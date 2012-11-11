@@ -30,14 +30,17 @@ a {
 h1 {
   font-family: 'Annie Use Your Telescope', cursive;
   font-size: 2.5em;
+  padding: 0 0 20px 0;
 }
 h2 {
   font-family: 'Annie Use Your Telescope', cursive;
   font-size: 2em;
+  padding: 0 0 20px 0;
 }
 h3 {
   font-family: 'Annie Use Your Telescope', cursive;
   font-size: 1.5em;
+  padding: 0 0 15px 0;
 }
 span.ui-button-text {
   display: inline !important;
@@ -56,10 +59,7 @@ div.ui-buttonset a.ui-button {
   color: #3875d7;
   -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
-  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   box-shadow: 0 0 3px rgba(0,0,0,0.3);
-  border: 1px solid #5897fb;
 }
 header {
   border-bottom: 1px solid #ccc;
@@ -136,10 +136,6 @@ header section.menu section.social a.linkedin {
 header section.menu section.social a.twitter {
   background-image: url("/images/twitter-black-24.png");
 }
-div.blog {
-  width: 700px;
-  margin: auto;
-}
 div.wrapper-presentation {
   padding: 100px 0 20px 0;
   width: 100%;
@@ -192,7 +188,7 @@ div.blog-latest div.categories ul {
   list-style-type: none;
 }
 div.blog-latest div.categories ul li {
-  padding: 0 0 0 10px;
+  padding: 0 0 10px 0;
 }
 div.blog-latest div.categories ul li a {
   text-decoration: none;
@@ -240,10 +236,7 @@ div.technologies div.column {
   vertical-align: top;
   display: inline-block;
   width: 30%;
-  padding: 10px 10px 10px 10px;
-}
-div.technologies div.column p {
-  padding: 0 0 20px 0;
+  padding: 0 20px 0 0;
 }
 div.wrapper-filter {
   padding: 100px 0 20px 0;
@@ -310,14 +303,19 @@ div.filter input:focus {
   border: 1px solid #5897fb;
   outline: none;
 }
+div.blog {
+  width: 700px;
+  margin: auto;
+  padding: 20px 0 20px 0;
+}
 div.post {
   width: 100%;
-  padding: 20px 0 0 0;
+  padding: 0 0 20px 0;
 }
 hgroup.post-title {
   border-bottom: 1px solid #888;
-  padding: 0 0 5px;
-  margin: 0 0 10px;
+  padding: 0 0 5px 0;
+  margin: 0 0 10px 0;
 }
 h2.title {
   font-size: 2em;
@@ -369,7 +367,7 @@ footer div.footer-content {
   box-shadow: 0 0 4px #ddd;
 }
 footer div.footer-content p {
-  padding: 20px 0;
+  padding: 20px 0 0 0;
   text-align: center;
   color: #444;
 }
