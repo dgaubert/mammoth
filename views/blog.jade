@@ -3,7 +3,7 @@ block content
   div.wrapper-filter
     include includes/filter
   div.blog
-    - each post in posts
-      include includes/post
+    - each summary in summaries
+      include includes/summary
     include includes/paginator
   div(style='clear:both')

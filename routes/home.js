@@ -1,6 +1,6 @@
 exports.view = function(req, res){
   // Fake posts database
-  var post = {
+  var summary = {
     title: 'TinyOS 2.x',
     author: 'Daniel Gaubert',
     created: '10/10/2010',
@@ -32,5 +32,5 @@ exports.view = function(req, res){
       count: '2'
     }
   ];
-  res.render('home', { title: 'Daniel Garcia Aubert - programmer', section: 'home', post: post, categories: categories});
+  res.render('home', { title: 'Daniel Garcia Aubert - programmer', section: 'home', summary: summary, categories: categories});
 };

@@ -1,8 +1,4 @@
-
-/**
- * Module dependencies.
- */
-
+/** Dependencies **/
 var express = require('express')
   , http = require('http')
   , path = require('path')
@@ -32,11 +28,12 @@ app.configure('development', function(){
 app.get('/', home.view);
 
 /** Blog **/
-app.get('/blog', blog.view);
-app.get('/blog/titles', blog.titles);
-app.get('/blog/tags', blog.tags);
-app.get('/blog/categories', blog.categories);
-//app.get('/blog/:id', post.view);
+app.get('/blog/:id', blog.view);
+app.get('/blog', blog.list);
+app.get('/blog/api/titles', blog.titles);
+app.get('/blog/api/tags', blog.tags);
+app.get('/blog/api/categories', blog.categories);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Server listening on port " + app.get('port'));

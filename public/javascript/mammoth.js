@@ -73,7 +73,7 @@ $(document).ready(function() {
   /*** Filter ***/
   
   /* Titles */
-  $.getJSON('/blog/titles', function(titles) {
+  $.getJSON('/blog/api/titles', function(titles) {
     $.each(titles, function(i, title) {
       if ( i == 0 )
         $('select#title').append($('<option></option>'));
@@ -92,7 +92,7 @@ $(document).ready(function() {
   });
   
   /* Categories */
-  $.getJSON('/blog/categories', function(categories) {
+  $.getJSON('/blog/api/categories', function(categories) {
     $.each(categories, function(i, category) {
       if ( i == 0 )
         $('select#category').append($('<option></option>'));
@@ -115,7 +115,7 @@ $(document).ready(function() {
   $('input#end').attr('placeholder', 'Hasta');
   
   /* Tags */
-  $.getJSON('/blog/tags', function(tags) {
+  $.getJSON('/blog/api/tags', function(tags) {
     $.each(tags, function(i, tag) {
       if ( i == 0 )
         $('select#tag').append($('<option></option>'));

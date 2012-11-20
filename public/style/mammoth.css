@@ -60,6 +60,7 @@ div.ui-buttonset a.ui-button {
   -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  border: 1px solid #3875d7;
 }
 header {
   border-bottom: 1px solid #ccc;
@@ -173,7 +174,7 @@ div.blog-latest {
   margin: auto;
   padding: 0 0 20px 0;
 }
-div.blog-latest div.post-latest {
+div.blog-latest div.summary-latest {
   width: 550px;
   display: inline-block;
 }
@@ -308,11 +309,11 @@ div.blog {
   margin: auto;
   padding: 20px 0 20px 0;
 }
-div.post {
+div.summary {
   width: 100%;
   padding: 0 0 20px 0;
 }
-hgroup.post-title {
+hgroup.summary-title {
   border-bottom: 1px solid #888;
   padding: 0 0 5px 0;
   margin: 0 0 10px 0;
@@ -332,24 +333,24 @@ h3.comments {
 h3.comments {
   margin: 0 0 0 15px;
 }
-div.post-abstract {
+div.summary-abstract {
   text-align: justify;
 }
-div.post-action {
+div.summary-action {
   padding: 5px 0 0 0;
 }
-div.post-action a {
+div.summary-action a {
   line-height: 1 !important;
   font-size: 12px;
   margin: 0 15px 0 0;
 }
-div.post-action a.link {
+div.summary-action a.link {
   background: #fff;
 }
-div.post-action a.tag {
+div.summary-action a.tag {
   margin: 0 5px 0 0;
 }
-div.post-action a.category:hover {
+div.summary-action a.category:hover {
   background: #fff;
 }
 div.paginator {
@@ -359,6 +360,11 @@ div.paginator {
 a#page-selector {
   background: #fff;
 }
+div.post {
+  width: 700px;
+  margin: auto;
+  padding: 80px 0 20px 0;
+}
 footer div.footer-content {
   background: #eee;
   border-top: 1px solid #ccc;
@@ -367,7 +373,7 @@ footer div.footer-content {
   box-shadow: 0 0 4px #ddd;
 }
 footer div.footer-content p {
-  padding: 20px 0 0 0;
+  padding: 20px 0 20px 0;
   text-align: center;
   color: #444;
 }
