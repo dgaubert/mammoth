@@ -1,4 +1,10 @@
 @font-face
+  font-family: 'Monda';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Monda Regular'), local('Monda-Regular'), url(/style/fonts/Monda.woff) format('woff')
+
+@font-face
   font-family 'Fredericka the Great'
   font-style normal
   font-weight 400
@@ -20,6 +26,8 @@ centerer(w,p=0)
   width w
   margin auto
   if p != 0
+    padding p
+  else
     padding 0 0 20px 0
 
 wrapper(p, w, b=0, bb=0, bs=0)
@@ -39,6 +47,15 @@ columner(w,p)
   padding p
 
 titler(s,p)
+  font-size s
+  padding p
+
+titler-monda(s,p)
+  font-family 'Monda', sans-serif
+  font-size s
+  padding p
+
+titler-telescope(s,p)
   font-family 'Annie Use Your Telescope', cursive
   font-size s
   padding p
@@ -62,18 +79,17 @@ p
   line-height 1.6
   text-align justify
   color #444
-  padding 0 0 20px 0
 a
   text-decoration none
 
 h1
-  titler(2.5em,0 0 20px 0)
+  titler-monda(1.8em,0 0 20px 0)
 h2
-  titler(2em,0 0 20px 0)
+  titler-monda(1.4em,0 0 20px 0)
 h3
-  titler(1.5em,0 0 15px 0)
+  titler-monda(1.1em,0 0 15px 0)
 
-// Redefine JQuery values
+// Redefine jQuery UI values
 
 span.ui-button-text
   display inline !important
@@ -110,13 +126,14 @@ header
       margin 14px 100px 0 0
       float left
       h1.title
+        titler-telescope(2.4em,0)
         line-height 1
         color #666
-        font-size 2.4em
         display inline-block
+        
       h2.description
         color #888
-        font-size 1.2em
+        titler-telescope(1.2em,0)
         line-height 1
         margin 0 0 0 10px
         display inline-block
@@ -127,7 +144,7 @@ header
         &:hover
           color #222
         color #888
-        font-family 'Fredericka the Great', cursive
+        font-family 'Monda', sans-serif
         font-size 1em
         font-weight bold
         margin 0 20px 0 20px
@@ -135,7 +152,7 @@ header
         color #3875d7
     section.social
       float right
-      margin 18px 0 0 0
+      margin 24px 0 0 0
       a.social
         &:hover
           opacity .9
@@ -253,30 +270,37 @@ div.blog
 div.summary
   width 100%
   padding 0 0 20px 0
+
 // Title
 hgroup.summary-title
-  border-bottom 1px solid #888
+hgroup.post-title
   padding 0 0 5px 0
-  margin 0 0 10px 0
+      
 h2.title
   font-size 2em
   display inline
   color #444
+a
+  h2.title
+    &:hover
+      color #3875d7
 h3.created
 h3.author
 h3.comments
   display inline
-  font-size 0.9em
+  font-size 0.8em
   color #888
 h3.comments
   margin 0 0 0 15px
 
 // Abstract
 div.summary-abstract
+div.post-content
   text-align justify
 // Action  
 div.summary-action
-  padding 5px 0 0 0
+div.post-action
+  padding 10px 0 0 0
   a
     line-height 1 !important
     font-size 12px
@@ -287,7 +311,7 @@ div.summary-action
     margin 0 5px 0 0
   a.category
     &:hover
-      background #fff
+      background #fff  
 
 // Pagination
 div.paginator
@@ -297,9 +321,26 @@ div.paginator
 a#page-selector
   background #fff
 
-div.post
-  centerer(700px)
-  padding 80px 0 20px 0
+div.wrapper-post
+  centerer(700px,80px 0 20px 0)
+  div.column-1
+    width 520px
+    display inline-block
+  div.column-2
+    columner(160px, 20px 0 0 20px)
+    div.categories
+    div.similars
+      padding 20px 0 0 0
+      text-align center
+      ul
+        list-style-type none
+        li 
+          padding 0 0 10px 0
+          a
+            &:hover
+              color #3875d7
+            text-decoration none
+            color #444
 
 // Footer
 footer div.footer-content

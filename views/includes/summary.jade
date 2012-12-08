@@ -1,6 +1,7 @@
 div.summary
   hgroup.summary-title
-    h2.title #{summary.title}
+    a(href='/blog/#{summary.slug}')
+      h2.title #{summary.title}
     h3.created  [ #{summary.created} - 
     h3.author #{summary.author} ]
   div.summary-abstract 

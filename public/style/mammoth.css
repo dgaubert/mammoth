@@ -1,4 +1,10 @@
 @font-face {
+  font-family: 'Monda';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Monda Regular'), local('Monda-Regular'), url("/style/fonts/Monda.woff") format('woff');
+}
+@font-face {
   font-family: 'Fredericka the Great';
   font-style: normal;
   font-weight: 400;
@@ -22,24 +28,23 @@ p {
   line-height: 1.6;
   text-align: justify;
   color: #444;
-  padding: 0 0 20px 0;
 }
 a {
   text-decoration: none;
 }
 h1 {
-  font-family: 'Annie Use Your Telescope', cursive;
-  font-size: 2.5em;
+  font-family: 'Monda', sans-serif;
+  font-size: 1.8em;
   padding: 0 0 20px 0;
 }
 h2 {
-  font-family: 'Annie Use Your Telescope', cursive;
-  font-size: 2em;
+  font-family: 'Monda', sans-serif;
+  font-size: 1.4em;
   padding: 0 0 20px 0;
 }
 h3 {
-  font-family: 'Annie Use Your Telescope', cursive;
-  font-size: 1.5em;
+  font-family: 'Monda', sans-serif;
+  font-size: 1.1em;
   padding: 0 0 15px 0;
 }
 span.ui-button-text {
@@ -78,20 +83,25 @@ header {
 header section.menu {
   width: 800px;
   margin: auto;
+  padding: 0 0 20px 0;
 }
 header section.menu section.logo {
   margin: 14px 100px 0 0;
   float: left;
 }
 header section.menu section.logo h1.title {
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-size: 2.4em;
+  padding: 0;
   line-height: 1;
   color: #666;
-  font-size: 2.4em;
   display: inline-block;
 }
 header section.menu section.logo h2.description {
   color: #888;
+  font-family: 'Annie Use Your Telescope', cursive;
   font-size: 1.2em;
+  padding: 0;
   line-height: 1;
   margin: 0 0 0 10px;
   display: inline-block;
@@ -102,7 +112,7 @@ header section.menu nav {
 }
 header section.menu nav a {
   color: #888;
-  font-family: 'Fredericka the Great', cursive;
+  font-family: 'Monda', sans-serif;
   font-size: 1em;
   font-weight: bold;
   margin: 0 20px 0 20px;
@@ -115,7 +125,7 @@ header section.menu nav .active {
 }
 header section.menu section.social {
   float: right;
-  margin: 18px 0 0 0;
+  margin: 24px 0 0 0;
 }
 header section.menu section.social a.social {
   display: inline-block;
@@ -149,6 +159,7 @@ div.wrapper-presentation {
 div.presentation {
   width: 700px;
   margin: auto;
+  padding: 0 0 20px 0;
 }
 div.presentation div.text-column {
   vertical-align: top;
@@ -251,6 +262,7 @@ div.wrapper-filter {
 div.filter {
   width: 700px;
   margin: auto;
+  padding: 0 0 20px 0;
 }
 div.filter div.first-column {
   display: inline-block;
@@ -307,50 +319,59 @@ div.filter input:focus {
 div.blog {
   width: 700px;
   margin: auto;
+  padding: 0 0 20px 0;
   padding: 20px 0 20px 0;
 }
 div.summary {
   width: 100%;
   padding: 0 0 20px 0;
 }
-hgroup.summary-title {
-  border-bottom: 1px solid #888;
+hgroup.summary-title,
+hgroup.post-title {
   padding: 0 0 5px 0;
-  margin: 0 0 10px 0;
 }
 h2.title {
   font-size: 2em;
   display: inline;
   color: #444;
 }
+a h2.title:hover {
+  color: #3875d7;
+}
 h3.created,
 h3.author,
 h3.comments {
   display: inline;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #888;
 }
 h3.comments {
   margin: 0 0 0 15px;
 }
-div.summary-abstract {
+div.summary-abstract,
+div.post-content {
   text-align: justify;
 }
-div.summary-action {
-  padding: 5px 0 0 0;
+div.summary-action,
+div.post-action {
+  padding: 10px 0 0 0;
 }
-div.summary-action a {
+div.summary-action a,
+div.post-action a {
   line-height: 1 !important;
   font-size: 12px;
   margin: 0 15px 0 0;
 }
-div.summary-action a.link {
+div.summary-action a.link,
+div.post-action a.link {
   background: #fff;
 }
-div.summary-action a.tag {
+div.summary-action a.tag,
+div.post-action a.tag {
   margin: 0 5px 0 0;
 }
-div.summary-action a.category:hover {
+div.summary-action a.category:hover,
+div.post-action a.category:hover {
   background: #fff;
 }
 div.paginator {
@@ -360,10 +381,42 @@ div.paginator {
 a#page-selector {
   background: #fff;
 }
-div.post {
+div.wrapper-post {
   width: 700px;
   margin: auto;
   padding: 80px 0 20px 0;
+}
+div.wrapper-post div.column-1 {
+  width: 520px;
+  display: inline-block;
+}
+div.wrapper-post div.column-2 {
+  vertical-align: top;
+  display: inline-block;
+  width: 160px;
+  padding: 20px 0 0 20px;
+}
+div.wrapper-post div.column-2 div.categories,
+div.wrapper-post div.column-2 div.similars {
+  padding: 20px 0 0 0;
+  text-align: center;
+}
+div.wrapper-post div.column-2 div.categories ul,
+div.wrapper-post div.column-2 div.similars ul {
+  list-style-type: none;
+}
+div.wrapper-post div.column-2 div.categories ul li,
+div.wrapper-post div.column-2 div.similars ul li {
+  padding: 0 0 10px 0;
+}
+div.wrapper-post div.column-2 div.categories ul li a,
+div.wrapper-post div.column-2 div.similars ul li a {
+  text-decoration: none;
+  color: #444;
+}
+div.wrapper-post div.column-2 div.categories ul li a:hover,
+div.wrapper-post div.column-2 div.similars ul li a:hover {
+  color: #3875d7;
 }
 footer div.footer-content {
   background: #eee;
