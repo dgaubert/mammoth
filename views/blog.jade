@@ -1,0 +1,9 @@
+extends layout
+block content
+  div.wrapper-filter
+    include includes/filter
+  div.blog
+    - each summary in summaries
+      include includes/summary
+    include includes/paginator
+  div(style='clear:both')
