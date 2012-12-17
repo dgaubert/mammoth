@@ -32,5 +32,5 @@ exports.view = function(req, res){
       count: '2'
     }
   ];
-  res.render('home', { title: 'Daniel Garcia Aubert - programmer', section: 'home', summary: summary, categories: categories});
+  res.render('home', { title: 'Daniel Garcia Aubert', section: 'home', summary: summary, categories: categories});
 };

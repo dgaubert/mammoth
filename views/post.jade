@@ -11,9 +11,9 @@ block content
           p #{post.content}
         div.post-action
           a.link(href='/blog') Volver
-          a.category #{post.category}
+          a.category(href='/blog/category/#{post.category}') #{post.category}
           - each tag in post.tags
-            a.tag #{tag}
+            a.tag(href='/blog/tag/#{tag}') #{tag}
     div.column-2
       div.categories
         h3 Categorias
@@ -26,4 +26,4 @@ block content
         ul
           - each similar in similars
             li
-              a(href='/blog/#{similar.slug}') #{similar.title}
+              a(href='/blog/post/#{similar.slug}') #{similar.title}

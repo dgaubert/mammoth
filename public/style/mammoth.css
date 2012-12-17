@@ -374,12 +374,13 @@ div.summary-action a.category:hover,
 div.post-action a.category:hover {
   background: #fff;
 }
-div.paginator {
+div.pagination {
   margin: 20px 0 20px 0;
   float: right;
 }
 a#page-selector {
   background: #fff;
+  width: 104px;
 }
 div.wrapper-post {
   width: 700px;

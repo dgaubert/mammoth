@@ -24,29 +24,17 @@ $(document).ready(function() {
     dateFormat: 'dd/mm/yy', firstDay: 1, 
     initStatus: '', isRTL: false};
   $.datepicker.setDefaults($.datepicker.regional['es']);
-  
-  /*** Links ***/
-  $('a#search').button({
-    icons: {
-      primary: 'ui-icon-search'
-    }
-  });
-  $('a.link').button();
-  $('a.tag').button();
-  $('a.category').button();
-  $('a#mailto').button({
-    icons: {
-      primary: 'ui-icon-mail-closed'
-    }
-  });
-  
-  /*** Paginator ***/
+
+  /*** Pagination ***/
   $('a#previous').button({
     text: false,
     icons: {
       primary: 'ui-icon-carat-1-w'
     }
   });
+  if($('a#previous').hasClass('disable')) {
+    $('a#previous').button('disable');
+  }
   $('a#page-selector')
     .button()
     .click(function() {
@@ -66,14 +54,32 @@ $(document).ready(function() {
       primary: 'ui-icon-carat-1-e'
     }
   });
-  $('div.paginator').buttonset();
+  if($('a#next').hasClass('disable')) {
+    $('a#next').button('disable');
+  }
+  $('div.pagination').buttonset();
   $('a#next').addClass('ui-corner-right');
   $('ul#pages').hide().menu();
+
+  
+  /*** Links ***/
+  $('a#search').button({
+    icons: {
+      primary: 'ui-icon-search'
+    }
+  });
+  $('a#mailto').button({
+    icons: {
+      primary: 'ui-icon-mail-closed'
+    }
+  });
+  $('a.link, a.tag, a.category').button();
   
   /*** Filter ***/
   
   /* Titles */
-  $.getJSON('/blog/api/titles', function(titles) {
+  /*
+  $.getJSON('/blog/filter/titles', function(titles) {
     $.each(titles, function(i, title) {
       if ( i == 0 )
         $('select#title').append($('<option></option>'));
@@ -90,9 +96,11 @@ $(document).ready(function() {
       })
     ;
   });
+  */
   
   /* Categories */
-  $.getJSON('/blog/api/categories', function(categories) {
+  /*
+  $.getJSON('/blog/filter/categories', function(categories) {
     $.each(categories, function(i, category) {
       if ( i == 0 )
         $('select#category').append($('<option></option>'));
@@ -114,8 +122,11 @@ $(document).ready(function() {
   
   $('input#end').attr('placeholder', 'Hasta');
   
+  */
+  
   /* Tags */
-  $.getJSON('/blog/api/tags', function(tags) {
+  /*
+  $.getJSON('/blog/filter/tags', function(tags) {
     $.each(tags, function(i, tag) {
       if ( i == 0 )
         $('select#tag').append($('<option></option>'));
@@ -131,5 +142,5 @@ $(document).ready(function() {
       })
     ;
   });
-  
+  */
 });

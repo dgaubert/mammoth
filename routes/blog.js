@@ -1,86 +1,87 @@
-exports.list = function(req, res){
+// Creates db conexion
+var mongoose = require('mongoose')
+  , db = mongoose.createConnection('mongodb://localhost/mammoth');
 
-  // Fake summaries database
-  var summaries = [
-      {  
-        title: 'TinyOS 2.x',
-        author: 'Daniel Gaubert',
-        created: '10/10/2010',
-        slug: 'tinyos-2',
-        category: 'development',
-        abstract: 'Macros are a powerful feature of LispyScript. They are much more powerful than C  define macros. While C #define macros do string substitution, LispyScript macros are code generators Functions take values as arguments and return a value. Macros take code as arguments, and then return ode. Understanding this difference and its ramifications is the key to writing proper macros. Functions get evaluated at runtime. Macros get evaluated at compile time, or pre-compile time to be more precise.',
-        tags: ['wsn','tinyos','sensor'],
-        comments: '6'
+// Load correponding model
+var summarySchema = require('../models/summary')
+  , Summary = db.model('Summary', summarySchema);
+
+exports.list = function (req, res) {
+  var page = parseInt(req.params.page, 10) || 0;
+
+  async.parallel({
+      summaries: function(){
+        var filter = {};
+        Summary.findRange(filter, page, function (error, summaries) {});
+      },
+      pagination: function(){
+        var filter = {};
+        Summary.pagination(filter, function (error, total) {});
+      },
+  },
+  function(err, blog) {
+
+    var pagination
+      , getPages
+      , start
+      , end;
+
+    if (error) {
+      console.log(err);
+      // No db available
+      blog.summaries = [{}];
+      pagination = [{}];
+    } else {
+      // Returns a dataset with page info
+      getPages = function () {
+        var pages = []
+          , i
+          , pagesCount
+          , pageStart
+          , pageEnd;
+        // Calculates total pages
+        if ((blog.total/limit) % 1 !== 0) {
+          pagesCount = Math.floor(blog.total/limit) + 1;
+        } else {
+          pagesCount = Math.floor(blog.total/limit);      
+        }
+        // Builds pages with its start & end item number
+        for (i = 0; i < pagesCount ; i = i + 1) {
+          pageStart = (i * limit) + 1;
+          pageEnd = pageStart + limit - 1;
+          if (pageEnd > blog.total) {
+            pageEnd = blog.total;
+          }
+          pages.push({
+              label: i + 1
+            , selected: (i + 1) === pageStart ? true : false
+          });
+        }
+        return pages;
       }
-    , {
-        title: 'Git model branching', 
-        author: 'Daniel Gaubert',
-        created: '09/12/2010',
-        slug: 'git-model-branching',
-        category: 'development',
-        abstract: 'Macros are a powerful feature of LispyScript. They are much more powerful than C  define macros. While C define macros do string substitution, LispyScript macros are code generators take values as arguments and a value. Macros take code as arguments, and then code. Understanding  difference and its ramifications is the key to writing proper macros.Functions get evaluated at runtime. Macros get evaluated at compile time, or pre-compile time to be more precise.',
-        tags: ['workflow','git'],
-        comments: '2'
+      // Initialize start and end of page selected 
+      start = skip + 1;
+      end = (skip + limit) > blog.total ? blog.total : (skip + limit);
+      // Builds the entire pagination structure
+      pagination = {
+          selected: start === end ? start : start + '-' + end + ' de ' + blog.total
+        , pages: getPages()
+        , previousPage: (page - 1) < 0 ? 0 : (page -1)
+        , nextPage: (page + 1) > blog.total ? blog.total : (page + 1)
       }
-    , {
-        title: 'LispyScript Macros',
-        author: 'Daniel Gaubert',
-        created: '21/11/2010',
-        slug: 'lispyscript-macros',
-        category: 'development',
-        abstract: 'We cannot use a function to reuse this code pattern, because the parts that change are parts of the code. Functions are about reusing code patterns, where it is only the data that changes. Macros are about reusing code patterns, where the code can also change. In LispyScript, we can write a macro to reuse this code pattern. The macro needs a name, let’s call it template as it happens to be a template compiler',
-        tags: ['macros','script'],
-        comments: '12'
-      }
-  ];
-  
-  // Fake pagination
-  var pagination = {
-    selected: '1-10 de 34',
-    pages: ['11-20','21-30','31-34']
-  };
-  res.render('blog', { title: 'Blog de Daniel García Aubert', section: 'blog', summaries: summaries, pagination: pagination });
-};
+    }
 
-exports.titles = function(req, res){
-  var titles = [
-    'Git model branching',
-    'LispyScript Macros',
-    'TinyOS 2.x'
-  ];
-  var body = JSON.stringify(titles);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
-};
+    res.render('blog', { 
+        title: 'Blog - Daniel García Aubert'
+      , section:'blog'
+      , summaries: blog.summaries
+      , pagination: pagination
+    });
+  });
+}
 
-exports.tags = function(req, res){
-  var tags = [
-    'git',
-    'wsn',
-    'tinyos',
-    'sensor',
-    'workflow',
-    'macros',
-    'script'
-  ];
-  var body = JSON.stringify(tags);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
-};
-
-exports.categories = function(req, res){
-  var categories = [
-    'desarrollo',
-    'miscelanea'
-  ];
-  var body = JSON.stringify(categories);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
-};
-
-
-exports.view = function(req, res){
-  console.log("Slug:" + req.params.id);
+exports.view = function (req, res) {
+  console.log("Slug:" + req.params.slug);
   // Fake post database
   var post = {  
     title: 'TinyOS 2.x',
@@ -132,3 +133,121 @@ exports.view = function(req, res){
 
   res.render('post', { title:post.title, section:'blog', post:post, categories:categories, similars:similars});
 };
+/*
+exports.list = function (req, res) {
+  var skip = parseInt(req.params.skip, 10) || 0;
+  var limit = parseInt(req.params.limit, 10) || 10;
+  // Static method
+  Summary.findRange(skip, limit, function (error, summaries) {
+    if (error) {
+      console.log(err);
+      summaries = [{}];
+    }
+    res.render('includes/summary', {summaries: summaries});
+  });
+}
+
+exports.pagination = function (req, res) {
+  var skip = parseInt(req.params.start, 10) || 0
+    , limit = parseInt(req.params.limit, 10) || 10;
+
+  Summary.pagination(function (error, total) {
+    var pagination
+      , getPages
+      , start
+      , end;
+    if (error) {
+      console.log(err);
+      // No pagination available
+      pagination = [{}];
+    } else {
+      // Checks skip & limit values
+      if (skip < 0 || skip > total) {
+        skip = 0;
+      }
+      if (limit < 0 || limit > total) {
+        limit = 10;
+      }
+      // Returns a dataset with page info
+      getPages = function () {
+        var pages = []
+          , i
+          , pagesCount
+          , pageStart
+          , pageEnd;
+        // Calculates total pages
+        if ((total/limit) % 1 !== 0) {
+          pagesCount = Math.floor(total/limit) + 1;
+        } else {
+          pagesCount = Math.floor(total/limit);      
+        }
+        // Builds pages with its start & end item number
+        for (i = 0; i < pagesCount ; i = i + 1) {
+          pageStart = (i * limit) + 1;
+          pageEnd = pageStart + limit - 1;
+          if (pageEnd > total) {
+            pageEnd = total;
+          }
+          pages.push({
+              label: pageStart === pageEnd ? pageStart : pageStart + ' - ' + pageEnd
+            , skip: (pageStart + limit)
+            , limit: limit
+            , selected: (skip + 1) === pageStart ? true : false
+          });
+        }
+        return pages;
+      }
+      // Initialize start and end of page selected 
+      start = skip + 1;
+      end = (skip + limit) > total ? total : (skip + limit);
+      // Builds the entire pagination structure
+      pagination = {
+          selected: start === end ? start : start + '-' + end + ' de ' + total
+        , pages: getPages()
+        , hasPrevious: start > 1 ? true : false
+        , hasNext: end < total ? true : false
+        , previousSkip: (skip - limit) < 0 ? 0 : (skip - limit)
+        , nextSkip: (skip + limit) > total ? total : (skip + limit)
+        , limit: limit
+      }
+    }
+    res.render('includes/pagination', {pagination: pagination});
+  });
+}
+
+exports.titles = function(req, res){
+  var titles = [
+    'Git model branching',
+    'LispyScript Macros',
+    'TinyOS 2.x'
+  ];
+  var body = JSON.stringify(titles);
+  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
+  res.end(body);
+};
+
+exports.tags = function(req, res){
+  var tags = [
+    'git',
+    'wsn',
+    'tinyos',
+    'sensor',
+    'workflow',
+    'macros',
+    'script'
+  ];
+  var body = JSON.stringify(tags);
+  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
+  res.end(body);
+};
+
+exports.categories = function(req, res){
+  var categories = [
+    'desarrollo',
+    'miscelanea'
+  ];
+  var body = JSON.stringify(categories);
+  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
+  res.end(body);
+};
+*/
