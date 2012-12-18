@@ -36,9 +36,7 @@ exports.list = function (req, res) {
       getPages = function () {
         var pages = []
           , i
-          , pagesCount
-          , pageStart
-          , pageEnd;
+          , pagesCount;
         // Calculates total pages
         if ((blog.total/limit) % 1 !== 0) {
           pagesCount = Math.floor(blog.total/limit) + 1;
@@ -47,21 +45,16 @@ exports.list = function (req, res) {
         }
         // Builds pages with its start & end item number
         for (i = 0; i < pagesCount ; i = i + 1) {
-          pageStart = (i * limit) + 1;
-          pageEnd = pageStart + limit - 1;
-          if (pageEnd > blog.total) {
-            pageEnd = blog.total;
-          }
           pages.push({
               label: i + 1
-            , selected: (i + 1) === pageStart ? true : false
+            , selected: (i + 1) === page ? true : false
           });
         }
         return pages;
       }
       // Initialize start and end of page selected 
-      start = skip + 1;
-      end = (skip + limit) > blog.total ? blog.total : (skip + limit);
+      start = (page * 10) + 1;
+      end = ((page * 10) + limit) > blog.total ? blog.total : ((page * 10) + limit);
       // Builds the entire pagination structure
       pagination = {
           selected: start === end ? start : start + '-' + end + ' de ' + blog.total
