@@ -3,14 +3,22 @@ div.filter
     form#filter
       div.row
         select#title(name='title')
+          option
+          - each title in titles
+            option(value='#{title}') #{title}
       div.row
         select#category(name='category')
+          option
+          - each category in categories
+            option(value='#{category}') #{category}
       div.row
         input#start.date(name='start')
         div(style='display: inline; padding: 5px;')
         input#end.date(name='end')
       div.row
         select#tag(name='tag', multiple='multiple')
+          - each tag in tags
+            option(value='#{tag}') #{tag}
       div.row.search
         a#search(href='#') Buscar
   div.second-column

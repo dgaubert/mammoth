@@ -58,7 +58,7 @@ div.ui-buttonset a.ui-button {
 }
 .ui-menu {
   position: absolute;
-  width: 100px;
+  width: 130px;
 }
 .ui-state-hover {
   color: #3875d7;
@@ -322,6 +322,9 @@ div.blog {
   padding: 0 0 20px 0;
   padding: 20px 0 20px 0;
 }
+div.summaries {
+  margin: 60px 0 0 0;
+}
 div.summary {
   width: 100%;
   padding: 0 0 20px 0;
@@ -380,7 +383,7 @@ div.pagination {
 }
 a#page-selector {
   background: #fff;
-  width: 104px;
+  width: 134px;
 }
 div.wrapper-post {
   width: 700px;

@@ -27,8 +27,20 @@ summarySchema.statics.findRange = function (filter, page, cb) {
       .execFind(cb);
 }
 
-summarySchema.statics.pagination = function (filter, cb) {
+summarySchema.statics.count = function (filter, cb) {
   this.find(filter).count(cb);
+}
+
+summarySchema.statics.titles = function (filter, cb) {
+  this.find(filter, {'_id': 0, 'title': 1}, cb);
+}
+
+summarySchema.statics.categories = function (filter, cb) {
+  this.find(filter, {'_id': 0, 'category': 1}).distinct('category', cb);
+}
+
+summarySchema.statics.tags = function (filter, cb) {
+  this.find(filter, {'_id': 0, 'tags': 1}).distinct('tags', cb);
 }
 
 

@@ -1,80 +1,86 @@
-// Creates db conexion
-var mongoose = require('mongoose')
-  , db = mongoose.createConnection('mongodb://localhost/mammoth');
+var mongoose = require('mongoose') // DB driver
+  , db = mongoose.createConnection('mongodb://localhost/mammoth') // DB conexion
+  , async = require('async') // Control flow
+  , summarySchema = require('../models/summary') // Load schema
+  , Summary = db.model('Summary', summarySchema) // Load model
+  , paginator = require('../utils/paginator'); // Pagination
 
-// Load correponding model
-var summarySchema = require('../models/summary')
-  , Summary = db.model('Summary', summarySchema);
-
+// Retrieves blog summary
 exports.list = function (req, res) {
   var page = parseInt(req.params.page, 10) || 0;
-
   async.parallel({
-      summaries: function(){
-        var filter = {};
-        Summary.findRange(filter, page, function (error, summaries) {});
-      },
-      pagination: function(){
-        var filter = {};
-        Summary.pagination(filter, function (error, total) {});
-      },
+    summaries: function (callback) {
+      Summary.findRange({}, page, callback);
+    },
+    count: function (callback) {
+      Summary.count({}, callback);
+    },
+    titles: function (callback) {
+      Summary.titles({}, callback);
+    },
+    categories: function (callback) {
+      Summary.categories({}, callback);
+    },
+    tags: function (callback) {
+      Summary.tags({}, callback);
+    },
   },
-  function(err, blog) {
-
-    var pagination
-      , getPages
-      , start
-      , end;
-
-    if (error) {
+  function (err, blog) {
+    if (err) {
       console.log(err);
-      // No db available
-      blog.summaries = [{}];
-      pagination = [{}];
     } else {
-      // Returns a dataset with page info
-      getPages = function () {
-        var pages = []
-          , i
-          , pagesCount;
-        // Calculates total pages
-        if ((blog.total/limit) % 1 !== 0) {
-          pagesCount = Math.floor(blog.total/limit) + 1;
-        } else {
-          pagesCount = Math.floor(blog.total/limit);      
-        }
-        // Builds pages with its start & end item number
-        for (i = 0; i < pagesCount ; i = i + 1) {
-          pages.push({
-              label: i + 1
-            , selected: (i + 1) === page ? true : false
-          });
-        }
-        return pages;
-      }
-      // Initialize start and end of page selected 
-      start = (page * 10) + 1;
-      end = ((page * 10) + limit) > blog.total ? blog.total : ((page * 10) + limit);
-      // Builds the entire pagination structure
-      pagination = {
-          selected: start === end ? start : start + '-' + end + ' de ' + blog.total
-        , pages: getPages()
-        , previousPage: (page - 1) < 0 ? 0 : (page -1)
-        , nextPage: (page + 1) > blog.total ? blog.total : (page + 1)
-      }
+      res.render('blog', { 
+          title: 'Blog - Daniel García Aubert'
+        , section:'blog'
+        , summaries: blog.summaries
+        , pagination: paginator.create(page, blog.count)
+        , titles: (function () {
+            var t = []
+              , key;
+            for (key in blog.titles) {
+              t.push(blog.titles[key].title);    
+            }
+            return t;      
+          })()
+        , categories: blog.categories
+        , tags: blog.tags
+      });
     }
-
-    res.render('blog', { 
-        title: 'Blog - Daniel García Aubert'
-      , section:'blog'
-      , summaries: blog.summaries
-      , pagination: pagination
-    });
   });
 }
+/*
+exports.titles = function(req, res){
+  Summary.titles({}, function (err, titles) {
+    var body
+      , t = []
+      , key;
+    for (key in titles) {
+      t.push(titles[key].title);    
+    }
+    body = JSON.stringify(t);
+    res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+    res.end(body);
+  });
+};
+
+exports.categories = function(req, res){
+  Summary.categories({}, function (err, categories) {
+    var body = JSON.stringify(categories);
+    res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+    res.end(body);
+  });
+};
+
+exports.tags = function(req, res){
+  Summary.tags({}, function (err, tags) {
+    var body = JSON.stringify(tags);
+    res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+    res.end(body);
+  });
+};
+*/
 
 exports.view = function (req, res) {
-  console.log("Slug:" + req.params.slug);
   // Fake post database
   var post = {  
     title: 'TinyOS 2.x',
@@ -124,123 +130,11 @@ exports.view = function (req, res) {
       }
   ];
 
-  res.render('post', { title:post.title, section:'blog', post:post, categories:categories, similars:similars});
-};
-/*
-exports.list = function (req, res) {
-  var skip = parseInt(req.params.skip, 10) || 0;
-  var limit = parseInt(req.params.limit, 10) || 10;
-  // Static method
-  Summary.findRange(skip, limit, function (error, summaries) {
-    if (error) {
-      console.log(err);
-      summaries = [{}];
-    }
-    res.render('includes/summary', {summaries: summaries});
+  res.render('post', { 
+      title:post.title
+    , section:'blog'
+    , post:post
+    , categories:categories
+    , similars:similars
   });
-}
-
-exports.pagination = function (req, res) {
-  var skip = parseInt(req.params.start, 10) || 0
-    , limit = parseInt(req.params.limit, 10) || 10;
-
-  Summary.pagination(function (error, total) {
-    var pagination
-      , getPages
-      , start
-      , end;
-    if (error) {
-      console.log(err);
-      // No pagination available
-      pagination = [{}];
-    } else {
-      // Checks skip & limit values
-      if (skip < 0 || skip > total) {
-        skip = 0;
-      }
-      if (limit < 0 || limit > total) {
-        limit = 10;
-      }
-      // Returns a dataset with page info
-      getPages = function () {
-        var pages = []
-          , i
-          , pagesCount
-          , pageStart
-          , pageEnd;
-        // Calculates total pages
-        if ((total/limit) % 1 !== 0) {
-          pagesCount = Math.floor(total/limit) + 1;
-        } else {
-          pagesCount = Math.floor(total/limit);      
-        }
-        // Builds pages with its start & end item number
-        for (i = 0; i < pagesCount ; i = i + 1) {
-          pageStart = (i * limit) + 1;
-          pageEnd = pageStart + limit - 1;
-          if (pageEnd > total) {
-            pageEnd = total;
-          }
-          pages.push({
-              label: pageStart === pageEnd ? pageStart : pageStart + ' - ' + pageEnd
-            , skip: (pageStart + limit)
-            , limit: limit
-            , selected: (skip + 1) === pageStart ? true : false
-          });
-        }
-        return pages;
-      }
-      // Initialize start and end of page selected 
-      start = skip + 1;
-      end = (skip + limit) > total ? total : (skip + limit);
-      // Builds the entire pagination structure
-      pagination = {
-          selected: start === end ? start : start + '-' + end + ' de ' + total
-        , pages: getPages()
-        , hasPrevious: start > 1 ? true : false
-        , hasNext: end < total ? true : false
-        , previousSkip: (skip - limit) < 0 ? 0 : (skip - limit)
-        , nextSkip: (skip + limit) > total ? total : (skip + limit)
-        , limit: limit
-      }
-    }
-    res.render('includes/pagination', {pagination: pagination});
-  });
-}
-
-exports.titles = function(req, res){
-  var titles = [
-    'Git model branching',
-    'LispyScript Macros',
-    'TinyOS 2.x'
-  ];
-  var body = JSON.stringify(titles);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
 };
-
-exports.tags = function(req, res){
-  var tags = [
-    'git',
-    'wsn',
-    'tinyos',
-    'sensor',
-    'workflow',
-    'macros',
-    'script'
-  ];
-  var body = JSON.stringify(tags);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
-};
-
-exports.categories = function(req, res){
-  var categories = [
-    'desarrollo',
-    'miscelanea'
-  ];
-  var body = JSON.stringify(categories);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
-};
-*/

@@ -78,8 +78,14 @@ $(document).ready(function() {
   /*** Filter ***/
   
   /* Titles */
+  $('select#title')
+      .attr('data-placeholder', 'Busca por titulo')
+      .chosen({
+        no_results_text: 'Sin resultados',
+        allow_single_deselect: true
+      });
   /*
-  $.getJSON('/blog/filter/titles', function(titles) {
+  $.getJSON('/blog/filter/titles', function(titles, status) {
     $.each(titles, function(i, title) {
       if ( i == 0 )
         $('select#title').append($('<option></option>'));
@@ -93,13 +99,19 @@ $(document).ready(function() {
       .chosen({
         no_results_text: 'Sin resultados',
         allow_single_deselect: true
-      })
-    ;
+      });
   });
   */
-  
   /* Categories */
-  /*
+
+  $('select#category')
+    .attr('data-placeholder', 'Busca por categoria')
+    .chosen({
+      no_results_text: 'Sin resultados',
+      allow_single_deselect: true
+    });
+
+   /*
   $.getJSON('/blog/filter/categories', function(categories) {
     $.each(categories, function(i, category) {
       if ( i == 0 )
@@ -117,14 +129,20 @@ $(document).ready(function() {
       })
     ;
   });
+  */
 
+  /* Dates */
   $('input#start').attr('placeholder', 'Desde');
-  
   $('input#end').attr('placeholder', 'Hasta');
   
-  */
-  
   /* Tags */
+
+  $('select#tag')
+    .attr('data-placeholder', 'Busca por tags')
+    .chosen({
+      no_results_text: 'Sin resultados'
+    });
+
   /*
   $.getJSON('/blog/filter/tags', function(tags) {
     $.each(tags, function(i, tag) {
