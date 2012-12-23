@@ -5,12 +5,11 @@ var Schema = require('mongoose').Schema;
 var summarySchema = new Schema({
       title: String
     , author: String
-    , created: String
+    , created: Date
     , slug: String
     , category: String
     , abstract: String
     , tags: [String]
-    , comments: String
   },
   { 
     collection: 'blog'

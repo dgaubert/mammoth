@@ -8,11 +8,13 @@ var postSchema = new Schema(
     , created: Date
     , slug: String
     , category: String
-    , body: String
+    , abstract: String
+    , content: String
     , tags: [String]
     , comments: [
         {
             author: String
+          , mail: String
           , created: Date
           , comment: String         
         }
@@ -27,4 +29,4 @@ var postSchema = new Schema(
 postSchema.set('autoIndex', true); // False in production
 postSchema.index({slug: 1},{unique: true});
 
-module.exports = summary_schema;
+module.exports = postSchema;

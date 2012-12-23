@@ -12,15 +12,15 @@ block content
         div.post-action
           a.link(href='/blog') Volver
           a.category(href='/blog/category/#{post.category}') #{post.category}
-          - each tag in post.tags
-            a.tag(href='/blog/tag/#{tag}') #{tag}
+            - each tag in post.tags
+              a.tag(href='/blog/tag/#{tag}') #{tag}
     div.column-2
       div.categories
         h3 Categorias
         ul
           - each category in categories
             li
-              a(href='/blog/category/#{category.name}') #{category.name} [#{category.count}]
+              a(href='/blog/category/#{category}') #{category}
       div.similars
         h3 Post similares
         ul

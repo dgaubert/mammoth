@@ -45,10 +45,6 @@ app.get('/blog/category/:category', blog.list);
 app.param('tag', /^[\w-]+$/);
 app.get('/blog/tag/:tag', blog.list);
 
-app.get('/blog/filter/titles', blog.titles);
-app.get('/blog/filter/categories', blog.categories);
-app.get('/blog/filter/tags', blog.tags);
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Server listening on port " + app.get('port'));
 });
