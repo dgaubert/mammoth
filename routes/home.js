@@ -1,36 +1,31 @@
+var mongoose = require('mongoose') // DB driver
+  , db = mongoose.createConnection('mongodb://localhost/mammoth') // DB conexion
+  , async = require('async') // Control flow
+  , summarySchema = require('../models/summary') // Load schema
+  , Summary = db.model('Summary', summarySchema); // Load model
+
 exports.view = function(req, res){
-  // Fake posts database
-  var summary = {
-    title: 'TinyOS 2.x',
-    author: 'Daniel Gaubert',
-    created: '10/10/2010',
-    slug: 'tinyos-2',
-    category: 'development',
-    abstract: 'Macros are a powerful feature of LispyScript. They are much more powerful than C  define macros. While C #define macros do string substitution, LispyScript macros are code generators Functions take values as arguments and return a value. Macros take code as arguments, and then return ode. Understanding this difference and its ramifications is the key to writing proper macros. Functions get evaluated at runtime. Macros get evaluated at compile time, or pre-compile time to be more precise.',
-    tags: ['wsn','tinyos','sensor'],
-    comments: '6'
-  }
-  var categories = [
-    {
-      name: 'desarrollo',
-      count: '25'
+  async.parallel({
+    summaries: function (callback) {
+      Summary.find({})
+        .sort({created: 1})
+        .limit(1)
+        .execFind(callback);
     },
-    {
-      name: 'miscelanea',
-      count: '14'
+    categories: function (callback) {
+      Summary.categories({}, callback);
     },
-    {
-      name: 'marketing',
-      count: '2'
-    },
-    {
-      name: 'diseño',
-      count: '45'
-    },
-    {
-      name: 'otros',
-      count: '2'
+  },
+  function (err, blog) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('home', { 
+          title: 'Daniel García Aubert - Programmer'
+        , section:'home'
+        , summaries: blog.summaries
+        , categories: blog.categories
+      });
     }
-  ];
-  res.render('home', { title: 'Daniel Garcia Aubert', section: 'home', summary: summary, categories: categories});
+  });
 };
