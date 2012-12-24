@@ -5,25 +5,27 @@ block content
       div.post
         hgroup.post-title
           h2.title #{post.title}
-          h3.created  [ #{post.created} - 
+          h3.created  [ #{post.created.getDate()}
+                      / #{post.created.getMonth()+1}
+                      / #{post.created.getFullYear()} - 
           h3.author #{post.author} ]
         div.post-content
           p #{post.content}
         div.post-action
           a.link(href='/blog') Volver
-          a.category #{post.category}
-          - each tag in post.tags
-            a.tag #{tag}
+          a.category(href='/blog/category/#{post.category}') #{post.category}
+            - each tag in post.tags
+              a.tag(href='/blog/tag/#{tag}') #{tag}
     div.column-2
       div.categories
         h3 Categorias
         ul
           - each category in categories
             li
-              a(href='/blog/category/#{category.name}') #{category.name} [#{category.count}]
+              a(href='/blog/category/#{category}') #{category}
       div.similars
         h3 Post similares
         ul
           - each similar in similars
             li
-              a(href='/blog/#{similar.slug}') #{similar.title}
+              a(href='/blog/post/#{similar.slug}') #{similar.title}

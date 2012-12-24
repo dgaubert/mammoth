@@ -1,14 +1,18 @@
-div.summary
-  hgroup.summary-title
-    a(href='/blog/#{summary.slug}')
-      h2.title #{summary.title}
-    h3.created  [ #{summary.created} - 
-    h3.author #{summary.author} ]
-  div.summary-abstract 
-    p #{summary.abstract}
-  div.summary-action
-    a.link(href='/blog/#{summary.slug}') Leer m&aacutes
-    a.category #{summary.category}
-    - each tag in summary.tags
-      a.tag #{tag}
-    h3.comments [ #{summary.comments} Comentarios ]
+div.summaries
+  - each summary in summaries
+    div.summary
+      hgroup.summary-title
+        a(href='/blog/post/#{summary.slug}')
+          h2.title #{summary.title}
+        h3.created  [ #{summary.created.getDate()}
+                      / #{summary.created.getMonth()+1}
+                      / #{summary.created.getFullYear()} - 
+        h3.author #{summary.author} ]
+      div.summary-abstract 
+        p #{summary.abstract}
+      div.summary-action
+        a.link(href='/blog/post/#{summary.slug}') Leer m&aacutes
+        a.category #{summary.category}
+        - each tag in summary.tags
+          a.tag #{tag}
+        h3.comments [ Comentarios ]

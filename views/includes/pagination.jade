@@ -1,0 +1,11 @@
+div.pagination
+  a#previous(class='#{pagination.previousPage > -1 ? "" : "disable"}'
+            , href='/blog/#{pagination.previousPage}')
+  a#page-selector(href='#') #{pagination.selected}
+  a#next(class='#{pagination.nextPage > -1 ? "" : "disable"}'
+          , href='/blog/#{pagination.nextPage}')
+  ul#pages
+    - each page in pagination.pages
+      li
+        a(class='#{page.selected ? "selected" : ""}'
+            , href='/blog/#{page.count}') #{page.count + 1}
