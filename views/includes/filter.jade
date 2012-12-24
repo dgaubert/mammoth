@@ -5,7 +5,7 @@ div.filter
         select#title(name='title')
           option
           - each title in titles
-            option(value='#{title}') #{title}
+            option(value='#{title.slug}') #{title.title}
       div.row
         select#category(name='category')
           option

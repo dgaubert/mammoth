@@ -4,7 +4,9 @@ div.summaries
       hgroup.summary-title
         a(href='/blog/post/#{summary.slug}')
           h2.title #{summary.title}
-        h3.created  [ #{summary.created} - 
+        h3.created  [ #{summary.created.getDate()}
+                      / #{summary.created.getMonth()+1}
+                      / #{summary.created.getFullYear()} - 
         h3.author #{summary.author} ]
       div.summary-abstract 
         p #{summary.abstract}
@@ -13,4 +15,4 @@ div.summaries
         a.category #{summary.category}
         - each tag in summary.tags
           a.tag #{tag}
-        h3.comments [ #{summary.comments} Comentarios ]
+        h3.comments [ Comentarios ]

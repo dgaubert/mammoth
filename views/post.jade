@@ -5,7 +5,9 @@ block content
       div.post
         hgroup.post-title
           h2.title #{post.title}
-          h3.created  [ #{post.created} - 
+          h3.created  [ #{post.created.getDate()}
+                      / #{post.created.getMonth()+1}
+                      / #{post.created.getFullYear()} - 
           h3.author #{post.author} ]
         div.post-content
           p #{post.content}

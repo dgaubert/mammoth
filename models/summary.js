@@ -31,7 +31,7 @@ summarySchema.statics.count = function (filter, cb) {
 }
 
 summarySchema.statics.titles = function (filter, cb) {
-  this.find(filter, {'_id': 0, 'title': 1}, cb);
+  this.find(filter, {'_id': 0, 'title': 1, 'slug': 1}, cb);
 }
 
 summarySchema.statics.categories = function (filter, cb) {

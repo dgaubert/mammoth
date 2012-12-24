@@ -36,14 +36,7 @@ exports.list = function (req, res) {
         , section:'blog'
         , summaries: blog.summaries
         , pagination: paginator.create(page, blog.count)
-        , titles: (function () {
-            var t = []
-              , key;
-            for (key in blog.titles) {
-              t.push(blog.titles[key].title);    
-            }
-            return t;      
-          })()
+        , titles: blog.titles
         , categories: blog.categories
         , tags: blog.tags
       });
@@ -68,9 +61,8 @@ exports.view = function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(JSON.stringify(blog));
       res.render('post', { 
-          title: blog.post.title + ' - Blog - Daniel García Aubert'
+          title: blog.post[0].title + ' - Blog - Daniel García Aubert'
         , section:'blog'
         , post: blog.post[0]
         , categories: blog.categories
