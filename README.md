@@ -7,8 +7,8 @@ A personal web (http://dgaubert.com) written with the following technologies:
 * [Mogoose](http://mongoosejs.com/): MongoDB object modeling tool designed to work in an asynchronous environment.
 * [Jade](http://jade-lang.com/): Node.js template engine.
 * [Stylus](http://learnboost.github.com/stylus/): expressive, robust, feature-rich CSS language built for Node.
-* [Backbone](http://backbonejs.org/): povider models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.
-* [Expresso](http://visionmedia.github.com/expresso/): is a JavaScript Test Drive Development framework written for nodejs.
+* [Async](http://github.com/caolan/async): Utility module which provides straight-forward, powerful functions for working with asynchronous JavaScript.
+* [Express params](http://github.com/visionmedia/express-params): Express param pre-condition functions.
 
 For more info visit https://github.com/dgaubert/mammoth to view source code.
 
