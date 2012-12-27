@@ -18,7 +18,7 @@ exports.create = function(page, count) {
         for (i = 0; i < pagesCount ; i = i + 1) {
           pages.push({
               count: i
-            , selected: (i + 1) === page ? true : false
+            , selected: i === page ? true : false
           });
         }
         return pages;

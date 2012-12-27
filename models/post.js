@@ -19,6 +19,7 @@ var postSchema = new Schema(
           , comment: String         
         }
       ]
+    , commentsCount: Number
   },
   { 
     collection: 'blog'

@@ -10,6 +10,7 @@ var summarySchema = new Schema({
     , category: String
     , abstract: String
     , tags: [String]
+    , commentsCount: Number
   },
   { 
     collection: 'blog'
@@ -30,18 +31,30 @@ summarySchema.statics.count = function (filter, cb) {
   this.find(filter).count(cb);
 }
 
-summarySchema.statics.titles = function (filter, cb) {
-  this.find(filter, {'_id': 0, 'title': 1, 'slug': 1}, cb);
-}
-
 summarySchema.statics.categories = function (filter, cb) {
   this.find(filter, {'_id': 0, 'category': 1}).distinct('category', cb);
+}
+
+summarySchema.statics.titles = function (filter, cb) {
+  this.find(filter, {'_id': 0, 'title': 1, 'slug': 1}, cb);
 }
 
 summarySchema.statics.tags = function (filter, cb) {
   this.find(filter, {'_id': 0, 'tags': 1}).distinct('tags', cb);
 }
 
+summarySchema.statics.categoriesCount = function (cb) {
+  this.mapReduce({
+        map: function () { 
+          emit(this.category, 1) 
+        }
+      , reduce: function (i, categories) { 
+          return categories.length 
+        }
+    }
+    , cb
+  );
+}
 
 // Indexes
 summarySchema.set('autoIndex', true); // False in production

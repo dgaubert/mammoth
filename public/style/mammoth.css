@@ -40,7 +40,7 @@ h1 {
 h2 {
   font-family: 'Monda', sans-serif;
   font-size: 1.4em;
-  padding: 0 0 20px 0;
+  padding: 0 0 0 0;
 }
 h3 {
   font-family: 'Monda', sans-serif;
@@ -59,6 +59,10 @@ div.ui-buttonset a.ui-button {
 .ui-menu {
   position: absolute;
   width: 130px;
+  padding: 0 2px 0 2px;
+}
+.ui-menu .ui-menu-item {
+  margin: 3px 0 3px 0;
 }
 .ui-state-hover {
   color: #3875d7;
@@ -335,7 +339,6 @@ hgroup.post-title {
 }
 h2.title {
   font-size: 2em;
-  display: inline;
   color: #444;
 }
 a h2.title:hover {
