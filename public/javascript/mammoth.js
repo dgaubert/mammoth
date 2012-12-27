@@ -32,7 +32,7 @@ $(document).ready(function() {
       primary: 'ui-icon-carat-1-w'
     }
   });
-  if($('a#previous').hasClass('disable')) {
+  if ($('a#previous').hasClass('disable')) {
     $('a#previous').button('disable');
   }
   $('a#page-selector')
@@ -54,14 +54,14 @@ $(document).ready(function() {
       primary: 'ui-icon-carat-1-e'
     }
   });
-  if($('a#next').hasClass('disable')) {
+  if ($('a#next').hasClass('disable')) {
     $('a#next').button('disable');
   }
   $('div.pagination').buttonset();
   $('a#next').addClass('ui-corner-right');
-  $('ul#pages').hide().menu();
-
-  
+  $('ul#pages').hide().menu(); 
+  $('ul#pages .ui-menu-item a.selected').addClass('ui-state-disabled');
+ 
   /*** Links ***/
   $('a#search').button({
     icons: {
@@ -84,26 +84,8 @@ $(document).ready(function() {
         no_results_text: 'Sin resultados',
         allow_single_deselect: true
       });
-  /*
-  $.getJSON('/blog/filter/titles', function(titles, status) {
-    $.each(titles, function(i, title) {
-      if ( i == 0 )
-        $('select#title').append($('<option></option>'));
-      $('select#title')
-         .append($('<option></option>')
-         .attr('value',title)
-         .text(title));
-    });
-    $('select#title')
-      .attr('data-placeholder', 'Busca por titulo')
-      .chosen({
-        no_results_text: 'Sin resultados',
-        allow_single_deselect: true
-      });
-  });
-  */
-  /* Categories */
 
+  /* Categories */
   $('select#category')
     .attr('data-placeholder', 'Busca por categoria')
     .chosen({
@@ -111,54 +93,15 @@ $(document).ready(function() {
       allow_single_deselect: true
     });
 
-   /*
-  $.getJSON('/blog/filter/categories', function(categories) {
-    $.each(categories, function(i, category) {
-      if ( i == 0 )
-        $('select#category').append($('<option></option>'));
-      $('select#category')
-         .append($('<option></option>')
-         .attr('value',category)
-         .text(category));
-    });
-    $('select#category')
-      .attr('data-placeholder', 'Busca por categoria')
-      .chosen({
-        no_results_text: 'Sin resultados',
-        allow_single_deselect: true
-      })
-    ;
-  });
-  */
-
   /* Dates */
   $('input#start').attr('placeholder', 'Desde');
   $('input#end').attr('placeholder', 'Hasta');
   
   /* Tags */
-
   $('select#tag')
     .attr('data-placeholder', 'Busca por tags')
     .chosen({
       no_results_text: 'Sin resultados'
     });
-
-  /*
-  $.getJSON('/blog/filter/tags', function(tags) {
-    $.each(tags, function(i, tag) {
-      if ( i == 0 )
-        $('select#tag').append($('<option></option>'));
-      $('select#tag')
-         .append($('<option></option>')
-         .attr('value',tag)
-         .text(tag));
-    });
-    $('select#tag')
-      .attr('data-placeholder', 'Busca por tags')
-      .chosen({
-        no_results_text: 'Sin resultados'
-      })
-    ;
-  });
-  */
+    
 });

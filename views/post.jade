@@ -22,7 +22,7 @@ block content
         ul
           - each category in categories
             li
-              a(href='/blog/category/#{category}') #{category}
+              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
       div.similars
         h3 Post similares
         ul

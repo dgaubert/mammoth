@@ -13,7 +13,7 @@ exports.view = function(req, res){
         .execFind(callback);
     },
     categories: function (callback) {
-      Summary.categories({}, callback);
+      Summary.categoriesCount(callback);
     },
   },
   function (err, blog) {
@@ -24,7 +24,7 @@ exports.view = function(req, res){
           title: 'Daniel García Aubert - Programmer'
         , section:'home'
         , summaries: blog.summaries
-        , categories: blog.categories
+        , categories: blog.categories[0]
       });
     }
   });

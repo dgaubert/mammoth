@@ -1,4 +1,4 @@
-var mongoose = require('mongoose') // DB driver
+﻿var mongoose = require('mongoose') // DB driver
   , db = mongoose.createConnection('mongodb://localhost/mammoth') // DB conexion
   , async = require('async') // Control flow
   , summarySchema = require('../models/summary') // Load schema
@@ -51,7 +51,7 @@ exports.view = function (req, res) {
       Post.find({'slug': slug}, callback);
     },
     categories: function (callback) {
-      Summary.categories({}, callback);
+      Summary.categoriesCount(callback);
     },
     similars: function (callback) {
       Summary.find({},{'_id': -1, 'title': 1, 'slug': 1}, callback);
@@ -65,7 +65,7 @@ exports.view = function (req, res) {
           title: blog.post[0].title + ' - Blog - Daniel García Aubert'
         , section:'blog'
         , post: blog.post[0]
-        , categories: blog.categories
+        , categories: blog.categories[0]
         , similars: blog.similars
       });
     }
