@@ -8,7 +8,7 @@
   , paginator = require('../utils/paginator'); // Pagination
 
 // Retrieves blog summary
-exports.list = function (req, res) {
+exports.getSummary = function (req, res) {
   var page = parseInt(req.params.page, 10) || 0;
   async.parallel({
     summaries: function (callback) {
@@ -44,7 +44,7 @@ exports.list = function (req, res) {
   });
 }
 
-exports.view = function (req, res) {
+exports.getPost = function (req, res) {
   var slug = req.params.slug || '';
   async.parallel({
     post: function (callback) {
