@@ -25,7 +25,7 @@ exports.getSummary = function (req, res) {
     },
     tags: function (callback) {
       Summary.tags({}, callback);
-    },
+    }
   },
   function (err, blog) {
     if (err) {

@@ -5,10 +5,8 @@ block content
       div.post
         hgroup.post-title
           h2.title #{post.title}
-          h3.created  [ #{post.created.getDate()}
-                      / #{post.created.getMonth()+1}
-                      / #{post.created.getFullYear()} - 
-          h3.author #{post.author} ]
+          h3.author Por #{post.author}
+          h3.created el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
         div.post-content
           p #{post.content}
         div.post-action

@@ -33,6 +33,7 @@ app.get('/', home.getHome);
 
 /** Blog **/
 app.param('page', /^\d+$/);
+
 app.get('/blog', blog.getSummary);
 app.get('/blog/:page', blog.getSummary);
 
@@ -41,11 +42,16 @@ app.get('/blog/post/:slug', blog.getPost);
 
 /*
 app.param('category', /^[\w-]+$/);
-app.get('/blog/category/:category', blog.list);
+app.get('/blog/category/:category', blog.summary);
 
 app.param('tag', /^[\w-]+$/);
+<<<<<<< HEAD
 app.get('/blog/tag/:tag', blog.list);
 */
+=======
+app.get('/blog/tag/:tag', blog.summary);
+
+>>>>>>> 4a9dd455c1cbb14700f6e5afeb3e9a6b91a4940f
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Server listening on port " + app.get('port'));
 });
