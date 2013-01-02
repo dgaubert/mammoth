@@ -4,13 +4,10 @@ var mongoose = require('mongoose') // DB driver
   , summarySchema = require('../models/summary') // Load schema
   , Summary = db.model('Summary', summarySchema); // Load model
 
-exports.view = function(req, res){
+exports.getHome = function(req, res){
   async.parallel({
     summaries: function (callback) {
-      Summary.find({})
-        .sort({created: 1})
-        .limit(1)
-        .execFind(callback);
+      Summary.getLast({}, callback);
     },
     categories: function (callback) {
       Summary.categoriesCount(callback);
@@ -21,7 +18,7 @@ exports.view = function(req, res){
       console.log(err);
     } else {
       res.render('home', { 
-          title: 'Daniel García Aubert - Programmer'
+          title: 'Daniel García Aubert - Software Engineer'
         , section:'home'
         , summaries: blog.summaries
         , categories: blog.categories[0]
