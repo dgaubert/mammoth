@@ -8,7 +8,7 @@
   , paginator = require('../utils/paginator'); // Pagination
 
 // Retrieves blog summary
-exports.getSummary = function (req, res) {
+exports.getSummary = function (req, res, next) {
   var page = parseInt(req.params.page, 10) || 0;
   async.parallel({
     summaries: function (callback) {
@@ -29,7 +29,7 @@ exports.getSummary = function (req, res) {
   },
   function (err, blog) {
     if (err) {
-      console.log(err);
+      next();
     } else {
       res.render('blog', { 
           title: 'Blog - Daniel García Aubert'
@@ -44,7 +44,7 @@ exports.getSummary = function (req, res) {
   });
 }
 
-exports.getPost = function (req, res) {
+exports.getPost = function (req, res, next) {
   var slug = req.params.slug || '';
   async.parallel({
     post: function (callback) {
@@ -58,8 +58,8 @@ exports.getPost = function (req, res) {
     },
   },
   function (err, blog) {
-    if (err) {
-      console.log(err);
+    if (err || blog.post.length <= 0) {
+      next();
     } else {
       res.render('post', { 
           title: blog.post[0].title + ' - Blog - Daniel García Aubert'

@@ -4,7 +4,7 @@ var mongoose = require('mongoose') // DB driver
   , summarySchema = require('../models/summary') // Load schema
   , Summary = db.model('Summary', summarySchema); // Load model
 
-exports.getHome = function(req, res){
+exports.getHome = function(req, res, next){
   async.parallel({
     summaries: function (callback) {
       Summary.getLast({}, callback);
@@ -15,7 +15,7 @@ exports.getHome = function(req, res){
   },
   function (err, blog) {
     if (err) {
-      console.log(err);
+      next();
     } else {
       res.render('home', { 
           title: 'Daniel García Aubert - Software Engineer'
