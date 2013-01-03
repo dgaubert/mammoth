@@ -56,6 +56,13 @@ summarySchema.statics.categoriesCount = function (cb) {
   );
 }
 
+summarySchema.statics.getLast = function (filter, cb) {
+  this.find(filter)
+      .sort({created: 1})
+      .limit(1)
+      .execFind(cb);
+}
+
 // Indexes
 summarySchema.set('autoIndex', true); // False in production
 summarySchema.index({slug: 1},{unique: true});
