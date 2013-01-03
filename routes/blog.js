@@ -28,7 +28,7 @@ exports.getSummary = function (req, res, next) {
     }
   },
   function (err, blog) {
-    if (err) {
+    if (err || blog.summaries.length <= 0) {
       next();
     } else {
       res.render('blog', { 
