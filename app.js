@@ -43,7 +43,7 @@ app.param('page', /^\d+$/);
 app.get('/blog', blog.getSummary);
 app.get('/blog/:page', blog.getSummary);
 app.param('slug', /^[\w-]+$/);
-app.get('/blog/post/:slug', blog.getPost);
+app.get('/blog/:slug', blog.getPost);
 
 // **
 // Error handling
