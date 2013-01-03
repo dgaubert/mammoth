@@ -1,4 +1,4 @@
-﻿/** Dependencies **/
+﻿// Module dependencies
 var express = require('express')
   , params = require('express-params')
   , http = require('http')
@@ -9,49 +9,58 @@ var express = require('express')
 
 var app = express();
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(stylus.middleware({src: __dirname + '/public'}));
-  app.use(express.static(path.join(__dirname, 'public')));
-});
+// **
+// Setup
+// **
 
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(stylus.middleware({src: __dirname + '/public'}));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Development enviroment
 app.configure('development', function(){
-  app.use(express.errorHandler());
-});
+  // shows error trace into error pages
+  app.enable('verbose errors');
+})
 
-/** Add parmam functionality **/
+// **
+// Router
+// **
+
+// Parmam RE validation
 params.extend(app);
 
-/** Home **/
+// Home
 app.get('/', home.getHome);
 
-/** Blog **/
+// Blog
 app.param('page', /^\d+$/);
-
 app.get('/blog', blog.getSummary);
 app.get('/blog/:page', blog.getSummary);
-
 app.param('slug', /^[\w-]+$/);
 app.get('/blog/post/:slug', blog.getPost);
 
-/*
-app.param('category', /^[\w-]+$/);
-app.get('/blog/category/:category', blog.summary);
+// **
+// Error handling
+// **
 
-app.param('tag', /^[\w-]+$/);
-<<<<<<< HEAD
-app.get('/blog/tag/:tag', blog.list);
-*/
-=======
-app.get('/blog/tag/:tag', blog.summary);
+app.use(function (req, res, next) {
+  res.status(404);
+  res.render('404', { url: req.url });
+});
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('500', { error: err });
+});
 
->>>>>>> 4a9dd455c1cbb14700f6e5afeb3e9a6b91a4940f
+// **
+// Server
+// **
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Server listening on port " + app.get('port'));
 });
