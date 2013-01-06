@@ -1,0 +1,361 @@
+@font-face
+  font-family: 'Monda';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Monda Regular'), local('Monda-Regular'), url(/style/fonts/Monda.woff) format('woff')
+
+@font-face
+  font-family 'Fredericka the Great'
+  font-style normal
+  font-weight 400
+  src local('Fredericka the Great'), local('FrederickatheGreat'), url(/style/fonts/FrederickatheGreat.woff) format('woff')
+
+@font-face 
+  font-family 'Annie Use Your Telescope'
+  font-style normal
+  font-weight 400
+  src local('Annie Use Your Telescope'), local('AnnieUseYourTelescope'), url(/style/fonts/AnnieUseYourTelescope.woff) format('woff')
+
+// Reset
+*
+  margin 0
+  padding 0
+
+// Functions
+centerer(w,p=0)
+  width w
+  margin auto
+  if p != 0
+    padding p
+  else
+    padding 0 0 20px 0
+
+wrapper(p, w, b=0, bb=0, bs=0)
+  padding p
+  width w
+  if b != 0
+    background b
+  if bb != 0
+    border-bottom bb
+  if bs != 0
+    box-shadow bs
+
+columner(w,p)
+  vertical-align top
+  display inline-block
+  width w
+  padding p
+
+titler(s,p)
+  font-size s
+  padding p
+
+titler-monda(s,p)
+  font-family 'Monda', sans-serif
+  font-size s
+  padding p
+
+titler-telescope(s,p)
+  font-family 'Annie Use Your Telescope', cursive
+  font-size s
+  padding p
+
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  {prop} args
+
+border-radius()
+  vendor('border-radius', arguments)
+
+box-shadow()
+  vendor('box-shadow', arguments)
+  
+// General
+body
+  font-family 'Open Sans', sans-serif
+p
+  font-size 14px
+  line-height 1.6
+  text-align justify
+  color #444
+a
+  text-decoration none
+
+h1
+  titler-monda(1.8em,0 0 20px 0)
+h2
+  titler-monda(1.4em,0 0 0 0)
+h3
+  titler-monda(1.1em,0 0 15px 0)
+
+// Redefine jQuery UI values
+
+span.ui-button-text
+  display inline !important
+
+div.ui-buttonset a.ui-button
+  margin 0px !important
+
+.ui-datepicker
+  font-family 'Open Sans', sans-serif
+
+.ui-menu
+  position absolute
+  width 130px
+  padding 0 2px 0 2px
+  
+.ui-menu .ui-menu-item
+  margin 3px 0 3px 0
+  
+.ui-state-hover
+  color #3875d7
+  box-shadow 0 0 3px rgba(0,0,0,.3)
+  border 1px solid #3875d7
+  
+// Header
+header
+  border-bottom 1px solid #ccc
+  box-shadow 0 0 4px 0 #ddd
+  position fixed
+  top 0
+  left 0
+  background rgba(255,255,255,.8)
+  width 100%
+  height 65px
+  z-index 100
+  section.menu
+    centerer(800px)
+    section.logo
+      margin 14px 100px 0 0
+      float left
+      h1.title
+        titler-telescope(2.4em,0)
+        line-height 1
+        color #666
+        display inline-block
+        
+      h2.description
+        color #888
+        titler-telescope(1.2em,0)
+        line-height 1
+        margin 0 0 0 10px
+        display inline-block
+    nav
+      display inline-block
+      margin 26px 0 0 0
+      a
+        &:hover
+          color #222
+        color #888
+        font-family 'Monda', sans-serif
+        font-size 1em
+        font-weight bold
+        margin 0 20px 0 20px
+      .active
+        color #3875d7
+    section.social
+      float right
+      margin 24px 0 0 0
+      a.social
+        &:hover
+          opacity .9
+        display inline-block 
+        opacity .5
+        width 24px 
+        height 24px
+        margin 0 0 0 15px
+        background-repeat no-repeat
+      a.github
+        background-image url('/images/github-black-24.png')
+      a.linkedin
+        background-image url('/images/linkedin-black-24.png')
+      a.twitter
+        background-image url('/images/twitter-black-24.png')
+
+div.wrapper-presentation
+  wrapper(100px 0 20px 0, 100%, #dbe3e7, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+// Presentation
+div.presentation
+  centerer(700px)
+  div.text-column
+    columner(225px,0 0 0 40px)
+    a#mailto
+      text-align right
+      margin 10px 0 0 0
+
+div.wrapper-latest
+  wrapper(20px 0 0 0, 100%, #fff, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+div.blog-latest
+  centerer(700px,0 0 20px 0)
+  div.summary-latest
+    width 550px
+    display inline-block
+  div.categories
+    columner(110px, 20px 0 0 40px)
+    text-align center
+    ul
+      list-style-type none
+      li 
+        padding 0 0 10px 0
+        a
+          &:hover
+            color #5897fb
+          text-decoration none
+          color #444
+
+div.wrapper-projects
+  wrapper(20px 0 0 0, 100%, #d7e6fc, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+div.projects
+  centerer(700px,0 0 20px 0)
+  div.first-column
+    columner(340px, 10px 10px 10px 0)
+  div.second-column
+    columner(340px, 10px 0 10px 10px)
+
+div.wrapper-technologies
+  wrapper(20px 0 0 0, 100%)
+
+div.technologies
+  centerer(700px,0 0 20px 0)
+  div.column
+    columner(30%, 0 20px 0 0)
+
+// Filter
+div.wrapper-filter
+  wrapper(100px 0 20px 0, 100%, #dbe3e7, 1px solid #ccc, 0 0 4px 0 #ddd)
+
+div.filter
+  centerer(700px)
+  div.first-column
+    display inline-block
+    width 430px
+    div.row
+      width 100%
+      padding 0 0 10px 0
+    div.search
+      text-align right
+    select
+      width 100%
+    input#start
+      width 196px
+    input#end
+      width 196px
+  div.second-column
+    columner(250px, 0 0 0 20px)
+  input
+    &:focus
+      background-image -webkit-linear-gradient(top, #eee 20%, #fff 80%)
+      background-image -moz-linear-gradient(top, #eee 20%, #fff 80%)
+      background-image -o-linear-gradient(top, #eee 20%, #fff 80%)
+      background-image linear-gradient(#eee 20%, #fff 80%)
+      box-shadow 0 0 5px rgba(0,0,0,.3)
+      border 1px solid #5897fb
+      outline none
+    color #444
+    border 1px solid #aaa
+    padding 3px 6px 3px 6px
+    background-image -webkit-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    background-image -moz-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    background-image -o-linear-gradient(top, white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    background-image linear-gradient(white 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%)
+    box-shadow 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05)
+    border-radius 3px
+
+// Blog
+div.blog
+  centerer(700px)
+  padding 20px 0 20px 0
+  
+// Summary
+div.blog
+  div.summaries
+    margin 60px 0 0 0
+div.summary
+  width 100%
+  padding 0 0 20px 0
+
+// Title
+hgroup.summary-title
+hgroup.post-title
+  padding 0 0 5px 0
+      
+h2.title
+  font-size 2em
+  //display inline
+  color #444
+a
+  h2.title
+    &:hover
+      color #3875d7
+h3.created
+h3.author
+h3.comments
+  display inline
+  font-size 0.8em
+  color #888
+h3.comments
+  margin 0 0 0 15px
+
+// Abstract
+div.summary-abstract
+div.post-content
+  text-align justify
+// Action  
+div.summary-action
+div.post-action
+  padding 10px 0 0 0
+  a
+    line-height 1 !important
+    font-size 12px
+    margin 0 15px 0 0
+  a.link
+    background #fff
+  a.tag
+    margin 0 5px 0 0
+  a.category
+    &:hover
+      background #fff  
+
+// Pagination
+div.pagination
+  margin 20px 0 20px 0
+  float right
+
+a#page-selector
+  background #fff
+  width 134px
+
+div.wrapper-post
+  centerer(700px,80px 0 20px 0)
+  div.column-1
+    width 520px
+    display inline-block
+  div.column-2
+    columner(160px, 20px 0 0 20px)
+    div.categories
+    div.similars
+      padding 20px 0 0 0
+      text-align center
+      ul
+        list-style-type none
+        li 
+          padding 0 0 10px 0
+          a
+            &:hover
+              color #3875d7
+            text-decoration none
+            color #444
+
+// Footer
+footer div.footer-content
+  background #eee
+  border-top 1px solid #ccc
+  box-shadow 0 0 4px #ddd
+  p
+    padding 20px 0 20px 0
+    text-align center
+    color #444

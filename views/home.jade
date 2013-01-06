@@ -1,0 +1,54 @@
+extends layout
+block content
+  div.wrapper-presentation
+    div.presentation
+      img#profile(src='/images/profile.png', alt='Daniel Garcia Aubert',  height='170px', width='170px')
+      div.text-column
+        h3 ¡Bienvenido!
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus. Nullam neque erat, egestas vitae cursus vitae, mollis at ipsum. Nulla facilisi.
+      div.text-column
+        h3 Contacto
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+        a#mailto(href='mailto:danielgarciaaubert@gmail.com') Contactar
+  div.wrapper-latest
+    div.blog-latest
+      h2 Lo último en el blog:
+      div.summary-latest
+        include includes/summary
+      div.categories
+        h3 Categorias
+        ul
+          - each category in categories
+            li
+              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+  div.wrapper-projects
+    div.projects
+      h2 Proyectos:
+      div.first-column
+        h3 Mammoth
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+        a(href='https://github.com/dgaubert/mammoth')
+          img(src='/images/mammoth.png', alt='Mammoth project', height='250px', width='340px')
+      div.second-column
+        h3 Sylvette
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+        a(href='https://github.com/dgaubert/sylvette')
+          img(src='/images/sylvette.png', alt='Sylvette project', height='250px', width='340px')
+  div.wrapper-technologies
+    div.technologies
+      h2 Tecnologias:
+      div.column
+        h3 Node.js
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+        a(href='http://nodejs.org/')
+          img(src='/images/nodejs.png', alt='Node.js', height='72px', width='200px')
+      div.column
+        h3 Express.js
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+        a(href='http://expressjs.com/')
+          img(src='/images/expressjs.png', alt='Express.js', height='57px', width='200px')
+      div.column
+        h3 MongoDB
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+        a(href='http://www.mongodb.org/')
+          img(src='/images/mongodb.png', alt='MongoDB', height='80px', width='200px')

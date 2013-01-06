@@ -1,0 +1,29 @@
+extends layout
+block content
+  div.wrapper-post
+    div.column-1
+      div.post
+        hgroup.post-title
+          h2.title #{post.title}
+          h3.author Por #{post.author}
+          h3.created el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
+        div.post-content
+          p #{post.content}
+        div.post-action
+          a.link(href='/blog') Volver
+          a.category(href='/blog/category/#{post.category}') #{post.category}
+            - each tag in post.tags
+              a.tag(href='/blog/tag/#{tag}') #{tag}
+    div.column-2
+      div.categories
+        h3 Categorias
+        ul
+          - each category in categories
+            li
+              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+      div.similars
+        h3 Post similares
+        ul
+          - each similar in similars
+            li
+              a(href='/blog/#{similar.slug}') #{similar.title}
