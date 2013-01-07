@@ -44,7 +44,7 @@ exports.getSummary = function (req, res, next) {
   });
 }
 
-exports.getPost = function (req, res, next) {
+exports.getPost =  function (req, res, next) {
   var slug = req.params.slug || '';
   async.parallel({
     post: function (callback) {
@@ -71,3 +71,13 @@ exports.getPost = function (req, res, next) {
     }
   });
 };
+
+
+exports.newComment = function (req, res, next) {
+  var slug = req.params.slug || '';
+  console.log(slug);
+  console.log(req.body.name);
+  console.log(req.body.mail);
+  console.log(req.body.comment);
+  res.redirect('/blog/' + slug);
+}

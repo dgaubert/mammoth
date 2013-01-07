@@ -6,7 +6,7 @@ block content
         hgroup.post-title
           h2.title #{post.title}
           h3.author Por #{post.author}
-          h3.created el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
+          h3.created  el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
         div.post-content
           p #{post.content}
         div.post-action
@@ -14,6 +14,19 @@ block content
           a.category(href='/blog/category/#{post.category}') #{post.category}
             - each tag in post.tags
               a.tag(href='/blog/tag/#{tag}') #{tag}
+        div.comments
+          div
+            h3.title Comentarios
+            - each comment in post.comments
+              h5 #{comment.author}
+                span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
+              p #{comment.comment}
+          h5 Participa escribiendo un comentario
+          form#comment(action='/blog/#{post.slug}/comment', method='post')
+            input#name(name='name', size='30')
+            input#mail(name='mail', size='60')
+            textarea#comment(name='comment', cols='70', rows='10')
+            button#comment(type="submit", value="Comentar") Comentar
     div.column-2
       div.categories
         h3 Categorias

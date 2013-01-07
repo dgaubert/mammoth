@@ -20,6 +20,9 @@
   margin: 0;
   padding: 0;
 }
+*:focus {
+  outline: none;
+}
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -446,6 +449,45 @@ div.wrapper-post div.column-2 div.similars ul li a {
 div.wrapper-post div.column-2 div.categories ul li a:hover,
 div.wrapper-post div.column-2 div.similars ul li a:hover {
   color: #3875d7;
+}
+div.comments div {
+  margin: 25px 0 0 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+div.comments div h3.title {
+  font-family: 'Monda', sans-serif;
+  font-size: 1.1em;
+  padding: 15px 0 15px 0;
+}
+div.comments div h5 {
+  font-family: 'Monda', sans-serif;
+  font-size: 0.8em;
+  padding: 0px 0 10px 0;
+}
+div.comments div h5 span {
+  color: #888;
+}
+div.comments div p {
+  padding: 0 0 20px 0;
+}
+div.comments h5 {
+  font-family: 'Monda', sans-serif;
+  font-size: 0.8em;
+  padding: 10px 0 10px 0;
+}
+div.comments input,
+div.comments textarea {
+  -webkit-appearance: none;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 0 10px 0;
+  padding: 0.5em 0.5%;
+}
+div.comments input:focus,
+div.comments textarea:focus {
+  outline: none;
+  border-bottom: 1px solid #ccc;
 }
 footer div.footer-content {
   background: #eee;

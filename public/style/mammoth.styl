@@ -18,6 +18,8 @@
 
 // Reset
 *
+  &:focus
+    outline none
   margin 0
   padding 0
 
@@ -369,6 +371,33 @@ div.wrapper-post
               color #3875d7
             text-decoration none
             color #444
+
+// Post
+div.comments  
+  div
+    margin 25px 0 0 0 
+    border-top 1px solid #ddd
+    border-bottom 1px solid #ddd
+    h3.title
+      titler-monda(1.1em, 15px 0 15px 0)
+    h5
+      titler-monda(0.8em, 0px 0 10px 0)
+      span
+        color #888
+    p
+      padding 0 0 20px 0
+  h5
+    titler-monda(0.8em, 10px 0 10px 0)
+  input
+  textarea
+    &:focus
+      outline none
+      border-bottom 1px solid #ccc
+    -webkit-appearance none
+    border none
+    font-family 'Open Sans', sans-serif
+    margin 0 0 10px 0
+    padding 0.5em .5%
 
 // Footer
 footer div.footer-content

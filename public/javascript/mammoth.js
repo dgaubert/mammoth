@@ -1,7 +1,8 @@
 $(document).ready(function() {
   
-  /*** Inputs ***/ 
+  /*** Inputs ***/
   $('input').addClass('ui-corner-all');
+  $('textarea').addClass('ui-corner-all');
   
   $('input.date').datepicker();
   
@@ -103,5 +104,36 @@ $(document).ready(function() {
     .chosen({
       no_results_text: 'Sin resultados'
     });
-    
+
+  /*** Comments ***/
+  
+  /* Form */
+  $('input#name').attr('placeholder', 'Nombre (requerido)');
+  $('input#mail').attr('placeholder', 'Correo electronico (requerido)');
+  $('textarea#comment').attr('placeholder', 'Escribe un comentario (requerido)');
+
+  $('button#comment').button({
+    icons: {
+      primary: 'ui-icon-comment'
+    }
+  });
+
+  /*
+  $('a#comment').on('click', function () {
+    var comment = $('form#comment').serializeArray();
+    $.each(comment, function(i, obj) {
+      switch (obj.name) {
+        case 'name':
+          alert(obj.value);
+          break;
+        case 'mail':
+          alert(obj.value);
+          break;
+        case 'comment':
+          alert(obj.value);
+          break;    
+      }
+    });
+  });
+  */
 });
