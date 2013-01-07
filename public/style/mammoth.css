@@ -175,6 +175,28 @@ div.presentation div.text-column a#mailto {
   text-align: right;
   margin: 10px 0 0 0;
 }
+img#avatar {
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  border-bottom: 1px solid #bbb;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+img.paper {
+  padding: 14px 14px 25px 14px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+  -o-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+  -ms-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+  box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
+}
 div.wrapper-latest {
   padding: 20px 0 0 0;
   width: 100%;
