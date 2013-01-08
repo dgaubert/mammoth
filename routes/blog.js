@@ -75,9 +75,23 @@ exports.getPost =  function (req, res, next) {
 
 exports.newComment = function (req, res, next) {
   var slug = req.params.slug || '';
-  console.log(slug);
-  console.log(req.body.name);
-  console.log(req.body.mail);
-  console.log(req.body.comment);
-  res.redirect('/blog/' + slug);
+  var comment = {
+      author: req.body.name
+    , mail: req.body.mail
+    , created: new Date()
+    , comment: req.body.comment
+  };
+  Post.findOne({'slug': slug}, function (err, post) {
+    if (err) {
+      next();
+    } else {
+      post.comments.push(comment);
+      post.save(function (err) {
+        if (err) {
+          next(new Error('Save comment fails'));
+        }
+        res.redirect('/blog/' + slug + '#lastCommnent');
+      });
+    }
+  });
 }

@@ -17,10 +17,11 @@ block content
         div.comments
           div
             h3.title Comentarios
-            - each comment in post.comments
+            - each comment, index in post.comments
               h5 #{comment.author}
                 span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
               p #{comment.comment}
+          span#lastCommnent
           h5 Participa escribiendo un comentario
           form#comment(action='/blog/#{post.slug}/comment', method='post')
             input#name(name='name', size='30')

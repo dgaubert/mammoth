@@ -118,6 +118,8 @@ $(document).ready(function() {
     }
   });
 
+  $("html, body").animate({ scrollTop: $("#lastCommnent").scrollTop() }, 1000);
+
   /*
   $('a#comment').on('click', function () {
     var comment = $('form#comment').serializeArray();
