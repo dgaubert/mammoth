@@ -118,24 +118,38 @@ $(document).ready(function() {
     }
   });
 
-  $("html, body").animate({ scrollTop: $("#lastCommnent").scrollTop() }, 1000);
+  $("html, body").animate(
+      {scrollTop: $("#lastCommnent").scrollTop()}
+    , 1000
+  );
 
-  /*
-  $('a#comment').on('click', function () {
+  $('button#comment').on('click', function () {
     var comment = $('form#comment').serializeArray();
-    $.each(comment, function(i, obj) {
-      switch (obj.name) {
+    $.each(comment, function(i, property) {
+      var err, re;
+      switch (property.name) {
         case 'name':
-          alert(obj.value);
+          re = /[a-zA-ZÒ—\s]/;
+          if (property.value.match(re) == null) {
+            err = 'Nombre incorrecto';
+          }
           break;
         case 'mail':
-          alert(obj.value);
+          re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
+          if (property.value.match(re) == null) {
+            err = 'Correo electr\u00f3nico incorrecto';
+          }
           break;
         case 'comment':
-          alert(obj.value);
+          if (property.value.length <= 0) {
+            err = 'Escribe un comentario'
+          }
+        default:
           break;    
+      }
+      if (err) {
+        $(form).find('#error-'+property.name).text(err);
       }
     });
   });
-  */
 });
