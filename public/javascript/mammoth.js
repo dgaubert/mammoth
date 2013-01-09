@@ -123,33 +123,63 @@ $(document).ready(function() {
     , 1000
   );
 
-  $('button#comment').on('click', function () {
-    var comment = $('form#comment').serializeArray();
-    $.each(comment, function(i, property) {
-      var err, re;
+/*  var checkForm = function() {
+    var err;
+    $.each($('form#comment').serializeArray(), function(i, property) {
+      var re;
       switch (property.name) {
         case 'name':
-          re = /[a-zA-ZÒ—\s]/;
+          re = /^[a-zA-Z0-9._-]+$/;
           if (property.value.match(re) == null) {
-            err = 'Nombre incorrecto';
+            $('form#comment').find('#error-msg').text('Nombre no valido');
+            err = 1;
+            return 0;
           }
           break;
         case 'mail':
           re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/;
           if (property.value.match(re) == null) {
-            err = 'Correo electr\u00f3nico incorrecto';
+            $('form#comment').find('#error-msg').text('Correo electr\u00f3nico incorrecto');
+            err = 1;
+            return 0;
           }
           break;
         case 'comment':
           if (property.value.length <= 0) {
-            err = 'Escribe un comentario'
+            $('form#comment').find('#error-msg').text('Escribe un comentario');
+            err = 1;
+            return 0;
           }
         default:
           break;    
       }
-      if (err) {
-        $(form).find('#error-'+property.name).text(err);
-      }
+      return 1;
     });
+    return err; 
+  }
+*/
+
+  var checkForm = function() {
+    var comment = $('form#comment').serializeArray();
+    if (comment[0].value.match(/^[a-zA-Z0-9._-]+$/) == null) {
+      $('form#comment').find('#error-msg').text('Nombre no valido');
+      return 0;
+    }
+    if (comment[1].value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/) == null) {
+      $('form#comment').find('#error-msg').text('Correo electr\u00f3nico incorrecto');
+      return 0;
+    }
+    if (comment[2].value.length <= 0) {
+      $('form#comment').find('#error-msg').text('Escribe un comentario');
+      return 0;
+    }
+    return 1;
+  }
+  $('button#comment').on('click', function (e) {
+    e.preventDefault();
+    if (checkForm()) {
+      $('form#comment').submit();      
+    } 
   });
+
 });

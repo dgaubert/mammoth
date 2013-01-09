@@ -489,6 +489,12 @@ div.comments textarea:focus {
   outline: none;
   border-bottom: 1px solid #ccc;
 }
+div.comments #error-msg {
+  font-size: 0.8em;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  color: #cd0a0a;
+}
 footer div.footer-content {
   background: #eee;
   border-top: 1px solid #ccc;
