@@ -44,7 +44,7 @@ exports.getSummary = function (req, res, next) {
   });
 }
 
-exports.getPost = function (req, res, next) {
+exports.getPost =  function (req, res, next) {
   var slug = req.params.slug || '';
   async.parallel({
     post: function (callback) {
@@ -71,3 +71,27 @@ exports.getPost = function (req, res, next) {
     }
   });
 };
+
+exports.newComment = function (req, res, next) {
+  var slug = req.params.slug || '';
+  console.log(req.body.comment);
+  var comment = {
+      author: req.body.name
+    , mail: req.body.mail
+    , created: new Date()
+    , comment: req.body.comment.replace(/\n/g, '<br/>')
+  };
+  Post.findOne({'slug': slug}, function (err, post) {
+    if (err) {
+      next();
+    } else {
+      post.comments.push(comment);
+      post.save(function (err) {
+        if (err) {
+          next(new Error('Save comment fails'));
+        }
+        res.redirect('/blog/' + slug + '#lastCommnent');
+      });
+    }
+  });
+}

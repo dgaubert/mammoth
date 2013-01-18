@@ -1,6 +1,15 @@
 // Schema for post model
 var Schema = require('mongoose').Schema
 
+var commentary = new Schema(
+  {
+      author: String
+    , mail: String
+    , created: Date
+    , comment: String
+  }
+);
+
 var postSchema = new Schema(
   {
       title: String
@@ -11,14 +20,7 @@ var postSchema = new Schema(
     , abstract: String
     , content: String
     , tags: [String]
-    , comments: [
-        {
-            author: String
-          , mail: String
-          , created: Date
-          , comment: String         
-        }
-      ]
+    , comments: [commentary]
     , commentsCount: Number
   },
   { 
@@ -30,4 +32,5 @@ var postSchema = new Schema(
 postSchema.set('autoIndex', true); // False in production
 postSchema.index({slug: 1},{unique: true});
 
+// Exports
 module.exports = postSchema;

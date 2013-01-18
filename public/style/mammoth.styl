@@ -18,6 +18,8 @@
 
 // Reset
 *
+  &:focus
+    outline none
   margin 0
   padding 0
 
@@ -370,6 +372,43 @@ div.wrapper-post
             text-decoration none
             color #444
 
+// Post
+div.comments
+  margin 25px 0 0 0 
+  border-top 1px solid #ddd
+  h3.title
+    titler-monda(1.1em, 15px 0 15px 0)
+  div.comment
+    margin 0 0 20px 0
+    padding 10px
+    h5
+      titler-monda(0.8em, 0px 0 10px 0)
+      span
+        color #888
+    div
+      padding 0 0 0 10px    
+  form
+    h5
+      border-top 1px solid #ddd
+      titler-monda(0.8em, 20px 0 10px 0)
+    input
+    textarea
+      &:focus
+        outline none
+        border-bottom 1px solid #ccc
+      -webkit-appearance none
+      border none
+      font-family 'Open Sans', sans-serif
+      margin 0 0 10px 0
+      padding 0.5em .5%
+    #error-msg
+      font-size 0.8em
+      display inline-block
+      margin 0 0 0 10px
+      color #cd0a0a
+  div.note
+    margin 20px 0 0 0
+
 // Footer
 footer div.footer-content
   background #eee
@@ -379,3 +418,5 @@ footer div.footer-content
     padding 20px 0 20px 0
     text-align center
     color #444
+    a
+      color #444

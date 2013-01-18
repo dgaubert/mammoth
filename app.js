@@ -44,6 +44,7 @@ app.get('/blog', blog.getSummary);
 app.get('/blog/:page', blog.getSummary);
 app.param('slug', /^[\w-]+$/);
 app.get('/blog/:slug', blog.getPost);
+app.post('/blog/:slug/comment', blog.newComment);
 
 // **
 // Error handling
