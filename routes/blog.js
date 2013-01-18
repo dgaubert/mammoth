@@ -72,14 +72,14 @@ exports.getPost =  function (req, res, next) {
   });
 };
 
-
 exports.newComment = function (req, res, next) {
   var slug = req.params.slug || '';
+  console.log(req.body.comment);
   var comment = {
       author: req.body.name
     , mail: req.body.mail
     , created: new Date()
-    , comment: req.body.comment
+    , comment: req.body.comment.replace(/\n/g, '<br/>')
   };
   Post.findOne({'slug': slug}, function (err, post) {
     if (err) {

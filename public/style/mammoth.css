@@ -450,50 +450,57 @@ div.wrapper-post div.column-2 div.categories ul li a:hover,
 div.wrapper-post div.column-2 div.similars ul li a:hover {
   color: #3875d7;
 }
-div.comments div {
+div.comments {
   margin: 25px 0 0 0;
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
 }
-div.comments div h3.title {
+div.comments h3.title {
   font-family: 'Monda', sans-serif;
   font-size: 1.1em;
   padding: 15px 0 15px 0;
 }
-div.comments div h5 {
+div.comments div.comment {
+  margin: 0 0 20px 0;
+  padding: 10px;
+}
+div.comments div.comment h5 {
   font-family: 'Monda', sans-serif;
   font-size: 0.8em;
   padding: 0px 0 10px 0;
 }
-div.comments div h5 span {
+div.comments div.comment h5 span {
   color: #888;
 }
-div.comments div p {
-  padding: 0 0 20px 0;
+div.comments div.comment div {
+  padding: 0 0 0 10px;
 }
-div.comments h5 {
+div.comments form h5 {
+  border-top: 1px solid #ddd;
   font-family: 'Monda', sans-serif;
   font-size: 0.8em;
-  padding: 10px 0 10px 0;
+  padding: 20px 0 10px 0;
 }
-div.comments input,
-div.comments textarea {
+div.comments form input,
+div.comments form textarea {
   -webkit-appearance: none;
   border: none;
   font-family: 'Open Sans', sans-serif;
   margin: 0 0 10px 0;
   padding: 0.5em 0.5%;
 }
-div.comments input:focus,
-div.comments textarea:focus {
+div.comments form input:focus,
+div.comments form textarea:focus {
   outline: none;
   border-bottom: 1px solid #ccc;
 }
-div.comments #error-msg {
+div.comments form #error-msg {
   font-size: 0.8em;
   display: inline-block;
   margin: 0 0 0 10px;
   color: #cd0a0a;
+}
+div.comments div.note {
+  margin: 20px 0 0 0;
 }
 footer div.footer-content {
   background: #eee;
@@ -505,5 +512,8 @@ footer div.footer-content {
 footer div.footer-content p {
   padding: 20px 0 20px 0;
   text-align: center;
+  color: #444;
+}
+footer div.footer-content p a {
   color: #444;
 }
