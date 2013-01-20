@@ -64,6 +64,7 @@ $(document).ready(function() {
   $('ul#pages .ui-menu-item a.selected').addClass('ui-state-disabled');
  
   /*** Links ***/
+
   $('a#search').button({
     icons: {
       primary: 'ui-icon-search'
@@ -76,34 +77,13 @@ $(document).ready(function() {
   });
   $('a.link, a.tag, a.category').button();
   
-  /*** Filter ***/
-  
-  /* Titles */
-  $('select#title')
-      .attr('data-placeholder', 'Busca por titulo')
-      .chosen({
-        no_results_text: 'Sin resultados',
-        allow_single_deselect: true
-      });
+  /*** Clouds ***/
 
-  /* Categories */
-  $('select#category')
-    .attr('data-placeholder', 'Busca por categoria')
-    .chosen({
-      no_results_text: 'Sin resultados',
-      allow_single_deselect: true
+  if ($('#word-cloud').length > 0) {
+    $.getJSON('/blog/word-cloud', function(words) {
+        $('#word-cloud').jQCloud(words);
     });
-
-  /* Dates */
-  $('input#start').attr('placeholder', 'Desde');
-  $('input#end').attr('placeholder', 'Hasta');
-  
-  /* Tags */
-  $('select#tag')
-    .attr('data-placeholder', 'Busca por tags')
-    .chosen({
-      no_results_text: 'Sin resultados'
-    });
+  }
 
   /*** Comments ***/
   

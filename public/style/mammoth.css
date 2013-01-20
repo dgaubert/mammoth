@@ -157,7 +157,7 @@ header section.menu section.social a.twitter {
 div.wrapper-presentation {
   padding: 100px 0 20px 0;
   width: 100%;
-  background: #dbe3e7;
+  background: #eaf2f4;
   border-bottom: 1px solid #ccc;
   -webkit-box-shadow: 0 0 4px 0 #ddd;
   -moz-box-shadow: 0 0 4px 0 #ddd;
@@ -241,7 +241,7 @@ div.blog-latest div.categories ul li a:hover {
 div.wrapper-projects {
   padding: 20px 0 0 0;
   width: 100%;
-  background: #d7e6fc;
+  background: #f8ece0;
   border-bottom: 1px solid #ccc;
   -webkit-box-shadow: 0 0 4px 0 #ddd;
   -moz-box-shadow: 0 0 4px 0 #ddd;
@@ -279,71 +279,31 @@ div.technologies div.column {
   width: 30%;
   padding: 0 20px 0 0;
 }
-div.wrapper-filter {
+div.wrapper-cloud {
   padding: 100px 0 20px 0;
   width: 100%;
-  background: #dbe3e7;
+  background: #eaf2f4;
   border-bottom: 1px solid #ccc;
   -webkit-box-shadow: 0 0 4px 0 #ddd;
   -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
-div.filter {
+section.cloud {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-div.filter div.first-column {
-  display: inline-block;
-  width: 430px;
-}
-div.filter div.first-column div.row {
-  width: 100%;
-  padding: 0 0 10px 0;
-}
-div.filter div.first-column div.search {
-  text-align: right;
-}
-div.filter div.first-column select {
-  width: 100%;
-}
-div.filter div.first-column input#start {
-  width: 196px;
-}
-div.filter div.first-column input#end {
-  width: 196px;
-}
-div.filter div.second-column {
+section.cloud div.category-cloud {
   vertical-align: top;
   display: inline-block;
   width: 250px;
   padding: 0 0 0 20px;
 }
-div.filter input {
-  color: #444;
-  border: 1px solid #aaa;
-  padding: 3px 6px 3px 6px;
-  background-image: -webkit-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  background-image: -moz-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  background-image: -o-linear-gradient(top, #fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  background-image: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);
-  -webkit-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
-  -moz-box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
-  box-shadow: 0 0 2px #fff inset, 0 1px 0 rgba(0,0,0,0.05);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-div.filter input:focus {
-  background-image: -webkit-linear-gradient(top, #eee 20%, #fff 80%);
-  background-image: -moz-linear-gradient(top, #eee 20%, #fff 80%);
-  background-image: -o-linear-gradient(top, #eee 20%, #fff 80%);
-  background-image: linear-gradient(#eee 20%, #fff 80%);
-  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-  border: 1px solid #5897fb;
-  outline: none;
+section.cloud div.tag-cloud {
+  vertical-align: top;
+  display: inline-block;
+  width: 250px;
+  padding: 0 0 0 20px;
 }
 div.blog {
   width: 700px;
