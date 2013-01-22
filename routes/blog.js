@@ -97,74 +97,47 @@ exports.newComment = function (req, res, next) {
 }
 
 exports.getWordCloud = function (req, res, next) {
-  /*
   async.parallel({
-    tags: function (callback) {
-      Summary.tags({}, callback);
-    },
     categories: function (callback) {
-      Summary.categories({}, callback);
-    }
+      Summary.categoriesCount(callback);
+    },
+    tags: function (callback) {
+      Summary.tagsCount(callback);
+    },
   },
   function (err, words) {
+    var i
+      , categories = words.categories[0]
+      , tags = words.tags[0]
+      , cloud = []
+      , body;
     if (err) {
       next();
     } else {
-      var body = buildWordCloud(words);
-      res.writeHead(200, {
-          'Content-Type': 'application/json'
-        , 'Content-Length': body.length
-        , 'Access-Control-Allow-Origin': '*'
-      });
-      res.end(body);
+      for (i = 0; i < categories.length; i++) { 
+        cloud.push({
+            text: categories[i]._id
+          , weight: categories[i].value
+          , link: '/blog/category/' + categories[i]._id
+        });
+      } 
+      for (i = 0; i < tags.length; i++) { 
+        cloud.push({
+            text: tags[i]._id
+          , weight: tags[i].value
+          , link: '/blog/tag/' + tags[i]._id
+        });
+      }
+      body = JSON.stringify(cloud);
+      res.writeHead(
+          200
+        , {
+              'Content-Type': 'application/json'
+            , 'Content-Length': body.length
+            , 'Access-Control-Allow-Origin': '*'
+        }
+      );
+      res.end(body); 
     }
   });
-  */
-  var words = [
-    {text: "Lorem", weight: 13, link: "https://github.com/lucaong/jQCloud"},
-    {text: "Ipsum", weight: 10.5, link: "http://jquery.com/"},
-    {text: "Dolor", weight: 9.4, link: "http://www.lucaongaro.eu/"},
-    {text: "Sit", weight: 8, link: "http://www.lucaongaro.eu/"},
-    {text: "Amet", weight: 6.2, link: "http://www.lucaongaro.eu/"},
-    {text: "Consectetur", weight: 5, link: "http://www.lucaongaro.eu/"},
-    {text: "Adipiscing", weight: 5, link: "http://www.lucaongaro.eu/"},
-    {text: "Elit", weight: 5, link: "https://github.com/lucaong/jQCloud"},
-    {text: "Nam et", weight: 5, link: "https://github.com/lucaong/jQCloud"},
-    {text: "Leo", weight: 4, link: "https://github.com/lucaong/jQCloud"},
-    {text: "Sapien", weight: 4, link: "http://www.lucaongaro.eu/"},
-    {text: "Pellentesque", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "habitant", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "morbi", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "tristisque", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "senectus", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "et netus", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "et malesuada", weight: 3, link: "https://github.com/lucaong/jQCloud"},
-    {text: "fames", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "ac turpis", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "egestas", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "Aenean", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "vestibulum", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "elit", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "sit amet", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "metus", weight: 2, link: "https://github.com/lucaong/jQCloud"},
-    {text: "adipiscing", weight: 2, link: "http://jquery.com/"},
-    {text: "ut ultrices", weight: 2, link: "http://jquery.com/"},
-    {text: "justo", weight: 1, link: "http://jquery.com/"},
-    {text: "dictum", weight: 1, link: "http://jquery.com/"},
-    {text: "Ut et leo", weight: 1, link: "http://jquery.com/"},
-    {text: "metus", weight: 1, link: "http://jquery.com/"},
-    {text: "at molestie", weight: 1, link: "http://jquery.com/"},
-    {text: "purus", weight: 1, link: "http://jquery.com/"},
-    {text: "Curabitur", weight: 1, link: "http://jquery.com/"},
-    {text: "diam", weight: 1, link: "http://jquery.com/"},
-    {text: "dui", weight: 1, link: "http://jquery.com/"},
-    {text: "ullamcorper", weight: 1, link: "http://jquery.com/"},
-    {text: "id vuluptate ut", weight: 1, link: "http://jquery.com/"},
-    {text: "mattis", weight: 1, link: "http://jquery.com/"},
-    {text: "et nulla", weight: 1, link: "http://jquery.com/"},
-    {text: "Sed", weight: 1, link: "http://jquery.com/"}
-  ];
-  var body = JSON.stringify(words);
-  res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length': body.length, 'Access-Control-Allow-Origin': '*'});
-  res.end(body);
 }
