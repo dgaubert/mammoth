@@ -45,6 +45,7 @@ app.get('/blog/:page', blog.getSummary);
 app.param('slug', /^[\w-]+$/);
 app.get('/blog/:slug', blog.getPost);
 app.post('/blog/:slug/comment', blog.newComment);
+app.get('/blog/word-cloud', blog.getWordCloud);
 
 // **
 // Error handling

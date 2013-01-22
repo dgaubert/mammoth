@@ -56,6 +56,21 @@ summarySchema.statics.categoriesCount = function (cb) {
   );
 }
 
+summarySchema.statics.tagsCount = function (cb) {
+  this.mapReduce({
+        map: function () {
+          for (index in this.tags) { 
+            emit(this.tags[index], 1);
+          } 
+        }
+      , reduce: function (i, tags) { 
+          return tags.length
+        }
+    }
+    , cb
+  );
+}
+
 summarySchema.statics.getLast = function (filter, cb) {
   this.find(filter)
       .sort({created: 1})
