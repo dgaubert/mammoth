@@ -1,6 +1,15 @@
 // Schema for summary model
 var Schema = require('mongoose').Schema;
 
+var commentary = new Schema(
+  {
+      author: String
+    , mail: String
+    , created: Date
+    , comment: String
+  }
+);
+
 // Schema definition
 var summarySchema = new Schema({
       title: String
@@ -10,11 +19,15 @@ var summarySchema = new Schema({
     , category: String
     , abstract: String
     , tags: [String]
-    , commentsCount: Number
+    , comments: [commentary]
   },
   { 
     collection: 'blog'
   });
+  
+summarySchema.virtual('commentCounter').get(function() { 
+  return this.comments.length; 
+});
 
 // Static methods
 

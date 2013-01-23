@@ -74,7 +74,6 @@ exports.getPost =  function (req, res, next) {
 
 exports.newComment = function (req, res, next) {
   var slug = req.params.slug || '';
-  console.log(req.body.comment);
   var comment = {
       author: req.body.name
     , mail: req.body.mail
