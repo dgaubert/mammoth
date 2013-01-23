@@ -163,18 +163,18 @@ div.wrapper-presentation {
   -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
-div.presentation {
+section.presentation {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-div.presentation div.text-column {
+section.presentation div.text-column {
   vertical-align: top;
   display: inline-block;
   width: 225px;
   padding: 0 0 0 40px;
 }
-div.presentation div.text-column a#mailto {
+section.presentation div.text-column a#mailto {
   text-align: right;
   margin: 10px 0 0 0;
 }
@@ -209,33 +209,33 @@ div.wrapper-latest {
   -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
-div.blog-latest {
+section.blog-latest {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-div.blog-latest div.summary-latest {
+section.blog-latest div.summary-latest {
   width: 550px;
   display: inline-block;
 }
-div.blog-latest div.categories {
+section.blog-latest div.categories {
   vertical-align: top;
   display: inline-block;
   width: 110px;
   padding: 20px 0 0 40px;
   text-align: center;
 }
-div.blog-latest div.categories ul {
+section.blog-latest div.categories ul {
   list-style-type: none;
 }
-div.blog-latest div.categories ul li {
+section.blog-latest div.categories ul li {
   padding: 0 0 10px 0;
 }
-div.blog-latest div.categories ul li a {
+section.blog-latest div.categories ul li a {
   text-decoration: none;
   color: #444;
 }
-div.blog-latest div.categories ul li a:hover {
+section.blog-latest div.categories ul li a:hover {
   color: #5897fb;
 }
 div.wrapper-projects {
@@ -247,18 +247,18 @@ div.wrapper-projects {
   -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
-div.projects {
+section.projects {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-div.projects div.first-column {
+section.projects div.first-column {
   vertical-align: top;
   display: inline-block;
   width: 340px;
   padding: 10px 10px 10px 0;
 }
-div.projects div.second-column {
+section.projects div.second-column {
   vertical-align: top;
   display: inline-block;
   width: 340px;
@@ -268,12 +268,12 @@ div.wrapper-technologies {
   padding: 20px 0 0 0;
   width: 100%;
 }
-div.technologies {
+section.technologies {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-div.technologies div.column {
+section.technologies div.column {
   vertical-align: top;
   display: inline-block;
   width: 30%;
@@ -305,16 +305,16 @@ section.cloud div.tag-cloud {
   width: 250px;
   padding: 0 0 0 20px;
 }
-div.blog {
+section.blog {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
   padding: 20px 0 20px 0;
 }
-div.blog div.summaries {
+section.blog div.summaries {
   margin: 60px 0 0 0;
 }
-div.summary {
+article.summary {
   width: 100%;
   padding: 0 0 20px 0;
 }
@@ -378,36 +378,36 @@ div.wrapper-post {
   margin: auto;
   padding: 80px 0 20px 0;
 }
-div.wrapper-post div.column-1 {
+div.wrapper-post section.column-1 {
   width: 520px;
   display: inline-block;
 }
-div.wrapper-post div.column-2 {
+div.wrapper-post aside.column-2 {
   vertical-align: top;
   display: inline-block;
   width: 160px;
   padding: 20px 0 0 20px;
 }
-div.wrapper-post div.column-2 div.categories,
-div.wrapper-post div.column-2 div.similars {
+div.wrapper-post aside.column-2 div.categories,
+div.wrapper-post aside.column-2 div.similars {
   padding: 20px 0 0 0;
   text-align: center;
 }
-div.wrapper-post div.column-2 div.categories ul,
-div.wrapper-post div.column-2 div.similars ul {
+div.wrapper-post aside.column-2 div.categories ul,
+div.wrapper-post aside.column-2 div.similars ul {
   list-style-type: none;
 }
-div.wrapper-post div.column-2 div.categories ul li,
-div.wrapper-post div.column-2 div.similars ul li {
+div.wrapper-post aside.column-2 div.categories ul li,
+div.wrapper-post aside.column-2 div.similars ul li {
   padding: 0 0 10px 0;
 }
-div.wrapper-post div.column-2 div.categories ul li a,
-div.wrapper-post div.column-2 div.similars ul li a {
+div.wrapper-post aside.column-2 div.categories ul li a,
+div.wrapper-post aside.column-2 div.similars ul li a {
   text-decoration: none;
   color: #444;
 }
-div.wrapper-post div.column-2 div.categories ul li a:hover,
-div.wrapper-post div.column-2 div.similars ul li a:hover {
+div.wrapper-post aside.column-2 div.categories ul li a:hover,
+div.wrapper-post aside.column-2 div.similars ul li a:hover {
   color: #3875d7;
 }
 div.comments {

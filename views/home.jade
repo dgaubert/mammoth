@@ -1,7 +1,7 @@
 extends layout
 block content
   div.wrapper-presentation
-    div.presentation
+    section.presentation
       img#avatar.paper(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
       div.text-column
         h3 ¡Bienvenido!
@@ -11,7 +11,7 @@ block content
         p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
         a#mailto(href='mailto:danielgarciaaubert@gmail.com') Contactar
   div.wrapper-latest
-    div.blog-latest
+    section.blog-latest
       h2 Lo último en el blog:
       div.summary-latest
         include includes/summary
@@ -22,7 +22,7 @@ block content
             li
               a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
   div.wrapper-projects
-    div.projects
+    section.projects
       h2 Proyectos:
       div.first-column
         h3 Mammoth
@@ -35,7 +35,7 @@ block content
         a(href='https://github.com/dgaubert/sylvette')
           img(src='/images/sylvette.png', alt='Sylvette project', height='250px', width='340px')
   div.wrapper-technologies
-    div.technologies
+    section.technologies
       h2 Tecnologias:
       div.column
         h3 Node.js
