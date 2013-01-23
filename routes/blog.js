@@ -9,22 +9,21 @@
 
 // Retrieves blog summary
 exports.getSummary = function (req, res, next) {
-  var page = parseInt(req.params.page, 10) || 0;
+  var page = parseInt(req.params.page, 10) || 0
+    , category = req.params.category
+    , tag = req.params.tag
+    , filter = {};
+  if (category) {
+    filter = {'category': category};
+  } else if (tag) {
+    filter = {'tags':{$in:tag}};
+  }
   async.parallel({
     summaries: function (callback) {
-      Summary.findRange({}, page, callback);
+      Summary.findRange(filter, page, callback);
     },
     count: function (callback) {
-      Summary.count({}, callback);
-    },
-    titles: function (callback) {
-      Summary.titles({}, callback);
-    },
-    categories: function (callback) {
-      Summary.categories({}, callback);
-    },
-    tags: function (callback) {
-      Summary.tags({}, callback);
+      Summary.count(filter, callback);
     }
   },
   function (err, blog) {
@@ -36,9 +35,6 @@ exports.getSummary = function (req, res, next) {
         , section:'blog'
         , summaries: blog.summaries
         , pagination: paginator.create(page, blog.count)
-        , titles: blog.titles
-        , categories: blog.categories
-        , tags: blog.tags
       });
     }
   });
