@@ -8,7 +8,7 @@ block content
           h3.author Por #{post.author}
           h3.created  el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
         div.post-content
-          p #{post.content}
+          p!= post.content
         div.post-action
           a.link(href='/blog') Volver
           a.category(href='/blog/category/#{post.category}') #{post.category}
