@@ -1,7 +1,8 @@
 $(document).ready(function() {
   
-  /*** Inputs ***/ 
+  /*** Inputs ***/
   $('input').addClass('ui-corner-all');
+  $('textarea').addClass('ui-corner-all');
   
   $('input.date').datepicker();
   
@@ -63,6 +64,7 @@ $(document).ready(function() {
   $('ul#pages .ui-menu-item a.selected').addClass('ui-state-disabled');
  
   /*** Links ***/
+
   $('a#search').button({
     icons: {
       primary: 'ui-icon-search'
@@ -75,33 +77,54 @@ $(document).ready(function() {
   });
   $('a.link, a.tag, a.category').button();
   
-  /*** Filter ***/
-  
-  /* Titles */
-  $('select#title')
-      .attr('data-placeholder', 'Busca por titulo')
-      .chosen({
-        no_results_text: 'Sin resultados',
-        allow_single_deselect: true
-      });
+  /*** Clouds ***/
 
-  /* Categories */
-  $('select#category')
-    .attr('data-placeholder', 'Busca por categoria')
-    .chosen({
-      no_results_text: 'Sin resultados',
-      allow_single_deselect: true
+  if ($('#word-cloud').length > 0) {
+    $.getJSON('/blog/word-cloud', function(words) {
+        $('#word-cloud').jQCloud(words);
     });
+  }
 
-  /* Dates */
-  $('input#start').attr('placeholder', 'Desde');
-  $('input#end').attr('placeholder', 'Hasta');
+  /*** Comments ***/
   
-  /* Tags */
-  $('select#tag')
-    .attr('data-placeholder', 'Busca por tags')
-    .chosen({
-      no_results_text: 'Sin resultados'
-    });
-    
+  /* Form */
+  $('input#name').attr('placeholder', 'Nombre (requerido)');
+  $('input#mail').attr('placeholder', 'Correo electronico (requerido)');
+  $('textarea#comment').attr('placeholder', 'Escribe un comentario (requerido)');
+
+  $('button#comment').button({
+    icons: {
+      primary: 'ui-icon-comment'
+    }
+  });
+
+  $('body').bind('onload', function() {
+    $("html, body").animate(
+        { scrollTop: $("#lastCommnent").scrollTop() }
+      , 1000
+    );
+  });
+
+  var checkForm = function() {
+    var comment = $('form#comment').serializeArray();
+    if (comment[0].value.match(/^[\w\s._-]+$/) == null) {
+      $('form#comment').find('#error-msg').text('Nombre no valido');
+      return 0;
+    }
+    if (comment[1].value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/) == null) {
+      $('form#comment').find('#error-msg').text('Correo electr\u00f3nico incorrecto');
+      return 0;
+    }
+    if (comment[2].value.length <= 0) {
+      $('form#comment').find('#error-msg').text('Escribe un comentario');
+      return 0;
+    }
+    return 1;
+  }
+  $('button#comment').on('click', function (e) {
+    if (!checkForm()) {
+      e.preventDefault();
+    } 
+  });
+
 });
