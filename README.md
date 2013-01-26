@@ -13,3 +13,5 @@ A personal web (http://dgaubert.com) written with the following technologies:
 For more info visit https://github.com/dgaubert/mammoth to view source code.
 
 Mammoth implements the [model of development](https://github.com/dgaubert/mammoth/wiki/Workflow) based on [nvie post](http://nvie.com/posts/a-successful-git-branching-model/). This git branching model has turned out to be very successful.
+
+Javascript is the main language used in Mammoth project. For this reason, I try to follow the Code Conventions for the JavaScript Programming Language proposed by Douglas Crockford.
