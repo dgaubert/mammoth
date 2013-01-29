@@ -5,7 +5,8 @@
   , Summary = db.model('Summary', summarySchema) // Load model
   , postSchema = require('../models/post') // Load schema
   , Post = db.model('Post', postSchema) // Load model
-  , paginator = require('../utils/paginator'); // Pagination
+  , paginator = require('../utils/paginator') // Pagination
+  , markdown = require('markdown'); // Markdown
 
 // Retrieves blog summary
 exports.getSummary = function (req, res, next) {
@@ -54,6 +55,7 @@ exports.getPost =  function (req, res, next) {
     },
   },
   function (err, blog) {
+    console.log(0);
     if (err || blog.post.length <= 0) {
       next();
     } else {

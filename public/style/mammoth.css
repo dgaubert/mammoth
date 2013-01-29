@@ -26,11 +26,15 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-p {
+p,
+li {
   font-size: 14px;
   line-height: 1.6;
   text-align: justify;
   color: #444;
+}
+ul {
+  padding: 0 0 0 40px;
 }
 a {
   text-decoration: none;
