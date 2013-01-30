@@ -88,6 +88,11 @@ $(document).ready(function() {
   /*** Comments ***/
   
   /* Form */
+
+  // Example:
+  $(document).ready(function(){
+      $('textarea').autosize();  
+  });
   $('input#name').attr('placeholder', 'Nombre (requerido)');
   $('input#mail').attr('placeholder', 'Correo electronico (requerido)');
   $('textarea#comment').attr('placeholder', 'Escribe un comentario (requerido)');

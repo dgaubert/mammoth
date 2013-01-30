@@ -55,7 +55,6 @@ exports.getPost =  function (req, res, next) {
     },
   },
   function (err, blog) {
-    console.log(0);
     if (err || blog.post.length <= 0) {
       next();
     } else {

@@ -347,6 +347,41 @@ div.summary-abstract,
 div.post-content {
   text-align: justify;
 }
+div.summary-abstract h3,
+div.post-content h3 {
+  font-family: 'Monda', sans-serif;
+  font-size: 1em;
+  padding: 10px 0 10px 0;
+}
+div.summary-abstract h4,
+div.post-content h4 {
+  font-family: 'Monda', sans-serif;
+  font-size: 0.8em;
+  padding: 10px 0;
+}
+div.summary-abstract a,
+div.post-content a {
+  color: #3875d7;
+}
+div.summary-abstract img.center,
+div.post-content img.center {
+  display: block;
+  margin: 20px auto;
+}
+div.summary-abstract img.left,
+div.post-content img.left {
+  float: left;
+  margin: 10px 10px 10px 0;
+}
+div.summary-abstract img.right,
+div.post-content img.right {
+  float: right;
+  margin: 10px 0 10px 10px;
+}
+div.summary-abstract pre,
+div.post-content pre {
+  margin: 20px;
+}
 div.summary-action,
 div.post-action {
   padding: 10px 0 0 0;
