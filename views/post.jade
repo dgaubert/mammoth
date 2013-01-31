@@ -19,7 +19,8 @@ block content
             div.comment
               h5 #{comment.author}
                 span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
-              div!=comment.comment
+              div
+                p!=comment.comment
           span#lastCommnent
           form#comment(action='/blog/#{post.slug}/comment', method='post')
             h5 Participa escribiendo un comentario

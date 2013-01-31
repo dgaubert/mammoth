@@ -473,6 +473,12 @@ div.comments div.comment h5 span {
 div.comments div.comment div {
   padding: 0 0 0 10px;
 }
+div.comments div.comment div p a {
+  color: #3875d7;
+}
+div.comments div.comment div p pre {
+  margin: 20px;
+}
 div.comments form h5 {
   border-top: 1px solid #ddd;
   font-family: 'Monda', sans-serif;
