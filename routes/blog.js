@@ -5,8 +5,7 @@
   , Summary = db.model('Summary', summarySchema) // Load model
   , postSchema = require('../models/post') // Load schema
   , Post = db.model('Post', postSchema) // Load model
-  , paginator = require('../utils/paginator') // Pagination
-  , markdown = require('markdown'); // Markdown
+  , paginator = require('../utils/paginator'); // Pagination
 
 // Retrieves blog summary
 exports.getSummary = function (req, res, next) {
@@ -49,22 +48,25 @@ exports.getPost =  function (req, res, next) {
     },
     categories: function (callback) {
       Summary.categoriesCount(callback);
-    },
-    similars: function (callback) {
-      Summary.find({},{'_id': -1, 'title': 1, 'slug': 1}, callback);
-    },
+    }
   },
   function (err, blog) {
     if (err || blog.post.length <= 0) {
       next();
     } else {
-      res.render('post', { 
-          title: blog.post[0].title + ' - Blog - Daniel García Aubert'
-        , section:'blog'
-        , post: blog.post[0]
-        , categories: blog.categories[0]
-        , similars: blog.similars
-      });
+      Summary.find(
+          {'category': blog.post[0].category}
+        , {'_id': -1, 'title': 1, 'slug': 1}
+        , function (err, similars) {
+            res.render('post', { 
+                title: blog.post[0].title + ' - Blog - Daniel García Aubert'
+              , section:'blog'
+              , post: blog.post[0]
+              , categories: blog.categories[0]
+              , similars: similars
+            });
+        }
+      );
     }
   });
 };

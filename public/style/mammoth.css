@@ -225,14 +225,17 @@ section.blog-latest div.summary-latest {
 section.blog-latest div.categories {
   vertical-align: top;
   display: inline-block;
-  width: 110px;
-  padding: 20px 0 0 40px;
+  width: 120px;
+  padding: 20px 0 0 20px;
   text-align: center;
 }
 section.blog-latest div.categories ul {
+  padding: 0;
   list-style-type: none;
 }
 section.blog-latest div.categories ul li {
+  font-size: 0.8em;
+  text-align: center;
   padding: 0 0 10px 0;
 }
 section.blog-latest div.categories ul li a {
@@ -268,16 +271,16 @@ section.projects div.second-column {
   width: 340px;
   padding: 10px 0 10px 10px;
 }
-div.wrapper-technologies {
+div.wrapper-tools {
   padding: 20px 0 0 0;
   width: 100%;
 }
-section.technologies {
+section.tools {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-section.technologies div.column {
+section.tools div.column {
   vertical-align: top;
   display: inline-block;
   width: 30%;
@@ -435,9 +438,12 @@ div.wrapper-post aside.column-2 div.similars {
 div.wrapper-post aside.column-2 div.categories ul,
 div.wrapper-post aside.column-2 div.similars ul {
   list-style-type: none;
+  padding: 0;
 }
 div.wrapper-post aside.column-2 div.categories ul li,
 div.wrapper-post aside.column-2 div.similars ul li {
+  font-size: 0.8em;
+  text-align: center;
   padding: 0 0 10px 0;
 }
 div.wrapper-post aside.column-2 div.categories ul li a,
