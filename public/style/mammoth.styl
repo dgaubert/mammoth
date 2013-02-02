@@ -76,11 +76,14 @@ box-shadow()
 // General
 body
   font-family 'Open Sans', sans-serif
-p
+p, li
   font-size 14px
   line-height 1.6
   text-align justify
   color #444
+ul
+  padding 0 0 0 40px
+  //list-style-type none
 a
   text-decoration none
 
@@ -216,11 +219,14 @@ section.blog-latest
     width 550px
     display inline-block
   div.categories
-    columner(110px, 20px 0 0 40px)
+    columner(120px, 20px 0 0 20px)
     text-align center
     ul
+      padding 0
       list-style-type none
-      li 
+      li
+        font-size 0.8em
+        text-align center
         padding 0 0 10px 0
         a
           &:hover
@@ -238,10 +244,10 @@ section.projects
   div.second-column
     columner(340px, 10px 0 10px 10px)
 
-div.wrapper-technologies
+div.wrapper-tools
   wrapper(20px 0 0 0, 100%)
 
-section.technologies
+section.tools
   centerer(700px,0 0 20px 0)
   div.column
     columner(30%, 0 20px 0 0)
@@ -296,6 +302,24 @@ h3.comments
 div.summary-abstract
 div.post-content
   text-align justify
+  h3
+    titler-monda(1em,10px 0 10px 0)
+  h4
+    titler-monda(0.8em,10px 0)
+  a
+    color #3875d7
+  img.center
+    display block
+    margin 20px auto
+  img.left
+    float left
+    margin 10px 10px 10px 0
+  img.right
+    float right
+    margin 10px 0 10px 10px
+  pre
+    margin 20px
+    
 // Action  
 div.summary-action
 div.post-action
@@ -310,7 +334,7 @@ div.post-action
     margin 0 5px 0 0
   a.category
     &:hover
-      background #fff  
+      background #fff
 
 // Pagination
 div.pagination
@@ -334,7 +358,10 @@ div.wrapper-post
       text-align center
       ul
         list-style-type none
-        li 
+        padding 0
+        li
+          font-size 0.8em
+          text-align center
           padding 0 0 10px 0
           a
             &:hover
@@ -356,7 +383,12 @@ div.comments
       span
         color #888
     div
-      padding 0 0 0 10px    
+      padding 0 0 0 10px
+      p
+        a
+          color #3875d7
+        pre
+          margin 20px
   form
     h5
       border-top 1px solid #ddd

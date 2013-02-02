@@ -7,8 +7,7 @@ block content
           h2.title #{post.title}
           h3.author Por #{post.author}
           h3.created  el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
-        div.post-content
-          p!= post.content
+        div.post-content!=post.content
         div.post-action
           a.link(href='/blog') Volver
           a.category(href='/blog/category/#{post.category}') #{post.category}
@@ -21,7 +20,7 @@ block content
               h5 #{comment.author}
                 span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
               div
-                p!= comment.comment
+                p!=comment.comment
           span#lastCommnent
           form#comment(action='/blog/#{post.slug}/comment', method='post')
             h5 Participa escribiendo un comentario
@@ -45,7 +44,7 @@ block content
             li
               a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
       div.similars
-        h3 Post similares
+        h3 Artículos similares
         ul
           - each similar in similars
             li

@@ -26,11 +26,15 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-p {
+p,
+li {
   font-size: 14px;
   line-height: 1.6;
   text-align: justify;
   color: #444;
+}
+ul {
+  padding: 0 0 0 40px;
 }
 a {
   text-decoration: none;
@@ -221,14 +225,17 @@ section.blog-latest div.summary-latest {
 section.blog-latest div.categories {
   vertical-align: top;
   display: inline-block;
-  width: 110px;
-  padding: 20px 0 0 40px;
+  width: 120px;
+  padding: 20px 0 0 20px;
   text-align: center;
 }
 section.blog-latest div.categories ul {
+  padding: 0;
   list-style-type: none;
 }
 section.blog-latest div.categories ul li {
+  font-size: 0.8em;
+  text-align: center;
   padding: 0 0 10px 0;
 }
 section.blog-latest div.categories ul li a {
@@ -264,16 +271,16 @@ section.projects div.second-column {
   width: 340px;
   padding: 10px 0 10px 10px;
 }
-div.wrapper-technologies {
+div.wrapper-tools {
   padding: 20px 0 0 0;
   width: 100%;
 }
-section.technologies {
+section.tools {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-section.technologies div.column {
+section.tools div.column {
   vertical-align: top;
   display: inline-block;
   width: 30%;
@@ -343,6 +350,41 @@ div.summary-abstract,
 div.post-content {
   text-align: justify;
 }
+div.summary-abstract h3,
+div.post-content h3 {
+  font-family: 'Monda', sans-serif;
+  font-size: 1em;
+  padding: 10px 0 10px 0;
+}
+div.summary-abstract h4,
+div.post-content h4 {
+  font-family: 'Monda', sans-serif;
+  font-size: 0.8em;
+  padding: 10px 0;
+}
+div.summary-abstract a,
+div.post-content a {
+  color: #3875d7;
+}
+div.summary-abstract img.center,
+div.post-content img.center {
+  display: block;
+  margin: 20px auto;
+}
+div.summary-abstract img.left,
+div.post-content img.left {
+  float: left;
+  margin: 10px 10px 10px 0;
+}
+div.summary-abstract img.right,
+div.post-content img.right {
+  float: right;
+  margin: 10px 0 10px 10px;
+}
+div.summary-abstract pre,
+div.post-content pre {
+  margin: 20px;
+}
 div.summary-action,
 div.post-action {
   padding: 10px 0 0 0;
@@ -396,9 +438,12 @@ div.wrapper-post aside.column-2 div.similars {
 div.wrapper-post aside.column-2 div.categories ul,
 div.wrapper-post aside.column-2 div.similars ul {
   list-style-type: none;
+  padding: 0;
 }
 div.wrapper-post aside.column-2 div.categories ul li,
 div.wrapper-post aside.column-2 div.similars ul li {
+  font-size: 0.8em;
+  text-align: center;
   padding: 0 0 10px 0;
 }
 div.wrapper-post aside.column-2 div.categories ul li a,
@@ -433,6 +478,12 @@ div.comments div.comment h5 span {
 }
 div.comments div.comment div {
   padding: 0 0 0 10px;
+}
+div.comments div.comment div p a {
+  color: #3875d7;
+}
+div.comments div.comment div p pre {
+  margin: 20px;
 }
 div.comments form h5 {
   border-top: 1px solid #ddd;
