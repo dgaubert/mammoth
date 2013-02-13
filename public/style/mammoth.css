@@ -280,11 +280,90 @@ section.tools {
   margin: auto;
   padding: 0 0 20px 0;
 }
-section.tools div.column {
-  vertical-align: top;
+section.tools div.tool {
+  display: inline;
+  width: 33%;
+  float: left;
+}
+section.tools div.tool a {
+  padding: 6px 8px;
+  display: block;
+  position: relative;
+}
+section.tools div.tool a:hover span.knowledge {
+  visibility: visible;
+  opacity: 1;
+}
+section.tools div.tool img {
+  padding: 0;
+  width: 100%;
+  border: 1px solid #dedede;
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+  -moz-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+}
+section.tools div.tool span.knowledge {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(255,255,255,0.85);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 500ms;
+  -moz-transition: all 500ms;
+  -webkit-transition: all 500ms;
+  -o-transition: all 500ms;
+}
+section.tools div.tool span.knowledge span.inner {
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-size: 1.5em;
+  padding: 0;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  top: 40%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -80px;
+  text-align: center;
+}
+section.tools div.tool span.knowledge span.inner span.tool {
+  color: #2e2e2e;
+  font-size: 1.3em;
+  font-weight: 400;
+  margin-bottom: 0.5em;
+  display: block;
+}
+section.tools div.tool span.knowledge span.inner span.rating {
+  color: #3875d7;
+  font-size: 1.5em;
+  font-weight: 600;
+  display: block;
+}
+section.tools div.tool span.knowledge span.inner span.stars {
+  display: block;
+}
+section.tools div.tool span.knowledge span.inner span.stars span.star {
   display: inline-block;
-  width: 30%;
-  padding: 0 20px 0 0;
+  width: 25px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+section.tools div.tool span.knowledge span.inner span.stars .green {
+  background-image: url("/images/star-green.png");
+}
+section.tools div.tool span.knowledge span.inner span.stars .gray {
+  background-image: url("/images/star-gray.png");
 }
 div.wrapper-cloud {
   padding: 100px 0 20px 0;
