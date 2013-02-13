@@ -249,8 +249,76 @@ div.wrapper-tools
 
 section.tools
   centerer(700px,0 0 20px 0)
-  div.column
-    columner(30%, 0 20px 0 0)
+  div.tool
+    display inline
+    width 33%
+    float left
+    a
+      &:hover
+        span.knowledge
+          visibility visible
+          opacity 1
+      padding 6px 8px
+      display block
+      position relative
+    img
+      padding: 0;
+      width: 100%;
+      border: 1px solid #DEDEDE;
+      -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
+      box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
+    span.knowledge
+      position: absolute;
+      width: auto;
+      height: auto;
+      top: 12px;
+      right: 12px;
+      bottom: 12px;
+      left: 12px;
+      background-color: rgba(255, 255, 255, .85);
+      visibility: hidden;
+      opacity: 0;
+      transition: all 500ms;
+      -moz-transition: all 500ms;
+      -webkit-transition: all 500ms;
+      -o-transition: all 500ms;
+      span.inner
+        titler-telescope(1.5em,0)
+        position absolute
+        width 170px
+        height 170px
+        top 40%
+        left 50%
+        margin-top -60px
+        margin-left -80px
+        text-align center
+        span.tool
+          color #2E2E2E
+          font-size 1.3em
+          font-weight 400
+          margin-bottom .5em
+          display block
+        span.rating
+          color #3875d7
+          font-size 1.5em
+          font-weight 600
+          display block
+        span.stars
+          display block
+          span.star
+            display inline-block
+            width 25px
+            height 25px
+            background-position center
+            background-repeat: no-repeat
+            -webkit-background-size contain
+            -moz-background-size contain
+            -o-background-size contain
+            background-size contain
+          .green
+            background-image url(/images/star-green.png)
+          .gray
+            background-image url(/images/star-gray.png)
 
 // Tag cloud
 div.wrapper-cloud
