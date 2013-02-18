@@ -21,19 +21,50 @@ block content
           - each category in categories
             li
               a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
-  div.wrapper-projects
-    section.projects
-      h2 Proyectos:
-      div.first-column
-        h3 Mammoth
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
+  div.wrapper-portfolio
+    section.portfolio
+      h2 Portfolio:
+      div.project
         a(href='https://github.com/dgaubert/mammoth')
-          img(src='/images/mammoth.png', alt='Mammoth project', height='250px', width='340px')
-      div.second-column
-        h3 Sylvette
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus ornare bibendum. Maecenas fringilla sapien vel lorem convallis rhoncus.
-        a(href='https://github.com/dgaubert/sylvette')
-          img(src='/images/sylvette.png', alt='Sylvette project', height='250px', width='340px')
+          img(src='/images/project-mammoth.png')
+          span.detail
+            span.inner-detail
+              span.project-name Mammoth
+              span.contribution Contribución
+              span.stars
+                span.star.purple
+                span.star.purple
+                span.star.purple
+                span.star.purple
+                span.star.purple
+              span.contribution Código vs Diseño
+              span.stars
+                span.star.orange
+                span.star.orange
+                span.star.orange
+                span.star.blue
+                span.star.blue
+      div.project
+        a(href='https://github.com/dgaubert')
+          img(src='/images/project-sylvette.png')
+          span.detail
+            span.inner-detail
+              span.project-name Sylvette
+              span.contribution Contribución
+              span.stars
+                span.star.purple
+                span.star.purple
+                span.star.purple
+                span.star.gray
+                span.star.gray
+              span.contribution Codigo vs Diseño
+              span.stars
+                span.star.orange
+                span.star.orange
+                span.star.blue
+                span.star.blue
+                span.star.blue
+      div(style='clear:both')
   div.wrapper-tools
     section.tools
       h2 Herramientas:
