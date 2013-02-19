@@ -234,15 +234,85 @@ section.blog-latest
           text-decoration none
           color #444
 
-div.wrapper-projects
+div.wrapper-portfolio
   wrapper(20px 0 0 0, 100%, #F8F8FF, 1px solid #ccc, 0 0 4px 0 #ddd)
 
-section.projects
+section.portfolio
   centerer(700px,0 0 20px 0)
-  div.first-column
-    columner(340px, 10px 10px 10px 0)
-  div.second-column
-    columner(340px, 10px 0 10px 10px)
+  div.project
+    display inline
+    width 50%
+    float left
+    a
+      &:hover
+        span.detail
+          visibility visible
+          opacity 1
+      padding 6px 8px
+      display block
+      position relative
+    img
+      padding: 0;
+      width: 100%;
+      border: 1px solid #DEDEDE;
+      -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
+      box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
+    span.detail
+      position: absolute;
+      width: auto;
+      height: auto;
+      top: 7px;
+      right: 6px;
+      bottom: 9px;
+      left: 8px;
+      background-color: rgba(255, 255, 255, .85);
+      visibility: hidden;
+      opacity: 0;
+      transition: all 500ms;
+      -moz-transition: all 500ms;
+      -webkit-transition: all 500ms;
+      -o-transition: all 500ms;
+      span.inner-detail
+        titler-telescope(1.5em,0)
+        position absolute
+        width 170px
+        height 190px
+        top 35%
+        left 50%
+        margin-top -60px
+        margin-left -80px
+        text-align center
+        span.project-name
+          color #088A29
+          font-size 1.3em
+          font-weight 600
+          margin-bottom .5em
+          display block
+        span.contribution
+          color #2E2E2E
+          font-size 1em
+          font-weight 500
+          display block
+        span.stars
+          display block
+          span.star
+            display inline-block
+            width 25px
+            height 25px
+            background-position center
+            background-repeat: no-repeat
+            -webkit-background-size contain
+            -moz-background-size contain
+            -o-background-size contain
+            background-size contain
+          .orange
+            background-image url(/images/star-orange.png)
+          .purple
+            background-image url(/images/star-purple.png)
+          .blue
+            background-image url(/images/star-blue.png)
+          .gray
+            background-image url(/images/star-gray.png)
 
 div.wrapper-tools
   wrapper(20px 0 0 0, 100%)
@@ -293,15 +363,15 @@ section.tools
         margin-left -80px
         text-align center
         span.tool
-          color #2E2E2E
+          color #3875d7
           font-size 1.3em
-          font-weight 400
+          font-weight 600
           margin-bottom .5em
           display block
         span.rating
-          color #3875d7
-          font-size 1.5em
-          font-weight 600
+          color #2E2E2E
+          font-size 1em
+          font-weight 400
           display block
         span.stars
           display block
