@@ -1,0 +1,15 @@
+doctype 5
+head
+  title Administración de usuario
+html
+  body
+    h1 Usuario
+    form(method='post', action='/blog/user/#{user == undefined ? "new" : user.username}')
+      p
+        label Nombre de usuario:
+        input(type='text', name='username', value='#{user == null ? "" : user.username}') 
+      p
+        label #{user == undefined ? "Contraseña" : "Nueva contraseña"}:
+        input(type='text', name='password')
+      p
+        input(type='submit', value='#{user == undefined ? "Crear" : "Actualizar"}')

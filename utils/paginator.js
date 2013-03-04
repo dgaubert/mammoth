@@ -1,4 +1,4 @@
-exports.create = function(page, count) {
+exports.create = function (page, count) {
   var start = (page * 10) + 1
     , end =((page * 10) + 10) > count ? count : ((page * 10) + 10)
     , pagesCount;

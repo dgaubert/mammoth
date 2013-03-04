@@ -21,7 +21,6 @@ var postSchema = new Schema(
     , content: String
     , tags: [String]
     , comments: [commentary]
-    , commentsCount: Number
   },
   { 
     collection: 'blog'

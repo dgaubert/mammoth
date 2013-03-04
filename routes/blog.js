@@ -1,11 +1,11 @@
-﻿var mongoose = require('mongoose') // DB driver
-  , db = mongoose.createConnection('mongodb://localhost/mammoth') // DB conexion
-  , async = require('async') // Control flow
-  , summarySchema = require('../models/summary') // Load schema
-  , Summary = db.model('Summary', summarySchema) // Load model
-  , postSchema = require('../models/post') // Load schema
-  , Post = db.model('Post', postSchema) // Load model
-  , paginator = require('../utils/paginator'); // Pagination
+﻿var mongoose = require('mongoose'), // DB driver
+    db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
+    async = require('async'), // Control flow
+    summarySchema = require('../models/summary'), // Load schema
+    Summary = db.model('Summary', summarySchema), // Load model
+    postSchema = require('../models/post'), // Load schema
+    Post = db.model('Post', postSchema), // Load model
+    paginator = require('../utils/paginator'); // Pagination
 
 // Retrieves blog summary
 exports.getSummary = function (req, res, next) {
@@ -92,7 +92,7 @@ exports.newComment = function (req, res, next) {
       });
     }
   });
-}
+};
 
 exports.getWordCloud = function (req, res, next) {
   async.parallel({
@@ -101,7 +101,7 @@ exports.getWordCloud = function (req, res, next) {
     },
     tags: function (callback) {
       Summary.tagsCount(callback);
-    },
+    }
   },
   function (err, words) {
     var i
@@ -118,24 +118,21 @@ exports.getWordCloud = function (req, res, next) {
           , weight: categories[i].value
           , link: '/blog/category/' + categories[i]._id
         });
-      } 
-      for (i = 0; i < tags.length; i++) { 
-        cloud.push({
-            text: tags[i]._id
-          , weight: tags[i].value
-          , link: '/blog/tag/' + tags[i]._id
+      }
+      for (i = 0; i < tags.length; i++) {
+        cloud.push({text: tags[i]._id,
+          weight: tags[i].value,
+          link: '/blog/tag/' + tags[i]._id
         });
       }
       body = JSON.stringify(cloud);
-      res.writeHead(
-          200
-        , {
-              'Content-Type': 'application/json'
-            , 'Content-Length': body.length
-            , 'Access-Control-Allow-Origin': '*'
+      res.writeHead(200,
+        {'Content-Type': 'application/json',
+          'Content-Length': body.length,
+          'Access-Control-Allow-Origin': '*'
         }
       );
-      res.end(body); 
+      res.end(body);
     }
   });
-}
+};

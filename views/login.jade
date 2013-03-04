@@ -1,0 +1,15 @@
+doctype 5
+head
+  title Login
+html
+  body
+    h1 Login
+    form(method='post', action='/blog/login')
+      p
+        label Usuario:
+        input(type='text', name='username')
+      p
+        label Password:
+        input(type='text', name='password')
+      p
+        input(type='submit', value='Login')

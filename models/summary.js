@@ -23,7 +23,8 @@ var summarySchema = new Schema({
   },
   { 
     collection: 'blog'
-  });
+  }
+);
   
 summarySchema.virtual('commentCounter').get(function() { 
   return this.comments.length; 
