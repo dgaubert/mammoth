@@ -1,33 +1,32 @@
 // Schema for summary model
 var Schema = require('mongoose').Schema;
 
-var commentary = new Schema(
-  {
-      author: String
-    , mail: String
-    , created: Date
-    , comment: String
-  }
-);
+var commentary = new Schema({
+  author: String,
+  mail: String,
+  created: Date,
+  comment: String
+});
 
 // Schema definition
-var summarySchema = new Schema({
-      title: String
-    , author: String
-    , created: Date
-    , slug: String
-    , category: String
-    , abstract: String
-    , tags: [String]
-    , comments: [commentary]
+var summarySchema = new Schema(
+  {
+    title: String,
+    author: String,
+    created: Date,
+    slug: String,
+    category: String,
+    abstract: String,
+    tags: [String],
+    comments: [commentary]
   },
-  { 
+  {
     collection: 'blog'
   }
 );
-  
-summarySchema.virtual('commentCounter').get(function() { 
-  return this.comments.length; 
+
+summarySchema.virtual('commentCounter').get(function () {
+  return this.comments.length;
 });
 
 // Static methods
@@ -39,58 +38,61 @@ summarySchema.statics.findRange = function (filter, page, cb) {
       .skip(page * 10)
       .limit((page * 10) + 10)
       .execFind(cb);
-}
+};
 
 summarySchema.statics.count = function (filter, cb) {
   this.find(filter).count(cb);
-}
+};
 
 summarySchema.statics.categories = function (filter, cb) {
   this.find(filter, {'_id': 0, 'category': 1}).distinct('category', cb);
-}
+};
 
 summarySchema.statics.titles = function (filter, cb) {
   this.find(filter, {'_id': 0, 'title': 1, 'slug': 1}, cb);
-}
+};
 
 summarySchema.statics.tags = function (filter, cb) {
   this.find(filter, {'_id': 0, 'tags': 1}).distinct('tags', cb);
-}
+};
 
 summarySchema.statics.categoriesCount = function (cb) {
-  this.mapReduce({
-        map: function () { 
-          emit(this.category, 1) 
-        }
-      , reduce: function (i, categories) { 
-          return categories.length 
-        }
-    }
-    , cb
+  this.mapReduce(
+    {
+      map: function () {
+        emit(this.category, 1);
+      },
+      reduce: function (i, categories) {
+        return categories.length;
+      }
+    },
+    cb
   );
-}
+};
 
 summarySchema.statics.tagsCount = function (cb) {
-  this.mapReduce({
-        map: function () {
-          for (index in this.tags) { 
+  this.mapReduce(
+    {
+      map: function () {
+        var index;
+        for (index in this.tags) {
             emit(this.tags[index], 1);
-          } 
         }
-      , reduce: function (i, tags) { 
-          return tags.length
-        }
-    }
-    , cb
+      },
+      reduce: function (i, tags) {
+        return tags.length;
+      }
+    },
+    cb
   );
-}
+};
 
 summarySchema.statics.getLast = function (filter, cb) {
   this.find(filter)
       .sort({created: 1})
       .limit(1)
       .execFind(cb);
-}
+};
 
 // Indexes
 summarySchema.set('autoIndex', true); // False in production

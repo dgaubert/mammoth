@@ -9,21 +9,22 @@ exports.checkUser = function (req, res, next) {
   User.find({ username: req.body.username}, function (err, users) {
     if (err) {
       next();
-    }
-    var user = users[0];
-    if (user) {
-      pwd.hash(req.body.password, user.salt, function (err, hash) {
-        if (!err && hash == user.hash) {
-          req.session.regenerate(function () { // Regenerate session
-            req.session.user = user;
-            res.redirect('/blog/admin');
-          });
-        } else {
-          res.redirect('/blog/login'); // Wrong pass
-        }
-      });
     } else {
-      res.redirect('/blog/login'); // Wrong user
+      var user = users[0];
+      if (user) {
+        pwd.hash(req.body.password, user.salt, function (err, hash) {
+          if (!err && hash == user.hash) {
+            req.session.regenerate(function () { // Regenerate session
+              req.session.user = user;
+              res.redirect('/blog/admin');
+            });
+          } else {
+            res.redirect('/blog/login'); // Wrong pass
+          }
+        });
+      } else {
+        res.redirect('/blog/login'); // Wrong user
+      }
     }
   });
 };

@@ -9,10 +9,10 @@
 
 // Retrieves blog summary
 exports.getSummary = function (req, res, next) {
-  var page = parseInt(req.params.page, 10) || 0
-    , category = req.params.category
-    , tag = req.params.tag
-    , filter = {};
+  var page = parseInt(req.params.page, 10) || 0,
+      category = req.params.category,
+      tag = req.params.tag,
+      filter = {};
   if (category) {
     filter = {'category': category};
   } else if (tag) {
@@ -30,15 +30,15 @@ exports.getSummary = function (req, res, next) {
     if (err || blog.summaries.length <= 0) {
       next();
     } else {
-      res.render('blog', { 
-          title: 'Blog - Daniel García Aubert'
-        , section:'blog'
-        , summaries: blog.summaries
-        , pagination: paginator.create(page, blog.count)
+      res.render('blog', {
+        title: 'Blog - Daniel García Aubert',
+        section:'blog',
+        summaries: blog.summaries,
+        pagination: paginator.create(page, blog.count)
       });
     }
   });
-}
+};
 
 exports.getPost =  function (req, res, next) {
   var slug = req.params.slug || '';
@@ -54,17 +54,19 @@ exports.getPost =  function (req, res, next) {
     if (err || blog.post.length <= 0) {
       next();
     } else {
-      Summary.find(
-          {'category': blog.post[0].category}
-        , {'_id': -1, 'title': 1, 'slug': 1}
-        , function (err, similars) {
-            res.render('post', { 
-                title: blog.post[0].title + ' - Blog - Daniel García Aubert'
-              , section:'blog'
-              , post: blog.post[0]
-              , categories: blog.categories[0]
-              , similars: similars
-            });
+      Summary.find({
+        'category': blog.post[0].category},
+        {
+          '_id': -1, 'title': 1, 'slug': 1
+        },
+        function (err, similars) {
+          res.render('post', {
+            title: blog.post[0].title + ' - Blog - Daniel García Aubert',
+            section:'blog',
+            post: blog.post[0],
+            categories: blog.categories[0],
+            similars: similars
+          });
         }
       );
     }
@@ -74,10 +76,10 @@ exports.getPost =  function (req, res, next) {
 exports.newComment = function (req, res, next) {
   var slug = req.params.slug || '';
   var comment = {
-      author: req.body.name
-    , mail: req.body.mail
-    , created: new Date()
-    , comment: req.body.comment.replace(/\n/g, '<br/>')
+    author: req.body.name,
+    mail: req.body.mail,
+    created: new Date(),
+    comment: req.body.comment.replace(/\n/g, '<br/>')
   };
   Post.findOne({'slug': slug}, function (err, post) {
     if (err) {
@@ -104,19 +106,19 @@ exports.getWordCloud = function (req, res, next) {
     }
   },
   function (err, words) {
-    var i
-      , categories = words.categories[0]
-      , tags = words.tags[0]
-      , cloud = []
-      , body;
+    var i,
+        categories = words.categories[0],
+        tags = words.tags[0],
+        cloud = [],
+        body;
+
     if (err) {
       next();
     } else {
-      for (i = 0; i < categories.length; i++) { 
-        cloud.push({
-            text: categories[i]._id
-          , weight: categories[i].value
-          , link: '/blog/category/' + categories[i]._id
+      for (i = 0; i < categories.length; i++) {
+        cloud.push({text: categories[i]._id,
+          weight: categories[i].value,
+          link: '/blog/category/' + categories[i]._id
         });
       }
       for (i = 0; i < tags.length; i++) {

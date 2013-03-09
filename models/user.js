@@ -2,12 +2,13 @@
 var Schema = require('mongoose').Schema;
 
 // Schema definition
-var userSchema = new Schema({
-      username: String
-    , hash: String
-    , salt: String
+var userSchema = new Schema(
+  {
+    username: String,
+    hash: String,
+    salt: String
   },
-  { 
+  {
     collection: 'user'
   }
 );
