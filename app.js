@@ -37,7 +37,7 @@ app.configure('development', function () {
 // Router
 // **
 
-// Parmam RE validation
+// URL parmams (with RE validation)
 params.extend(app);
 app.param('page', /^\d+$/);
 app.param('category', /^[\w-]+$/);
@@ -65,7 +65,7 @@ app.post('/blog/login', guard.checkUser);
 app.get('/blog/logout', guard.logout);
 
 // Admin
-app.get('/blog/admin', guard.restrict, admin.getAdmin);
+app.get('/blog/admin', /*guard.restrict,*/ admin.getAdmin);
 app.get('/blog/admin/users', /*guard.restrict,*/ admin.getUsers);
 app.get('/blog/admin/articles', /*guard.restrict,*/ admin.getArticles);
 

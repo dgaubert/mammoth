@@ -7,14 +7,21 @@ var mongoose = require('mongoose'), // DB driver
     pwd = require('pwd');
 
 exports.getAdmin = function (req, res) {
-  res.render('admin');
+  res.render('admin', {
+    title: 'Administración del blog',
+    section:'blog'
+  });
 };
 
 // List
 
 exports.getUsers = function (req, res) {
   User.find({}, {username: 1}, function (err, users) {
-    res.render('users', {users: users});
+    res.render('users', {
+      title: 'Administración de usuarios',
+      section:'blog',
+      users: users
+    });
   });
 };
 
@@ -22,14 +29,22 @@ exports.getArticles = function (req, res) {
   Post.find({}, {title: 1, slug: 1, created: 1})
     .sort({created:-1})
     .execFind(function (err, articles) {
-      res.render('articles', {articles: articles});
+      res.render('articles', {
+        title: 'Administración de artículos',
+        section:'blog',
+        articles: articles
+      });
   });
 };
 
 // User
 
 exports.getNewUser = function (req, res) {
-  res.render('user', {user: undefined});
+  res.render('user', {
+    title: 'Nuevo usuario',
+    section:'blog',
+    user: undefined
+  });
 };
 
 exports.newUser = function (req, res, next) {
@@ -59,7 +74,11 @@ exports.getUser = function (req, res, next) {
     if (err) {
       next();
     } else {
-      res.render('user', {user: users[0]});
+      res.render('user', {
+        title: 'Edición usuario',
+        section:'blog',
+        user: users[0]
+      });
     }
   });
 };
@@ -85,7 +104,11 @@ exports.updateUser = function (req, res, next) {
 // Article
 
 exports.getNewArticle = function (req, res) {
-  res.render('article',{article: undefined});
+  res.render('article', {
+    title: 'Nuevo artículo',
+    section:'blog',
+    article: undefined
+  });
 };
 
 exports.newArticle = function (req, res) {
@@ -118,7 +141,11 @@ exports.getArticle = function (req, res, next) {
     if (err) {
       next();
     } else {
-      res.render('article', {article: articles[0]});
+      res.render('article', {
+        title: 'Edición de artículo',
+        section:'blog',
+        article: articles[0]
+      });
     }
   });
 };
