@@ -1,7 +1,13 @@
 extends layout
 block content
-  h1 #{title}
-  p
-    a(href='/blog/admin/users') Usuarios
-  p
-    a(href='/blog/admin/articles') Articulos
+  div.wrapper-admin
+    section.admin
+      h1 #{title}
+      ul
+        li
+          a(href='/blog/admin/users') Usuarios
+      ul
+        li
+          a(href='/blog/admin/articles') Artículos
+      p.action
+        a.link(href='/blog/logout') Salir

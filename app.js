@@ -65,21 +65,21 @@ app.post('/blog/login', guard.checkUser);
 app.get('/blog/logout', guard.logout);
 
 // Admin
-app.get('/blog/admin', /*guard.restrict,*/ admin.getAdmin);
-app.get('/blog/admin/users', /*guard.restrict,*/ admin.getUsers);
-app.get('/blog/admin/articles', /*guard.restrict,*/ admin.getArticles);
+app.get('/blog/admin', guard.restrict, admin.getAdmin);
+app.get('/blog/admin/users', guard.restrict, admin.getUsers);
+app.get('/blog/admin/articles', guard.restrict, admin.getArticles);
 
 // User
-app.get('/blog/admin/users/new', /*guard.restrict,*/ admin.getNewUser);
-app.post('/blog/admin/users/new', /*guard.restrict,*/ admin.newUser);
-app.get('/blog/admin/users/:username', /*guard.restrict,*/ admin.getUser);
-app.put('/blog/admin/users/:username', /*guard.restrict,*/ admin.updateUser);
+app.get('/blog/admin/users/new', guard.restrict, admin.getNewUser);
+app.post('/blog/admin/users/new', guard.restrict, admin.newUser);
+app.get('/blog/admin/users/:username', guard.restrict, admin.getUser);
+app.put('/blog/admin/users/:username', guard.restrict, admin.updateUser);
 
 // Article
-app.get('/blog/admin/articles/new', /*guard.restrict,*/ admin.getNewArticle);
-app.post('/blog/admin/articles/new', /*guard.restrict,*/ admin.newArticle);
-app.get('/blog/admin/articles/:slug', /*guard.restrict,*/ admin.getArticle);
-app.put('/blog/admin/articles/:slug', /*guard.restrict,*/ admin.updateArticle);
+app.get('/blog/admin/articles/new', guard.restrict, admin.getNewArticle);
+app.post('/blog/admin/articles/new', guard.restrict, admin.newArticle);
+app.get('/blog/admin/articles/:slug', guard.restrict, admin.getArticle);
+app.put('/blog/admin/articles/:slug', guard.restrict, admin.updateArticle);
 
 // **
 // Error handling

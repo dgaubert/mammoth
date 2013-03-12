@@ -1,16 +1,18 @@
 extends layout
 block content
-  h1 #{title}
-  form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
-    p
-      label Nombre de usuario:
-      input(type='text', name='username', value='#{user === undefined ? "" : user.username}') 
-    p
-      label #{user === undefined ? "Contraseña" : "Nueva contraseña"}:
-      input(type='text', name='password')
-    p
-      input(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
-      - if (user !== undefined) {
-        input(type="hidden", name="_method", value="put")
-      - }
-  a.link(href='/blog/admin/users') Volver
+  div.wrapper-user
+    section.user
+      h1 #{title}
+      form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
+        p
+          label Nombre de usuario:
+          input.user(type='text', name='username', value='#{user === undefined ? "" : user.username}', size='30') 
+        p
+          label #{user === undefined ? "Contraseña" : "Nueva contraseña"}:
+          input.user(type='password', name='password', size='30')
+        p.action
+          input.save(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
+          - if (user !== undefined) {
+            input(type="hidden", name="_method", value="put")
+          - }
+          a.link(id='back', href='/blog/admin/users') Volver

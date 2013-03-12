@@ -1,11 +1,11 @@
 $(document).ready(function() {
-  
+
   /*** Inputs ***/
   $('input').addClass('ui-corner-all');
   $('textarea').addClass('ui-corner-all');
-  
+
   $('input.date').datepicker();
-  
+
   /*** Location ***/
   $.datepicker.regional['es'] = {clearText: 'Limpiar', clearStatus: '',
     closeText: 'Cerrar', closeStatus: '',
@@ -22,7 +22,7 @@ $(document).ready(function() {
     dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
     dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
     dayStatus: 'DD', dateStatus: 'D, M d',
-    dateFormat: 'dd/mm/yy', firstDay: 1, 
+    dateFormat: 'dd/mm/yy', firstDay: 1,
     initStatus: '', isRTL: false};
   $.datepicker.setDefaults($.datepicker.regional['es']);
 
@@ -60,9 +60,9 @@ $(document).ready(function() {
   }
   $('div.pagination').buttonset();
   $('a#next').addClass('ui-corner-right');
-  $('ul#pages').hide().menu(); 
+  $('ul#pages').hide().menu();
   $('ul#pages .ui-menu-item a.selected').addClass('ui-state-disabled');
- 
+
   /*** Links ***/
 
   $('a#search').button({
@@ -76,7 +76,7 @@ $(document).ready(function() {
     }
   });
   $('a.link, a.tag, a.category').button();
-  
+
   /*** Clouds ***/
 
   if ($('#word-cloud').length > 0) {
@@ -86,12 +86,12 @@ $(document).ready(function() {
   }
 
   /*** Comments ***/
-  
+
   /* Form */
 
   // Example:
   $(document).ready(function(){
-      $('textarea').autosize();  
+      $('textarea').autosize();
   });
   $('input#name').attr('placeholder', 'Nombre (requerido)');
   $('input#mail').attr('placeholder', 'Correo electronico (requerido)');
@@ -104,19 +104,16 @@ $(document).ready(function() {
   });
 
   $('body').bind('onload', function() {
-    $("html, body").animate(
-        { scrollTop: $("#lastCommnent").scrollTop() }
-      , 1000
-    );
+    $("html, body").animate({scrollTop: $("#lastCommnent").scrollTop()}, 1000);
   });
 
   var checkForm = function() {
     var comment = $('form#comment').serializeArray();
-    if (comment[0].value.match(/^[\w\s._-]+$/) == null) {
+    if (comment[0].value.match(/^[\w\s._-]+$/) === null) {
       $('form#comment').find('#error-msg').text('Nombre no valido');
       return 0;
     }
-    if (comment[1].value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/) == null) {
+    if (comment[1].value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/) === null) {
       $('form#comment').find('#error-msg').text('Correo electr\u00f3nico incorrecto');
       return 0;
     }
@@ -125,11 +122,14 @@ $(document).ready(function() {
       return 0;
     }
     return 1;
-  }
+  };
   $('button#comment').on('click', function (e) {
     if (!checkForm()) {
       e.preventDefault();
-    } 
+    }
   });
+
+  /*** Admin ***/
+  $('input.save, input.login').button().css('line-height','0.8');
 
 });

@@ -1,31 +1,33 @@
 extends layout
 block content
-  h1 #{title}
-  form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : article.slug}')
-    p
-      label Título:
-      input(type='text', name='title', value='#{article === undefined ? "" : article.title}')
-    p
-      label Slug:
-      input(type='text', name='slug', value='#{article === undefined ? "" : article.slug}') 
-    p
-      label Autor:
-      input(type='text', name='author', value='#{article === undefined ? "" : article.author}') 
-    p
-      label Categoria:
-      input(type='text', name='category', value='#{article === undefined ? "" : article.category}') 
-    p
-      label Tags (separados por comas):
-      input(type='text', name='tags', value='#{article === undefined ? "" : article.tags}')
-    p
-      label Resumen:
-      textarea(type='text', name='abstract') #{article === undefined ? "" : article.abstract}
-    p
-      label Contenido del artículo:
-      textarea(type='text', name='content') #{article === undefined ? "" : article.content}
-    p
-      input(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
-      - if (article !== undefined) {
-        input(type="hidden", name="_method", value="put")
-      - }
-  a.link(href='/blog/admin/articles') Volver
+  div.wrapper-article
+    section.article
+      h1 #{title}
+      form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : article.slug}')
+        p
+          label Título:
+          input(type='text', name='title', value='#{article === undefined ? "" : article.title}')
+        p
+          label Slug:
+          input(type='text', name='slug', value='#{article === undefined ? "" : article.slug}') 
+        p
+          label Autor:
+          input(type='text', name='author', value='#{article === undefined ? "" : article.author}') 
+        p
+          label Categoria:
+          input(type='text', name='category', value='#{article === undefined ? "" : article.category}') 
+        p
+          label Tags (separados por comas):
+          input(type='text', name='tags', value='#{article === undefined ? "" : article.tags}')
+        p
+          label Resumen:
+          textarea(type='text', name='abstract') #{article === undefined ? "" : article.abstract}
+        p
+          label Contenido del artículo:
+          textarea(type='text', name='content') #{article === undefined ? "" : article.content}
+        p.action
+          input.save(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
+          - if (article !== undefined) {
+            input(type="hidden", name="_method", value="put")
+          - }
+          a.link(href='/blog/admin/articles') Volver

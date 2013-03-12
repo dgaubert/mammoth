@@ -560,3 +560,69 @@ footer div.footer-content
     color #444
     a
       color #444
+
+// Admin
+
+div.wrapper-login
+div.wrapper-admin
+div.wrapper-users
+div.wrapper-articles
+div.wrapper-user
+div.wrapper-article
+  wrapper(100px 0 20px 0, 100%, #F8F8FF, 1px solid #ccc, 0 0 4px 0 #ddd)
+  section.login
+  section.admin
+  section.users
+  section.articles
+  section.user
+  section.article
+    centerer(700px)
+    ul
+      padding 0
+      list-style-type none
+      li
+        font-size 0.8em
+        padding 0 0 10px 0
+        a
+          &:hover
+            color #5897fb
+          text-decoration none
+          color #444
+    form  
+      p
+        padding 0 0 10px 0
+        label
+          display block
+        textarea
+        input[type="text"]
+          &:focus
+            outline none
+            border-bottom 1px solid #888
+          -webkit-appearance none
+          border none
+          border-bottom 1px solid #ccc
+          font-family 'Open Sans', sans-serif
+          margin 0 0 10px 0
+          padding 0.5em .5%
+          width 100%
+        input[type="password"]
+          &:focus
+            outline none
+            border-bottom 1px solid #888
+          -webkit-appearance none
+          border none
+          border-bottom 1px solid #ccc
+          font-family 'Open Sans', sans-serif
+          margin 0 0 10px 0
+          padding 0.5em .5%
+          width 100%
+        textarea
+          height 150px
+        input.user
+          width auto
+    p.action
+      padding 20px 0 0 0
+      input.save
+        margin 0 10px 0 0
+      a.new
+        margin 0 10px 0 0
