@@ -1,75 +1,81 @@
-﻿var mongoose = require('mongoose') // DB driver
-  , db = mongoose.createConnection('mongodb://localhost/mammoth') // DB conexion
-  , userSchema = require('../models/user') // Load schema
-  , User = db.model('User', userSchema) // Load model
-  , pwd = require('pwd');
+var mongoose = require('mongoose'), // DB driver
+    db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
+    userSchema = require('../models/user'), // Load schema
+    User = db.model('User', userSchema), // Load model
+    pwd = require('pwd');
 
+// List
 
-exports.getUser = function (req, res, next) {
-  User.find({username: req.params.username}, function (err, users) {
-    if (err || users[0] === undefined) {
-      next();
-    } else {
-      res.render('user', {user: users[0]});
-    }
+exports.getUsers = function (req, res) {
+  User.find({}, {username: 1}, function (err, users) {
+    res.render('users', {
+      title: 'Administración de usuarios',
+      section:'blog',
+      users: users
+    });
   });
-}
+};
+
+// User
 
 exports.getNewUser = function (req, res) {
-  res.render('user', {user: undefined});
-}
+  res.render('user', {
+    title: 'Nuevo usuario',
+    section:'blog',
+    user: undefined
+  });
+};
 
 exports.newUser = function (req, res, next) {
-  pwd.hash(req.body.password, function (err, salt, hash) {
-    if (!err) {
-      var user = new User({
-        username: req.body.username,
-        hash: hash,
-        salt: salt
-      });
-      user.save(function (err) {
-        if (err) {
-          next(err);
-        }
-        res.redirect('/blog/login');
+  User.find({username: req.body.username}, {username: 1}, function (err, users) {
+    if (err || users.length > 0) {
+      next(new Error('The user already exists'));
+    } else {
+      pwd.hash(req.body.password, function (err, salt, hash) {
+        var user = new User();
+        user.username = req.body.username;
+        user.salt = salt;
+        user.hash = hash;
+        user.save(function (err) {
+          if (err) {
+            next(new Error('The user hasn\'t been created'));
+          } else {
+            res.redirect('/blog/admin/users/' + user.username);
+          }
+        });
       });
     }
   });
-}
+};
+
+exports.getUser = function (req, res, next) {
+  User.find({username: req.params.username}, {username: 1}, function (err, users) {
+    if (err) {
+      next();
+    } else {
+      res.render('user', {
+        title: 'Edición usuario',
+        section:'blog',
+        user: users[0]
+      });
+    }
+  });
+};
 
 exports.updateUser = function (req, res, next) {
-  function saveUser (user) {
-    user.save(function (err) {
-      if (err) {
-        next(err);
-      } else {
-        res.render('user', {user: user});
-      }
-    });
-  }
-  User.find({username: req.params.username}, function (err, users) {
+  User.find({username: req.params.username}, {username: 1}, function (err, users) {
     var user = users[0];
-    if (err || user === undefined) {
-      next(err);
+    if (err) {
+      next();
     } else {
       user.username = req.body.username;
-      if (req.body.password === undefined) {
-        saveUser(user);
-      } else {
-        pwd.hash(req.body.password, function (err, salt, hash) {
-          if (err) {
-            next(err);
-          } else {
-            user.salt = salt;
-            user.hash = hash;
-            saveUser(user);
-          }
-        }); 
-      }
+      user.save(function (err) {
+        if (err) {
+          next(new Error('Can\'t update the user'));
+        } else {
+          res.redirect('/blog/admin/users/' + user.username);
+        }
+      });
     }
   });
-}
-
-exports.deleteUser = function (req, res) {
-  //TODO
-}
+};

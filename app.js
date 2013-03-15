@@ -6,10 +6,10 @@ var express = require('express'),
     stylus = require('stylus'),
     home = require('./routes/home'),
     blog = require('./routes/blog'),
-    user = require('./routes/user'),
     guard = require('./routes/guard'),
     admin = require('./routes/admin'),
-    pwd = require('pwd');
+    user = require('./routes/user'),
+    article = require('./routes/article');
 
 var app = express();
 
@@ -66,20 +66,20 @@ app.get('/blog/logout', guard.logout);
 
 // Admin
 app.get('/blog/admin', guard.restrict, admin.getAdmin);
-app.get('/blog/admin/users', guard.restrict, admin.getUsers);
-app.get('/blog/admin/articles', guard.restrict, admin.getArticles);
+app.get('/blog/admin/users', guard.restrict, user.getUsers);
+app.get('/blog/admin/articles', guard.restrict, article.getArticles);
 
 // User
-app.get('/blog/admin/users/new', guard.restrict, admin.getNewUser);
-app.post('/blog/admin/users/new', guard.restrict, admin.newUser);
-app.get('/blog/admin/users/:username', guard.restrict, admin.getUser);
-app.put('/blog/admin/users/:username', guard.restrict, admin.updateUser);
+app.get('/blog/admin/users/new', guard.restrict, user.getNewUser);
+app.post('/blog/admin/users/new', guard.restrict, user.newUser);
+app.get('/blog/admin/users/:username', guard.restrict, user.getUser);
+app.put('/blog/admin/users/:username', guard.restrict, user.updateUser);
 
 // Article
-app.get('/blog/admin/articles/new', guard.restrict, admin.getNewArticle);
-app.post('/blog/admin/articles/new', guard.restrict, admin.newArticle);
-app.get('/blog/admin/articles/:slug', guard.restrict, admin.getArticle);
-app.put('/blog/admin/articles/:slug', guard.restrict, admin.updateArticle);
+app.get('/blog/admin/articles/new', guard.restrict, article.getNewArticle);
+app.post('/blog/admin/articles/new', guard.restrict, article.newArticle);
+app.get('/blog/admin/articles/:slug', guard.restrict, article.getArticle);
+app.put('/blog/admin/articles/:slug', guard.restrict, article.updateArticle);
 
 // **
 // Error handling
