@@ -1,0 +1,30 @@
+doctype 5
+head
+  title Create
+html
+  body
+    h1 Nuevo artículo
+    form(method='post', action='/blog/create')
+      p
+        label Título
+        input(name='title', type='text', size='60')
+      p
+        label Slug
+        input(name='slug', type='text', size='60')
+      p
+        label Autor
+        input(name='author', type='text', size='60')
+      p
+        label Categoría
+        input(name='category', type='text', size='30')
+      p
+        label Tags (separados por espacios)
+        input(name='tags', type='text', size='60')
+      p
+        label Resumen
+        input(name='abstract', type='text', size='60')
+      p
+        label Contenido
+        textarea(name='content', cols='70', rows='20')
+      button#comment(type="submit", value="Guardar") Guardar
+    a(href='/blog/logout') logout
