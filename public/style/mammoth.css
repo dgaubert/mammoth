@@ -5,12 +5,6 @@
   src: local('Monda Regular'), local('Monda-Regular'), url("/style/fonts/Monda.woff") format('woff');
 }
 @font-face {
-  font-family: 'Fredericka the Great';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Fredericka the Great'), local('FrederickatheGreat'), url("/style/fonts/FrederickatheGreat.woff") format('woff');
-}
-@font-face {
   font-family: 'Annie Use Your Telescope';
   font-style: normal;
   font-weight: 400;
@@ -653,6 +647,7 @@ div.comments form input,
 div.comments form textarea {
   -webkit-appearance: none;
   border: none;
+  border-bottom: 1px solid #ccc;
   font-family: 'Open Sans', sans-serif;
   margin: 0 0 10px 0;
   padding: 0.5em 0.5%;
@@ -660,7 +655,7 @@ div.comments form textarea {
 div.comments form input:focus,
 div.comments form textarea:focus {
   outline: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #888;
 }
 div.comments form #error-msg {
   font-size: 0.8em;
