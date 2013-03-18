@@ -8,7 +8,7 @@ var commentary = new Schema({
   comment: String
 });
 
-var postSchema = new Schema({
+var articleSchema = new Schema({
   title: String,
   author: String,
   created: Date,
@@ -24,8 +24,8 @@ var postSchema = new Schema({
 });
 
 // Indexes
-postSchema.set('autoIndex', true); // False in production
-postSchema.index({slug: 1},{unique: true});
+articleSchema.set('autoIndex', true); // False in production
+articleSchema.index({slug: 1},{unique: true});
 
 // Exports
-module.exports = postSchema;
+module.exports = articleSchema;

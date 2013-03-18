@@ -1,7 +1,7 @@
 extends layout
 block content
-  div.wrapper-user
-    section.user
+  div.wrapper-admin
+    section.admin
       h1 #{title}
       form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
         p

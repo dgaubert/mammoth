@@ -1,14 +1,14 @@
 var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
-    postSchema = require('../models/post'), // Load schema
-    Post = db.model('Post', postSchema), // Load model
+    articleSchema = require('../models/article'), // Load schema
+    Article = db.model('Article', articleSchema), // Load model
     pwd = require('pwd');
 
 exports.getArticles = function (req, res) {
-  Post.find({}, {title: 1, slug: 1, created: 1})
+  Article.find({}, {title: 1, slug: 1, created: 1})
     .sort({created:-1})
     .execFind(function (err, articles) {
-      res.render('articles', {
+      res.render('admin-articles', {
         title: 'Administración de artículos',
         section:'blog',
         articles: articles
@@ -19,7 +19,7 @@ exports.getArticles = function (req, res) {
 // Article
 
 exports.getNewArticle = function (req, res) {
-  res.render('article', {
+  res.render('admin-article', {
     title: 'Nuevo artículo',
     section:'blog',
     article: undefined
@@ -27,11 +27,11 @@ exports.getNewArticle = function (req, res) {
 };
 
 exports.newArticle = function (req, res) {
-  Post.find({username: req.body.slug}, {slug: 1}, function (err, articles) {
+  Article.find({username: req.body.slug}, {slug: 1}, function (err, articles) {
     if (err || articles.length > 0) {
       next(new Error('The article already exists'));
     } else {
-      var article = new Post();
+      var article = new Article();
       article.title = req.body.title;
       article.author = req.body.author;
       article.created = new Date();
@@ -52,11 +52,11 @@ exports.newArticle = function (req, res) {
 };
 
 exports.getArticle = function (req, res, next) {
-  Post.find({slug: req.params.slug}, function (err, articles) {
+  Article.find({slug: req.params.slug}, function (err, articles) {
     if (err) {
       next();
     } else {
-      res.render('article', {
+      res.render('admin-article', {
         title: 'Edición de artículo',
         section:'blog',
         article: articles[0]
@@ -66,7 +66,7 @@ exports.getArticle = function (req, res, next) {
 };
 
 exports.updateArticle = function (req, res, next) {
-  Post.find({slug: req.params.slug}, function (err, articles) {
+  Article.find({slug: req.params.slug}, function (err, articles) {
     var article = articles[0];
     if (err) {
       next(new Error('The article with the given slug doesn\'t exist'));

@@ -1,33 +1,51 @@
 extends layout
 block content
   div.wrapper-article
-    section.article
-      h1 #{title}
-      form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : article.slug}')
-        p
-          label Título:
-          input.nice(type='text', name='title', value='#{article === undefined ? "" : article.title}')
-        p
-          label Slug:
-          input.nice(type='text', name='slug', value='#{article === undefined ? "" : article.slug}') 
-        p
-          label Autor:
-          input.nice(type='text', name='author', value='#{article === undefined ? "" : article.author}') 
-        p
-          label Categoria:
-          input.nice(type='text', name='category', value='#{article === undefined ? "" : article.category}') 
-        p
-          label Tags (separados por comas):
-          input.nice(type='text', name='tags', value='#{article === undefined ? "" : article.tags}')
-        p
-          label Resumen:
-          textarea.nice(type='text', name='abstract') #{article === undefined ? "" : article.abstract}
-        p
-          label Contenido del artículo:
-          textarea.nice(type='text', name='content') #{article === undefined ? "" : article.content}
-        p.action
-          input.save(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
-          - if (article !== undefined) {
-            input(type="hidden", name="_method", value="put")
-          - }
-          a.link(href='/blog/admin/articles') Volver
+    section.column-1
+      div.article
+        hgroup.article-title
+          h2.title #{article.title}
+          h3.author Por #{article.author}
+          h3.created  el #{article.created.getDate()}/#{article.created.getMonth()+1}/#{article.created.getFullYear()}
+        div.article-content!=article.content
+        div.article-action
+          a.link(href='/blog') Volver
+          a.category(href='/blog/category/#{article.category}') #{article.category}
+            - each tag in article.tags
+              a.tag(href='/blog/tag/#{tag}') #{tag}
+        div.comments
+          h3.title Comentarios
+          - each comment in article.comments
+            div.comment
+              h5 #{comment.author}
+                span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
+              div
+                p!=comment.comment
+          span#lastCommnent
+          form#comment(action='/blog/#{article.slug}/comment', method='post')
+            h5 Participa escribiendo un comentario
+            input#name(name='name', size='30')
+            input#mail(name='mail', size='60')
+            textarea#comment(name='comment', cols='70', rows='10')
+            button#comment(type="submit", value="Comentar", style='display: inline-block') Comentar
+            span#error-msg
+          div.note 
+            p 
+              strong Aviso: 
+              i Se permite el uso de etiquetas HTML (a href, strong, em, blockquote). 
+                | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
+                | sean inapropiados serán eliminados. Los reincidentes serán bloqueados. 
+                | Vamos a añadir valor al blog. Gracias.
+    aside.column-2
+      div.categories
+        h3 Categorias
+        ul
+          - each category in categories
+            li
+              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+      div.similars
+        h3 Artículos similares
+        ul
+          - each similar in similars
+            li
+              a(href='/blog/#{similar.slug}') #{similar.title}

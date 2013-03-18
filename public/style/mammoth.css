@@ -457,7 +457,7 @@ article.summary {
   padding: 0 0 20px 0;
 }
 hgroup.summary-title,
-hgroup.post-title {
+hgroup.article-title {
   padding: 0 0 5px 0;
 }
 h2.title {
@@ -478,64 +478,64 @@ h3.comments {
   margin: 0 0 0 15px;
 }
 div.summary-abstract,
-div.post-content {
+div.article-content {
   text-align: justify;
 }
 div.summary-abstract h3,
-div.post-content h3 {
+div.article-content h3 {
   font-family: 'Monda', sans-serif;
   font-size: 1em;
   padding: 10px 0 10px 0;
 }
 div.summary-abstract h4,
-div.post-content h4 {
+div.article-content h4 {
   font-family: 'Monda', sans-serif;
   font-size: 0.8em;
   padding: 10px 0;
 }
 div.summary-abstract a,
-div.post-content a {
+div.article-content a {
   color: #3875d7;
 }
 div.summary-abstract img.center,
-div.post-content img.center {
+div.article-content img.center {
   display: block;
   margin: 20px auto;
 }
 div.summary-abstract img.left,
-div.post-content img.left {
+div.article-content img.left {
   float: left;
   margin: 10px 10px 10px 0;
 }
 div.summary-abstract img.right,
-div.post-content img.right {
+div.article-content img.right {
   float: right;
   margin: 10px 0 10px 10px;
 }
 div.summary-abstract pre,
-div.post-content pre {
+div.article-content pre {
   margin: 20px;
 }
 div.summary-action,
-div.post-action {
+div.article-action {
   padding: 10px 0 0 0;
 }
 div.summary-action a,
-div.post-action a {
+div.article-action a {
   line-height: 1 !important;
   font-size: 12px;
   margin: 0 15px 0 0;
 }
 div.summary-action a.link,
-div.post-action a.link {
+div.article-action a.link {
   background: #fff;
 }
 div.summary-action a.tag,
-div.post-action a.tag {
+div.article-action a.tag {
   margin: 0 5px 0 0;
 }
 div.summary-action a.category:hover,
-div.post-action a.category:hover {
+div.article-action a.category:hover {
   background: #fff;
 }
 div.pagination {
@@ -546,44 +546,44 @@ a#page-selector {
   background: #fff;
   width: 134px;
 }
-div.wrapper-post {
+div.wrapper-article {
   width: 700px;
   margin: auto;
   padding: 80px 0 20px 0;
 }
-div.wrapper-post section.column-1 {
+div.wrapper-article section.column-1 {
   width: 520px;
   display: inline-block;
 }
-div.wrapper-post aside.column-2 {
+div.wrapper-article aside.column-2 {
   vertical-align: top;
   display: inline-block;
   width: 160px;
   padding: 20px 0 0 20px;
 }
-div.wrapper-post aside.column-2 div.categories,
-div.wrapper-post aside.column-2 div.similars {
+div.wrapper-article aside.column-2 div.categories,
+div.wrapper-article aside.column-2 div.similars {
   padding: 20px 0 0 0;
   text-align: center;
 }
-div.wrapper-post aside.column-2 div.categories ul,
-div.wrapper-post aside.column-2 div.similars ul {
+div.wrapper-article aside.column-2 div.categories ul,
+div.wrapper-article aside.column-2 div.similars ul {
   list-style-type: none;
   padding: 0;
 }
-div.wrapper-post aside.column-2 div.categories ul li,
-div.wrapper-post aside.column-2 div.similars ul li {
+div.wrapper-article aside.column-2 div.categories ul li,
+div.wrapper-article aside.column-2 div.similars ul li {
   font-size: 0.8em;
   text-align: center;
   padding: 0 0 10px 0;
 }
-div.wrapper-post aside.column-2 div.categories ul li a,
-div.wrapper-post aside.column-2 div.similars ul li a {
+div.wrapper-article aside.column-2 div.categories ul li a,
+div.wrapper-article aside.column-2 div.similars ul li a {
   text-decoration: none;
   color: #444;
 }
-div.wrapper-post aside.column-2 div.categories ul li a:hover,
-div.wrapper-post aside.column-2 div.similars ul li a:hover {
+div.wrapper-article aside.column-2 div.categories ul li a:hover,
+div.wrapper-article aside.column-2 div.similars ul li a:hover {
   color: #3875d7;
 }
 div.comments {
@@ -658,91 +658,41 @@ footer div.footer-content p {
 footer div.footer-content p a {
   color: #444;
 }
-div.wrapper-login,
-div.wrapper-admin,
-div.wrapper-users,
-div.wrapper-articles,
-div.wrapper-user,
-div.wrapper-article {
+div.wrapper-admin {
   padding: 100px 0 20px 0;
   width: 100%;
   background: #f8f8ff;
   border-bottom: 1px solid #ccc;
   box-shadow: 0 0 4px 0 #ddd;
 }
-section.login,
-section.admin,
-section.users,
-section.articles,
-section.user,
-section.article {
+section.admin {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-section.login ul,
-section.admin ul,
-section.users ul,
-section.articles ul,
-section.user ul,
-section.article ul {
+section.admin ul {
   padding: 0;
   list-style-type: none;
 }
-section.login ul li,
-section.admin ul li,
-section.users ul li,
-section.articles ul li,
-section.user ul li,
-section.article ul li {
+section.admin ul li {
   font-size: 0.8em;
   padding: 0 0 10px 0;
 }
-section.login ul li a,
-section.admin ul li a,
-section.users ul li a,
-section.articles ul li a,
-section.user ul li a,
-section.article ul li a {
+section.admin ul li a {
   text-decoration: none;
   color: #444;
 }
-section.login ul li a:hover,
-section.admin ul li a:hover,
-section.users ul li a:hover,
-section.articles ul li a:hover,
-section.user ul li a:hover,
-section.article ul li a:hover {
+section.admin ul li a:hover {
   color: #5897fb;
 }
-section.login form p,
-section.admin form p,
-section.users form p,
-section.articles form p,
-section.user form p,
-section.article form p {
+section.admin form p {
   padding: 0 0 10px 0;
 }
-section.login form p label,
-section.admin form p label,
-section.users form p label,
-section.articles form p label,
-section.user form p label,
-section.article form p label {
+section.admin form p label {
   display: block;
 }
-section.login form p textarea.nice,
 section.admin form p textarea.nice,
-section.users form p textarea.nice,
-section.articles form p textarea.nice,
-section.user form p textarea.nice,
-section.article form p textarea.nice,
-section.login form p input.nice,
-section.admin form p input.nice,
-section.users form p input.nice,
-section.articles form p input.nice,
-section.user form p input.nice,
-section.article form p input.nice {
+section.admin form p input.nice {
   -webkit-appearance: none;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -750,59 +700,24 @@ section.article form p input.nice {
   margin: 0 0 10px 0;
   padding: 0.5em 0.5%;
 }
-section.login form p textarea.nice:focus,
 section.admin form p textarea.nice:focus,
-section.users form p textarea.nice:focus,
-section.articles form p textarea.nice:focus,
-section.user form p textarea.nice:focus,
-section.article form p textarea.nice:focus,
-section.login form p input.nice:focus,
-section.admin form p input.nice:focus,
-section.users form p input.nice:focus,
-section.articles form p input.nice:focus,
-section.user form p input.nice:focus,
-section.article form p input.nice:focus {
+section.admin form p input.nice:focus {
   outline: none;
   border-bottom: 1px solid #888;
 }
-section.login form p textarea,
-section.admin form p textarea,
-section.users form p textarea,
-section.articles form p textarea,
-section.user form p textarea,
-section.article form p textarea {
+section.admin form p textarea {
   width: 100%;
   height: 150px;
 }
-section.login form p input.user,
-section.admin form p input.user,
-section.users form p input.user,
-section.articles form p input.user,
-section.user form p input.user,
-section.article form p input.user {
+section.admin form p input.user {
   width: auto;
 }
-section.login p.action,
-section.admin p.action,
-section.users p.action,
-section.articles p.action,
-section.user p.action,
-section.article p.action {
+section.admin p.action {
   padding: 20px 0 0 0;
 }
-section.login p.action input.save,
-section.admin p.action input.save,
-section.users p.action input.save,
-section.articles p.action input.save,
-section.user p.action input.save,
-section.article p.action input.save {
+section.admin p.action input.save {
   margin: 0 10px 0 0;
 }
-section.login p.action a.new,
-section.admin p.action a.new,
-section.users p.action a.new,
-section.articles p.action a.new,
-section.user p.action a.new,
-section.article p.action a.new {
+section.admin p.action a.new {
   margin: 0 10px 0 0;
 }
