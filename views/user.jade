@@ -6,10 +6,10 @@ block content
       form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
         p
           label Nombre de usuario:
-          input.user(type='text', name='username', value='#{user === undefined ? "" : user.username}', size='30') 
+          input.nice.user(type='text', name='username', value='#{user === undefined ? "" : user.username}', size='30') 
         p
           label #{user === undefined ? "Contraseña" : "Nueva contraseña"}:
-          input.user(type='password', name='password', size='30')
+          input.nice.user(type='password', name='password', size='30')
         p.action
           input.save(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
           - if (user !== undefined) {

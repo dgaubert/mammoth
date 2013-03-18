@@ -1,14 +1,8 @@
 @font-face
-  font-family: 'Monda';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Monda Regular'), local('Monda-Regular'), url(/style/fonts/Monda.woff) format('woff')
-
-@font-face
-  font-family 'Fredericka the Great'
+  font-family 'Monda'
   font-style normal
   font-weight 400
-  src local('Fredericka the Great'), local('FrederickatheGreat'), url(/style/fonts/FrederickatheGreat.woff) format('woff')
+  src local('Monda Regular'), local('Monda-Regular'), url(/style/fonts/Monda.woff) format('woff')
 
 @font-face 
   font-family 'Annie Use Your Telescope'
@@ -62,16 +56,16 @@ titler-telescope(s,p)
   font-size s
   padding p
 
-vendor(prop, args)
-  -webkit-{prop} args
-  -moz-{prop} args
-  {prop} args
-
-border-radius()
-  vendor('border-radius', arguments)
-
-box-shadow()
-  vendor('box-shadow', arguments)
+nicer()
+  &:focus
+    outline none
+    border-bottom 1px solid #888
+  -webkit-appearance none
+  border none
+  border-bottom 1px solid #ccc
+  font-family 'Open Sans', sans-serif
+  margin 0 0 10px 0
+  padding 0.5em .5%
   
 // General
 body
@@ -101,9 +95,6 @@ span.ui-button-text
 
 div.ui-buttonset a.ui-button
   margin 0px !important
-
-.ui-datepicker
-  font-family 'Open Sans', sans-serif
 
 .ui-menu
   position absolute
@@ -252,26 +243,26 @@ section.portfolio
       display block
       position relative
     img
-      padding: 0;
-      width: 100%;
-      border: 1px solid #DEDEDE;
-      -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
-      box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
+      padding 0
+      width 100%
+      border 1px solid #DEDEDE
+      -webkit-box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
+      box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
     span.detail
-      position: absolute;
-      width: auto;
-      height: auto;
-      top: 7px;
-      right: 6px;
-      bottom: 10px;
-      left: 9px;
-      background-color: rgba(255, 255, 255, .85);
-      visibility: hidden;
-      opacity: 0;
-      transition: all 500ms;
-      -moz-transition: all 500ms;
-      -webkit-transition: all 500ms;
-      -o-transition: all 500ms;
+      position absolute
+      width auto
+      height auto
+      top 7px
+      right 6px
+      bottom 10px
+      left 9px
+      background-color rgba(255, 255, 255, .85)
+      visibility hidden
+      opacity 0
+      transition all 500ms
+      -moz-transition all 500ms
+      -webkit-transition all 500ms
+      -o-transition all 500ms
       span.inner-detail
         titler-telescope(1.5em,0)
         position absolute
@@ -300,7 +291,7 @@ section.portfolio
             width 25px
             height 25px
             background-position center
-            background-repeat: no-repeat
+            background-repeat no-repeat
             -webkit-background-size contain
             -moz-background-size contain
             -o-background-size contain
@@ -332,26 +323,26 @@ section.tools
       display block
       position relative
     img
-      padding: 0;
-      width: 100%;
-      border: 1px solid #DEDEDE;
-      -webkit-box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
-      box-shadow: 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7);
+      padding 0
+      width 100%
+      border 1px solid #DEDEDE
+      -webkit-box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
+      box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
     span.knowledge
-      position: absolute;
-      width: auto;
-      height: auto;
-      top: 12px;
-      right: 12px;
-      bottom: 12px;
-      left: 12px;
-      background-color: rgba(255, 255, 255, .85);
-      visibility: hidden;
-      opacity: 0;
-      transition: all 500ms;
-      -moz-transition: all 500ms;
-      -webkit-transition: all 500ms;
-      -o-transition: all 500ms;
+      position absolute
+      width auto
+      height auto
+      top 12px
+      right 12px
+      bottom 12px
+      left 12px
+      background-color rgba(255, 255, 255, .85)
+      visibility hidden
+      opacity 0
+      transition all 500ms
+      -moz-transition all 500ms
+      -webkit-transition all 500ms
+      -o-transition all 500ms
       span.inner
         titler-telescope(1.5em,0)
         position absolute
@@ -380,7 +371,7 @@ section.tools
             width 25px
             height 25px
             background-position center
-            background-repeat: no-repeat
+            background-repeat no-repeat
             -webkit-background-size contain
             -moz-background-size contain
             -o-background-size contain
@@ -533,14 +524,7 @@ div.comments
       titler-monda(0.8em, 20px 0 10px 0)
     input
     textarea
-      &:focus
-        outline none
-        border-bottom 1px solid #ccc
-      -webkit-appearance none
-      border none
-      font-family 'Open Sans', sans-serif
-      margin 0 0 10px 0
-      padding 0.5em .5%
+      nicer()
     #error-msg
       font-size 0.8em
       display inline-block
@@ -562,7 +546,6 @@ footer div.footer-content
       color #444
 
 // Admin
-
 div.wrapper-login
 div.wrapper-admin
 div.wrapper-users
@@ -570,59 +553,40 @@ div.wrapper-articles
 div.wrapper-user
 div.wrapper-article
   wrapper(100px 0 20px 0, 100%, #F8F8FF, 1px solid #ccc, 0 0 4px 0 #ddd)
-  section.login
-  section.admin
-  section.users
-  section.articles
-  section.user
-  section.article
-    centerer(700px)
-    ul
-      padding 0
-      list-style-type none
-      li
-        font-size 0.8em
-        padding 0 0 10px 0
-        a
-          &:hover
-            color #5897fb
-          text-decoration none
-          color #444
-    form  
-      p
-        padding 0 0 10px 0
-        label
-          display block
-        textarea
-        input[type="text"]
-          &:focus
-            outline none
-            border-bottom 1px solid #888
-          -webkit-appearance none
-          border none
-          border-bottom 1px solid #ccc
-          font-family 'Open Sans', sans-serif
-          margin 0 0 10px 0
-          padding 0.5em .5%
-          width 100%
-        input[type="password"]
-          &:focus
-            outline none
-            border-bottom 1px solid #888
-          -webkit-appearance none
-          border none
-          border-bottom 1px solid #ccc
-          font-family 'Open Sans', sans-serif
-          margin 0 0 10px 0
-          padding 0.5em .5%
-          width 100%
-        textarea
-          height 150px
-        input.user
-          width auto
-    p.action
-      padding 20px 0 0 0
-      input.save
-        margin 0 10px 0 0
-      a.new
-        margin 0 10px 0 0
+section.login
+section.admin
+section.users
+section.articles
+section.user
+section.article
+  centerer(700px)
+  ul
+    padding 0
+    list-style-type none
+    li
+      font-size 0.8em
+      padding 0 0 10px 0
+      a
+        &:hover
+          color #5897fb
+        text-decoration none
+        color #444
+  form  
+    p
+      padding 0 0 10px 0
+      label
+        display block
+      textarea.nice
+      input.nice
+        nicer()
+      textarea
+        width 100%
+        height 150px
+      input.user
+        width auto
+  p.action
+    padding 20px 0 0 0
+    input.save
+      margin 0 10px 0 0
+    a.new
+      margin 0 10px 0 0
