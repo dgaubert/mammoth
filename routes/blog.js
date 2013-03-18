@@ -3,8 +3,8 @@
     async = require('async'), // Control flow
     summarySchema = require('../models/summary'), // Load schema
     Summary = db.model('Summary', summarySchema), // Load model
-    postSchema = require('../models/post'), // Load schema
-    Post = db.model('Post', postSchema), // Load model
+    articleSchema = require('../models/article'), // Load schema
+    Article = db.model('Article', articleSchema), // Load model
     paginator = require('../utils/paginator'); // Pagination
 
 // Retrieves blog summary
@@ -40,30 +40,30 @@ exports.getSummary = function (req, res, next) {
   });
 };
 
-exports.getPost =  function (req, res, next) {
+exports.getArticle =  function (req, res, next) {
   var slug = req.params.slug || '';
   async.parallel({
-    post: function (callback) {
-      Post.find({'slug': slug}, callback);
+    article: function (callback) {
+      Article.find({'slug': slug}, callback);
     },
     categories: function (callback) {
       Summary.categoriesCount(callback);
     }
   },
   function (err, blog) {
-    if (err || blog.post.length <= 0) {
+    if (err || blog.article.length <= 0) {
       next();
     } else {
       Summary.find({
-        'category': blog.post[0].category},
+        'category': blog.article[0].category},
         {
           '_id': -1, 'title': 1, 'slug': 1
         },
         function (err, similars) {
-          res.render('post', {
-            title: blog.post[0].title + ' - Blog - Daniel García Aubert',
+          res.render('article', {
+            title: blog.article[0].title + ' - Blog - Daniel García Aubert',
             section:'blog',
-            post: blog.post[0],
+            article: blog.article[0],
             categories: blog.categories[0],
             similars: similars
           });
@@ -81,12 +81,12 @@ exports.newComment = function (req, res, next) {
     created: new Date(),
     comment: req.body.comment.replace(/\n/g, '<br/>')
   };
-  Post.findOne({'slug': slug}, function (err, post) {
+  Article.findOne({'slug': slug}, function (err, article) {
     if (err) {
       next();
     } else {
-      post.comments.push(comment);
-      post.save(function (err) {
+      article.comments.push(comment);
+      article.save(function (err) {
         if (err) {
           next(new Error('Save comment fails'));
         }

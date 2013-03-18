@@ -55,7 +55,7 @@ app.get('/blog/category/:category',blog.getSummary);
 app.get('/blog/category/:category/:page',blog.getSummary);
 app.get('/blog/tag/:tag',blog.getSummary);
 app.get('/blog/tag/:tag/:page',blog.getSummary);
-app.get('/blog/:slug', blog.getPost);
+app.get('/blog/:slug', blog.getArticle);
 app.post('/blog/:slug/comment', blog.newComment);
 app.get('/blog/word-cloud', blog.getWordCloud);
 
