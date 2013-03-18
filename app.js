@@ -9,7 +9,9 @@ var express = require('express'),
     guard = require('./routes/guard'),
     admin = require('./routes/admin'),
     user = require('./routes/user'),
-    article = require('./routes/article');
+    article = require('./routes/article'),
+    comment = require('./routes/comment'),
+    cloud = require('./routes/cloud');
 
 var app = express();
 
@@ -56,8 +58,8 @@ app.get('/blog/category/:category/:page',blog.getSummary);
 app.get('/blog/tag/:tag',blog.getSummary);
 app.get('/blog/tag/:tag/:page',blog.getSummary);
 app.get('/blog/:slug', blog.getArticle);
-app.post('/blog/:slug/comment', blog.newComment);
-app.get('/blog/word-cloud', blog.getWordCloud);
+app.post('/blog/:slug/comment', comment.newComment);
+app.get('/blog/word-cloud', cloud.getWords);
 
 // Authentication
 app.get('/blog/login', guard.getLogin);
