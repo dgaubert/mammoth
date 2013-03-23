@@ -1,22 +1,22 @@
 // Module dependencies
-var express = require('express'),
-    params = require('express-params'),
+var express = require('express'), // Web framework
+    params = require('express-params'), // URL params
     http = require('http'),
     path = require('path'),
-    stylus = require('stylus'),
-    home = require('./routes/home'),
-    blog = require('./routes/blog'),
-    guard = require('./routes/guard'),
-    admin = require('./routes/admin'),
-    user = require('./routes/user'),
-    article = require('./routes/article'),
-    comment = require('./routes/comment'),
-    cloud = require('./routes/cloud');
+    stylus = require('stylus'), // CSS language
+    home = require('./routes/home'), // Manage the home page
+    blog = require('./routes/blog'), // Manage the blog
+    comment = require('./routes/comment'), // Manage comments (blog)
+    cloud = require('./routes/cloud'); // Manage word-cloud (blog)    
+    guard = require('./routes/guard'), // Monitor admin section
+    admin = require('./routes/admin'), // Manage admin page
+    user = require('./routes/user'), // Manage user/s page (admin)
+    article = require('./routes/article'); // Manage article/s page (admin)
 
-var app = express();
+var app = express(); // Load app to customize
 
 // **
-// Setup
+// Middleware & Setup
 // **
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Development enviroment
 app.configure('development', function () {
-  // shows error trace into error pages
+  // Show error trace into error pages
   app.enable('verbose errors');
 });
 
@@ -39,7 +39,7 @@ app.configure('development', function () {
 // Router
 // **
 
-// URL parmams (with RE validation)
+// URL parmams (RE validation)
 params.extend(app);
 app.param('page', /^\d+$/);
 app.param('category', /^[\w-]+$/);

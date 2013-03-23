@@ -7,7 +7,13 @@
     Article = db.model('Article', articleSchema), // Load model
     paginator = require('../utils/paginator'); // Pagination
 
-// Retrieves blog summary
+/**
+ * Retrieve a blog summary
+ * @param  {Object}   req   The request reprensentation
+ * @param  {Object}   res   
+ * @param  {Function} next  
+ * @return {Object}   HTML document
+ */
 exports.getSummary = function (req, res, next) {
   var page = parseInt(req.params.page, 10) || 0,
       category = req.params.category,
@@ -40,6 +46,13 @@ exports.getSummary = function (req, res, next) {
   });
 };
 
+/**
+ * [getArticle description]
+ * @param  {[type]}   req
+ * @param  {[type]}   res
+ * @param  {Function} next
+ * @return {[type]}
+ */
 exports.getArticle =  function (req, res, next) {
   var slug = req.params.slug || '';
   async.parallel({
