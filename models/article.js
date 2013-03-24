@@ -1,6 +1,9 @@
-// Schema for post model
+/**
+ * Schema for post model
+ */
 var Schema = require('mongoose').Schema;
 
+// Comment
 var commentary = new Schema({
   author: String,
   mail: String,
@@ -8,6 +11,7 @@ var commentary = new Schema({
   comment: String
 });
 
+// Article
 var articleSchema = new Schema({
   title: String,
   author: String,

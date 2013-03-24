@@ -1,4 +1,7 @@
-﻿var mongoose = require('mongoose'), // DB driver
+﻿/**
+ * Module dependencies
+ */
+var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     async = require('async'), // Control flow
     summarySchema = require('../models/summary'), // Load schema
@@ -7,7 +10,14 @@
     Article = db.model('Article', articleSchema), // Load model
     paginator = require('../utils/paginator'); // Pagination
 
-// Retrieves blog summary
+/**
+ * Retrieve a blog summary
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {Object}   blog summary   
+ */
 exports.getSummary = function (req, res, next) {
   var page = parseInt(req.params.page, 10) || 0,
       category = req.params.category,
@@ -40,6 +50,14 @@ exports.getSummary = function (req, res, next) {
   });
 };
 
+/**
+ * Retrieve the article by the title 
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {Object}   view of the article
+ */
 exports.getArticle =  function (req, res, next) {
   var slug = req.params.slug || '';
   async.parallel({

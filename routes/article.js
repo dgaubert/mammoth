@@ -1,9 +1,19 @@
+/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     articleSchema = require('../models/article'), // Load schema
     Article = db.model('Article', articleSchema), // Load model
     pwd = require('pwd');
 
+/**
+ * Retrieve a list of articles ordered descendent by date of creation
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ * @return {Object} view with the list of the articles
+ */
 exports.getArticles = function (req, res) {
   Article.find({}, {title: 1, slug: 1, created: 1})
     .sort({created:-1})
@@ -16,8 +26,13 @@ exports.getArticles = function (req, res) {
   });
 };
 
-// Article
-
+/**
+ * Retrieve a form to create a new article
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ * @return {Object} view of article's form 
+ */
 exports.getNewArticle = function (req, res) {
   res.render('admin-article', {
     title: 'Nuevo artículo',
@@ -26,11 +41,18 @@ exports.getNewArticle = function (req, res) {
   });
 };
 
+/**
+ * Create a new article
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ */
 exports.newArticle = function (req, res) {
   Article.find({username: req.body.slug}, {slug: 1}, function (err, articles) {
     if (err || articles.length > 0) {
       next(new Error('The article already exists'));
     } else {
+      /* TODO */
       var article = new Article();
       article.title = req.body.title;
       article.author = req.body.author;
@@ -51,6 +73,14 @@ exports.newArticle = function (req, res) {
   });
 };
 
+/**
+ * Retrieve the article by title
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {Object}   view of the article
+ */
 exports.getArticle = function (req, res, next) {
   Article.find({slug: req.params.slug}, function (err, articles) {
     if (err) {
@@ -65,6 +95,14 @@ exports.getArticle = function (req, res, next) {
   });
 };
 
+/**
+ * Update the article by title
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {[type]}
+ */
 exports.updateArticle = function (req, res, next) {
   Article.find({slug: req.params.slug}, function (err, articles) {
     var article = articles[0];

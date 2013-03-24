@@ -1,8 +1,18 @@
+/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     articleSchema = require('../models/article'), // Load schema
     Article = db.model('Article', articleSchema); // Load model
 
+/**
+ * Create a comment of the article
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ */
 exports.newComment = function (req, res, next) {
   var slug = req.params.slug || '';
   var comment = {

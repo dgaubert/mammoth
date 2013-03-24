@@ -1,3 +1,10 @@
+/**
+ * Retrieve a pagination
+ * 
+ * @param  {Integer}  page : number of the page to retrieve
+ * @param  {Integer}  count : total number of items
+ * @return {Object}   pagination object
+ */
 exports.create = function (page, count) {
   var start = (page * 10) + 1,
       end =((page * 10) + 10) > count ? count : ((page * 10) + 10),

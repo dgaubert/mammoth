@@ -1,6 +1,9 @@
-// Schema for summary model
+/**
+ * Schema for summary model
+ */
 var Schema = require('mongoose').Schema;
 
+// Comment
 var commentary = new Schema({
   author: String,
   mail: String,
@@ -8,7 +11,7 @@ var commentary = new Schema({
   comment: String
 });
 
-// Schema definition
+// Summary
 var summarySchema = new Schema(
   {
     title: String,
@@ -25,13 +28,27 @@ var summarySchema = new Schema(
   }
 );
 
+/**
+ * Retrieve the number the comments of the article
+ *  
+ * @return {Object}   number of the comments
+ */
 summarySchema.virtual('commentCounter').get(function () {
   return this.comments.length;
 });
 
-// Static methods
+/**
+ * Static methods
+ */
 
-// Find summaries between two values (start & end)
+/**
+ * Retrieve a paginated list of summaries
+ * 
+ * @param  {[type]}   filter
+ * @param  {[type]}   page
+ * @param  {Function} cb : callback
+ * @return {[type]}   paginated list of articles 
+ */
 summarySchema.statics.findRange = function (filter, page, cb) {
   this.find(filter)
       .sort({created: 1})
@@ -40,22 +57,56 @@ summarySchema.statics.findRange = function (filter, page, cb) {
       .execFind(cb);
 };
 
+/**
+ * Retrive the number of articles
+ * 
+ * @param  {[type]}   filter
+ * @param  {Function} cb : callback
+ * @return {Integer}  number of articles
+ */
 summarySchema.statics.count = function (filter, cb) {
   this.find(filter).count(cb);
 };
 
+/**
+ * Retrieve a list of catergories
+ * 
+ * @param  {[type]}   filter
+ * @param  {Function} cb : callback
+ * @return {[type]}   list of distinct categories
+ */
 summarySchema.statics.categories = function (filter, cb) {
   this.find(filter, {'_id': 0, 'category': 1}).distinct('category', cb);
 };
 
+/**
+ * Retrieve a list of tags
+ * 
+ * @param  {[type]}   filter
+ * @param  {Function} cb : callback
+ * @return {[type]}   list of tags
+ */
 summarySchema.statics.titles = function (filter, cb) {
   this.find(filter, {'_id': 0, 'title': 1, 'slug': 1}, cb);
 };
 
+/**
+ * Retrieve a tag list with distint items 
+ * 
+ * @param  {[type]}   filter
+ * @param  {Function} cb : callback
+ * @return {[type]}   list of distinct tags
+ */
 summarySchema.statics.tags = function (filter, cb) {
   this.find(filter, {'_id': 0, 'tags': 1}).distinct('tags', cb);
 };
 
+/**
+ * Retrieve the number of items of each category
+ * 
+ * @param  {Function} cb : callback
+ * @return {[type]}   list of each category with its number of occurences
+ */
 summarySchema.statics.categoriesCount = function (cb) {
   this.mapReduce(
     {
@@ -70,6 +121,12 @@ summarySchema.statics.categoriesCount = function (cb) {
   );
 };
 
+/**
+ * Retrieve the number of items of each tag
+ * 
+ * @param  {Function} cb : callback
+ * @return {Object}   list of each tag with its number of occurences
+ */
 summarySchema.statics.tagsCount = function (cb) {
   this.mapReduce(
     {
@@ -87,6 +144,13 @@ summarySchema.statics.tagsCount = function (cb) {
   );
 };
 
+/**
+ * Retrieve the last article created
+ * 
+ * @param  {Object}   filter
+ * @param  {Function} cb : callback
+ * @return {Object}   last article created 
+ */
 summarySchema.statics.getLast = function (filter, cb) {
   this.find(filter)
       .sort({created: 1})
@@ -96,7 +160,7 @@ summarySchema.statics.getLast = function (filter, cb) {
 
 // Indexes
 summarySchema.set('autoIndex', true); // False in production
-summarySchema.index({slug: 1},{unique: true});
+summarySchema.index({slug: 1}, {unique: true});
 summarySchema.index({created: -1});
 
 module.exports = summarySchema;

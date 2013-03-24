@@ -1,23 +1,25 @@
-// Module dependencies
-var express = require('express'),
-    params = require('express-params'),
+/**
+ * Module dependencies
+ */
+var express = require('express'), // Web framework
+    params = require('express-params'), // URL params
     http = require('http'),
     path = require('path'),
-    stylus = require('stylus'),
-    home = require('./routes/home'),
-    blog = require('./routes/blog'),
-    guard = require('./routes/guard'),
-    admin = require('./routes/admin'),
-    user = require('./routes/user'),
-    article = require('./routes/article'),
-    comment = require('./routes/comment'),
-    cloud = require('./routes/cloud');
+    stylus = require('stylus'), // CSS language
+    home = require('./routes/home'), // Manage the home page
+    blog = require('./routes/blog'), // Manage the blog
+    comment = require('./routes/comment'), // Manage comments (blog)
+    cloud = require('./routes/cloud'); // Manage word-cloud (blog)    
+    guard = require('./routes/guard'), // Monitor admin section
+    admin = require('./routes/admin'), // Manage admin page
+    user = require('./routes/user'), // Manage user/s page (admin)
+    article = require('./routes/article'); // Manage article/s page (admin)
 
-var app = express();
+var app = express(); // Load app to customize
 
-// **
-// Setup
-// **
+/**
+ * Middleware & Setup
+ */
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -29,17 +31,19 @@ app.use(express.methodOverride());
 app.use(stylus.middleware({src: __dirname + '/public'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Development enviroment
+/**
+ * Development enviroment
+ */
 app.configure('development', function () {
-  // shows error trace into error pages
+  // Show error trace into error pages
   app.enable('verbose errors');
 });
 
-// **
-// Router
-// **
+/**
+ * Router
+ */
 
-// URL parmams (with RE validation)
+// URL parmams (RE validation)
 params.extend(app);
 app.param('page', /^\d+$/);
 app.param('category', /^[\w-]+$/);
@@ -83,9 +87,9 @@ app.post('/blog/admin/articles/new', guard.restrict, article.newArticle);
 app.get('/blog/admin/articles/:slug', guard.restrict, article.getArticle);
 app.put('/blog/admin/articles/:slug', guard.restrict, article.updateArticle);
 
-// **
-// Error handling
-// **
+/**
+ * Error handling
+ */
 app.use(function (req, res, next) {
   res.status(404);
   res.render('404', {url: req.url});
@@ -95,9 +99,9 @@ app.use(function (err, req, res, next) {
   res.render('500', {error: err});
 });
 
-// **
-// Server
-// **
+/**
+ * Server
+ */
 http.createServer(app).listen(app.get('port'), function () {
   console.log("Server listening on port " + app.get('port'));
 });
