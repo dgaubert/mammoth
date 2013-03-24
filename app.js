@@ -1,4 +1,6 @@
-// Module dependencies
+/**
+ * Module dependencies
+ */
 var express = require('express'), // Web framework
     params = require('express-params'), // URL params
     http = require('http'),
@@ -15,9 +17,9 @@ var express = require('express'), // Web framework
 
 var app = express(); // Load app to customize
 
-// **
-// Middleware & Setup
-// **
+/**
+ * Middleware & Setup
+ */
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -29,15 +31,17 @@ app.use(express.methodOverride());
 app.use(stylus.middleware({src: __dirname + '/public'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Development enviroment
+/**
+ * Development enviroment
+ */
 app.configure('development', function () {
   // Show error trace into error pages
   app.enable('verbose errors');
 });
 
-// **
-// Router
-// **
+/**
+ * Router
+ */
 
 // URL parmams (RE validation)
 params.extend(app);
@@ -83,9 +87,9 @@ app.post('/blog/admin/articles/new', guard.restrict, article.newArticle);
 app.get('/blog/admin/articles/:slug', guard.restrict, article.getArticle);
 app.put('/blog/admin/articles/:slug', guard.restrict, article.updateArticle);
 
-// **
-// Error handling
-// **
+/**
+ * Error handling
+ */
 app.use(function (req, res, next) {
   res.status(404);
   res.render('404', {url: req.url});
@@ -95,9 +99,9 @@ app.use(function (err, req, res, next) {
   res.render('500', {error: err});
 });
 
-// **
-// Server
-// **
+/**
+ * Server
+ */
 http.createServer(app).listen(app.get('port'), function () {
   console.log("Server listening on port " + app.get('port'));
 });

@@ -1,10 +1,19 @@
-﻿// Module dependencies
+﻿/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     userSchema = require('../models/user'), // Load schema
     User = db.model('User', userSchema), // Load model
     pwd = require('pwd');
 
+/**
+ * Check the user logged
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ */
 exports.checkUser = function (req, res, next) {
   User.find({ username: req.body.username}, function (err, users) {
     if (err) {
@@ -29,6 +38,13 @@ exports.checkUser = function (req, res, next) {
   });
 };
 
+/**
+ * Handle session, check user is logged
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ */
 exports.restrict = function (req, res, next) {
   if (req.session.user) {
     next();
@@ -37,13 +53,24 @@ exports.restrict = function (req, res, next) {
   }
 };
 
+/**
+ * Logout and redirect to blog page
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ */
 exports.logout = function (req, res) {
   req.session.destroy(function () {
     res.redirect('/blog');
   });
 };
 
-
+/**
+ * Render login page
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ */
 exports.getLogin = function (req, res) {
   res.render('login', {
     title: 'Autenticación',

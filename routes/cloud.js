@@ -1,9 +1,20 @@
+/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     async = require('async'), // Control flow
     summarySchema = require('../models/summary'), // Load schema
     Summary = db.model('Summary', summarySchema); // Load model
 
+/**
+ * Retrieve categories and tags of the articles with the weight of each one
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {Json}     words with its weight  
+ */
 exports.getWords = function (req, res, next) {
   async.parallel({
     categories: function (callback) {

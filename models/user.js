@@ -1,4 +1,6 @@
-// Schema for summary model
+/**
+ * Schema for summary model
+ */
 var Schema = require('mongoose').Schema;
 
 // Schema definition

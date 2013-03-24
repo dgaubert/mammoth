@@ -1,4 +1,7 @@
-﻿var mongoose = require('mongoose'), // DB driver
+﻿/**
+ * Module dependencies
+ */
+var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     async = require('async'), // Control flow
     summarySchema = require('../models/summary'), // Load schema
@@ -9,10 +12,11 @@
 
 /**
  * Retrieve a blog summary
- * @param  {Object}   req   The request reprensentation
- * @param  {Object}   res   
- * @param  {Function} next  
- * @return {Object}   HTML document
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {Object}   blog summary   
  */
 exports.getSummary = function (req, res, next) {
   var page = parseInt(req.params.page, 10) || 0,
@@ -47,11 +51,12 @@ exports.getSummary = function (req, res, next) {
 };
 
 /**
- * [getArticle description]
- * @param  {[type]}   req
- * @param  {[type]}   res
- * @param  {Function} next
- * @return {[type]}
+ * Retrieve the article by the title 
+ * 
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ * @param  {Function} next : error handler
+ * @return {Object}   view of the article
  */
 exports.getArticle =  function (req, res, next) {
   var slug = req.params.slug || '';

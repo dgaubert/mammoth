@@ -1,10 +1,14 @@
 $(document).ready(function() {
 
-  /*** Inputs ***/
+  /**
+   * Inputs
+   */
   $('input').addClass('ui-corner-all');
   $('textarea').addClass('ui-corner-all');
 
-  /*** Pagination ***/
+  /**
+   * Pagination
+   */
   $('a#previous').button({
     text: false,
     icons: {
@@ -41,8 +45,9 @@ $(document).ready(function() {
   $('ul#pages').hide().menu();
   $('ul#pages .ui-menu-item a.selected').addClass('ui-state-disabled');
 
-  /*** Links ***/
-
+  /**
+   * Links
+   */
   $('a#search').button({
     icons: {
       primary: 'ui-icon-search'
@@ -55,19 +60,20 @@ $(document).ready(function() {
   });
   $('a.link, a.tag, a.category').button();
 
-  /*** Clouds ***/
-
+  /**
+   * Clouds
+   */
   if ($('#word-cloud').length > 0) {
     $.getJSON('/blog/word-cloud', function(words) {
         $('#word-cloud').jQCloud(words);
     });
   }
 
-  /*** Comments ***/
+  /**
+   * Comments
+   */
 
   /* Form */
-
-  // Example:
   $(document).ready(function(){
       $('textarea').autosize();
   });
@@ -107,7 +113,9 @@ $(document).ready(function() {
     }
   });
 
-  /*** Admin ***/
+  /**
+   * Admin
+   */
   $('input.save, input.login').button().css('line-height','0.8');
 
 });

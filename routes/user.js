@@ -1,11 +1,18 @@
+/**
+ * Module dependencies
+ */
 var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
     userSchema = require('../models/user'), // Load schema
     User = db.model('User', userSchema), // Load model
     pwd = require('pwd');
 
-// List
-
+/**
+ * Render a list of users
+ *   
+ * @param  {Object}   req : request
+ * @param  {Object}   res : response
+ */
 exports.getUsers = function (req, res) {
   User.find({}, {username: 1}, function (err, users) {
     res.render('users', {
@@ -16,8 +23,14 @@ exports.getUsers = function (req, res) {
   });
 };
 
-// User
 
+/**
+ * Render form to create a new user
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ * @return {Object} view with the form to create a new user
+ */
 exports.getNewUser = function (req, res) {
   res.render('user', {
     title: 'Nuevo usuario',
@@ -26,6 +39,13 @@ exports.getNewUser = function (req, res) {
   });
 };
 
+/**
+ * Create a new user
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ * @param  {Function} next : error handler
+ */
 exports.newUser = function (req, res, next) {
   User.find({username: req.body.username}, {username: 1}, function (err, users) {
     if (err || users.length > 0) {
@@ -48,6 +68,14 @@ exports.newUser = function (req, res, next) {
   });
 };
 
+/**
+ * Render a user, searched by username
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ * @param  {Function} next : error handler
+ * @return {Object} view with the user
+ */
 exports.getUser = function (req, res, next) {
   User.find({username: req.params.username}, {username: 1}, function (err, users) {
     if (err) {
@@ -62,6 +90,13 @@ exports.getUser = function (req, res, next) {
   });
 };
 
+/**
+ * Update a user, searched by username
+ * 
+ * @param  {Object} req : request
+ * @param  {Object} res : response
+ * @param  {Function} next : error handler
+ */
 exports.updateUser = function (req, res, next) {
   User.find({username: req.params.username}, {username: 1}, function (err, users) {
     var user = users[0];
