@@ -713,11 +713,17 @@ section.admin form p input.user {
   width: auto;
 }
 section.admin p.action {
-  padding: 20px 0 0 0;
+  padding: 20px 0 20px 0;
 }
 section.admin p.action input.save {
   margin: 0 10px 0 0;
 }
+section.admin p.action input.remove {
+  margin: 0 10px 0 0;
+}
 section.admin p.action a.new {
+  margin: 0 10px 0 0;
+}
+section.admin p.action a.comment {
   margin: 0 10px 0 0;
 }
