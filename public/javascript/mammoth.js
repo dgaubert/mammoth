@@ -150,6 +150,6 @@ $(document).ready(function() {
   /**
    * Admin
    */
-  $('input.save, input.login').button().css('line-height','0.8');
+  $('input.save, input.remove, input.login').button().css('line-height','0.8');
 
 });

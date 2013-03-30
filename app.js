@@ -50,6 +50,7 @@ app.param('category', /^[\w-]+$/);
 app.param('tag', /^[\w-]+$/);
 app.param('slug', /^[\w-]+$/);
 app.param('username', /^[\w-]+$/);
+app.param('commentId', /^[\w]+$/);
 
 // Home
 app.get('/', home.getHome);
@@ -86,6 +87,10 @@ app.get('/blog/admin/articles/new', guard.restrict, article.getNewArticle);
 app.post('/blog/admin/articles/new', guard.restrict, article.newArticle);
 app.get('/blog/admin/articles/:slug', guard.restrict, article.getArticle);
 app.put('/blog/admin/articles/:slug', guard.restrict, article.updateArticle);
+
+// Comments
+app.get('/blog/admin/articles/:slug/comments', guard.restrict, comment.getComments);
+app.del('/blog/admin/articles/:slug/comments/:commentId', guard.restrict, comment.deleteComment);
 
 /**
  * Error handling
