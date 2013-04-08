@@ -6,7 +6,8 @@ block content
         hgroup.article-title
           h2.title #{article.title}
           h3.author Por #{article.author}
-          h3.created  el #{article.created.getDate()}/#{article.created.getMonth()+1}/#{article.created.getFullYear()}
+          h3.created 
+            = (moment(article.created).format('[el] DD/MM/YYYY'))
         div.article-content!=article.content
         div.article-action
           a.link(href='/blog') Volver
@@ -18,7 +19,9 @@ block content
           - each comment in article.comments
             div.comment
               h5 #{comment.author}
-                span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
+                //span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
+                span  
+                  = (moment(comment.created).format('[el] DD/MM/YYYY [a las] HH:mm'))
               div
                 p!=comment.comment
           span#lastCommnent
