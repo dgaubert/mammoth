@@ -1,4 +1,4 @@
-/**
+/**r
  * Module dependencies
  */
 var express = require('express'), // Web framework
@@ -6,6 +6,7 @@ var express = require('express'), // Web framework
     http = require('http'),
     path = require('path'),
     stylus = require('stylus'), // CSS language
+    moment = require('moment'), // Date parser
     home = require('./routes/home'), // Manage the home page
     blog = require('./routes/blog'), // Manage the blog
     comment = require('./routes/comment'), // Manage comments (blog)
@@ -16,6 +17,11 @@ var express = require('express'), // Web framework
     article = require('./routes/article'); // Manage article/s page (admin)
 
 var app = express(); // Load app to customize
+
+
+// helpful helpers are helpful 
+// (these are used when rendering views etc.) 
+app.locals.moment = moment;
 
 /**
  * Middleware & Setup
