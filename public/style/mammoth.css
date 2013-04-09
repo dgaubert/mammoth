@@ -5,12 +5,6 @@
   src: local('Monda Regular'), local('Monda-Regular'), url("/style/fonts/Monda.woff") format('woff');
 }
 @font-face {
-  font-family: 'Fredericka the Great';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Fredericka the Great'), local('FrederickatheGreat'), url("/style/fonts/FrederickatheGreat.woff") format('woff');
-}
-@font-face {
   font-family: 'Annie Use Your Telescope';
   font-style: normal;
   font-weight: 400;
@@ -26,11 +20,15 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-p {
+p,
+li {
   font-size: 14px;
   line-height: 1.6;
   text-align: justify;
   color: #444;
+}
+ul {
+  padding: 0 0 0 40px;
 }
 a {
   text-decoration: none;
@@ -56,9 +54,6 @@ span.ui-button-text {
 div.ui-buttonset a.ui-button {
   margin: 0px !important;
 }
-.ui-datepicker {
-  font-family: 'Open Sans', sans-serif;
-}
 .ui-menu {
   position: absolute;
   width: 130px;
@@ -69,15 +64,11 @@ div.ui-buttonset a.ui-button {
 }
 .ui-state-hover {
   color: #3875d7;
-  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   box-shadow: 0 0 3px rgba(0,0,0,0.3);
   border: 1px solid #3875d7;
 }
 header {
   border-bottom: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 4px 0 #ddd;
-  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
   position: fixed;
   top: 0;
@@ -159,8 +150,6 @@ div.wrapper-presentation {
   width: 100%;
   background: #f8f8ff;
   border-bottom: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 4px 0 #ddd;
-  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 section.presentation {
@@ -196,8 +185,6 @@ img.paper {
   -moz-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
   -o-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
   -ms-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
-  -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
-  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
   box-shadow: 0 0 4px rgba(0,0,0,0.3), inset 0 0 50px rgba(100,100,100,0.025);
 }
 div.wrapper-latest {
@@ -205,8 +192,6 @@ div.wrapper-latest {
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 4px 0 #ddd;
-  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 section.blog-latest {
@@ -221,14 +206,17 @@ section.blog-latest div.summary-latest {
 section.blog-latest div.categories {
   vertical-align: top;
   display: inline-block;
-  width: 110px;
-  padding: 20px 0 0 40px;
+  width: 120px;
+  padding: 20px 0 0 20px;
   text-align: center;
 }
 section.blog-latest div.categories ul {
+  padding: 0;
   list-style-type: none;
 }
 section.blog-latest div.categories ul li {
+  font-size: 0.8em;
+  text-align: center;
   padding: 0 0 10px 0;
 }
 section.blog-latest div.categories ul li a {
@@ -238,54 +226,204 @@ section.blog-latest div.categories ul li a {
 section.blog-latest div.categories ul li a:hover {
   color: #5897fb;
 }
-div.wrapper-projects {
+div.wrapper-portfolio {
   padding: 20px 0 0 0;
   width: 100%;
   background: #f8f8ff;
   border-bottom: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 4px 0 #ddd;
-  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
-section.projects {
+section.portfolio {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-section.projects div.first-column {
-  vertical-align: top;
-  display: inline-block;
-  width: 340px;
-  padding: 10px 10px 10px 0;
+section.portfolio div.project {
+  display: inline;
+  width: 50%;
+  float: left;
 }
-section.projects div.second-column {
-  vertical-align: top;
-  display: inline-block;
-  width: 340px;
-  padding: 10px 0 10px 10px;
+section.portfolio div.project a {
+  padding: 6px 8px;
+  display: block;
+  position: relative;
 }
-div.wrapper-technologies {
+section.portfolio div.project a:hover span.detail {
+  visibility: visible;
+  opacity: 1;
+}
+section.portfolio div.project img {
+  padding: 0;
+  width: 100%;
+  border: 1px solid #dedede;
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+}
+section.portfolio div.project span.detail {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 7px;
+  right: 6px;
+  bottom: 10px;
+  left: 9px;
+  background-color: rgba(255,255,255,0.85);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 500ms;
+  -moz-transition: all 500ms;
+  -webkit-transition: all 500ms;
+  -o-transition: all 500ms;
+}
+section.portfolio div.project span.detail span.inner-detail {
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-size: 1.5em;
+  padding: 0;
+  position: absolute;
+  width: 170px;
+  height: 190px;
+  top: 35%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -80px;
+  text-align: center;
+}
+section.portfolio div.project span.detail span.inner-detail span.project-name {
+  color: #088a29;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  display: block;
+}
+section.portfolio div.project span.detail span.inner-detail span.contribution {
+  color: #2e2e2e;
+  font-size: 1em;
+  font-weight: 500;
+  display: block;
+}
+section.portfolio div.project span.detail span.inner-detail span.stars {
+  display: block;
+}
+section.portfolio div.project span.detail span.inner-detail span.stars span.star {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+section.portfolio div.project span.detail span.inner-detail span.stars .orange {
+  background-image: url("/images/star-orange.png");
+}
+section.portfolio div.project span.detail span.inner-detail span.stars .purple {
+  background-image: url("/images/star-purple.png");
+}
+section.portfolio div.project span.detail span.inner-detail span.stars .blue {
+  background-image: url("/images/star-blue.png");
+}
+section.portfolio div.project span.detail span.inner-detail span.stars .gray {
+  background-image: url("/images/star-gray.png");
+}
+div.wrapper-tools {
   padding: 20px 0 0 0;
   width: 100%;
 }
-section.technologies {
+section.tools {
   width: 700px;
   margin: auto;
   padding: 0 0 20px 0;
 }
-section.technologies div.column {
-  vertical-align: top;
+section.tools div.tool {
+  display: inline;
+  width: 33%;
+  float: left;
+}
+section.tools div.tool a {
+  padding: 6px 8px;
+  display: block;
+  position: relative;
+}
+section.tools div.tool a:hover span.knowledge {
+  visibility: visible;
+  opacity: 1;
+}
+section.tools div.tool img {
+  padding: 0;
+  width: 100%;
+  border: 1px solid #dedede;
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.6), inset 3px 0 10px -2px rgba(255,255,255,0.7);
+}
+section.tools div.tool span.knowledge {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(255,255,255,0.85);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 500ms;
+  -moz-transition: all 500ms;
+  -webkit-transition: all 500ms;
+  -o-transition: all 500ms;
+}
+section.tools div.tool span.knowledge span.inner {
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-size: 1.5em;
+  padding: 0;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  top: 40%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -80px;
+  text-align: center;
+}
+section.tools div.tool span.knowledge span.inner span.tool {
+  color: #3875d7;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  display: block;
+}
+section.tools div.tool span.knowledge span.inner span.rating {
+  color: #2e2e2e;
+  font-size: 1em;
+  font-weight: 400;
+  display: block;
+}
+section.tools div.tool span.knowledge span.inner span.stars {
+  display: block;
+}
+section.tools div.tool span.knowledge span.inner span.stars span.star {
   display: inline-block;
-  width: 30%;
-  padding: 0 20px 0 0;
+  width: 25px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+section.tools div.tool span.knowledge span.inner span.stars .green {
+  background-image: url("/images/star-green.png");
+}
+section.tools div.tool span.knowledge span.inner span.stars .gray {
+  background-image: url("/images/star-gray.png");
 }
 div.wrapper-cloud {
   padding: 100px 0 20px 0;
   width: 100%;
   background: #f8f8ff;
   border-bottom: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 4px 0 #ddd;
-  -moz-box-shadow: 0 0 4px 0 #ddd;
   box-shadow: 0 0 4px 0 #ddd;
 }
 section.cloud {
@@ -319,7 +457,7 @@ article.summary {
   padding: 0 0 20px 0;
 }
 hgroup.summary-title,
-hgroup.post-title {
+hgroup.article-title {
   padding: 0 0 5px 0;
 }
 h2.title {
@@ -340,29 +478,64 @@ h3.comments {
   margin: 0 0 0 15px;
 }
 div.summary-abstract,
-div.post-content {
+div.article-content {
   text-align: justify;
 }
+div.summary-abstract h3,
+div.article-content h3 {
+  font-family: 'Monda', sans-serif;
+  font-size: 1em;
+  padding: 10px 0 10px 0;
+}
+div.summary-abstract h4,
+div.article-content h4 {
+  font-family: 'Monda', sans-serif;
+  font-size: 0.8em;
+  padding: 10px 0;
+}
+div.summary-abstract a,
+div.article-content a {
+  color: #3875d7;
+}
+div.summary-abstract img.center,
+div.article-content img.center {
+  display: block;
+  margin: 20px auto;
+}
+div.summary-abstract img.left,
+div.article-content img.left {
+  float: left;
+  margin: 10px 10px 10px 0;
+}
+div.summary-abstract img.right,
+div.article-content img.right {
+  float: right;
+  margin: 10px 0 10px 10px;
+}
+div.summary-abstract pre,
+div.article-content pre {
+  margin: 20px;
+}
 div.summary-action,
-div.post-action {
+div.article-action {
   padding: 10px 0 0 0;
 }
 div.summary-action a,
-div.post-action a {
+div.article-action a {
   line-height: 1 !important;
   font-size: 12px;
   margin: 0 15px 0 0;
 }
 div.summary-action a.link,
-div.post-action a.link {
+div.article-action a.link {
   background: #fff;
 }
 div.summary-action a.tag,
-div.post-action a.tag {
+div.article-action a.tag {
   margin: 0 5px 0 0;
 }
 div.summary-action a.category:hover,
-div.post-action a.category:hover {
+div.article-action a.category:hover {
   background: #fff;
 }
 div.pagination {
@@ -373,41 +546,44 @@ a#page-selector {
   background: #fff;
   width: 134px;
 }
-div.wrapper-post {
+div.wrapper-article {
   width: 700px;
   margin: auto;
   padding: 80px 0 20px 0;
 }
-div.wrapper-post section.column-1 {
+div.wrapper-article section.column-1 {
   width: 520px;
   display: inline-block;
 }
-div.wrapper-post aside.column-2 {
+div.wrapper-article aside.column-2 {
   vertical-align: top;
   display: inline-block;
   width: 160px;
   padding: 20px 0 0 20px;
 }
-div.wrapper-post aside.column-2 div.categories,
-div.wrapper-post aside.column-2 div.similars {
+div.wrapper-article aside.column-2 div.categories,
+div.wrapper-article aside.column-2 div.similars {
   padding: 20px 0 0 0;
   text-align: center;
 }
-div.wrapper-post aside.column-2 div.categories ul,
-div.wrapper-post aside.column-2 div.similars ul {
+div.wrapper-article aside.column-2 div.categories ul,
+div.wrapper-article aside.column-2 div.similars ul {
   list-style-type: none;
+  padding: 0;
 }
-div.wrapper-post aside.column-2 div.categories ul li,
-div.wrapper-post aside.column-2 div.similars ul li {
+div.wrapper-article aside.column-2 div.categories ul li,
+div.wrapper-article aside.column-2 div.similars ul li {
+  font-size: 0.8em;
+  text-align: center;
   padding: 0 0 10px 0;
 }
-div.wrapper-post aside.column-2 div.categories ul li a,
-div.wrapper-post aside.column-2 div.similars ul li a {
+div.wrapper-article aside.column-2 div.categories ul li a,
+div.wrapper-article aside.column-2 div.similars ul li a {
   text-decoration: none;
   color: #444;
 }
-div.wrapper-post aside.column-2 div.categories ul li a:hover,
-div.wrapper-post aside.column-2 div.similars ul li a:hover {
+div.wrapper-article aside.column-2 div.categories ul li a:hover,
+div.wrapper-article aside.column-2 div.similars ul li a:hover {
   color: #3875d7;
 }
 div.comments {
@@ -434,6 +610,12 @@ div.comments div.comment h5 span {
 div.comments div.comment div {
   padding: 0 0 0 10px;
 }
+div.comments div.comment div p a {
+  color: #3875d7;
+}
+div.comments div.comment div p pre {
+  margin: 20px;
+}
 div.comments form h5 {
   border-top: 1px solid #ddd;
   font-family: 'Monda', sans-serif;
@@ -444,6 +626,7 @@ div.comments form input,
 div.comments form textarea {
   -webkit-appearance: none;
   border: none;
+  border-bottom: 1px solid #ccc;
   font-family: 'Open Sans', sans-serif;
   margin: 0 0 10px 0;
   padding: 0.5em 0.5%;
@@ -451,7 +634,7 @@ div.comments form textarea {
 div.comments form input:focus,
 div.comments form textarea:focus {
   outline: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #888;
 }
 div.comments form #error-msg {
   font-size: 0.8em;
@@ -465,8 +648,6 @@ div.comments div.note {
 footer div.footer-content {
   background: #f5f5f5;
   border-top: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 4px #ddd;
-  -moz-box-shadow: 0 0 4px #ddd;
   box-shadow: 0 0 4px #ddd;
 }
 footer div.footer-content p {
@@ -476,4 +657,73 @@ footer div.footer-content p {
 }
 footer div.footer-content p a {
   color: #444;
+}
+div.wrapper-admin {
+  padding: 100px 0 20px 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 0 4px 0 #ddd;
+}
+section.admin {
+  width: 700px;
+  margin: auto;
+  padding: 0 0 20px 0;
+}
+section.admin ul {
+  padding: 0;
+  list-style-type: none;
+}
+section.admin ul li {
+  font-size: 0.8em;
+  padding: 0 0 10px 0;
+}
+section.admin ul li a {
+  text-decoration: none;
+  color: #444;
+}
+section.admin ul li a:hover {
+  color: #5897fb;
+}
+section.admin form p {
+  padding: 0 0 10px 0;
+}
+section.admin form p label {
+  display: block;
+}
+section.admin form p textarea.nice,
+section.admin form p input.nice {
+  -webkit-appearance: none;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 0 10px 0;
+  padding: 0.5em 0.5%;
+}
+section.admin form p textarea.nice:focus,
+section.admin form p input.nice:focus {
+  outline: none;
+  border-bottom: 1px solid #888;
+}
+section.admin form p textarea {
+  width: 100%;
+  height: 150px;
+}
+section.admin form p input.user {
+  width: auto;
+}
+section.admin p.action {
+  padding: 20px 0 20px 0;
+}
+section.admin p.action input.save {
+  margin: 0 10px 0 0;
+}
+section.admin p.action input.remove {
+  margin: 0 10px 0 0;
+}
+section.admin p.action a.new {
+  margin: 0 10px 0 0;
+}
+section.admin p.action a.comment {
+  margin: 0 10px 0 0;
 }

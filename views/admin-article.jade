@@ -1,0 +1,35 @@
+extends layout
+block content
+  div.wrapper-admin
+    section.admin
+      h1 #{title}
+      form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : article.slug}')
+        p
+          label Título:
+          input.nice(type='text', name='title', value='#{article === undefined ? "" : article.title}')
+        p
+          label Slug:
+          input.nice(type='text', name='slug', value='#{article === undefined ? "" : article.slug}') 
+        p
+          label Autor:
+          input.nice(type='text', name='author', value='#{article === undefined ? "" : article.author}') 
+        p
+          label Categoria:
+          input.nice(type='text', name='category', value='#{article === undefined ? "" : article.category}') 
+        p
+          label Tags (separados por comas):
+          input.nice(type='text', name='tags', value='#{article === undefined ? "" : article.tags}')
+        p
+          label Resumen:
+          textarea.nice(type='text', name='abstract') #{article === undefined ? "" : article.abstract}
+        p
+          label Contenido del artículo:
+          textarea.nice(type='text', name='content') #{article === undefined ? "" : article.content}
+        p.action
+          input.save(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
+          - if (article !== undefined) {
+            input(type="hidden", name="_method", value="put")
+            a.link.comment(href='/blog/admin/articles/#{article.slug}/comments') Comentarios  
+          - }
+          
+          a.link(href='/blog/admin/articles') Volver

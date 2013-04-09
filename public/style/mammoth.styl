@@ -1,14 +1,8 @@
 @font-face
-  font-family: 'Monda';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Monda Regular'), local('Monda-Regular'), url(/style/fonts/Monda.woff) format('woff')
-
-@font-face
-  font-family 'Fredericka the Great'
+  font-family 'Monda'
   font-style normal
   font-weight 400
-  src local('Fredericka the Great'), local('FrederickatheGreat'), url(/style/fonts/FrederickatheGreat.woff) format('woff')
+  src local('Monda Regular'), local('Monda-Regular'), url(/style/fonts/Monda.woff) format('woff')
 
 @font-face 
   font-family 'Annie Use Your Telescope'
@@ -62,25 +56,28 @@ titler-telescope(s,p)
   font-size s
   padding p
 
-vendor(prop, args)
-  -webkit-{prop} args
-  -moz-{prop} args
-  {prop} args
-
-border-radius()
-  vendor('border-radius', arguments)
-
-box-shadow()
-  vendor('box-shadow', arguments)
+nicer()
+  &:focus
+    outline none
+    border-bottom 1px solid #888
+  -webkit-appearance none
+  border none
+  border-bottom 1px solid #ccc
+  font-family 'Open Sans', sans-serif
+  margin 0 0 10px 0
+  padding 0.5em .5%
   
 // General
 body
   font-family 'Open Sans', sans-serif
-p
+p, li
   font-size 14px
   line-height 1.6
   text-align justify
   color #444
+ul
+  padding 0 0 0 40px
+  //list-style-type none
 a
   text-decoration none
 
@@ -98,9 +95,6 @@ span.ui-button-text
 
 div.ui-buttonset a.ui-button
   margin 0px !important
-
-.ui-datepicker
-  font-family 'Open Sans', sans-serif
 
 .ui-menu
   position absolute
@@ -216,11 +210,14 @@ section.blog-latest
     width 550px
     display inline-block
   div.categories
-    columner(110px, 20px 0 0 40px)
+    columner(120px, 20px 0 0 20px)
     text-align center
     ul
+      padding 0
       list-style-type none
-      li 
+      li
+        font-size 0.8em
+        text-align center
         padding 0 0 10px 0
         a
           &:hover
@@ -228,23 +225,161 @@ section.blog-latest
           text-decoration none
           color #444
 
-div.wrapper-projects
+div.wrapper-portfolio
   wrapper(20px 0 0 0, 100%, #F8F8FF, 1px solid #ccc, 0 0 4px 0 #ddd)
 
-section.projects
+section.portfolio
   centerer(700px,0 0 20px 0)
-  div.first-column
-    columner(340px, 10px 10px 10px 0)
-  div.second-column
-    columner(340px, 10px 0 10px 10px)
+  div.project
+    display inline
+    width 50%
+    float left
+    a
+      &:hover
+        span.detail
+          visibility visible
+          opacity 1
+      padding 6px 8px
+      display block
+      position relative
+    img
+      padding 0
+      width 100%
+      border 1px solid #DEDEDE
+      -webkit-box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
+      box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
+    span.detail
+      position absolute
+      width auto
+      height auto
+      top 7px
+      right 6px
+      bottom 10px
+      left 9px
+      background-color rgba(255, 255, 255, .85)
+      visibility hidden
+      opacity 0
+      transition all 500ms
+      -moz-transition all 500ms
+      -webkit-transition all 500ms
+      -o-transition all 500ms
+      span.inner-detail
+        titler-telescope(1.5em,0)
+        position absolute
+        width 170px
+        height 190px
+        top 35%
+        left 50%
+        margin-top -60px
+        margin-left -80px
+        text-align center
+        span.project-name
+          color #088A29
+          font-size 1.3em
+          font-weight 600
+          margin-bottom .5em
+          display block
+        span.contribution
+          color #2E2E2E
+          font-size 1em
+          font-weight 500
+          display block
+        span.stars
+          display block
+          span.star
+            display inline-block
+            width 25px
+            height 25px
+            background-position center
+            background-repeat no-repeat
+            -webkit-background-size contain
+            -moz-background-size contain
+            -o-background-size contain
+            background-size contain
+          .orange
+            background-image url(/images/star-orange.png)
+          .purple
+            background-image url(/images/star-purple.png)
+          .blue
+            background-image url(/images/star-blue.png)
+          .gray
+            background-image url(/images/star-gray.png)
 
-div.wrapper-technologies
+div.wrapper-tools
   wrapper(20px 0 0 0, 100%)
 
-section.technologies
+section.tools
   centerer(700px,0 0 20px 0)
-  div.column
-    columner(30%, 0 20px 0 0)
+  div.tool
+    display inline
+    width 33%
+    float left
+    a
+      &:hover
+        span.knowledge
+          visibility visible
+          opacity 1
+      padding 6px 8px
+      display block
+      position relative
+    img
+      padding 0
+      width 100%
+      border 1px solid #DEDEDE
+      -webkit-box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
+      box-shadow 0 1px 2px 0px rgba(0, 0, 0, .6), inset 3px 0 10px -2px rgba(255, 255, 255, .7)
+    span.knowledge
+      position absolute
+      width auto
+      height auto
+      top 12px
+      right 12px
+      bottom 12px
+      left 12px
+      background-color rgba(255, 255, 255, .85)
+      visibility hidden
+      opacity 0
+      transition all 500ms
+      -moz-transition all 500ms
+      -webkit-transition all 500ms
+      -o-transition all 500ms
+      span.inner
+        titler-telescope(1.5em,0)
+        position absolute
+        width 170px
+        height 170px
+        top 40%
+        left 50%
+        margin-top -60px
+        margin-left -80px
+        text-align center
+        span.tool
+          color #3875d7
+          font-size 1.3em
+          font-weight 600
+          margin-bottom .5em
+          display block
+        span.rating
+          color #2E2E2E
+          font-size 1em
+          font-weight 400
+          display block
+        span.stars
+          display block
+          span.star
+            display inline-block
+            width 25px
+            height 25px
+            background-position center
+            background-repeat no-repeat
+            -webkit-background-size contain
+            -moz-background-size contain
+            -o-background-size contain
+            background-size contain
+          .green
+            background-image url(/images/star-green.png)
+          .gray
+            background-image url(/images/star-gray.png)
 
 // Tag cloud
 div.wrapper-cloud
@@ -272,7 +407,7 @@ article.summary
 
 // Title
 hgroup.summary-title
-hgroup.post-title
+hgroup.article-title
   padding 0 0 5px 0
       
 h2.title
@@ -294,11 +429,29 @@ h3.comments
 
 // Abstract
 div.summary-abstract
-div.post-content
+div.article-content
   text-align justify
+  h3
+    titler-monda(1em,10px 0 10px 0)
+  h4
+    titler-monda(0.8em,10px 0)
+  a
+    color #3875d7
+  img.center
+    display block
+    margin 20px auto
+  img.left
+    float left
+    margin 10px 10px 10px 0
+  img.right
+    float right
+    margin 10px 0 10px 10px
+  pre
+    margin 20px
+    
 // Action  
 div.summary-action
-div.post-action
+div.article-action
   padding 10px 0 0 0
   a
     line-height 1 !important
@@ -310,7 +463,7 @@ div.post-action
     margin 0 5px 0 0
   a.category
     &:hover
-      background #fff  
+      background #fff
 
 // Pagination
 div.pagination
@@ -321,7 +474,7 @@ a#page-selector
   background #fff
   width 134px
 
-div.wrapper-post
+div.wrapper-article
   centerer(700px,80px 0 20px 0)
   section.column-1
     width 520px
@@ -334,7 +487,10 @@ div.wrapper-post
       text-align center
       ul
         list-style-type none
-        li 
+        padding 0
+        li
+          font-size 0.8em
+          text-align center
           padding 0 0 10px 0
           a
             &:hover
@@ -342,7 +498,7 @@ div.wrapper-post
             text-decoration none
             color #444
 
-// Post
+// Article
 div.comments
   margin 25px 0 0 0 
   border-top 1px solid #ddd
@@ -356,21 +512,19 @@ div.comments
       span
         color #888
     div
-      padding 0 0 0 10px    
+      padding 0 0 0 10px
+      p
+        a
+          color #3875d7
+        pre
+          margin 20px
   form
     h5
       border-top 1px solid #ddd
       titler-monda(0.8em, 20px 0 10px 0)
     input
     textarea
-      &:focus
-        outline none
-        border-bottom 1px solid #ccc
-      -webkit-appearance none
-      border none
-      font-family 'Open Sans', sans-serif
-      margin 0 0 10px 0
-      padding 0.5em .5%
+      nicer()
     #error-msg
       font-size 0.8em
       display inline-block
@@ -390,3 +544,43 @@ footer div.footer-content
     color #444
     a
       color #444
+
+// Admin
+div.wrapper-admin
+  wrapper(100px 0 20px 0, 100%, #FFF, 1px solid #ccc, 0 0 4px 0 #ddd)
+section.admin
+  centerer(700px)
+  ul
+    padding 0
+    list-style-type none
+    li
+      font-size 0.8em
+      padding 0 0 10px 0
+      a
+        &:hover
+          color #5897fb
+        text-decoration none
+        color #444
+  form  
+    p
+      padding 0 0 10px 0
+      label
+        display block
+      textarea.nice
+      input.nice
+        nicer()
+      textarea
+        width 100%
+        height 150px
+      input.user
+        width auto
+  p.action
+    padding 20px 0 20px 0
+    input.save
+      margin 0 10px 0 0
+    input.remove
+      margin 0 10px 0 0
+    a.new
+      margin 0 10px 0 0
+    a.comment
+      margin 0 10px 0 0

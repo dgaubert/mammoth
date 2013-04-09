@@ -1,0 +1,14 @@
+extends layout
+block content
+  div.wrapper-admin
+    section.admin
+      h1 Autenticación
+      form(method='post', action='/blog/login')
+        p
+          label Usuario:
+          input.nice.user(type='text', name='username')
+        p
+          label Password:
+          input.nice.user(type='password', name='password')
+        p.action
+          input.login(type='submit', value='Login')

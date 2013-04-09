@@ -1,29 +1,31 @@
 extends layout
 block content
-  div.wrapper-post
+  div.wrapper-article
     section.column-1
-      div.post
-        hgroup.post-title
-          h2.title #{post.title}
-          h3.author Por #{post.author}
-          h3.created  el #{post.created.getDate()}/#{post.created.getMonth()+1}/#{post.created.getFullYear()}
-        div.post-content
-          p!= post.content
-        div.post-action
+      div.article
+        hgroup.article-title
+          h2.title #{article.title}
+          h3.author Por #{article.author}
+          h3.created 
+            = (moment(article.created).format('[el] DD/MM/YYYY'))
+        div.article-content!=article.content
+        div.article-action
           a.link(href='/blog') Volver
-          a.category(href='/blog/category/#{post.category}') #{post.category}
-            - each tag in post.tags
+          a.category(href='/blog/category/#{article.category}') #{article.category}
+            - each tag in article.tags
               a.tag(href='/blog/tag/#{tag}') #{tag}
         div.comments
           h3.title Comentarios
-          - each comment, index in post.comments
+          - each comment in article.comments
             div.comment
               h5 #{comment.author}
-                span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
+                //span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
+                span  
+                  = (moment(comment.created).format('[el] DD/MM/YYYY [a las] HH:mm'))
               div
-                p!= comment.comment
+                p!=comment.comment
           span#lastCommnent
-          form#comment(action='/blog/#{post.slug}/comment', method='post')
+          form#comment(action='/blog/#{article.slug}/comment', method='post')
             h5 Participa escribiendo un comentario
             input#name(name='name', size='30')
             input#mail(name='mail', size='60')
@@ -33,9 +35,9 @@ block content
           div.note 
             p 
               strong Aviso: 
-              i Se permite el uso de etiquetas HTML (a href, strong, em, blockquote). 
+              i Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
                 | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
-                | sean inapropiados serán eliminados. Los reincidentes serán bloqueados. 
+                | sean inapropiados serán eliminados.
                 | Vamos a añadir valor al blog. Gracias.
     aside.column-2
       div.categories
@@ -45,7 +47,7 @@ block content
             li
               a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
       div.similars
-        h3 Post similares
+        h3 Artículos similares
         ul
           - each similar in similars
             li
