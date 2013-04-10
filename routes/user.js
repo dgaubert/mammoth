@@ -2,7 +2,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'), // DB driver
-    db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
+    db = mongoose.createConnection(require('../db').dbinfo), // DB conexion
     userSchema = require('../models/user'), // Load schema
     User = db.model('User', userSchema), // Load model
     pwd = require('pwd');

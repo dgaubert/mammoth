@@ -2,7 +2,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'), // DB driver
-    db = mongoose.createConnection('mongodb://localhost/mammoth'), // DB conexion
+    db = mongoose.createConnection(require('../db').dbinfo), // DB conexion
     async = require('async'), // Control flow
     summarySchema = require('../models/summary'), // Load schema
     Summary = db.model('Summary', summarySchema); // Load model
