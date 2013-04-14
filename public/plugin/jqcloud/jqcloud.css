@@ -1,8 +1,8 @@
 /* fonts */
 
 div.jqcloud {
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 10px;
+  font-family: "Istok Web", sans-serif;
+  font-size: 8px;
   line-height: normal;
 }
 
@@ -17,26 +17,26 @@ div.jqcloud span.w8 { font-size: 450%; }
 div.jqcloud span.w7 { font-size: 400%; }
 div.jqcloud span.w6 { font-size: 350%; }
 div.jqcloud span.w5 { font-size: 300%; }
-div.jqcloud span.w4 { font-size: 250%; }
-div.jqcloud span.w3 { font-size: 200%; }
-div.jqcloud span.w2 { font-size: 150%; }
-div.jqcloud span.w1 { font-size: 100%; }
+div.jqcloud span.w4 { font-size: 275%; }
+div.jqcloud span.w3 { font-size: 250%; }
+div.jqcloud span.w2 { font-size: 225%; }
+div.jqcloud span.w1 { font-size: 200%; }
 
 /* colors */
 
 div.jqcloud { color: #008B8B; }
 div.jqcloud a { color: inherit; }
 div.jqcloud a:hover { color: #8A2BE2; }
-div.jqcloud span.w10 { color: #BA55D3; }
-div.jqcloud span.w9 { color: #32CD32; }
+div.jqcloud span.w10 { color: #A91D07; }
+div.jqcloud span.w9 { color: #FF8C00; }
 div.jqcloud span.w8 { color: #5F9EA0; }
-div.jqcloud span.w7 { color: #FF8C00; }
-div.jqcloud span.w6 { color: #D2691E; }
+div.jqcloud span.w7 { color: #D2691E; }
+div.jqcloud span.w6 { color: #4682B4; }
 div.jqcloud span.w5 { color: #CD5C5C; }
-div.jqcloud span.w4 { color: #2E8B57; }
-div.jqcloud span.w3 { color: #CD853F; }
-div.jqcloud span.w2 { color: #4682B4; }
-div.jqcloud span.w1 { color: #008B8B; }
+div.jqcloud span.w4 { color: #40B038; }
+div.jqcloud span.w3 { color: #2E8B57; }
+div.jqcloud span.w2 { color: #BA55D3; }
+div.jqcloud span.w1 { color: #344CA4; }
 
 /* Original
 
@@ -62,4 +62,4 @@ div.jqcloud {
   position: relative;
 }
 
-div.jqcloud span { padding: 0; }
+div.jqcloud span { padding: 1px; }
