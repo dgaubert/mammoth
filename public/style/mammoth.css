@@ -522,6 +522,10 @@ div.summary-abstract pre,
 div.article-content pre {
   margin: 20px;
 }
+div.summary-abstract p,
+div.article-content p {
+  margin: 15px 0 0 0;
+}
 div.summary-action,
 div.article-action {
   padding: 10px 0 0 0;
