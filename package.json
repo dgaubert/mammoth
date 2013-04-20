@@ -5,9 +5,6 @@
   "homepage": "http://dgaubert.com",
   "author": "Daniel García Aubert (danielgarciaaubert@gmail.com)",
   "private": true,
-  "scripts": {
-    "start": "node app"
-  },
   "dependencies": {
     "express": "3.0.0rc3",
     "express-params": "0.0.3",
@@ -19,15 +16,17 @@
     "moment": ">=1.6.2"
   },
   "devDependencies": {},
-  "engine": {
-    "node": ">=0.8.7"
-  },
   "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "node": ">=0.6",
+    "npm": ">= 1.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/dgaubert/mammoth.git"
-  }
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "app.js"
 }

@@ -1,7 +1,1 @@
-/**
- * URI db conexion
- * @type {String}
- */
-var dbinfo = 'mongodb://localhost/mammoth'; // localhost
-
-module.exports.dbinfo = dbinfo;
+module.exports.dbinfo = process.env.MONGO_URL;
