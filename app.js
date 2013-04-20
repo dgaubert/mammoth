@@ -123,4 +123,5 @@ app.use(function (err, req, res, next) {
  */
 http.createServer(app).listen(process.env.PORT, process.env.IP, function () {
   console.log('Server running at http://' + process.env.IP + ":" + process.env.PORT);
+  console.log('Mongo URI: ' + process.env.MONGO_URL);
 });
