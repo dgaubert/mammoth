@@ -1,4 +1,14 @@
-/**r
+#!/bin/env node
+/**
+ * Setup env
+ */
+process.env.ROOT_URL = process.env.OPENSHIFT_APP_DNS || 'localhost';
+process.env.APP_NAME = process.env.OPENSHIFT_APP_NAME || 'mammoth';
+process.env.MONGO_URL = (process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME) || 'mongodb://localhost:27017/mammoth';
+process.env.PORT = process.env.OPENSHIFT_INTERNAL_PORT || 8000;
+process.env.IP = process.env.OPENSHIFT_INTERNAL_IP || '0.0.0.0';
+
+/**
  * Module dependencies
  */
 var express = require('express'), // Web framework
@@ -18,7 +28,6 @@ var express = require('express'), // Web framework
 
 var app = express(); // Load app to customize
 
-
 // helpful helpers are helpful 
 // (these are used when rendering views etc.) 
 app.locals.moment = moment;
@@ -26,7 +35,7 @@ app.locals.moment = moment;
 /**
  * Middleware & Setup
  */
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
@@ -113,6 +122,6 @@ app.use(function (err, req, res, next) {
 /**
  * Server
  */
-http.createServer(app).listen(app.get('port'), function () {
-  console.log("Server listening on port " + app.get('port'));
+http.createServer(app).listen(process.env.PORT, process.env.IP, function () {
+  console.log('Server running at http://' + process.env.IP + ":" + process.env.PORT);
 });
