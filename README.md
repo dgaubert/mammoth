@@ -1,6 +1,6 @@
 # Mammoth
 
-A personal web (http://dgaubert.com) written with the following technologies:
+A personal web (http://www.dgaubert.com) written with the following technologies:
 * [Node](http://nodejs.org/): platform for easily building fast, scalable network applications using an event-driven, non-blocking I/O model.
 * [Express](http://expressjs.com/): web application framework for Node. 
 * [MongoDB](http://www.mongodb.org/):  is a scalable, high-performance, open source NoSQL database.
