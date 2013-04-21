@@ -37,7 +37,7 @@ app.locals.moment = moment;
 app.set('port', process.env.PORT);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
+//app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.cookieParser('secreto'));
 app.use(express.session());
@@ -91,8 +91,8 @@ app.get('/blog/admin/users', guard.restrict, user.getUsers);
 app.get('/blog/admin/articles', guard.restrict, article.getArticles);
 
 // User
-app.get('/blog/admin/users/new', guard.restrict, user.getNewUser);
-app.post('/blog/admin/users/new', guard.restrict, user.newUser);
+app.get('/blog/admin/users/new', /*guard.restrict,*/ user.getNewUser);
+app.post('/blog/admin/users/new', /*guard.restrict,*/ user.newUser);
 app.get('/blog/admin/users/:username', guard.restrict, user.getUser);
 app.put('/blog/admin/users/:username', guard.restrict, user.updateUser);
 
@@ -123,5 +123,4 @@ app.use(function (err, req, res, next) {
  */
 http.createServer(app).listen(process.env.PORT, process.env.IP, function () {
   console.log('Server running at http://' + process.env.IP + ":" + process.env.PORT);
-  console.log('Mongo URI: ' + process.env.MONGO_URL);
 });
