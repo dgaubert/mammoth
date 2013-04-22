@@ -37,7 +37,7 @@ app.locals.moment = moment;
 app.set('port', process.env.PORT);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
+//app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.cookieParser('secreto'));
 app.use(express.session());
