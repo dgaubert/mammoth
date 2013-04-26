@@ -2,7 +2,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'), // DB driver
-    db = mongoose.createConnection(require('../db').dbinfo), // DB conexion
+    db = mongoose.createConnection(require('../config').dbinfo), // DB conexion
     articleSchema = require('../models/article'), // Load schema
     Article = db.model('Article', articleSchema); // Load model
 
