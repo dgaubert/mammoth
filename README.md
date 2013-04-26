@@ -9,6 +9,7 @@ A personal web (http://www.dgaubert.com) written with the following technologies
 * [Stylus](http://learnboost.github.com/stylus/): expressive, robust, feature-rich CSS language built for Node.
 * [Async](http://github.com/caolan/async): Utility module which provides straight-forward, powerful functions for working with asynchronous JavaScript.
 * [Express params](http://github.com/visionmedia/express-params): Express param pre-condition functions.
+* [RSS] (https://github.com/dylang/node-rss): RSS feed generator for Node.
 
 For more info visit https://github.com/dgaubert/mammoth to view source code.
 
