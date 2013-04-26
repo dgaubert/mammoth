@@ -1,11 +1,4 @@
 #!/bin/env node
-/**
- * Setup env
- */
-process.env.ROOT_URL = process.env.OPENSHIFT_APP_DNS || 'localhost';
-process.env.APP_NAME = process.env.OPENSHIFT_APP_NAME || 'mammoth';
-process.env.PORT = process.env.OPENSHIFT_INTERNAL_PORT || 8000;
-process.env.IP = process.env.OPENSHIFT_INTERNAL_IP || '0.0.0.0';
 
 /**
  * Module dependencies
@@ -23,7 +16,8 @@ var express = require('express'), // Web framework
     guard = require('./routes/guard'), // Monitor admin section
     admin = require('./routes/admin'), // Manage admin page
     user = require('./routes/user'), // Manage user/s page (admin)
-    article = require('./routes/article'); // Manage article/s page (admin)
+    article = require('./routes/article'), // Manage article/s page (admin)
+    rss = require('./routes/rss');
 
 var app = express(); // Load app to customize
 
@@ -105,6 +99,9 @@ app.put('/blog/admin/articles/:slug', guard.restrict, article.updateArticle);
 // Comments
 app.get('/blog/admin/articles/:slug/comments', guard.restrict, comment.getComments);
 app.del('/blog/admin/articles/:slug/comments/:commentId', guard.restrict, comment.deleteComment);
+
+// RSS Blog Syndication
+app.get('/blog/rss', rss.getXML);
 
 /**
  * Error handling

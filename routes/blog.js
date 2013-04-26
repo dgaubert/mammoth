@@ -2,7 +2,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'), // DB driver
-    db = mongoose.createConnection(require('../db').dbinfo), // DB conexion
+    db = mongoose.createConnection(require('../config').dbinfo), // DB conexion
     async = require('async'), // Control flow
     summarySchema = require('../models/summary'), // Load schema
     Summary = db.model('Summary', summarySchema), // Load model
@@ -16,7 +16,7 @@ var mongoose = require('mongoose'), // DB driver
  * @param  {Object}   req : request
  * @param  {Object}   res : response
  * @param  {Function} next : error handler
- * @return {Object}   blog summary   
+ * @return {Object}   blog summary
  */
 exports.getSummary = function (req, res, next) {
   var page = parseInt(req.params.page, 10) || 0,
