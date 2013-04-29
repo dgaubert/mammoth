@@ -151,6 +151,9 @@ header section.menu section.social a.linkedin {
 header section.menu section.social a.twitter {
   background-image: url("/images/twitter-black-24.png");
 }
+header section.menu section.social a.rss {
+  background-image: url("/images/rss-black-24.png");
+}
 div.wrapper-presentation {
   padding: 100px 0 20px 0;
   width: 100%;
