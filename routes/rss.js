@@ -22,6 +22,7 @@ exports.getFeed = function (req, res, next) {
       next();
     } else {
       var feed = new Feed(rssinfo);
+      feed.category('programming');
       for(var key in articles) {
         feed.item({
           title: articles[key].title,
