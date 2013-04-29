@@ -101,7 +101,7 @@ app.get('/blog/admin/articles/:slug/comments', guard.restrict, comment.getCommen
 app.del('/blog/admin/articles/:slug/comments/:commentId', guard.restrict, comment.deleteComment);
 
 // RSS Blog Syndication
-app.get('/blog/rss', rss.getXML);
+app.get('/blog/rss', rss.getFeed);
 
 /**
  * Error handling

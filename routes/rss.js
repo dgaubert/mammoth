@@ -5,8 +5,8 @@ var mongoose = require('mongoose'), // DB driver
     db = mongoose.createConnection(require('../config').dbinfo), // DB conexion
     articleSchema = require('../models/article'), // Load schema
     Article = db.model('Article', articleSchema), // Load model
-    RSS = require('rss'),
-    feed = new RSS(require('../config').rssinfo);
+    rssinfo = require('../config').rssinfo,
+    Feed = require('feed');
 
 /**
  * Retrieve a 'rss.xml' for blog syndication
@@ -16,28 +16,24 @@ var mongoose = require('mongoose'), // DB driver
  * @param  {Function} next : error handler
  * @return {Object}   XML
  */
-exports.getXML = function (req, res, next) {
-  Article.find({}, {}, function (err, blog) {
-    var i,
-        body;
+exports.getFeed = function (req, res, next) {
+  Article.find({}, {}, function (err, articles) {
     if (err) {
       next();
     } else {
-      for (i = 0; i < blog.length; i++) {
+      var feed = new Feed(rssinfo);
+      for(var key in articles) {
         feed.item({
-          title:  blog[i].title,
-          description: blog[i].abstract,
-          url: 'http://www.dguabert.com/blog/' + blog[i].slug,
-          author: blog[i].author,
-          date: blog[i].created
+          title: articles[key].title,
+          link: rssinfo.link + articles[key].slug,
+          description: articles[key].abstract,
+          date: articles[key].created
         });
       }
-      body = feed.xml();
-      res.writeHead(200, {
-        'Content-Type': 'text/xml',
-        'Content-Length': body.length
-      });
-      res.end(body);
+      // Setting the appropriate Content-Type
+      res.set('Content-Type', 'application/rss+xml');
+      // Sending the feed as a response
+      res.send(feed.render('rss-2.0'));
     }
   });
 };
