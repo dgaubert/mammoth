@@ -14,7 +14,7 @@
     "async": "0.1.22",
     "pwd": "0.0.2",
     "moment": ">=1.6.2",
-    "rss": ">=0.0.4"
+    "feed": ">=0.0.7"
   },
   "devDependencies": {},
   "optionalDependencies": {},
