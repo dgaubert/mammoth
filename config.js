@@ -26,12 +26,17 @@ module.exports.dbinfo = process.env.MONGO_URL;
  * Setup RSS configuration
  */
 var rssinfo = {
-  title: 'Blog de Daniel García Aubert',
+  title: 'Blog de Daniel G. Aubert',
   description: 'Programmer',
-  feed_url: 'http://www.dgaubert.com/blog/rss.xml',
-  site_url: 'http://www.dgaubert.com',
-  image_url: 'http://www.dgaubert.com/images/favicon.ico',
-  author: 'Daniel García Aubert'
+  link: 'http://www.dgaubert.com/blog/',
+  image: 'http://www.dgaubert.com/images/favicon.ico',
+  copyright: 'Copyright Â© 2013 Daniel G. Aubert. All rights reserved',
+  author: {
+    name: 'Daniel G. Aubert',
+    email: 'danielgarciaaubert@gmail.com',
+    link: 'http://www.dgaubert.com/'
+  }
 };
+
 
 module.exports.rssinfo = rssinfo;
