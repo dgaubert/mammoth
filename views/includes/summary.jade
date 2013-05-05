@@ -7,6 +7,7 @@ div.summaries
         h3.author Por #{summary.author}
         h3.created 
           = (moment(summary.created).format('[el] DD/MM/YYYY'))
+        h3.comments [ #{summary.commentCounter} Comentarios ]
       div.summary-abstract 
         p!= summary.abstract
       div.summary-action
@@ -14,4 +15,3 @@ div.summaries
         a.category(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags
           a.tag(href='/blog/tag/#{tag}') #{tag}
-        h3.comments [ #{summary.commentCounter} Comentarios ]
