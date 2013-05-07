@@ -470,7 +470,7 @@ hgroup.article-title {
   padding: 0 0 5px 0;
 }
 h2.title {
-  font-size: 2em;
+  font-size: 1.8em;
   color: #444;
 }
 a h2.title:hover {
@@ -527,7 +527,11 @@ div.article-content pre {
 }
 div.summary-abstract p,
 div.article-content p {
-  margin: 15px 0 0 0;
+  margin: 15px 0 15px 0;
+}
+div.summary-abstract code,
+div.article-content code {
+  color: #444;
 }
 div.summary-action,
 div.article-action {
