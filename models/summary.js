@@ -51,7 +51,7 @@ summarySchema.virtual('commentCounter').get(function () {
  */
 summarySchema.statics.findRange = function (filter, page, cb) {
   this.find(filter)
-      .sort({created: 1})
+      .sort({created: -1})
       .skip(page * 10)
       .limit((page * 10) + 10)
       .execFind(cb);
@@ -153,7 +153,7 @@ summarySchema.statics.tagsCount = function (cb) {
  */
 summarySchema.statics.getLast = function (filter, cb) {
   this.find(filter)
-      .sort({created: 1})
+      .sort({created: -1})
       .limit(1)
       .execFind(cb);
 };
