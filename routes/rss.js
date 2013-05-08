@@ -17,7 +17,8 @@ var mongoose = require('mongoose'), // DB driver
  * @return {Object}   XML
  */
 exports.getFeed = function (req, res, next) {
-  Article.find({}, {}, function (err, articles) {
+  Article.find({}).sort({created: -1}).exec(function (err, articles) {
+  //Article.find({}, {}, function (err, articles) {
     if (err) {
       next();
     } else {
