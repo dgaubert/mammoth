@@ -18,7 +18,6 @@ var mongoose = require('mongoose'), // DB driver
  */
 exports.getFeed = function (req, res, next) {
   Article.find({}).sort({created: -1}).exec(function (err, articles) {
-  //Article.find({}, {}, function (err, articles) {
     if (err) {
       next();
     } else {
