@@ -11,6 +11,7 @@ A personal web (http://www.dgaubert.com) written with the following technologies
 * [Express params](http://github.com/visionmedia/express-params): Express param pre-condition functions.
 * [Moment](http://github.com/timrwood/moment/): Parse, validate, manipulate, and display dates in javascript.
 * [Feed] (http://github.com/jpmonette/feed): RSS 2.0 and Atom 1.0 generator for Node.js, making content syndication simple, intuitive and performant.
+* [Mocha](http://visionmedia.github.io/mocha/): Mocha is a feature-rich JavaScript test framework running on node and the browser, making asynchronous testing simple and fun.
 
 For more info visit https://github.com/dgaubert/mammoth to view source code.
 
