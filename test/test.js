@@ -1,8 +1,8 @@
-var app = require('../app'),
+var mammoth = require('../mammoth'),
     request = require('supertest'),
     should = require('should');
 
-request = request(app);
+request = request(mammoth);
 
 describe('GET /', function () {
 
@@ -12,6 +12,7 @@ describe('GET /', function () {
     request.get('/')
       .set('Content-Type', 'text/html')
       .end(function (err, r) {
+        should.not.exist(err);
         if (err) {
           done(err);
         }
