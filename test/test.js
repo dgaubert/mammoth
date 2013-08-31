@@ -1,34 +1,37 @@
 var mammoth = require('../mammoth'),
     request = require('supertest'),
-    should = require('should');
+    should = require('should'),
+    response;
 
 request = request(mammoth);
+
+var getResponse = function (path) {
+  before(function (done) {
+    request.get(path)
+      .set('Content-Type', 'text/html')
+      .end(function (err, res) {
+        should.not.exist(err);
+        if (err) {
+          done(err);
+        }
+        response = res;
+        done();
+    });
+  });
+}
 
 describe('Testing Mammoth Project', function () {
 
   describe('GET home: /', function () {
 
-    var res;
-
-    before(function (done) {
-      request.get('/')
-        .set('Content-Type', 'text/html')
-        .end(function (err, r) {
-          should.not.exist(err);
-          if (err) {
-            done(err);
-          }
-          res = r;
-          done();
-      });
-    });
+    getResponse('/');
 
     it('should be a html', function () {
-      res.should.be.html;
+      response.should.be.html;
     });
 
     it('should have status 200', function () {
-      res.should.have.status(200);
+      response.should.have.status(200);
     });
 
   });
@@ -36,54 +39,42 @@ describe('Testing Mammoth Project', function () {
 
   describe('GET blog: /blog', function () {
 
-    var res;
-
-    before(function (done) {
-      request.get('/blog')
-        .set('Content-Type', 'text/html')
-        .end(function (err, r) {
-          should.not.exist(err);
-          if (err) {
-            done(err);
-          }
-          res = r;
-          done();
-      });
-    });
+    getResponse('/blog');
 
     it('should be a html', function () {
-      res.should.be.html;
+      response.should.be.html;
     });
 
     it('should have status 200', function () {
-      res.should.have.status(200);
+      response.should.have.status(200);
     });
 
   });
 
   describe('GET blog and checks the pagination: /blog/1', function () {
 
-    var res;
-
-    before(function (done) {
-      request.get('/blog/1')
-        .set('Content-Type', 'text/html')
-        .end(function (err, r) {
-          should.not.exist(err);
-          if (err) {
-            done(err);
-          }
-          res = r;
-          done();
-      });
-    });
+    getResponse('/blog/1');
 
     it('should be a html', function () {
-      res.should.be.html;
+      response.should.be.html;
     });
 
     it('should have status 200', function () {
-      res.should.have.status(200);
+      response.should.have.status(200);
+    });
+
+  });
+
+  describe('GET blog: /blog/login', function () {
+
+    getResponse('/blog/login');
+
+    it('should be a html', function () {
+      response.should.be.html;
+    });
+
+    it('should have status 200', function () {
+      response.should.have.status(200);
     });
 
   });
