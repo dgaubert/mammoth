@@ -4,8 +4,6 @@ var mammoth = require('../mammoth'),
 
 request = request(mammoth);
 
-console.log(typeof mammoth);
-
 describe('Testing Mammoth Project', function () {
 
   describe('GET home: /', function () {
@@ -89,7 +87,5 @@ describe('Testing Mammoth Project', function () {
     });
 
   });
-
-
 
 });
