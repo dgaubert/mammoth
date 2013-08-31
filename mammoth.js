@@ -1,9 +1,13 @@
 #!/bin/env node
 
-// Enviroment
+// Setup the enviroment (db conexion and more)
 require('./lib/conf/env');
 
+// For testing purpose it's needed to export the application
+var app = module.exports = require('./lib/app');
+
+
 // Server
-require('./lib/app').listen(process.env.PORT, process.env.IP, function () {
+app.listen(process.env.PORT, process.env.IP, function () {
   console.log('Server running at http://' + process.env.IP + ":" + process.env.PORT);
 });
