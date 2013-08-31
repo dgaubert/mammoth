@@ -1,6 +1,6 @@
 #!/bin/env node
 
-// Setup the enviroment (db conexion and more)
+// Setup the enviroment (Production or development enviroments)
 require('./lib/conf/env');
 
 // For testing purpose it's needed to export the application
