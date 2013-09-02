@@ -16,8 +16,11 @@
     "moment": ">=1.6.2",
     "feed": ">=0.0.7"
   },
-  "devDependencies": {},
-  "optionalDependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "supertest": "*",
+    "should": "*"
+  },
   "engines": {
     "node": ">=0.6",
     "npm": ">= 1.0.0"
@@ -27,7 +30,8 @@
     "url": "git://github.com/dgaubert/mammoth.git"
   },
   "scripts": {
-    "start": "node app.js"
+    "test": "make test",
+    "start": "node mammoth.js"
   },
-  "main": "app.js"
+  "main": "mammoth.js"
 }
