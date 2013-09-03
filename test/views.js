@@ -1,15 +1,19 @@
 var mammoth = require('../mammoth'),
     request = require('supertest'),
     should = require('should'),
-    paths,
+    views,
     response;
 
 // Views to testing
-paths = [
-  '/',
-  '/blog',
-  '/blog/1',
-  '/blog/login'
+views = [
+  { path: '/', status: 200},
+  { path: '/blog', status: 200},
+  { path: '/blog/login', status: 200},
+  { path: '/blog/admin', status: 302},
+  { path: '/blog/admin/users', status: 302},
+  { path: '/blog/admin/users/new', status: 302},
+  { path: '/blog/admin/articles', status: 302},
+  { path: '/blog/admin/articles/new', status: 302}
 ];
 
 // Get app
@@ -24,25 +28,26 @@ var getResponse = function (path) {
         should.not.exist(err);
         if (err) {
           done(err);
-        }
-        response = res;
-        done();
+        } else {
+          response = res;
+          done();
+		}
     });
   });
 };
 
-describe('Testing Mammoth Project', function () {
-  paths.forEach(function (path) {
-    describe('GET ' + path + ':', function () {
-      getResponse(path);
-
-      it('should be a html', function () {
-        response.should.be.html;
-      });
-
-      it('should have status 200', function () {
-        response.should.have.status(200);
-      });
+describe('Testing views:', function () {
+  views.forEach(function (view) {
+    describe('GET ' + view.path + ':', function () {
+      getResponse(view.path);
+	  it('should have status ' + view.status, function () {
+		response.should.have.status(view.status);
+      });      
+	  if (view.status === 200) {
+        it('should be a html', function () {
+		  response.should.be.html;
+	    });
+      }
     });
   });
 });
