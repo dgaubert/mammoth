@@ -23,15 +23,15 @@ request = request(mammoth);
 var getResponse = function (path) {
   before(function (done) {
     request.get(path)
-      .set('Content-Type', 'text/html')
-      .end(function (err, res) {
-        should.not.exist(err);
-        if (err) {
-          done(err);
-        } else {
-          response = res;
-          done();
-		}
+        .set('Content-Type', 'text/html')
+        .end(function (err, res) {
+      should.not.exist(err);
+      if (err) {
+        done(err);
+      } else {
+        response = res;
+        done();
+      }
     });
   });
 };
@@ -40,13 +40,13 @@ describe('Testing views:', function () {
   views.forEach(function (view) {
     describe('GET ' + view.path + ':', function () {
       getResponse(view.path);
-	  it('should have status ' + view.status, function () {
-		response.should.have.status(view.status);
-      });      
-	  if (view.status === 200) {
+      it('should have status ' + view.status, function () {
+        response.should.have.status(view.status);
+      });
+      if (view.status === 200) {
         it('should be a html', function () {
-		  response.should.be.html;
-	    });
+          response.should.be.html;
+        });
       }
     });
   });
