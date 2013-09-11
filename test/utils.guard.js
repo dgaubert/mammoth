@@ -14,35 +14,42 @@ describe('Testing guard', function () {
     req.path = '/';
     req.session.user = 'user';
     
-    guard.isNext(req).should.be.true;
+    guard.keepOn(req).should.be.true;
   });
 
   it('/blog without session', function () {
     req.path = '/blog';
     req.session.user = null;
     
-    guard.isNext(req).should.be.true;
+    guard.keepOn(req).should.be.true;
   });
 
   it('/blog/admin with session', function () {
     req.path = '/blog/admin';
     req.session.user = 'user';
 
-    guard.isNext(req).should.be.true;
+    guard.keepOn(req).should.be.true;
   });
 
   it('/blog/admin/ without session', function () {
     req.path = '/blog/admin';
     req.session.user = null;
     
-    guard.isNext(req).should.be.false;
+    guard.keepOn(req).should.be.false;
   });
 
-  it('/blog/admin/users', function () {
+  it('/blog/admin/users with session', function () {
     req.path = '/blog/admin/users';
     req.session.user = 'user';
     
-    guard.isNext(req).should.be.true;
+    guard.keepOn(req).should.be.true;
+  });
+  
+  it('/blog/admin/users without session', function () {
+    req.path = '/blog/admin/users';
+    req.session.user = null;
+    
+    guard.keepOn(req).should.be.false;
   });
 
 });
