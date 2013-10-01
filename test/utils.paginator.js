@@ -1,15 +1,14 @@
 var paginator = require('../lib/utils/paginator'),
     should = require('should');
 
-    
-describe('Testing paginator:', function() {
+describe('utils/paginator', function() {
 
   var pagination;
     
-  describe('Pagination [paginator#create(0, 10)]', function () {
+  describe('.create(0,10)', function () {
     
     before(function () {
-      pagination = paginator.create(0,10);
+      pagination = paginator.create(0, 10);
     });
     
     it('On first page, one page, ten items, no previous page, no next page', function () {
@@ -36,10 +35,10 @@ describe('Testing paginator:', function() {
 
   });
 
-  describe('Pagination [paginator#create(0,11)]', function () {
+  describe('.create(0,11):', function () {
     
     before(function () {
-      pagination = paginator.create(0,11);
+      pagination = paginator.create(0, 11);
     });
     
     it('On first page, two pages, eleven items, no previous page, next page', function () {
@@ -51,10 +50,10 @@ describe('Testing paginator:', function() {
     
   });
 
-  describe('Pagination [paginator#create(1,11)]', function () {
+  describe('.create(1, 11):', function () {
     
     before(function () {
-      pagination = paginator.create(1,11);
+      pagination = paginator.create(1, 11);
     });
 
     it('On second page, two pages, eleven items, previous page, no next page', function () {

@@ -1,4 +1,4 @@
-var mammoth = require('../mammoth'),
+var mammoth = require('../../mammoth'),
     request = require('supertest'),
     should = require('should'),
     views,
