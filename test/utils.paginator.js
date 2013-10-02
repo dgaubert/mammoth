@@ -1,5 +1,4 @@
-var paginator = require('../lib/utils/paginator'),
-    should = require('should');
+var paginator = require('../lib/utils/paginator');
 
 describe('utils/paginator', function() {
 

@@ -1,5 +1,4 @@
-var rss = require('../lib/routes/login'),
-    should = require('should');
+var rss = require('../lib/routes/login');
 
 describe('routes/login', function () {
 

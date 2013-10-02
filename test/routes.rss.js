@@ -1,5 +1,4 @@
-var rss = require('../lib/routes/rss'),
-    should = require('should');
+var rss = require('../lib/routes/rss');
     
 describe('routes/rss', function () {
   var articles = [];

@@ -1,6 +1,5 @@
 var guard = require('../lib/utils/guard'),
-    request = require('supertest'),
-    should = require('should');
+    request = require('supertest');
 
 describe('utils/guard', function () {
   var req;
