@@ -13,7 +13,8 @@ describe('routes/rss', function () {
           callback(null, articles);
         }
       },
-      rss = require('../lib/routes/rss'),
+      Rss = require('../lib/routes/rss'),
+      rss,
       req = {},
       res = {
         set: function () {},
@@ -22,7 +23,7 @@ describe('routes/rss', function () {
       next = function () {};
 
   before(function () {
-    rss.init(Article);
+    rss = new Rss(Article);
   });
 
   describe('.getFeed(req, res, next)', function () {
