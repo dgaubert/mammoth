@@ -47,17 +47,14 @@ describe('routes/rss', function () {
       resMock.verify();
     });
 
-    describe('.createFeed(articles)', function () {
+    // it('Feed should be created', function () {
+    //   var feed = rss.createFeed(articles);
+     
+    //   feed.should.be.an.instanceof(Object);
+    //   feed.items.should.be.an.instanceof(Array);
+    //   feed.items.should.have.length(1);
+    // });
 
-      it('Feed should be created', function () {
-        var feed = rss.createFeed(articles);
-       
-        feed.should.be.an.instanceof(Object);
-        feed.items.should.be.an.instanceof(Array);
-        feed.items.should.have.length(1);
-      });
-
-    });
 
   });
 
