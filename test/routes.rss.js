@@ -1,32 +1,28 @@
-var sinon = require('sinon');
+var sinon = require('sinon'),
+    Rss = require('../lib/routes/rss');
     
 describe('routes/rss', function () {
 
-  var articles = [{
-        title: 'Title',
-        slug: '/slug',
-        abstract: 'Abstract',
-        created: new Date()
-      }],
-      Article = {
-        findAll: function(sort, callback) {
-          callback(null, articles);
-        }
-      },
-      Rss = require('../lib/routes/rss'),
-      rss,
-      req = {},
+  var req = {},
       res = {
         set: function () {},
         send: function () {}
       },
       next = function () {};
 
-  before(function () {
-    rss = new Rss(Article);
-  });
-
   describe('.getFeed(req, res, next)', function () {
+
+    var Article = {
+          findAll: function(sort, callback) {
+            callback(null, [{
+              title: 'Title',
+              slug: '/slug',
+              abstract: 'Abstract',
+              created: new Date()
+            }]);
+          }
+        },
+        rss = new Rss(Article);
 
     it('Articles should be gotten', function () {
       var ArticleMock = sinon.mock(Article);
@@ -47,14 +43,19 @@ describe('routes/rss', function () {
       resMock.verify();
     });
 
-    // it('Feed should be created', function () {
-    //   var feed = rss.createFeed(articles);
-     
-    //   feed.should.be.an.instanceof(Object);
-    //   feed.items.should.be.an.instanceof(Array);
-    //   feed.items.should.have.length(1);
-    // });
+    it('Response should not be sended', function () {
+      var nextSpy = sinon.spy();
+      Article = {
+        findAll: function(sort, callback) {
+          callback('error', null);
+        }
+      };
+      rss = new Rss(Article);
 
+      rss.getFeed(req, res, nextSpy);
+
+      nextSpy.called.should.be.true;
+    });
 
   });
 
