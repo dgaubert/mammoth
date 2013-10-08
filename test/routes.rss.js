@@ -13,7 +13,7 @@ describe('routes/rss', function () {
   describe('.getFeed(req, res, next)', function () {
 
     var Article = {
-          findAll: function(sort, callback) {
+          findAll: function(filter, fields, sort, callback) {
             callback(null, [{
               title: 'Title',
               slug: '/slug',
@@ -46,7 +46,7 @@ describe('routes/rss', function () {
     it('Response should not be sended', function () {
       var nextSpy = sinon.spy();
       Article = {
-        findAll: function(sort, callback) {
+        findAll: function(filter, fields, sort, callback) {
           callback('error', null);
         }
       };

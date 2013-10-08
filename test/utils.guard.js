@@ -1,18 +1,12 @@
-var sinon = require('sinon'),
+var support = require('./support'),
+    sinon = require('sinon'),
     Guard = require('../lib/utils/guard');
 
 describe('utils/guard', function () {
   var guard = new Guard(),
-      req = {
-        path: '',
-        session: {
-          user: ''
-        }
-      },
-      res = {
-        redirect: function () {}
-      },
-      next;
+      req = support.req,
+      res = support.res,
+      next = support.next;
 
   describe('.secure(req, res, next)', function () {
 
