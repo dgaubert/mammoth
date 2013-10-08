@@ -1,33 +1,17 @@
-var sinon = require('sinon'),
+var support = require('./support'),
+    sinon = require('sinon'),
     Cloud = require('../lib/routes/cloud');
 
 describe('routes/cloud', function () {
-  var SummaryModel = {
-        categoriesCount: function (callback) {
-          callback(null, [{_id: 'category1', value: 1}]);
-        },
-        tagsCount: function (callback) {
-          callback(null, [{_id: 'tag1', value: 1}]);
-        }
-      },
-      SummaryModelKO = {
-        categoriesCount: function (callback) {
-          callback('error', null);
-        },
-        tagsCount: function (callback) {
-          callback('error', null);
-        }
-      },
+  var SummaryModel = support.SummaryModel,
+      SummaryModelKO = support.SummaryModelKO,
       cloud = new Cloud(SummaryModel),
-      cloudKO = new Cloud(SummaryModelKO);
+      cloudKO = new Cloud(SummaryModelKO),
+      req = support.req,
+      res = support.res,
+      next = support.next;
 
   describe('.getWords(req, res, next)', function () {
-    var req = {},
-        res = {
-          writeHead: function () {},
-          end: function () {}
-        },
-        next = function () {};
 
     it('Tag and categories should be gotten', function () {
       var SummaryModelMock = sinon.mock(SummaryModel);
@@ -43,12 +27,12 @@ describe('routes/cloud', function () {
       var SummaryModelMock = sinon.mock(SummaryModelKO);
       SummaryModelMock.expects('categoriesCount').once();
       SummaryModelMock.expects('tagsCount').once();
-      var nextSpy = sinon.spy();
+      next = sinon.spy();
 
-      cloudKO.getWords(req, res, nextSpy);
+      cloudKO.getWords(req, res, next);
 
       SummaryModelMock.verify();
-      nextSpy.called.should.be.false;
+      next.called.should.be.false;
     });
 
   });

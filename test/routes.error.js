@@ -1,19 +1,20 @@
-var sinon = require('sinon'),
+var support = require('./support'),
+    sinon = require('sinon'),
     Error = require('../lib/routes/error');
 
 describe('routes/error', function () {
   var error = new Error(),
-      err = {status: 500},
-      req = {url: '/'},
-      res = {
-        status: sinon.spy(),
-        render: sinon.spy()
-      },
-      next = sinon.spy();
+      err = support.err,
+      req = support.req,
+      res = support.res,
+      next = support.next;
 
   describe('.notFound', function () {
 
     it('Render a 404 view', function () {
+      res.status = sinon.spy();
+      res.render = sinon.spy();
+
       error.notFound(req, res, next);
 
       res.status.calledWith(404).should.be.true;
@@ -25,6 +26,9 @@ describe('routes/error', function () {
   describe('.serverError', function () {
 
     it('Render a 500 view with error code 500', function () {
+      res.status = sinon.spy();
+      res.render = sinon.spy();
+
       error.serverError(err, req, res, next);
 
       res.status.calledWith(500).should.be.true;
@@ -32,7 +36,8 @@ describe('routes/error', function () {
     });
 
     it('Render a 500 view with error code 503', function () {
-      err.status = 503;
+      res.status = sinon.spy();
+      res.render = sinon.spy();
 
       error.serverError(err, req, res, next);
 

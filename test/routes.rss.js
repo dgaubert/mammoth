@@ -1,60 +1,44 @@
-var sinon = require('sinon'),
+var support = require('./support'),
+    sinon = require('sinon'),
     Rss = require('../lib/routes/rss');
     
 describe('routes/rss', function () {
 
-  var req = {},
-      res = {
-        set: function () {},
-        send: function () {}
-      },
-      next = function () {};
+  var ArticleModel = support.ArticleModel,
+      rss = new Rss(ArticleModel),
+      ArticleModelKO = support.ArticleModelKO,
+      rssKO = new Rss(ArticleModelKO);
+      req = support.req,
+      res = support.res,
+      next = support.next;
 
   describe('.getFeed(req, res, next)', function () {
 
-    var Article = {
-          findAll: function(filter, fields, sort, callback) {
-            callback(null, [{
-              title: 'Title',
-              slug: '/slug',
-              abstract: 'Abstract',
-              created: new Date()
-            }]);
-          }
-        },
-        rss = new Rss(Article);
-
-    it('Articles should be gotten', function () {
-      var ArticleMock = sinon.mock(Article);
-      ArticleMock.expects('findAll').once();
+    it('ArticleModels should be gotten', function () {
+      var ArticleModelMock = sinon.mock(ArticleModel);
+      ArticleModelMock.expects('findAll').once();
 
       rss.getFeed(req, res, next);
 
-      ArticleMock.verify();
+      ArticleModelMock.verify();
     });
     
     it('Response should be sended', function () {
-      var resMock = sinon.mock(res);
-      resMock.expects('set').once().withArgs('Content-Type', 'application/rss+xml');
-      resMock.expects('send').once();
+      res.set = sinon.spy();
+      res.send = sinon.spy();
 
       rss.getFeed(req, res, next);
 
-      resMock.verify();
+      res.set.calledWith('Content-Type', 'application/rss+xml').should.be.true;
+      res.send.called.should.be.true;
     });
 
     it('Response should not be sended', function () {
-      var nextSpy = sinon.spy();
-      Article = {
-        findAll: function(filter, fields, sort, callback) {
-          callback('error', null);
-        }
-      };
-      rss = new Rss(Article);
+      next = sinon.spy();
 
-      rss.getFeed(req, res, nextSpy);
+      rssKO.getFeed(req, res, next);
 
-      nextSpy.called.should.be.true;
+      next.called.should.be.true;
     });
 
   });

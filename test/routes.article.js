@@ -33,7 +33,7 @@ describe('routes/article', function () {
     });
 
     it('Response should not be rendered', function () {
-      next = sinon.spy();      
+      next = sinon.spy();     
 
       articleKO.getArticles(req, res, next);
 
