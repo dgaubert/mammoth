@@ -64,31 +64,88 @@ module.exports.ArticleModel = {
 };
 
 module.exports.ArticleModelEmpty = {
-  findAll: function(filter, fields, sort, callback) {
+  findAll: function (filter, fields, sort, callback) {
     callback(null, []);
   }
 };
     
 module.exports.ArticleModelKO = {
   findAll: function(filter, fields, sort, callback) {
-    callback('error', null);
+    callback(new Error('Error'), null);
   }
 };
 
 module.exports.SummaryModel = {
+  find: function (filter, sort, callback) {
+    callback(null, [{
+      tilte: 'title',
+      author: 'author',
+      created: new Date(),
+      slug: '/blog/article/title',
+      category: 'category',
+      abstract: 'abstract',
+      content: 'content',
+      tags: ['tag']
+    }]);
+  },
   categoriesCount: function (callback) {
-    callback(null, [{_id: 'category1', value: 1}]);
+    callback(null, [{_id: 'category', value: 1}]);
   },
   tagsCount: function (callback) {
-    callback(null, [{_id: 'tag1', value: 1}]);
+    callback(null, [{_id: 'tag', value: 1}]);
+  },
+  findRange: function (filter, page, cb) {
+    cb(null, [{
+      tilte: 'title',
+      author: 'author',
+      created: new Date(),
+      slug: '/blog/article/title',
+      category: 'category',
+      abstract: 'abstract',
+      content: 'content',
+      tags: ['tag']
+    }]);
+  },
+  count: function (filter, cb) {
+    cb(null, 1);
   }
 };
       
 module.exports.SummaryModelKO = {
+  find: function (filter, sort, callback) {
+    callback(new Error('Error'), null);
+  },
   categoriesCount: function (callback) {
-    callback('error', null);
+    callback(new Error('Error'), null);
   },
   tagsCount: function (callback) {
-    callback('error', null);
+    callback(new Error('Error'), null);
+  },
+  findRange: function (filter, page, cb) {
+    cb(new Error('Error'), null);
+  },
+  count: function (filter, cb) {
+    cb(new Error('Error'), null);
+  }  
+};
+
+module.exports.UserModel = {
+  find: function (filter, callback) {
+    callback(null, [{ 
+      salt: 'h9Sr0AlBfM+Xi9gJZQeWQKyfPlAur5+7jkELi9tzjJqc0FLVKUO6lWwi8U8OxujnbZY+8Jdz3vRkfalxSWRgeG60Rhm6t4Bb3eGKGifu7To6BUMFAjbB+xcShUY47dB4+H6gzvVVkYDMYfCUmyQuUTs73SUlxbdFdj2A3D8rr9c=',
+      hash: '!?L→@,☼G×ã¹?~gQº9ø ↕|?◄p→‼Æ5Â3]BtÆ?äïÂn:♂ð¤▬¤³ Äb☺uèùè?hgÔ▲äbÂù|?E☼ãIºî*l♂Æû?öE¢?ÊAg¸x¼«"\þd‼³&£~►♥♀¶òòñ³K?ö?Pû(C◄ÿr?7ÊK??X+½¦'
+    }]);
+  }
+};
+
+module.exports.UserModelEmpty = {
+  find: function (filter, callback) {
+    callback(null, [{}]);
+  }
+};
+
+module.exports.UserModelKO = {
+  find: function (filter, callback) {
+    callback(new Error('Error'), null);
   }
 };

@@ -13,6 +13,7 @@ describe('routes/admin', function () {
     admin.getAdmin(req, res);
 
     res.render.calledWith('blog/admin/admin').should.be.true;
+    res.render.reset();
   });
 
 });

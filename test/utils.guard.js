@@ -18,6 +18,7 @@ describe('utils/guard', function () {
       guard.secure(req, res, next);
 
       next.called.should.be.true;
+      next.reset();
     });
 
     it('"/blog" without session, should be continued', function () {
@@ -28,6 +29,7 @@ describe('utils/guard', function () {
       guard.secure(req, res, next);
 
       next.called.should.be.true;
+      next.reset();
     });
 
     it('"/blog/admin" with session, should be continued', function () {
@@ -40,6 +42,8 @@ describe('utils/guard', function () {
 
       next.called.should.be.true;
       res.redirect.called.should.be.false;
+      next.reset();
+      res.redirect.reset();
     });
 
     it('"/blog/admin" without session, should be redirected', function () {
@@ -52,6 +56,8 @@ describe('utils/guard', function () {
 
       next.called.should.be.false;
       res.redirect.called.should.be.true;
+      next.reset();
+      res.redirect.reset();
     });
 
     it('"/blog/admin/users" with session, should be continued', function () {
@@ -64,6 +70,8 @@ describe('utils/guard', function () {
 
       next.called.should.be.true;
       res.redirect.called.should.be.false;
+      next.reset();
+      res.redirect.reset();
     });
     
     it('"/blog/admin/users" without session, should be redirected', function () {
@@ -76,6 +84,8 @@ describe('utils/guard', function () {
 
       next.called.should.be.false;
       res.redirect.called.should.be.true;
+      next.reset();
+      res.redirect.reset();
     });
     
   });

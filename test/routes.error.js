@@ -19,6 +19,8 @@ describe('routes/error', function () {
 
       res.status.calledWith(404).should.be.true;
       res.render.calledWith('error/404').should.be.true;
+      res.status.reset();
+      res.render.reset();
     });
 
   });
@@ -33,6 +35,8 @@ describe('routes/error', function () {
 
       res.status.calledWith(500).should.be.true;
       res.render.calledWith('error/500').should.be.true;
+      res.status.reset();
+      res.render.reset();
     });
 
     it('Render a 500 view with error code 503', function () {
@@ -43,6 +47,8 @@ describe('routes/error', function () {
 
       res.status.calledWith(500).should.be.true;
       res.render.calledWith('error/500').should.be.true;
+      res.status.reset();
+      res.render.reset();
     });
 
   });

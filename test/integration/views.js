@@ -6,14 +6,14 @@ var mammoth = require('../../mammoth'),
 
 // Views to testing
 views = [
-  { path: '/', status: 200},
-  { path: '/blog', status: 200},
-  { path: '/blog/login', status: 200},
-  { path: '/blog/admin', status: 302},
-  { path: '/blog/admin/users', status: 302},
-  { path: '/blog/admin/users/new', status: 302},
-  { path: '/blog/admin/articles', status: 302},
-  { path: '/blog/admin/articles/new', status: 302}
+  {path: '/', status: 200},
+  {path: '/blog', status: 200},
+  {path: '/blog/login', status: 200},
+  {path: '/blog/admin', status: 302},
+  {path: '/blog/admin/users', status: 302},
+  {path: '/blog/admin/users/new', status: 302},
+  {path: '/blog/admin/articles', status: 302},
+  {path: '/blog/admin/articles/new', status: 302}
 ];
 
 // Get app

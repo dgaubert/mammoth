@@ -33,6 +33,7 @@ describe('routes/cloud', function () {
 
       SummaryModelMock.verify();
       next.called.should.be.false;
+      next.reset();
     });
 
   });

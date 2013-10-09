@@ -30,6 +30,7 @@ describe('routes/article', function () {
       article.getArticles(req, res, next);
 
       res.render.calledWith('blog/admin/articles').should.be.true;
+      res.render.reset();
     });
 
     it('Response should not be rendered', function () {
@@ -38,6 +39,7 @@ describe('routes/article', function () {
       articleKO.getArticles(req, res, next);
 
       next.called.should.be.true;
+      next.reset();
     });
 
   });
@@ -50,6 +52,7 @@ describe('routes/article', function () {
       article.getNewArticle(req, res);
 
       res.render.calledWith('blog/admin/article').should.be.true;
+      res.render.reset();
     });
 
   });
@@ -66,11 +69,12 @@ describe('routes/article', function () {
     });
 
     it('Exists the article to save', function () {
-      var nextSpy = sinon.spy();
+      next = sinon.spy();
 
-      article.newArticle(req, res, nextSpy);
+      article.newArticle(req, res, next);
 
-      nextSpy.called.should.be.true;
+      next.called.should.be.true;
+      next.reset();
     });
 
   });
@@ -92,14 +96,16 @@ describe('routes/article', function () {
       article.getArticle(req, res, next);
 
       res.render.calledWith('blog/admin/article').should.be.true;
+      res.render.reset();
     });
 
     it('Response should not be rendered', function () {
-      var nextSpy = sinon.spy();
+      next = sinon.spy();
 
-      articleKO.getArticle(req, res, nextSpy);
+      articleKO.getArticle(req, res, next);
 
-      nextSpy.called.should.be.true;
+      next.called.should.be.true;
+      next.reset();
     });
 
   }); 

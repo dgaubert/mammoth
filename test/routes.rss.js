@@ -31,6 +31,8 @@ describe('routes/rss', function () {
 
       res.set.calledWith('Content-Type', 'application/rss+xml').should.be.true;
       res.send.called.should.be.true;
+      res.set.reset();
+      res.send.reset();
     });
 
     it('Response should not be sended', function () {
@@ -39,6 +41,7 @@ describe('routes/rss', function () {
       rssKO.getFeed(req, res, next);
 
       next.called.should.be.true;
+      next.reset();
     });
 
   });
