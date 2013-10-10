@@ -1,15 +1,20 @@
 // Node.js mocks
 
-module.exports.article = {
-  tilte: 'title',
-  author: 'author',
-  created: new Date(),
-  slug: '/blog/article/title',
-  category: 'category',
-  abstract: 'abstract',
-  content: 'content',
-  tags: ['tag']
-};
+var article = module.exports.article = {
+      tilte: 'title',
+      author: 'author',
+      created: new Date(),
+      slug: '/blog/article/title',
+      category: 'category',
+      abstract: 'abstract',
+      content: 'content',
+      tags: ['tag'],
+      comments: ['comment'],
+      save: function (cb) {
+        cb(null);
+      }
+    },
+    summary = article;
 
 module.exports.params = {
   slug: '/blog/article/slug'
@@ -49,27 +54,36 @@ module.exports.err = {
 
 // Models mocks
 module.exports.ArticleModel = {
+  find: function (filter, callback) {
+    callback(null, [article]);
+  },
+  findOne: function (filter, callback) {
+    callback(null, article);
+  },
   findAll: function(filter, fields, sort, callback) {
-    callback(null, [{
-      tilte: 'title',
-      author: 'author',
-      created: new Date(),
-      slug: '/blog/article/title',
-      category: 'category',
-      abstract: 'abstract',
-      content: 'content',
-      tags: ['tag']
-    }]);
+    callback(null, [article]);
   }
 };
 
 module.exports.ArticleModelEmpty = {
+  find: function (filter, callback) {
+    callback(null, []);
+  },
+  findOne: function (filter, callback) {
+    callback(null, {});
+  },   
   findAll: function (filter, fields, sort, callback) {
     callback(null, []);
   }
 };
     
 module.exports.ArticleModelKO = {
+  find: function (filter, callback) {
+    callback(new Error('Error'), null);
+  },
+  findOne: function (filter, callback) {
+    callback(new Error('Error'), null);
+  },
   findAll: function(filter, fields, sort, callback) {
     callback(new Error('Error'), null);
   }
@@ -77,16 +91,7 @@ module.exports.ArticleModelKO = {
 
 module.exports.SummaryModel = {
   find: function (filter, sort, callback) {
-    callback(null, [{
-      tilte: 'title',
-      author: 'author',
-      created: new Date(),
-      slug: '/blog/article/title',
-      category: 'category',
-      abstract: 'abstract',
-      content: 'content',
-      tags: ['tag']
-    }]);
+    callback(null, [summary]);
   },
   categoriesCount: function (callback) {
     callback(null, [{_id: 'category', value: 1}]);
@@ -95,19 +100,14 @@ module.exports.SummaryModel = {
     callback(null, [{_id: 'tag', value: 1}]);
   },
   findRange: function (filter, page, cb) {
-    cb(null, [{
-      tilte: 'title',
-      author: 'author',
-      created: new Date(),
-      slug: '/blog/article/title',
-      category: 'category',
-      abstract: 'abstract',
-      content: 'content',
-      tags: ['tag']
-    }]);
+    cb(null, [summary]);
   },
   count: function (filter, cb) {
     cb(null, 1);
+  },
+  getLast: function (filter, cb) {
+    cb(null, {summaries: [],
+      categories: []});
   }
 };
       
@@ -126,7 +126,10 @@ module.exports.SummaryModelKO = {
   },
   count: function (filter, cb) {
     cb(new Error('Error'), null);
-  }  
+  },
+  getLast: function (filter, cb) {
+    cb(new Error('Error'), null);
+  } 
 };
 
 module.exports.UserModel = {

@@ -6,22 +6,35 @@ describe('routes/login', function () {
   var SummaryModel = support.SummaryModel,
       ArticleModel = support.ArticleModel,
       blog = new Blog(ArticleModel, SummaryModel),
+      SummaryModelKO = support.SummaryModelKO,
+      ArticleModelKO = support.ArticleModelKO,
+      blogKO = new Blog(ArticleModelKO, SummaryModelKO),
       req = support.req,
       res = support.res,
       next = support.next;
 
   describe('.getSummary', function () {
+    req.params.page = 0;
+    req.params.category = 'category';
+    req.params.tag = ['tag'];
 
     it('Render de blog view', function () {
-      req.params.page = 0,
-      req.params.category = 'category',
-      req.params.tag = ['tag'],
       res.render = sinon.spy();
 
       blog.getSummary(req, res, next);
 
       res.render.calledWith('blog/blog').should.be.true;
+      res.render.reset();
     });
+
+    it('Error in Model', function () {
+      next = sinon.spy();
+
+      blogKO.getSummary(req, res, next);
+
+      next.called.should.be.true;
+      next.reset();
+    });    
 
   });
 
@@ -34,7 +47,17 @@ describe('routes/login', function () {
       blog.getArticle(req, res, next);
 
       res.render.calledWith('blog/article').should.be.true;
+      res.render.reset();
     });
+
+    it('Error in Model', function () {
+      next = sinon.spy();
+
+      blogKO.getArticle(req, res, next);
+
+      next.called.should.be.true;
+      next.reset();
+    });  
 
   });  
 

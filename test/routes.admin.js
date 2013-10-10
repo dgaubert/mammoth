@@ -8,12 +8,16 @@ describe('routes/admin', function () {
       res = support.res;
 
   describe('.getAdmin', function () {
-    res.render = sinon.spy();
 
-    admin.getAdmin(req, res);
+    it('Blog view shouold be rendered', function () {
+      res.render = sinon.spy();
 
-    res.render.calledWith('blog/admin/admin').should.be.true;
-    res.render.reset();
+      admin.getAdmin(req, res);
+
+      res.render.calledWith('blog/admin/admin').should.be.true;
+      res.render.reset();
+    });
+    
   });
 
 });

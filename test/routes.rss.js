@@ -3,7 +3,6 @@ var support = require('./support'),
     Rss = require('../lib/routes/rss');
     
 describe('routes/rss', function () {
-
   var ArticleModel = support.ArticleModel,
       rss = new Rss(ArticleModel),
       ArticleModelKO = support.ArticleModelKO,
