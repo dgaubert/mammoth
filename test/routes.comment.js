@@ -21,6 +21,16 @@ describe('.newComment(req, res, next)', function () {
     req.body.name = 'Daniel G. Aubert';
     req.body.mail = 'danielgarciaaubert@gmail.com';
 
+
+    it('Comment should check if the articles exist', function () {
+      var ArticleModelMock = sinon.mock(ArticleModel);
+      ArticleModelMock.expects('findOne').once();
+
+      comment.getComments(req, res, next);
+
+      ArticleModelMock.verify();
+    });
+
     it('Comment should be created', function () {
       res.redirect = sinon.spy();
 

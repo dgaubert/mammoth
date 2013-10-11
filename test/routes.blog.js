@@ -18,7 +18,17 @@ describe('routes/login', function () {
     req.params.category = 'category';
     req.params.tag = ['tag'];
 
-    it('Render de blog view', function () {
+    it('Summary should be gotten', function () {
+      var SummaryModelMock = sinon.mock(SummaryModel);
+      SummaryModelMock.expects('findRange').once();
+      SummaryModelMock.expects('count').once();
+
+      blog.getSummary(req, res, next);
+
+      SummaryModelMock.verify();
+    });
+
+    it('Blog view shouold be rendered', function () {
       res.render = sinon.spy();
 
       blog.getSummary(req, res, next);
@@ -39,6 +49,18 @@ describe('routes/login', function () {
   });
 
   describe('.getArticle', function () {
+
+    it('Article should be gotten', function () {
+      var SummaryModelMock = sinon.mock(SummaryModel);
+      SummaryModelMock.expects('categoriesCount').once();
+      var ArticleModelMock = sinon.mock(ArticleModel);
+      ArticleModelMock.expects('find').once();
+
+      blog.getArticle(req, res, next);
+
+      SummaryModelMock.verify();
+      ArticleModelMock.verify();
+    });
 
     it('Render de article view', function () {
       req.params.slug = '/blog/slug',

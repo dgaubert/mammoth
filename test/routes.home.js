@@ -13,6 +13,16 @@ describe('routes/home', function () {
 
   describe('.getHome', function () {
 
+    it('Last article written should be gotten', function () {
+      var SummaryModelMock = sinon.mock(SummaryModel);
+      SummaryModelMock.expects('getLast').once();
+      SummaryModelMock.expects('categoriesCount').once();
+
+      home.getHome(req, res, next);
+
+      SummaryModelMock.verify();
+    });
+
     it('Render de home view', function () {
       res.render = sinon.spy();
 

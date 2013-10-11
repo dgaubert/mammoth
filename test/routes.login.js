@@ -15,6 +15,16 @@ describe('routes/login', function () {
 
   describe('.checkUser', function () {
 
+    it('User should be found', function () {
+      var UserModelMock = sinon.mock(UserModel);
+      UserModelMock.expects('find').once();
+
+      login.checkUser(req, res, next);
+
+      UserModelMock.verify();
+    });
+
+    // TODO: something is wrong to test pwd
     it.skip('Login OK, regenerate session', function () {
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -29,6 +39,7 @@ describe('routes/login', function () {
       res.redirect.reset();
     });
 
+    // TODO: something is wrong to test pwd
     it.skip('Wrong password, redirect', function () {
       req.body.username = 'dgaubert';
       req.body.password = 'wrong';
