@@ -1,18 +1,21 @@
 extends layout
 block content
-  div.wrapper-presentation
-    section.presentation
-      img#avatar.paper(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
-      div.text-column
+  section.presentation
+    div.row-fluid
+      div.span2
+        img#avatar.img-rounded.paper(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
+      div.span5
         h3 ¡Bienvenido!
         p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en construir aplicaciones web. Para mí el desarrollo software el algo más que una forma de ganarme la vida, es mi profesión y una manera de entender el mundo.
-      div.text-column
+      div.span5
         h3 Contacto
         p ¿Tienes una idea?, ¿quieres desarrollar una aplicación o servicio?, ¿tu negocio necesita una web?. Construyo software de calidad.
-        a#mailto(href='mailto:danielgarciaaubert@gmail.com') Contactar
-  div.wrapper-latest
-    section.blog-latest
-      h2 Lo último en el blog:
+        a#mailto.btn.btn-primary(href='mailto:danielgarciaaubert@gmail.com') Contactar
+  
+  section.blog-latest
+    div.row-fluid
+      div.page-header
+        h2 Lo último en el blog:
       div.summary-latest
         include blog/includes/summary
       div.categories

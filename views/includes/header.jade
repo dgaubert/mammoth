@@ -1,16 +1,21 @@
-header
-  section.menu
-    section.logo
-      hgroup
-        h1.title Daniel Gª Aubert
-        h2.description programmer
-    nav
-      a(class='#{section === "home" ? "active" : ""}', href='/') inicio
-      a(class='#{section === "blog" ? "active" : ""}', href='/blog') blog
-      // a(href='/projects') Projectos
-      // a(href='/contact') Contacto
-    section.social
-      a.social.github(href='https://github.com/dgaubert')
-      a.social.linkedin(href='http://www.linkedin.com/in/danielgarciaaubert')
-      a.social.twitter(href='https://twitter.com/danigaubert')
-      a.social.rss(href='http://www.dgaubert.com/blog/rss')
+header.navbar.navbar-fixed-top
+  div.navbar-inner
+    div.container
+      a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+      section.brand
+        span Daniel Gª Aubert
+      nav.nav-collapse.collapse
+        ul.nav
+          li(class='#{section === "home" ? "active" : ""}')
+            a(href='/') inicio
+          li(class='#{section === "blog" ? "active" : ""}')
+            a(href='/blog') blog
+        ul.nav.pull-right
+          li
+            a(href='https://github.com/dgaubert') Github
+          li
+            a(href='http://www.linkedin.com/in/danielgarciaaubert') Linkedin
+          li
+            a(href='https://twitter.com/danigaubert') Twitter
+          li
+            a(href='http://www.dgaubert.com/blog/rss') RSS
