@@ -3,12 +3,14 @@ $(document).ready(function() {
   /**
    * Inputs
    */
+/*
   $('input').addClass('ui-corner-all');
   $('textarea').addClass('ui-corner-all');
-
+*/
   /**
    * Pagination
    */
+/*
   $('a#previous').button({
     text: false,
     icons: {
@@ -44,10 +46,12 @@ $(document).ready(function() {
   $('a#next').addClass('ui-corner-right');
   $('ul#pages').hide().menu();
   $('ul#pages .ui-menu-item a.selected').addClass('ui-state-disabled');
-
+*/
   /**
    * Links
    */
+
+/*
   $('a#search').button({
     icons: {
       primary: 'ui-icon-search'
@@ -59,28 +63,30 @@ $(document).ready(function() {
     }
   });
   $('a.link, a.tag, a.category').button();
-
+*/
   /**
    * Clouds
    */
+/*
   if ($('#word-cloud').length > 0) {
     $.getJSON('/blog/word-cloud', function(words) {
         $('#word-cloud').jQCloud(words);
     });
   }
-
+*/
   /**
    * Comments
    */
 
   /* Form */
+  /*
   $(document).ready(function(){
       $('textarea').autosize();
   });
   $('input#name').attr('placeholder', 'Nombre (requerido)');
   $('input#mail').attr('placeholder', 'Correo electronico (requerido)');
   $('textarea#comment').attr('placeholder', 'Escribe un comentario (requerido)');
-
+  
   $('button#comment').button({
     icons: {
       primary: 'ui-icon-comment'
@@ -90,7 +96,7 @@ $(document).ready(function() {
   $('body').bind('onload', function() {
     $("html, body").animate({scrollTop: $("#lastCommnent").scrollTop()}, 1000);
   });
-
+  */
   var checkComment = function() {
     var comment = $('form#comment').serializeArray(),
         tags = comment[2].value.match(/<(.*?)>/g),
@@ -150,6 +156,7 @@ $(document).ready(function() {
   /**
    * Admin
    */
+/*
   $('input.save, input.remove, input.login').button().css('line-height','0.8');
-
+*/
 });

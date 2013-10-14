@@ -5261,6 +5261,35 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+/*
+@import "mixins.less";
+@import "type.less";
+@import "forms.less";
+@import "wells.less";
+@import "navs.less";
+@import "navbar.less";
+@import "carousel.less";
+@import "labels-badges.less";
+ */
+body {
+  padding-top: 60px;
+}
+#labels a {
+  margin-right: 5px;
+}
+#word-cloud {
+  height: 250px;
+  width: 100%;
+}
+footer {
+  background-color: #222222;
+  color: #999999;
+  padding: 40px 0 40px;
+  margin-top: 40px;
+}
+footer a:hover {
+  text-decoration: none;
+}
 /*!
  * Bootstrap Responsive v2.3.2
  *
@@ -6322,14 +6351,3 @@ a.badge:focus {
     overflow: visible !important;
   }
 }
-/*
-@import "mixins.less";
-@import "type.less";
-@import "forms.less";
-@import "wells.less";
-@import "navs.less";
-@import "navbar.less";
-@import "carousel.less";
-@import "gatilu.less";
-@import "labels-badges.less";
- */

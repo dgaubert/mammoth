@@ -1,152 +1,66 @@
 extends layout
 block content
-  section.presentation
-    div.row-fluid
-      div.span2
-        img#avatar.img-rounded.paper(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
-      div.span5
-        h3 ¡Bienvenido!
-        p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en construir aplicaciones web. Para mí el desarrollo software el algo más que una forma de ganarme la vida, es mi profesión y una manera de entender el mundo.
-      div.span5
+
+  section#presentation.row-fluid
+    div.hero.row-fluid
+      div.hero-unit.span7
+        div.span4
+          img.img-rounded(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
+        div.offset1.span7
+          h3 ¡Bienvenido!
+          p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en construir aplicaciones web. Para mí el desarrollo software el algo más que una forma de ganarme la vida, es mi profesión y una manera de entender el mundo.
+      div.hero-unit.span5
         h3 Contacto
         p ¿Tienes una idea?, ¿quieres desarrollar una aplicación o servicio?, ¿tu negocio necesita una web?. Construyo software de calidad.
+        br
+        br
         a#mailto.btn.btn-primary(href='mailto:danielgarciaaubert@gmail.com') Contactar
   
-  section.blog-latest
+  section#blog-latest.row-fluid
+    div.page-header
+      h2 Lo último en el blog:
     div.row-fluid
-      div.page-header
-        h2 Lo último en el blog:
-      div.summary-latest
+      div.span9
         include blog/includes/summary
-      div.categories
+      div.well.span3
         h3 Categorias
         ul
           - each category in categories
             li
               a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
-  div.wrapper-portfolio
-    section.portfolio
+
+  section#portfolio.row-fluid
+    div.page-header
       h2 Portfolio:
-      div.project
-        a(href='https://github.com/dgaubert/mammoth')
-          img(src='/images/project-mammoth.png')
-          span.detail
-            span.inner-detail
-              span.project-name Mammoth
-              span.contribution Contribución
-              span.stars
-                span.star.purple
-                span.star.purple
-                span.star.purple
-                span.star.purple
-                span.star.purple
-              span.contribution Código vs Diseño
-              span.stars
-                span.star.orange
-                span.star.orange
-                span.star.orange
-                span.star.blue
-                span.star.blue
-      div.project
-        a(href='http://www.artegaubert.com')
-          img(src='/images/project-arte-gaubert.png')
-          span.detail
-            span.inner-detail
-              span.project-name Arte Gaubert
-              span.contribution Contribución
-              span.stars
-                span.star.purple
-                span.star.purple
-                span.star.purple
-                span.star.gray
-                span.star.gray
-              span.contribution Código vs Diseño
-              span.stars
-                span.star.orange
-                span.star.orange
-                span.star.blue
-                span.star.blue
-                span.star.blue
-      div(style='clear:both')
-  div.wrapper-tools
-    section.tools
+    div.row-fluid
+      ul.thumbnails
+        li.span3
+          a.thumbnail(href='https://github.com/dgaubert/mammoth')
+            img.img-rounded(src='/images/project-mammoth.png')
+        li.span3
+          a.thumbnail(href='http://www.artegaubert.com')
+            img.img-rounded(src='/images/project-arte-gaubert.png')
+
+  section#tools.row-fluid
+    div.page-header  
       h2 Herramientas:
-      div.tool
-        a(href='http://nodejs.org/')
-          img(src='/images/tool-nodejs.jpg')
-          span.knowledge
-            span.inner
-              span.tool Node.js
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray      
-      div.tool
-        a(href='http://expressjs.com/')
-          img(src='/images/tool-expressjs.jpg')
-          span.knowledge
-            span.inner
-              span.tool Express.js
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://www.mongodb.org/')
-          img(src='/images/tool-mongo.jpg')
-          span.knowledge
-            span.inner
-              span.tool MongoDB
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://jquery.com/')
-          img(src='/images/tool-jquery.jpg')
-          span.knowledge
-            span.inner
-              span.tool jQuery
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://git-scm.com/')
-          img(src='/images/tool-git.png')
-          span.knowledge
-            span.inner
-              span.tool Git SCM
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://backbonejs.org/')
-          img(src='/images/tool-backbonejs.png')
-          span.knowledge
-            span.inner
-              span.tool Backbone.js
-              span.rating Rookie
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.gray
-                span.star.gray
-                span.star.gray
-      div(style='clear:both')
+    div.row-fluid
+      ul.thumbnails
+        li.span2
+          a.thumbnail(href='http://nodejs.org/')
+            img.img-rounded(src='/images/tool-nodejs.jpg')
+        li.span2
+          a.thumbnail(href='http://expressjs.com/')
+            img.img-rounded(src='/images/tool-expressjs.jpg')
+        li.span2
+          a.thumbnail(href='http://www.mongodb.org/')
+            img.img-rounded(src='/images/tool-mongo.jpg')
+        li.span2
+          a.thumbnail(href='http://jquery.com/')
+            img.img-rounded(src='/images/tool-jquery.jpg')
+        li.span2
+          a.thumbnail(href='http://git-scm.com/')
+            img.img-rounded(src='/images/tool-git.png')
+        li.span2
+          a.thumbnail(href='http://backbonejs.org/')
+            img.img-rounded(src='/images/tool-backbonejs.png')

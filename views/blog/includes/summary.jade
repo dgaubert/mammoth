@@ -1,17 +1,19 @@
-div.summaries
+div#summaries
   - each summary in summaries
-    article.summary
-      hgroup.summary-title
-        a(href='/blog/#{summary.slug}')
-          h2.title #{summary.title}
-        h3.author Por #{summary.author}
-        h3.created 
-          = (moment(summary.created).format('[el] DD/MM/YYYY'))
-        h3.comments [ #{summary.commentCounter} Comentarios ]
-      div.summary-abstract 
+    article
+      div.row-fluid
+        div.page-header
+          a(href='/blog/#{summary.slug}')
+            h3.title #{summary.title}
+          small Por 
+            strong #{summary.author}
+          small
+            = (moment(summary.created).format('[ el] DD/MM/YYYY'))
+      div.row-fluid
         p!= summary.abstract
-      div.summary-action
-        a.link(href='/blog/#{summary.slug}') Leer m&aacutes
-        a.category(href='/blog/category/#{summary.category}') #{summary.category}
+      div#labels.row-fluid
+        a.label.label-important(href='/blog/#{summary.slug}') Leer m&aacutes
+        a.label.label-success(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags
-          a.tag(href='/blog/tag/#{tag}') #{tag}
+          a.label.label-warning(href='/blog/tag/#{tag}') #{tag}
+        small [#{summary.commentCounter} Comentarios ]
