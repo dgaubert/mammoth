@@ -1,9 +1,8 @@
 extends ../../layout
 block content
-  div.wrapper-admin
-    section.admin
-      h1 Autenticación
+  section#admin.row
       form(method='post', action='/blog/login')
+        legend Autenticación
         p
           label Usuario:
           input.nice.user(type='text', name='username')

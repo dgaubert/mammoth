@@ -1,7 +1,8 @@
 div#summaries
   - each summary in summaries
     article
-      div.row-fluid
+      div.row
+        //- title
         div.page-header
           a(href='/blog/#{summary.slug}')
             h3.title #{summary.title}
@@ -9,9 +10,11 @@ div#summaries
             strong #{summary.author}
           small
             = (moment(summary.created).format('[ el] DD/MM/YYYY'))
-      div.row-fluid
+      //- content
+      div.row
         p!= summary.abstract
-      div#labels.row-fluid
+      //- button bar
+      div#labels.row
         a.label.label-important(href='/blog/#{summary.slug}') Leer m&aacutes
         a.label.label-success(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags

@@ -1,28 +1,31 @@
-header.navbar.navbar-fixed-top
-  div.navbar-inner
-    div.container
-      a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+header.navbar.navbar-default.navbar-fixed-top
+  div.container
+    div.navbar-header
+      //- button mobile
+      button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      section.brand
-        span Daniel Gª Aubert
-      nav.nav-collapse.collapse
-        ul.nav
-          li(class='#{section === "home" ? "active" : ""}')
-            a(href='/') inicio
-          li(class='#{section === "blog" ? "active" : ""}')
-            a(href='/blog') blog
-        ul.nav.pull-right
-          li
-            a(href='https://github.com/dgaubert')
-              i.icon-github.icon-large
-          li
-            a(href='http://www.linkedin.com/in/danielgarciaaubert') 
-              i.icon-linkedin.icon-large
-          li
-            a(href='https://twitter.com/danigaubert') 
-              i.icon-twitter.icon-large
-          li
-            a(href='http://www.dgaubert.com/blog/rss')
-              i.icon-rss.icon-large
+      //- logo
+      a.navbar-brand(href="/") Daniel Gª Aubert
+      //- menu
+    div.navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li(class='#{section === "home" ? "active" : ""}')
+          a(href='/') inicio
+        li(class='#{section === "blog" ? "active" : ""}')
+          a(href='/blog') blog
+      //- social button bar
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='https://github.com/dgaubert')
+            i.icon-github.icon-large
+        li
+          a(href='http://www.linkedin.com/in/danielgarciaaubert') 
+            i.icon-linkedin.icon-large
+        li
+          a(href='https://twitter.com/danigaubert') 
+            i.icon-twitter.icon-large
+        li
+          a(href='http://www.dgaubert.com/blog/rss')
+            i.icon-rss.icon-large

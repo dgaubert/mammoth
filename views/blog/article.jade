@@ -1,9 +1,9 @@
 extends ../layout
 block content
-  section#article.row-fluid
-    article.span9
-
-      div.row-fluid
+  section#article.row
+    article.col-md-9
+      //- article
+      div.row
         div.page-header
           a(href='/blog/#{article.slug}')
             h3.title #{article.title}
@@ -11,45 +11,44 @@ block content
             strong #{article.author}
           small
             = (moment(article.created).format('[ el] DD/MM/YYYY'))
-        div.row-fluid!=article.content
-        div#labels.row-fluid
+        div.row!=article.content
+        div#labels.row
           a.label.label-important(href='/blog') Volver
           a.label.label-success(href='/blog/category/#{article.category}') #{article.category}
             - each tag in article.tags
               a.label.label-warning(href='/blog/tag/#{tag}') #{tag}
-
-      div.row-fluid.span10
+      //- comments
+      div.row.col-md-10
         div.page-header
           h4 Comentarios
         - each comment in article.comments
           div.comment
             h5 #{comment.author}
-              //span  el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
               span  
                 = (moment(comment.created).format('[el] DD/MM/YYYY [a las] HH:mm'))
             div
               p!=comment.comment
         span#lastCommnent
-
-      div.well.row-fluid.span9
+      //- new comment
+      div.well.row.col-md-9
         form#comment(action='/blog/#{article.slug}/comment', method='post')
           legend Participa escribiendo un comentario
-          input#name.span12(name='name', type='text', placeholder='Nombre')
-          input#mail.span12(name='mail', type='text', placeholder='Correo electrónico')
-          textarea#comment.fixed.span12(name='comment', rows='10', placeholder='Escribe un comentario')
+          input#name.col-md-12(name='name', type='text', placeholder='Nombre')
+          input#mail.col-md-12(name='mail', type='text', placeholder='Correo electrónico')
+          textarea#comment.fixed.col-md-12(name='comment', rows='10', placeholder='Escribe un comentario')
           button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
-            i.icon-comment-alt  Comentar
+            i.glyphicon-comment-alt  Comentar
           span#error-msg
-      
-      div.row-fluid.span9
+      //- note
+      div.row.col-md-9
         p 
           strong Aviso: 
           i Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
             | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
             | sean inapropiados serán eliminados.
             | Vamos a añadir valor al blog. Gracias.
-    
-    aside.span3
+    //- side bar
+    aside.col-md-3
       div.well
         h4 Categorias
         ul

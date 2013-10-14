@@ -1,66 +1,68 @@
 extends layout
 block content
-
-  section#presentation.row-fluid
-    div.hero.row-fluid
-      div.hero-unit.span7
-        div.span4
-          img.img-rounded(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
-        div.offset1.span7
-          h3 ¡Bienvenido!
-          p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en construir aplicaciones web. Para mí el desarrollo software el algo más que una forma de ganarme la vida, es mi profesión y una manera de entender el mundo.
-      div.hero-unit.span5
-        h3 Contacto
-        p ¿Tienes una idea?, ¿quieres desarrollar una aplicación o servicio?, ¿tu negocio necesita una web?. Construyo software de calidad.
-        br
-        br
-        a#mailto.btn.btn-primary(href='mailto:danielgarciaaubert@gmail.com') Contactar
-  
-  section#blog-latest.row-fluid
+  //- wellcome
+  div#presentation.jumbotron
+    div.container
+      div.col-md-2
+        img.img-rounded.img-responsive(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
+      div.col-md-5
+        h2 ¡Bienvenido!
+        p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en
+          | construir aplicaciones web. Para mí el desarrollo software el 
+          | algo más que una forma de ganarme la vida, es mi profesión y una
+          | manera de entender el mundo.
+      div.col-md-5
+        h2 Contacto
+        p ¿Tienes una idea?, ¿quieres desarrollar una aplicación o servicio?, 
+          | ¿tu negocio necesita una web?. Construyo software de calidad.
+        p
+          a.btn.btn-primary.btn-lg(href='mailto:danielgarciaaubert@gmail.com') Contactar
+  //- latest article
+  section#blog-latest.row
     div.page-header
       h2 Lo último en el blog:
-    div.row-fluid
-      div.span9
+    div.row
+      div.col-md-9
         include blog/includes/summary
-      div.well.span3
+      div.well.col-md-3
         h3 Categorias
         ul
           - each category in categories
             li
               a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
-
-  section#portfolio.row-fluid
+  //- portfolio
+  section#portfolio.row
     div.page-header
       h2 Portfolio:
-    div.row-fluid
-      ul.thumbnails
-        li.span3
-          a.thumbnail(href='https://github.com/dgaubert/mammoth')
+    div.row
+      ul.img-thumbnail.img-responsives
+        li.col-md-3
+          a.img-thumbnail.img-responsive(href='https://github.com/dgaubert/mammoth')
             img.img-rounded(src='/images/project-mammoth.png')
-        li.span3
-          a.thumbnail(href='http://www.artegaubert.com')
+        li.col-md-3
+          a.img-thumbnail.img-responsive(href='http://www.artegaubert.com')
             img.img-rounded(src='/images/project-arte-gaubert.png')
-
-  section#tools.row-fluid
+  //- tools
+  section#tools.row
     div.page-header  
       h2 Herramientas:
-    div.row-fluid
-      ul.thumbnails
-        li.span2
-          a.thumbnail(href='http://nodejs.org/')
+    div.row
+      ul
+        li.col-md-2
+          a.img-thumbnail.img-responsive(href='http://nodejs.org/')
             img.img-rounded(src='/images/tool-nodejs.jpg')
-        li.span2
-          a.thumbnail(href='http://expressjs.com/')
+        li.col-md-2
+          a.img-thumbnail.img-responsive(href='http://expressjs.com/')
             img.img-rounded(src='/images/tool-expressjs.jpg')
-        li.span2
-          a.thumbnail(href='http://www.mongodb.org/')
+        li.col-md-2
+          a.img-thumbnail.img-responsive(href='http://www.mongodb.org/')
             img.img-rounded(src='/images/tool-mongo.jpg')
-        li.span2
-          a.thumbnail(href='http://jquery.com/')
+        li.col-md-2
+          a.img-thumbnail.img-responsive(href='http://jquery.com/')
             img.img-rounded(src='/images/tool-jquery.jpg')
-        li.span2
-          a.thumbnail(href='http://git-scm.com/')
+        li.col-md-2
+          a.img-thumbnail.img-responsive(href='http://git-scm.com/')
             img.img-rounded(src='/images/tool-git.png')
-        li.span2
-          a.thumbnail(href='http://backbonejs.org/')
+        li.col-md-2
+          a.img-thumbnail.img-responsive(href='http://backbonejs.org/')
             img.img-rounded(src='/images/tool-backbonejs.png')
