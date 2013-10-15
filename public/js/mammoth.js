@@ -7,6 +7,7 @@ $(document).ready(function() {
         i,
         j;
     if (comment[0].value.match(/^[\w\s._-]+$/) === null) {
+      comment[0].addClass('hass-error');
       $('form#comment').find('#error-msg').text('Nombre no valido');
       return 0;
     }

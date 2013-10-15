@@ -1,18 +1,23 @@
 body {
-  padding-top: 60px;
+  padding: 50px 0 0 0;
+}
+
+.first-section {
+  padding: 20px 0 0 0;
 }
 
 #labels {
-  margin: 15px 0px 30px;
+  margin: 20px 0 40px 0;
 }
+
 #labels a{
-  margin-right: 5px;
+  margin: 0 5px 0 0;
 }
 
 footer {
   background-color: @grayDarker;
   color: @grayLight;
-  padding: 40px 0 40px;
+  padding: 40px 20px 40px 20px;
   margin: 40px -20px 0 -20px;
 }
 

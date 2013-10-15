@@ -1,21 +1,18 @@
-div#summaries
+div#summary
   - each summary in summaries
     article
-      div.row
-        //- title
-        div.page-header
-          a(href='/blog/#{summary.slug}')
-            h3.title #{summary.title}
-          small Por 
-            strong #{summary.author}
-          small
-            = (moment(summary.created).format('[ el] DD/MM/YYYY'))
+      //- title
+      h3
+        a(href='/blog/#{summary.slug}') #{summary.title}
+        small  por 
+          strong #{summary.author}
+        small
+          = (moment(summary.created).format('[ el] DD/MM/YYYY'))
       //- content
-      div.row
-        p!= summary.abstract
+      p!= summary.abstract
       //- button bar
-      div#labels.row
-        a.label.label-important(href='/blog/#{summary.slug}') Leer m&aacutes
+      div#labels
+        a.label.label-info(href='/blog/#{summary.slug}') Leer m&aacutes
         a.label.label-success(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags
           a.label.label-warning(href='/blog/tag/#{tag}') #{tag}

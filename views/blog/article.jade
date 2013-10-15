@@ -1,63 +1,78 @@
 extends ../layout
 block content
-  section#article.row
-    article.col-md-9
-      //- article
-      div.row
-        div.page-header
-          a(href='/blog/#{article.slug}')
-            h3.title #{article.title}
-          small Por 
-            strong #{article.author}
-          small
-            = (moment(article.created).format('[ el] DD/MM/YYYY'))
-        div.row!=article.content
-        div#labels.row
-          a.label.label-important(href='/blog') Volver
-          a.label.label-success(href='/blog/category/#{article.category}') #{article.category}
+  div.container
+    section#article.first-section
+      div#article.col-md-9
+
+        //- article
+        article
+          //- title
+          h3
+            a(href='/blog/#{article.slug}') #{article.title}
+            small  por 
+              strong #{article.author}
+            small
+              = (moment(article.created).format('[ el] DD/MM/YYYY'))
+          //- content
+          p!= article.content
+          //- button bar
+          div#labels
+            a.label.label-success(href='/blog/category/#{article.category}') #{article.category}
             - each tag in article.tags
               a.label.label-warning(href='/blog/tag/#{tag}') #{tag}
-      //- comments
-      div.row.col-md-10
-        div.page-header
+
+          <hr class="featurette-divider">
+
+          //- comments
+
           h4 Comentarios
-        - each comment in article.comments
-          div.comment
-            h5 #{comment.author}
-              span  
-                = (moment(comment.created).format('[el] DD/MM/YYYY [a las] HH:mm'))
-            div
-              p!=comment.comment
-        span#lastCommnent
-      //- new comment
-      div.well.row.col-md-9
-        form#comment(action='/blog/#{article.slug}/comment', method='post')
-          legend Participa escribiendo un comentario
-          input#name.col-md-12(name='name', type='text', placeholder='Nombre')
-          input#mail.col-md-12(name='mail', type='text', placeholder='Correo electrónico')
-          textarea#comment.fixed.col-md-12(name='comment', rows='10', placeholder='Escribe un comentario')
-          button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
-            i.glyphicon-comment-alt  Comentar
-          span#error-msg
-      //- note
-      div.row.col-md-9
-        p 
-          strong Aviso: 
-          i Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
-            | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
-            | sean inapropiados serán eliminados.
-            | Vamos a añadir valor al blog. Gracias.
-    //- side bar
-    aside.col-md-3
-      div.well
-        h4 Categorias
-        ul
-          - each category in categories
-            li
-              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
-      div.well
-        h4 Artículos similares
-        ul
-          - each similar in similars
-            li
-              a(href='/blog/#{similar.slug}') #{similar.title}
+          - each comment in article.comments
+            div.comment
+              h5 #{comment.author}
+                span  
+                  = (moment(comment.created).format('[el] DD/MM/YYYY [a las] HH:mm'))
+              div
+                p!=comment.comment
+          span#lastCommnent
+
+          <hr class="featurette-divider">
+
+        //- new comment
+        div.well.col-md-9
+          form#comment(action='/blog/#{article.slug}/comment', method='post')
+            legend Participa escribiendo un comentario
+            fieldset
+              div.form-group.input-group
+                span.input-group-addon Nombre
+                input#name.form-control(name='name', type='text', placeholder='Ej: Peter Jackson')
+              div.form-group.input-group
+                span.input-group-addon Correo
+                input#mail.form-control(name='mail', type='text', placeholder='Ej: peter.jackson@gmail.com')
+              div.form-group
+                textarea#comment.form-control.fixed(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
+              button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
+                i.glyphicon-comment-alt  Comentar
+
+        //- note
+        div.row.col-md-9
+          p 
+            strong Aviso: 
+            i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
+              | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
+              | sean inapropiados serán eliminados.
+              | Vamos a añadir valor al blog. Gracias.
+
+      //- side bar
+      aside.col-md-3
+        div.well
+          h4 Categorias
+          ul.list-unstyled
+            - each category in categories
+              li
+                a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+        div.well
+          h4 Artículos similares
+          ul.list-unstyled
+            - each similar in similars
+              li
+                a(href='/blog/#{similar.slug}') #{similar.title}

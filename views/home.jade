@@ -1,10 +1,11 @@
 extends layout
 block content
+
   //- wellcome
-  div#presentation.jumbotron
+  section#presentation.jumbotron
     div.container
       div.col-md-2
-        img.img-rounded.img-responsive(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
+        img.img-circle.img-responsive(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
       div.col-md-5
         h2 ¡Bienvenido!
         p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en
@@ -17,52 +18,57 @@ block content
           | ¿tu negocio necesita una web?. Construyo software de calidad.
         p
           a.btn.btn-primary.btn-lg(href='mailto:danielgarciaaubert@gmail.com') Contactar
+  
   //- latest article
-  section#blog-latest.row
-    div.page-header
+  section#blog-latest
+    div.container
       h2 Lo último en el blog:
-    div.row
-      div.col-md-9
-        include blog/includes/summary
-      div.well.col-md-3
-        h3 Categorias
-        ul
-          - each category in categories
-            li
-              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+      div.row
+        div.col-md-9
+          include blog/includes/summary
+        div.well.col-md-3
+          h3 Categorías
+          ul.list-unstyled
+            - each category in categories
+              li
+                a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+
+  <hr class="featurette-divider">
+  
   //- portfolio
-  section#portfolio.row
-    div.page-header
+  section#portfolio
+    div.container
       h2 Portfolio:
-    div.row
-      ul.img-thumbnail.img-responsives
-        li.col-md-3
-          a.img-thumbnail.img-responsive(href='https://github.com/dgaubert/mammoth')
-            img.img-rounded(src='/images/project-mammoth.png')
-        li.col-md-3
-          a.img-thumbnail.img-responsive(href='http://www.artegaubert.com')
-            img.img-rounded(src='/images/project-arte-gaubert.png')
+      div.row
+        div.col-md-4
+          a.img-thumbnail(href='https://github.com/dgaubert/mammoth')
+            img.img-rounded.img-responsive(src='/images/project-mammoth.png')
+        div.col-md-4
+          a.img-thumbnail(href='http://www.artegaubert.com')
+            img.img-rounded.img-responsive(src='/images/project-arte-gaubert.png')
+
+  <hr class="featurette-divider">
+  
   //- tools
-  section#tools.row
-    div.page-header  
+  section#tools
+    div.container
       h2 Herramientas:
-    div.row
-      ul
-        li.col-md-2
-          a.img-thumbnail.img-responsive(href='http://nodejs.org/')
-            img.img-rounded(src='/images/tool-nodejs.jpg')
-        li.col-md-2
-          a.img-thumbnail.img-responsive(href='http://expressjs.com/')
-            img.img-rounded(src='/images/tool-expressjs.jpg')
-        li.col-md-2
-          a.img-thumbnail.img-responsive(href='http://www.mongodb.org/')
-            img.img-rounded(src='/images/tool-mongo.jpg')
-        li.col-md-2
+      div.row
+        div.col-md-2
+          a.img-thumbnail(href='http://nodejs.org/')
+            img.img-rounded.img-responsive(src='/images/tool-nodejs.jpg')
+        div.col-md-2
+          a.img-thumbnail(href='http://expressjs.com/')
+            img.img-rounded.img-responsive(src='/images/tool-expressjs.jpg')
+        div.col-md-2
+          a.img-thumbnail(href='http://www.mongodb.org/')
+            img.img-rounded.img-responsive(src='/images/tool-mongo.jpg')
+        div.col-md-2
           a.img-thumbnail.img-responsive(href='http://jquery.com/')
-            img.img-rounded(src='/images/tool-jquery.jpg')
-        li.col-md-2
-          a.img-thumbnail.img-responsive(href='http://git-scm.com/')
-            img.img-rounded(src='/images/tool-git.png')
-        li.col-md-2
-          a.img-thumbnail.img-responsive(href='http://backbonejs.org/')
-            img.img-rounded(src='/images/tool-backbonejs.png')
+            img.img-rounded.img-responsive(src='/images/tool-jquery.jpg')
+        div.col-md-2
+          a.img-thumbnail(href='http://git-scm.com/')
+            img.img-rounded.img-responsive(src='/images/tool-git.png')
+        div.col-md-2
+          a.img-thumbnail(href='http://backbonejs.org/')
+            img.img-rounded.img-responsive(src='/images/tool-backbonejs.png')
