@@ -14,9 +14,13 @@ body {
   margin: 0 5px 0 0;
 }
 
+.comment h5 {
+  padding-top: 20px;
+}
+
 footer {
-  background-color: @grayDarker;
-  color: @grayLight;
+  background-color: #222;
+  color: #999;
   padding: 40px 20px 40px 20px;
   margin: 40px -20px 0 -20px;
 }

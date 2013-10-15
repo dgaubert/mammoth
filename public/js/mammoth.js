@@ -7,12 +7,11 @@ $(document).ready(function() {
         i,
         j;
     if (comment[0].value.match(/^[\w\s._-]+$/) === null) {
-      comment[0].addClass('hass-error');
-      $('form#comment').find('#error-msg').text('Nombre no valido');
+      $('form#comment').find('#error-msg').text('Nombre no válido');
       return 0;
     }
     if (comment[1].value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/) === null) {
-      $('form#comment').find('#error-msg').text('Correo electr\u00f3nico incorrecto');
+      $('form#comment').find('#error-msg').text('Correo no válido');
       return 0;
     }
     if (!comment[2].value.length) {

@@ -25,12 +25,13 @@ block content
 
           //- comments
 
-          h4 Comentarios
+          h3 Comentarios
           - each comment in article.comments
             div.comment
-              h5 #{comment.author}
+              h5
+                strong #{comment.author}
                 span  
-                  = (moment(comment.created).format('[el] DD/MM/YYYY [a las] HH:mm'))
+                  = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
               div
                 p!=comment.comment
           span#lastCommnent
@@ -51,7 +52,8 @@ block content
               div.form-group
                 textarea#comment.form-control.fixed(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
               button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
-                i.glyphicon-comment-alt  Comentar
+                i.icon-comment-alt  Comentar
+              span#error-msg.text-danger
 
         //- note
         div.row.col-md-9
