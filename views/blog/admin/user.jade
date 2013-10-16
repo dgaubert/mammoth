@@ -1,18 +1,25 @@
 extends ../../layout
 block content
-  div.wrapper-admin
-    section.admin
-      h1 #{title}
-      form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
-        p
-          label Nombre de usuario:
-          input.nice.user(type='text', name='username', value='#{user === undefined ? "" : user.username}', size='30') 
-        p
-          label #{user === undefined ? "Contraseña" : "Nueva contraseña"}:
-          input.nice.user(type='password', name='password', size='30')
-        p.action
-          input.save(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
-          - if (user !== undefined) {
-            input(type="hidden", name="_method", value="put")
-          - }
-          a.link(id='back', href='/blog/admin/users') Volver
+  section#admin
+    div.container
+      div.section-admin.col-md-6.col-md-offset-3
+        form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
+          legend 
+            h2 #{title}:
+          div.form-group.input-group
+            span.input-group-addon Nombre
+            input.form-control(type='text', name='username', value='#{user === undefined ? "" : user.username}')
+          div.form-group.input-group
+            span.input-group-addon #{user === undefined ? 'Contraseña' : 'Nueva contraseña'}
+            input.form-control(type='password', name='password')
+          div.btn-bar
+            a.btn.btn-primary(href='/blog/admin/users')
+              i.icon-arrow-left
+              span  Volver
+            button.btn.btn-success.pull-right(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
+              i.icon-ok
+              span  #{user === undefined ? "Crear" : "Actualizar"}
+            - if (user !== undefined) {
+              input(type="hidden", name="_method", value="put")
+            - }
+            

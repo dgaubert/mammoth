@@ -2,6 +2,15 @@ body {
   padding: 50px 0 0 0;
 }
 
+.presentation {
+  padding: 20px;
+  background-color: #eee;
+}
+
+.icon-stack {
+  color: rgb(1, 158, 152);
+}
+
 .first-section {
   padding: 20px 0 0 0;
 }
@@ -14,8 +23,17 @@ body {
   margin: 0 5px 0 0;
 }
 
+.btn-bar a:not(:first-child), button:not(:first-child) {
+  margin: 0 0 0 5px;
+}
+
 .comment h5 {
   padding-top: 20px;
+}
+
+.section-admin {
+  min-height: 400px;
+  padding: 50px;
 }
 
 footer {

@@ -1,16 +1,28 @@
 extends ../../layout
 block content
-  div.wrapper-admin
-    section.admin
-      h1 #{title}
-      ul
-        - each comment in article.comments
-          li
-            form(method='post', action='/blog/admin/articles/#{article.slug}/comments/#{comment._id}')
-              h3 #{comment.author} - el #{comment.created.getDate()}/#{comment.created.getMonth()+1}/#{comment.created.getFullYear()} a las #{comment.created.getHours()}:#{comment.created.getMinutes()}
-              p #{comment.comment}
-              p.action
-                input.remove(type='submit', value='Borrar')
-                input(type="hidden", name="_method", value="delete")
-      p.action
-        a.link(href='/blog/admin/articles/#{article.slug}') Volver
+  section.admin
+    div.container
+      div.section-admin.col-md-10.col-md-offset-1
+        a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
+          i.icon-arrow-left
+          span  Volver
+        legend 
+          h2 #{title}:
+        ul.list-unstyled
+          - each comment in article.comments
+            li
+              form(method='post', action='/blog/admin/articles/#{article.slug}/comments/#{comment._id}')
+                h5
+                  strong #{comment.author}
+                  span  
+                    = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
+                div
+                  p!=comment.comment
+                div.btn-bar
+                  button.btn.btn-danger.pull-right(type='submit')
+                    i.icon-remove
+                    span  Eliminar
+                  input(type="hidden", name="_method", value="delete")
+        a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
+          i.icon-arrow-left
+          span  Volver

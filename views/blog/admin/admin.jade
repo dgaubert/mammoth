@@ -1,13 +1,15 @@
 extends ../../layout
 block content
-  div.wrapper-admin
-    section.admin
-      h1 #{title}
-      ul
-        li
-          a(href='/blog/admin/users') Usuarios
-      ul
-        li
-          a(href='/blog/admin/articles') Artículos
-      p.action
-        a.link(href='/blog/logout') Salir
+  section#admin
+    div.container
+      div.section-admin.col-md-6.col-md-offset-3
+        legend 
+          h2 #{title}:
+        ul.list-unstyled
+          li
+            a(href='/blog/admin/users') Usuarios
+          li
+            a(href='/blog/admin/articles') Artículos
+          a.btn.btn-primary.pull-right(href='/blog/logout')
+            i.icon-signout
+            span  Salir
