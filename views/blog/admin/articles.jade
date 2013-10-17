@@ -2,18 +2,19 @@ extends ../../layout
 block content
   section#admin
     div.container
-      div.section-admin.col-md-6.col-md-offset-3
-        legend 
-          h2 #{title}:
-        ul.list-unstyled
-          - each article in articles
-            li
-              a(href="/blog/admin/articles/#{article.slug}") #{article.title}
-        div.btn-toolbar
-          a.btn.btn-primary(href='/blog/admin')
-            i.icon-arrow-left
-            span  Volver
-          a.btn.btn-success.pull-right(href='/blog/admin/articles/new')
-            i.icon-file-text
-            span  Nuevo
+      div.row
+        div.col-md-6.col-md-offset-3
+          legend 
+            h2 #{title}:
+          ul.nav.nav-list
+            - each article in articles
+              li
+                a(href="/blog/admin/articles/#{article.slug}") #{article.title}
+          div.btn-toolbar
+            a.btn.btn-primary(href='/blog/admin')
+              i.icon-arrow-left
+              span  Volver
+            a.btn.btn-success.pull-right(href='/blog/admin/articles/new')
+              i.icon-file-text
+              span  Nuevo
             

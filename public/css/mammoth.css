@@ -13,12 +13,16 @@ article {
   background-color: #e8e8e8;
 }
 
+#last-article {
+  background-color: #f1f1f1;
+}
+
 #blog {
-  background-color: #efefef;
+  background-color: #e8e8e8;
 }
 
 #article {
-  background-color: #efefef;
+  background-color: #e8e8e8;
 }
 
 #portfolio {
@@ -26,7 +30,13 @@ article {
 }
 
 #tools {
-  background-color: #e2e2e2;
+  background-color: #f1f1f1;
+}
+
+#admin {
+  background-color: #e8e8e8;
+  min-height: 400px;
+  padding: 50px;
 }
 
 .icon-stack {
@@ -37,10 +47,6 @@ article {
   padding-top: 20px;
 }
 
-.section-admin {
-  min-height: 400px;
-  padding: 50px;
-}
 
 footer {
   background-color: #222;
