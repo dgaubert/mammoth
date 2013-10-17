@@ -3,9 +3,10 @@ block content
   section.admin
     div.container
       div.section-admin.col-md-10.col-md-offset-1
-        a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
-          i.icon-arrow-left
-          span  Volver
+        div.btn-toolbar
+          a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
+            i.icon-arrow-left
+            span  Volver
         legend 
           h2 #{title}:
         ul.list-unstyled
@@ -18,11 +19,12 @@ block content
                     = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
                 div
                   p!=comment.comment
-                div.btn-bar
+                div.btn-toolbar
                   button.btn.btn-danger.pull-right(type='submit')
                     i.icon-remove
                     span  Eliminar
                   input(type="hidden", name="_method", value="delete")
-        a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
-          i.icon-arrow-left
-          span  Volver
+        div.btn-toolbar
+          a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
+            i.icon-arrow-left
+            span  Volver

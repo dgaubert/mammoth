@@ -1,80 +1,81 @@
 extends ../layout
 block content
-  div.container
-    section#article.first-section
-      div#article.col-md-9
+  section#article
+    div.container
+      div.row
+        div#article.col-sm-9.col-md-offset-1.col-md-7
+          //- article
+          article
+            //- title
+            h3
+              a(href='/blog/#{article.slug}') #{article.title}
+              small  por 
+                strong #{article.author}
+              small
+                = (moment(article.created).format('[ el] DD/MM/YYYY'))
+            //- content
+            p!= article.content
+            //- button bar
+            div.btn-toolbar
+              a.btn.btn-xs.btn-success(href='/blog/category/#{article.category}') #{article.category}
+              - each tag in article.tags
+                a.btn.btn-xs.btn-warning(href='/blog/tag/#{tag}') #{tag}
 
-        //- article
-        article
-          //- title
-          h3
-            a(href='/blog/#{article.slug}') #{article.title}
-            small  por 
-              strong #{article.author}
-            small
-              = (moment(article.created).format('[ el] DD/MM/YYYY'))
-          //- content
-          p!= article.content
-          //- button bar
-          div#labels
-            a.label.label-success(href='/blog/category/#{article.category}') #{article.category}
-            - each tag in article.tags
-              a.label.label-warning(href='/blog/tag/#{tag}') #{tag}
+            <hr class="featurette-divider">
 
-          <hr class="featurette-divider">
+            //- comments
 
-          //- comments
+            h3#comments Comentarios
+            - each comment in article.comments
+              div.comment
+                h5
+                  strong #{comment.author}
+                  span  
+                    = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
+                div
+                  p!=comment.comment
+            span#lastCommnent
 
-          h3 Comentarios
-          - each comment in article.comments
-            div.comment
-              h5
-                strong #{comment.author}
-                span  
-                  = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
-              div
-                p!=comment.comment
-          span#lastCommnent
+            <hr class="featurette-divider">
 
-          <hr class="featurette-divider">
+          //- new comment
+          div.well.col-md-11
+            form#comment(action='/blog/#{article.slug}/comment', method='post')
+              legend Participa escribiendo un comentario
+              fieldset
+                div.form-group.input-group
+                  span.input-group-addon Nombre
+                  input#name.form-control(name='name', type='text', placeholder='Ej: Peter Jackson')
+                div.form-group.input-group
+                  span.input-group-addon Correo
+                  input#mail.form-control(name='mail', type='text', placeholder='Ej: peter.jackson@gmail.com')
+                div.form-group
+                  textarea#comment.form-control.fixed(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
+                button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
+                  i.icon-comment-alt
+                  span  Comentar
+                span#error-msg.text-danger
 
-        //- new comment
-        div.well.col-md-9
-          form#comment(action='/blog/#{article.slug}/comment', method='post')
-            legend Participa escribiendo un comentario
-            fieldset
-              div.form-group.input-group
-                span.input-group-addon Nombre
-                input#name.form-control(name='name', type='text', placeholder='Ej: Peter Jackson')
-              div.form-group.input-group
-                span.input-group-addon Correo
-                input#mail.form-control(name='mail', type='text', placeholder='Ej: peter.jackson@gmail.com')
-              div.form-group
-                textarea#comment.form-control.fixed(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
-              button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
-                i.icon-comment-alt  Comentar
-              span#error-msg.text-danger
+          //- note
+          div.row.col-md-11
+            p 
+              strong Aviso: 
+              i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
+                | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
+                | sean inapropiados serán eliminados.
+                | Vamos a añadir valor al blog. Gracias.
 
-        //- note
-        div.row.col-md-9
-          p 
-            strong Aviso: 
-            i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
-              | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
-              | sean inapropiados serán eliminados.
-              | Vamos a añadir valor al blog. Gracias.
-
-      //- side bar
-      aside.col-md-3
-        div.well
-          h4 Categorias
-          ul.list-unstyled
-            - each category in categories
-              li
-                a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
-        div.well
-          h4 Artículos similares
-          ul.list-unstyled
-            - each similar in similars
-              li
-                a(href='/blog/#{similar.slug}') #{similar.title}
+        //- side bar
+        aside.col-sm-3.col-md-3
+          div.well
+            h4 Categorias
+            ul.list-unstyled
+              - each category in categories
+                li
+                  a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+          div.well
+            h4 Artículos similares
+            ul.list-unstyled
+              - each similar in similars
+                li
+                  a(href='/blog/#{similar.slug}') #{similar.title}

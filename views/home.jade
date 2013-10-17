@@ -2,83 +2,96 @@ extends layout
 block content
 
   //- wellcome
-  section#presentation.presentation
+  section#wellcome
     div.container
       div.row
-        div.col-md-4.text-center
+        div.col-sm-4.text-center
           span.icon-stack.icon-4x
             i.icon-circle.icon-stack-base
             i.icon-bullhorn.icon-light
           h3 ¡Bienvenido!
           p Me llamo <strong>Daniel Gª Aubert</strong>, soy desarrollador y
             | construyo software de calidad.
-        div.col-md-4.text-center
+        div.col-sm-4.text-center
           span.icon-stack.icon-4x
             i.icon-circle.icon-stack-base
             i.icon-rocket.icon-light
           h3 TDD developer
           p <strong>Back-End:</strong> aplicaciones y servidores de alto 
-            | rendimiento. <strong>Front-End Developer:</strong> webs, single
+            | rendimiento. <strong>Front-End:</strong> webs, single
             | page applications & desing.
-        div.col-md-4.text-center
+        div.col-sm-4.text-center
           span.icon-stack.icon-4x
             i.icon-circle.icon-stack-base
             i.icon-comments.icon-light
-          h3 ¿Te ayudo?
+          h3 ¿Necesitas ayuda?
           p ¿Tienes una <strong>idea</strong>?, ¿quieres desarrollar una aplicación o servicio?, 
             | Ponte en contacto conmigo y <strong>hablamos</strong>.
-          //a.btn.btn-primary(href='mailto:danielgarciaaubert@gmail.com') Contactar
     
-  //- latest article
-  section#blog-latest
+  //- Blog
+  section#blog
     div.container
-      h2 Lo último en el blog:
+      h2 Blog:
       div.row
-        div.col-md-9
+        div.col-md-8
           include blog/includes/summary
-        div.well.col-md-3
-          h3 Categorías
+        div.col-sm-offset-3.col-sm-6.col-md-offset-0.col-md-4
+          h4 Top categorías:
           ul.list-unstyled
             - each category in categories
-              li
-                a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+              a.btn.btn-sm.btn-default.btn-block(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
 
-  <hr class="featurette-divider">
-  
   //- portfolio
   section#portfolio
     div.container
       h2 Portfolio:
       div.row
-        div.col-md-4
+        div.col-xs-6.col-sm-4.col-md-3
           a.img-thumbnail(href='https://github.com/dgaubert/mammoth')
             img.img-rounded.img-responsive(src='/images/project-mammoth.png')
-        div.col-md-4
+        div.col-xs-6.col-sm-4.col-md-3
           a.img-thumbnail(href='http://www.artegaubert.com')
             img.img-rounded.img-responsive(src='/images/project-arte-gaubert.png')
 
-  <hr class="featurette-divider">
-  
   //- tools
   section#tools
     div.container
       h2 Herramientas:
       div.row
-        div.col-md-2
-          a.img-thumbnail(href='http://nodejs.org/')
-            img.img-rounded.img-responsive(src='/images/tool-nodejs.jpg')
-        div.col-md-2
-          a.img-thumbnail(href='http://expressjs.com/')
-            img.img-rounded.img-responsive(src='/images/tool-expressjs.jpg')
-        div.col-md-2
-          a.img-thumbnail(href='http://www.mongodb.org/')
-            img.img-rounded.img-responsive(src='/images/tool-mongo.jpg')
-        div.col-md-2
-          a.img-thumbnail.img-responsive(href='http://jquery.com/')
-            img.img-rounded.img-responsive(src='/images/tool-jquery.jpg')
-        div.col-md-2
-          a.img-thumbnail(href='http://git-scm.com/')
-            img.img-rounded.img-responsive(src='/images/tool-git.png')
-        div.col-md-2
-          a.img-thumbnail(href='http://backbonejs.org/')
-            img.img-rounded.img-responsive(src='/images/tool-backbonejs.png')
+        div.col-sm-4
+          div.text-center
+            a(href='http://nodejs.org/')
+              img.img-circle(src='/images/tool-nodejs.jpg', height='120px', width='120px')
+            h4 Node
+            p Plataforma para construcción de <strong>aplicaciones escalables</strong> basadas en la red de forma <strong>sencilla y rápida</strong>.
+        div.col-sm-4
+          div.text-center
+            a(href='http://expressjs.com/')
+              img.img-circle(src='/images/tool-expressjs.jpg', height='120px', width='120px')
+            h4 Express
+            p Framework <strong>flexible y minimalista</strong> para el desarrollo de aplicaciones web basadas en Node. 
+        div.col-sm-4
+          div.text-center
+            a(href='http://www.mongodb.org/')
+              img.img-circle(src='/images/tool-mongo.jpg', height='120px', width='120px')
+            h4 MongoDB
+            p Base de datos ágil y escalable de <strong>alto rendimiento</strong>.
+      div.row
+        div.col-sm-4
+          div.text-center
+            a.img-responsive(href='http://angularjs.org/')
+              img.img-circle(src='/images/tool-angularjs.png', height='120px', width='120px')
+            h4 Angular
+            p Dinamiza tu web, crea <strong>aplicaciones de una sola página</strong>. Aprovecha la potencia de tu navegador.
+        div.col-sm-4
+          div.text-center
+            a(href='http://git-scm.com/')
+              img.img-circle(src='/images/tool-git.png', height='120px', width='120px')
+            h4 Git
+            p Control de versiones distribuido, diseñado para manejar todo tipo de <strong>proyectos de forma eficiente</strong>.
+        div.col-sm-4
+          div.text-center
+            a(href='http://getbootstrap.com/')
+              img.img-circle(src='/images/tool-bootstrap.jpg', height='120px', width='120px')
+            h4 Bootstrap
+            p Para un <strong>diseño</strong> front-end <strong>elegante e intuitivo</strong>. Pensado para un desarrollo web rápido y fácil.

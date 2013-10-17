@@ -11,9 +11,9 @@ div#summary
       //- content
       p!= summary.abstract
       //- button bar
-      div#labels
-        a.label.label-info(href='/blog/#{summary.slug}') Leer m&aacutes
-        a.label.label-success(href='/blog/category/#{summary.category}') #{summary.category}
+      div.btn-toolbar
+        a.btn.btn-xs.btn-info(href='/blog/#{summary.slug}') Leer m&aacutes
+        a.btn.btn-xs.btn-success(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags
-          a.label.label-warning(href='/blog/tag/#{tag}') #{tag}
-        small [#{summary.commentCounter} Comentarios ]
+          a.btn.btn-xs.btn-warning(href='/blog/tag/#{tag}') #{tag}
+        a.btn.btn-xs.btn-default(href='/blog/#{summary.slug}#comments') #{summary.commentCounter} Comentarios

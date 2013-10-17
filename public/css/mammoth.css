@@ -1,30 +1,36 @@
 body {
   padding: 50px 0 0 0;
 }
+section {
+  padding: 15px 0 15px 0;
+}
 
-.presentation {
-  padding: 20px;
-  background-color: #eee;
+article {
+  padding: 0 0 15px 0;
+}
+
+#wellcome {
+  background-color: #e8e8e8;
+}
+
+#blog {
+  background-color: #efefef;
+}
+
+#article {
+  background-color: #efefef;
+}
+
+#portfolio {
+  background-color: #e8e8e8;
+}
+
+#tools {
+  background-color: #e2e2e2;
 }
 
 .icon-stack {
-  color: rgb(1, 158, 152);
-}
-
-.first-section {
-  padding: 20px 0 0 0;
-}
-
-#labels {
-  margin: 20px 0 40px 0;
-}
-
-#labels a{
-  margin: 0 5px 0 0;
-}
-
-.btn-bar a:not(:first-child), button:not(:first-child) {
-  margin: 0 0 0 5px;
+  color: #666;
 }
 
 .comment h5 {
@@ -40,7 +46,6 @@ footer {
   background-color: #222;
   color: #999;
   padding: 40px 20px 40px 20px;
-  margin: 40px -20px 0 -20px;
 }
 
 footer a:hover {
