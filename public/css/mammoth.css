@@ -39,14 +39,9 @@ article {
   padding: 50px;
 }
 
-.icon-stack {
-  color: #666;
-}
-
 .comment h5 {
   padding-top: 20px;
 }
-
 
 footer {
   background-color: #222;
@@ -56,4 +51,14 @@ footer {
 
 footer a:hover {
   text-decoration: none;
+}
+
+/* Customize Bootstrap */
+
+.icon-stack {
+  color: #666;
+}
+
+.btn-toolbar {
+  margin-top: 15px;
 }

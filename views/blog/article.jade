@@ -7,8 +7,7 @@ block content
           //- article
           article
             //- title
-            h3
-              a(href='/blog/#{article.slug}') #{article.title}
+            h3 #{article.title}
               small  por 
                 strong #{article.author}
               small
@@ -21,22 +20,24 @@ block content
               - each tag in article.tags
                 a.btn.btn-xs.btn-warning(href='/blog/tag/#{tag}') #{tag}
 
-            <hr class="featurette-divider">
+            hr.featurette-divider
 
             //- comments
 
             h3#comments Comentarios
-            - each comment in article.comments
-              div.comment
-                h5
-                  strong #{comment.author}
-                  span  
-                    = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
-                div
-                  p!=comment.comment
-            span#lastCommnent
-
-            <hr class="featurette-divider">
+            -if (article.comments.length > 0) {
+              - each comment in article.comments
+                div.comment
+                  h5
+                    strong #{comment.author}
+                    span  
+                      = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
+                  div
+                    p!=comment.comment
+              span#lastCommnent
+            - } else {
+              span.text-info Se el primero en comentar este artículo.
+            - }
 
           //- new comment
           div.well.col-md-11
