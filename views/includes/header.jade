@@ -8,25 +8,15 @@ header.navbar.navbar-default.navbar-fixed-top
         span.icon-bar
       //- logo
       a.navbar-brand(href="/") 
-        span Daniel G. Aubert
+        span Daniel Gaubert
       //- menu
     div.navbar-collapse.collapse
-      ul.nav.navbar-nav
-        li(class='#{section === "home" ? "active" : ""}')
-          a(href='/') inicio
-        li(class='#{section === "blog" ? "active" : ""}')
-          a(href='/blog') blog
-      //- social button bar
       ul.nav.navbar-nav.navbar-right
-        li
-          a(href='https://github.com/dgaubert')
-            i.icon-github.icon-large
-        li
-          a(href='http://www.linkedin.com/in/danielgarciaaubert') 
-            i.icon-linkedin.icon-large
-        li
-          a(href='https://twitter.com/danigaubert') 
-            i.icon-twitter.icon-large
-        li
-          a(href='http://www.dgaubert.com/blog/rss')
-            i.icon-rss.icon-large
+        li(class='#{section === "home" ? "active" : ""}')
+          a(href='/')
+            i.icon-home.icon-large
+            span  inicio
+        li(class='#{section === "blog" ? "active" : ""}')
+          a(href='/blog') 
+            i.icon-pencil.icon-large
+            span  blog

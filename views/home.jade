@@ -35,11 +35,15 @@ block content
       div.row
         div.col-md-8
           include blog/includes/summary
-        div.col-sm-offset-3.col-sm-6.col-md-offset-0.col-md-4
-          h4 Top categorías:
-          ul.list-unstyled
-            - each category in categories
-              a.btn.btn-sm.btn-default.btn-block(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+        div.col-xs-12.col-sm-offset-3.col-sm-6.col-md-offset-1.col-md-3
+          div.well
+            h4 Top categorías:
+            ul.list-unstyled
+              - each category in categories
+                li
+                  a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+
+  hr.divider
 
   //- portfolio
   section#portfolio
@@ -53,6 +57,8 @@ block content
           a.img-thumbnail(href='http://www.artegaubert.com')
             img.img-rounded.img-responsive(src='/images/project-arte-gaubert.png')
 
+  hr.divider
+          
   //- tools
   section#tools
     div.container

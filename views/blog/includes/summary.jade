@@ -12,8 +12,8 @@ div#summary
       p!= summary.abstract
       //- button bar
       div.btn-toolbar
-        a.btn.btn-xs.btn-info(href='/blog/#{summary.slug}') Leer m&aacutes
-        a.btn.btn-xs.btn-success(href='/blog/category/#{summary.category}') #{summary.category}
+        a.btn.btn-xs.btn-primary(href='/blog/#{summary.slug}') Leer m&aacutes
+        a.btn.btn-xs.btn-default(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags
-          a.btn.btn-xs.btn-warning(href='/blog/tag/#{tag}') #{tag}
+          a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
         a.btn.btn-xs.btn-default(href='/blog/#{summary.slug}#comments') #{summary.commentCounter} Comentarios
