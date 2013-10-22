@@ -50,13 +50,33 @@ block content
     div.container
       h2 Portfolio:
       div.row
-        div.col-xs-6.col-sm-4.col-md-3
-          a.img-thumbnail(href='https://github.com/dgaubert/mammoth')
-            img.img-rounded.img-responsive(src='/images/project-mammoth.png')
-        div.col-xs-6.col-sm-4.col-md-3
-          a.img-thumbnail(href='http://www.artegaubert.com')
-            img.img-rounded.img-responsive(src='/images/project-arte-gaubert.png')
-
+        div.col-xs-6.col-sm-4.col-md-3.text-center
+          div.portfolio-item.portfolio-img-mammoth
+            div.portfolio-info
+              h4 Front-end
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light
+              h4 Back-end
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light              
+          h4 
+            a(href='https://github.com/dgaubert/mammoth') Mammoth
+        div.col-xs-6.col-sm-4.col-md-3.text-center
+          div.portfolio-item.portfolio-img-arte-gaubert
+            div.portfolio-info
+              h4 Front-end
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up-alt.icon-large.icon-light
+              h4 Back-end
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light
+              i.icon-thumbs-up.icon-large.icon-light 
+          h4 
+            a(href='http://www.artegaubert.com') Arte Gaubert
+          
   hr.divider
           
   //- tools
@@ -74,7 +94,7 @@ block content
           h4 
             a(href='http://nodejs.org/') Node.js
           p Plataforma para construcción de <strong>aplicaciones escalables</strong> basadas 
-            | en la red de forma <strong>sencilla y rápida</strong>.      
+            | en la red de forma <strong>sencilla y rápida</strong>.
         div.col-sm-4.text-center
           div.tool-knowledge-item.tool-knowledge-img-expressjs
             div.tool-knowledge-info
