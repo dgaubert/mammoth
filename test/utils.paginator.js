@@ -12,8 +12,6 @@ describe('utils/paginator', function() {
     
     it('On first page, one page, ten items, no previous page, no next page', function () {
       pagination.should.be.an.instanceof(Object);
-      pagination.should.have.property('selected');
-      pagination.selected.should.be.a('string');
       pagination.should.have.property('pages');
       pagination.pages.should.be.an.instanceof(Array);
       pagination.pages[0].should.be.an.instanceof(Object);

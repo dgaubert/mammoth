@@ -2,10 +2,12 @@ div.text-center
   ul.pagination
     - if (pagination.previousPage > -1)
       li
-        a(href='/blog/#{pagination.previousPage}') &larr;
+        a(href='/blog/#{pagination.previousPage}')
+          i.icon-angle-left
     - else
       li.disabled
-        span &larr;
+        span
+          i.icon-angle-left
     - each page in pagination.pages
       - if (!page.selected)
         li  
@@ -15,7 +17,9 @@ div.text-center
           span #{page.count + 1}
     -if (pagination.nextPage > -1)
       li
-        a(href='/blog/#{pagination.nextPage}') &rarr;
+        a(href='/blog/#{pagination.nextPage}')
+          i.icon-angle-right
     - else
       li.disabled
-        span &rarr;
+        span
+          i.icon-angle-right
