@@ -16,4 +16,4 @@ div#summary
         a.btn.btn-xs.btn-default(href='/blog/category/#{summary.category}') #{summary.category}
         - each tag in summary.tags
           a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
-        a.btn.btn-xs.btn-default(href='/blog/#{summary.slug}#comments') #{summary.commentCounter} Comentarios
+        a(href='/blog/#{summary.slug}#comments') #{summary.commentCounter} Comentarios
