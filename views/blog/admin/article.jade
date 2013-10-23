@@ -27,10 +27,10 @@ block content
               input.form-control(type='text', name='tags', value='#{article === undefined ? "" : article.tags}')
             div.form-group
               label Resumen:
-              textarea.form-control.fixed(name='abstract', rows='10') #{article === undefined ? "" : article.abstract}
+              textarea.form-control(name='abstract', rows='10') #{article === undefined ? "" : article.abstract}
             div.form-group
               label Contenido del artículo
-              textarea.form-control.fixed(name='content', rows='30') #{article === undefined ? "" : article.content}
+              textarea.form-control(name='content', rows='30') #{article === undefined ? "" : article.content}
             div.btn-toolbar
               a.btn.btn-primary(href='/blog/admin/articles')
                 i.icon-arrow-left
