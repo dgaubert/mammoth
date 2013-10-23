@@ -1,149 +1,147 @@
 extends layout
 block content
-  div.wrapper-presentation
-    section.presentation
-      img#avatar.paper(src='/images/avatar.jpg', alt='Daniel Garcia Aubert',  height='156px', width='140px')
-      div.text-column
-        h3 ¡Bienvenido!
-        p Me llamo <strong>Daniel Gª Aubert</strong>, estoy especializado en construir aplicaciones web. Para mí el desarrollo software el algo más que una forma de ganarme la vida, es mi profesión y una manera de entender el mundo.
-      div.text-column
-        h3 Contacto
-        p ¿Tienes una idea?, ¿quieres desarrollar una aplicación o servicio?, ¿tu negocio necesita una web?. Construyo software de calidad.
-        a#mailto(href='mailto:danielgarciaaubert@gmail.com') Contactar
-  div.wrapper-latest
-    section.blog-latest
-      h2 Lo último en el blog:
-      div.summary-latest
-        include includes/summary
-      div.categories
-        h3 Categorias
-        ul
-          - each category in categories
-            li
-              a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
-  div.wrapper-portfolio
-    section.portfolio
+
+  //- wellcome
+  section#wellcome
+    div.container
+      div.row
+        div.col-sm-4.text-center
+          span.icon-stack.icon-4x
+            i.icon-circle.icon-stack-base
+            i.icon-bullhorn.icon-light
+          h3 ¡Bienvenido!
+          p Me llamo <strong>Daniel Gª Aubert</strong>, soy desarrollador y
+            | construyo software de calidad.
+        div.col-sm-4.text-center
+          span.icon-stack.icon-4x
+            i.icon-circle.icon-stack-base
+            i.icon-rocket.icon-light
+          h3 TDD developer
+          p <strong>Back-End:</strong> aplicaciones y servidores de alto 
+            | rendimiento. <strong>Front-End:</strong> webs, single
+            | page applications & desing.
+        div.col-sm-4.text-center
+          span.icon-stack.icon-4x
+            i.icon-circle.icon-stack-base
+            i.icon-comments.icon-light
+          h3 ¿Necesitas ayuda?
+          p ¿Tienes una <strong>idea</strong>?, ¿quieres desarrollar una aplicación o servicio?, 
+            | Ponte en contacto conmigo y <strong>hablamos</strong>.
+    
+  //- Blog
+  section#last-article
+    div.container
+      h2 Blog:
+      div.row
+        div.col-md-8
+          include blog/includes/summary
+        div.col-xs-12.col-sm-offset-3.col-sm-6.col-md-offset-1.col-md-3
+          div.well
+            h4 Top categorías:
+            ul.list-unstyled
+              - each category in categories
+                li
+                  a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+
+  //- portfolio
+  section#portfolio
+    div.container
       h2 Portfolio:
-      div.project
-        a(href='https://github.com/dgaubert/mammoth')
-          img(src='/images/project-mammoth.png')
-          span.detail
-            span.inner-detail
-              span.project-name Mammoth
-              span.contribution Contribución
-              span.stars
-                span.star.purple
-                span.star.purple
-                span.star.purple
-                span.star.purple
-                span.star.purple
-              span.contribution Código vs Diseño
-              span.stars
-                span.star.orange
-                span.star.orange
-                span.star.orange
-                span.star.blue
-                span.star.blue
-      div.project
-        a(href='http://www.artegaubert.com')
-          img(src='/images/project-arte-gaubert.png')
-          span.detail
-            span.inner-detail
-              span.project-name Arte Gaubert
-              span.contribution Contribución
-              span.stars
-                span.star.purple
-                span.star.purple
-                span.star.purple
-                span.star.gray
-                span.star.gray
-              span.contribution Código vs Diseño
-              span.stars
-                span.star.orange
-                span.star.orange
-                span.star.blue
-                span.star.blue
-                span.star.blue
-      div(style='clear:both')
-  div.wrapper-tools
-    section.tools
+      div.row
+        div.col-xs-6.col-sm-4.col-md-3.text-center
+          div.img-item.portfolio-img-item.portfolio-img-mammoth
+            div.img-item-info.portfolio-img-item-info
+              h4 Front-end
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light
+              h4 Back-end
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light              
+          h4 
+            a(href='https://github.com/dgaubert/mammoth') Mammoth
+        div.col-xs-6.col-sm-4.col-md-3.text-center
+          div.img-item.portfolio-img-item.portfolio-img-arte-gaubert
+            div.img-item-info.portfolio-img-item-info
+              h4 Front-end
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light
+              i.icon-circle-blank.icon-light
+              h4 Back-end
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light
+              i.icon-wrench.icon-large.icon-light
+          h4 
+            a(href='http://www.artegaubert.com') Arte Gaubert
+          
+  //- tools
+  section#tools
+    div.container
       h2 Herramientas:
-      div.tool
-        a(href='http://nodejs.org/')
-          img(src='/images/tool-nodejs.jpg')
-          span.knowledge
-            span.inner
-              span.tool Node.js
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray      
-      div.tool
-        a(href='http://expressjs.com/')
-          img(src='/images/tool-expressjs.jpg')
-          span.knowledge
-            span.inner
-              span.tool Express.js
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://www.mongodb.org/')
-          img(src='/images/tool-mongo.jpg')
-          span.knowledge
-            span.inner
-              span.tool MongoDB
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://jquery.com/')
-          img(src='/images/tool-jquery.jpg')
-          span.knowledge
-            span.inner
-              span.tool jQuery
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://git-scm.com/')
-          img(src='/images/tool-git.png')
-          span.knowledge
-            span.inner
-              span.tool Git SCM
-              span.rating Avanzado
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.green
-                span.star.gray
-      div.tool
-        a(href='http://backbonejs.org/')
-          img(src='/images/tool-backbonejs.png')
-          span.knowledge
-            span.inner
-              span.tool Backbone.js
-              span.rating Rookie
-              span.stars
-                span.star.green
-                span.star.green
-                span.star.gray
-                span.star.gray
-                span.star.gray
-      div(style='clear:both')
+      div.row
+        div.col-sm-4.text-center
+          div.img-item.tool-img-item.tool-img-nodejs
+            div.img-item-info.tool-img-item-info
+              h4 Avanzado
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+          h4 
+            a(href='http://nodejs.org/') Node.js
+          p Plataforma para construcción de <strong>aplicaciones escalables</strong> basadas 
+            | en la red de forma <strong>sencilla y rápida</strong>.
+        div.col-sm-4.text-center
+          div.img-item.tool-img-item.tool-img-expressjs
+            div.img-item-info.tool-img-item-info
+              h4 Avanzado
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+          h4 
+            a(href='http://expressjs.com/') Express.js
+          p Framework <strong>flexible y minimalista</strong> para el desarrollo de aplicaciones web basadas en Node. 
+        div.col-sm-4.text-center
+          div.img-item.tool-img-item.tool-img-mongodb
+            div.img-item-info.tool-img-item-info
+              h4 Avanzado
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+          h4
+            a(href='http://www.mongodb.org/') MongoDB
+          p Base de datos ágil y escalable de <strong>alto rendimiento</strong>.
+      div.row
+        div.col-sm-4.text-center
+          div.img-item.tool-img-item.tool-img-angularjs
+            div.img-item-info.tool-img-item-info
+              h4 Rookie
+              i.icon-star.icon-large.icon-light
+              i.icon-star-empty.icon-large.icon-light
+              i.icon-star-empty.icon-large.icon-light
+          h4 
+            a(href='http://angularjs.org/') Angular.js
+          p Dinamiza tu web, crea <strong>aplicaciones de una sola página</strong>. 
+            | Aprovecha la potencia de tu navegador.
+        div.col-sm-4.text-center
+          div.img-item.tool-img-item.tool-img-git
+            div.img-item-info.tool-img-item-info
+              h4 Avanzado
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+          h4 
+            a(href='http://git-scm.com/') Git
+          p Control de versiones distribuido, diseñado para manejar todo tipo
+            | de <strong>proyectos de forma eficiente</strong>.
+        div.col-sm-4.text-center
+          div.img-item.tool-img-item.tool-img-bootstrap
+            div.img-item-info.tool-img-item-info
+              h4 Avanzado
+              i.icon-star.icon-large.icon-light
+              i.icon-star.icon-large.icon-light
+              i.icon-star-half-empty.icon-large.icon-light
+          h4 
+            a(href='http://getbootstrap.com/') Bootstrap
+          p Para un <strong>diseño</strong> front-end <strong>elegante e intuitivo
+            | </strong>. Pensado para un desarrollo web rápido y fácil.

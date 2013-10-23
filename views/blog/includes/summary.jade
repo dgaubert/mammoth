@@ -1,0 +1,19 @@
+div#summary
+  - each summary in summaries
+    article
+      //- title
+      h3
+        a(href='/blog/#{summary.slug}') #{summary.title}
+        small  por 
+          strong #{summary.author}
+        small
+          = (moment(summary.created).format('[ el] DD/MM/YYYY'))
+      //- content
+      p!= summary.abstract
+      //- button bar
+      div.btn-toolbar
+        a.btn.btn-xs.btn-primary(href='/blog/#{summary.slug}') Leer m&aacutes
+        a.btn.btn-xs.btn-default(href='/blog/category/#{summary.category}') #{summary.category}
+        - each tag in summary.tags
+          a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
+        a(href='/blog/#{summary.slug}#comments') #{summary.commentCounter} Comentarios
