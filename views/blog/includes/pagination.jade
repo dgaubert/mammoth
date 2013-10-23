@@ -1,11 +1,25 @@
-div.pagination
-  a#previous(class='#{pagination.previousPage > -1 ? "" : "disable"}', href='/blog/#{pagination.previousPage}')
-  a#page-selector(href='#') #{pagination.selected}
-  a#next(class='#{pagination.nextPage > -1 ? "" : "disable"}', href='/blog/#{pagination.nextPage}')
-  ul#pages
-    - each page in pagination.pages
+div.text-center
+  ul.pagination
+    - if (pagination.previousPage > -1)
       li
-        - if (!page.selected)
+        a(href='/blog/#{pagination.previousPage}')
+          i.icon-angle-left
+    - else
+      li.disabled
+        span
+          i.icon-angle-left
+    - each page in pagination.pages
+      - if (!page.selected)
+        li  
           a(href='/blog/#{page.count}') #{page.count + 1}
-        - else
-          a(class='selected', href='#') #{page.count + 1}
+      - else
+        li.active
+          span #{page.count + 1}
+    -if (pagination.nextPage > -1)
+      li
+        a(href='/blog/#{pagination.nextPage}')
+          i.icon-angle-right
+    - else
+      li.disabled
+        span
+          i.icon-angle-right

@@ -1,0 +1,186 @@
+body {
+  padding: 50px 0 0 0;
+}
+
+section {
+  padding: 30px 0 30px 0;
+}
+
+article {
+  padding: 0 0 15px 0;
+}
+
+#wellcome {
+  color: @gray-lighter;
+  background-color: @brand-secondary;
+}
+
+#wellcome .icon-stack .icon-light {
+  color: @brand-secondary;
+}
+
+#portfolio {
+  background-color: #e6e9f1;
+}
+
+#tools {
+  background-color: #dadeea;
+}
+
+#admin {
+  min-height: 400px;
+  padding: 50px;
+}
+
+.comment h5 {
+  padding-top: 20px;
+}
+
+.divider {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 1px solid @gray-lighter;
+}
+
+footer {
+  background-color: #222;
+  color: #999;
+  padding: 40px 20px 40px 20px;
+}
+
+footer a:hover {
+  text-decoration: none;
+}
+
+// Bootstrap override
+// -------------------------
+
+.btn-toolbar {
+  margin-top: 15px;
+}
+
+.btn-toolbar > a {
+  margin-left: 5px;
+}
+
+// Imagen hover effects
+// -------------------------
+
+.portfolio-img-mammoth { 
+  background-image: url(../images/project-mammoth.png);
+}
+
+.portfolio-img-arte-gaubert {
+  background-image: url(../images/project-arte-gaubert.png);
+}
+
+.tool-img-nodejs { 
+  background-image: url(../images/tool-nodejs.jpg);
+}
+
+.tool-img-expressjs { 
+  background-image: url(../images/tool-expressjs.jpg);
+}
+
+.tool-img-mongodb { 
+  background-image: url(../images/tool-mongo.jpg);
+}
+
+.tool-img-angularjs { 
+  background-image: url(../images/tool-angularjs.png);
+}
+
+.tool-img-git { 
+  background-image: url(../images/tool-git.png);
+}
+
+.tool-img-bootstrap { 
+  background-image: url(../images/tool-bootstrap.jpg);
+}
+
+.portfolio-img-item {
+  width: 190px;
+  height: 190px; 
+  border-radius: 8px;
+}
+
+.tool-img-item {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+.img-item {
+  margin: 0 auto;
+  position: relative;
+  box-shadow: inset 0 0 0 12px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.portfolio-img-item-info {
+  border-radius: 8px;
+}
+
+.tool-img-item-info {
+  border-radius: 50%;
+}
+
+.img-item-info {
+  position: absolute;
+  //background: rgba(63, 147, 147, 0.8);
+  background: rgb(79, 96, 137, 0.8);
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -o-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-backface-visibility: hidden;
+}
+
+.portfolio-img-item .img-item-info > h4 {
+  margin-top: 30px;
+}
+
+.tool-img-item .img-item-info > h4 {
+  margin-top: 55px;
+}
+
+.img-item-info > h4 {
+  color: #f8f8f8;
+  letter-spacing: 2px;
+  text-shadow: 0 0 1px #fff, 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.img-item-info i {
+  margin: 0 2px 0 2px;
+}
+
+.img-item:hover {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.img-item:hover .img-item-info {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.img-item:hover:hover {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.1);
+}

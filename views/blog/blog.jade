@@ -1,9 +1,9 @@
 extends ../layout
 block content
-  div.wrapper-cloud
-    include includes/cloud
-  section.blog
-    include includes/pagination
-    include includes/summary
-    include includes/pagination
-  div(style='clear:both')
+  section#blog
+    div.container
+      div.row
+        div.col-md-offset-1.col-md-10
+          include includes/pagination
+          include includes/summary
+          include includes/pagination
