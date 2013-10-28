@@ -106,8 +106,7 @@ module.exports.SummaryModel = {
     cb(null, 1);
   },
   getLast: function (filter, cb) {
-    cb(null, {summaries: [summary],
-      categories: []});
+    cb(null, [summary]);
   }
 };
       
