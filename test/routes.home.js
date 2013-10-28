@@ -25,7 +25,7 @@ describe('routes/home', function () {
 
     it('Render de home view', function () {
       res.render = sinon.spy();
-
+      
       home.getHome(req, res, next);
 
       res.render.calledWith('home').should.be.true;
