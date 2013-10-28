@@ -23,7 +23,7 @@ describe('routes/home', function () {
       SummaryModelMock.verify();
     });
 
-    it('Render de home view', function () {
+    it.skip('Render de home view', function () {
       res.render = sinon.spy();
 
       home.getHome(req, res, next);

@@ -9,7 +9,7 @@ div#summary
         small
           = (moment(summary.created).format('[ el] DD/MM/YYYY'))
       //- content
-      p!= summary.abstract
+      != summary.abstract
       //- button bar
       div.btn-toolbar
         a.btn.btn-xs.btn-primary(href='/blog/#{summary.slug}') Leer m&aacutes

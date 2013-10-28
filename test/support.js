@@ -71,7 +71,7 @@ module.exports.ArticleModelEmpty = {
   },
   findOne: function (filter, callback) {
     callback(null, {});
-  },   
+  },
   findAll: function (filter, fields, sort, callback) {
     callback(null, []);
   }
@@ -106,7 +106,7 @@ module.exports.SummaryModel = {
     cb(null, 1);
   },
   getLast: function (filter, cb) {
-    cb(null, {summaries: [],
+    cb(null, {summaries: [summary],
       categories: []});
   }
 };
