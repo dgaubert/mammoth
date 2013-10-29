@@ -3,10 +3,10 @@ var support = require('./support'),
     Home = require('../lib/routes/home');
 
 describe('routes/home', function () {
-  var SummaryModel = support.SummaryModel,
-      home = new Home(SummaryModel),
-      SummaryModelKO = support.SummaryModelKO,
-      homeKO = new Home(SummaryModelKO),
+  var ArticleModel = support.ArticleModel,
+      home = new Home(ArticleModel),
+      ArticleModelKO = support.ArticleModelKO,
+      homeKO = new Home(ArticleModelKO),
       req = support.req,
       res = support.res,
       next = support.next;
@@ -14,13 +14,13 @@ describe('routes/home', function () {
   describe('.getHome', function () {
 
     it('Last article written should be gotten', function () {
-      var SummaryModelMock = sinon.mock(SummaryModel);
-      SummaryModelMock.expects('getLast').once();
-      SummaryModelMock.expects('categoriesCount').once();
+      var ArticleModelMock = sinon.mock(ArticleModel);
+      ArticleModelMock.expects('getLast').once();
+      ArticleModelMock.expects('categoriesCount').once();
 
       home.getHome(req, res, next);
 
-      SummaryModelMock.verify();
+      ArticleModelMock.verify();
     });
 
     it('Render de home view', function () {

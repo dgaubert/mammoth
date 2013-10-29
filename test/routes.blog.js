@@ -3,12 +3,10 @@ var support = require('./support'),
     Blog = require('../lib/routes/blog');
 
 describe('routes/login', function () {
-  var SummaryModel = support.SummaryModel,
-      ArticleModel = support.ArticleModel,
-      blog = new Blog(ArticleModel, SummaryModel),
-      SummaryModelKO = support.SummaryModelKO,
+  var ArticleModel = support.ArticleModel,
+      blog = new Blog(ArticleModel),
       ArticleModelKO = support.ArticleModelKO,
-      blogKO = new Blog(ArticleModelKO, SummaryModelKO),
+      blogKO = new Blog(ArticleModelKO),
       req = support.req,
       res = support.res,
       next = support.next;
@@ -19,13 +17,13 @@ describe('routes/login', function () {
     req.params.tag = ['tag'];
 
     it('Summary should be gotten', function () {
-      var SummaryModelMock = sinon.mock(SummaryModel);
-      SummaryModelMock.expects('findRange').once();
-      SummaryModelMock.expects('count').once();
+      var ArticleModelMock = sinon.mock(ArticleModel);
+      ArticleModelMock.expects('findRange').once();
+      ArticleModelMock.expects('count').once();
 
       blog.getSummary(req, res, next);
 
-      SummaryModelMock.verify();
+      ArticleModelMock.verify();
     });
 
     it('Blog view shouold be rendered', function () {
@@ -51,14 +49,12 @@ describe('routes/login', function () {
   describe('.getArticle', function () {
 
     it('Article should be gotten', function () {
-      var SummaryModelMock = sinon.mock(SummaryModel);
-      SummaryModelMock.expects('categoriesCount').once();
       var ArticleModelMock = sinon.mock(ArticleModel);
       ArticleModelMock.expects('find').once();
+      ArticleModelMock.expects('categoriesCount').once();
 
       blog.getArticle(req, res, next);
 
-      SummaryModelMock.verify();
       ArticleModelMock.verify();
     });
 
