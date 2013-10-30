@@ -50,74 +50,96 @@ module.exports.err = {
 };
 
 // Models mocks
-module.exports.ArticleModel = {
-  find: function (filter, fields, callback) {
-    if ('function' == typeof fields) {
-      callback = fields;
-    }
-    callback(null, [article]);
-  },
-  findOne: function (filter, callback) {
-    callback(null, article);
-  },
-  findAll: function(filter, fields, sort, callback) {
-    callback(null, [article]);
-  },
-  categoriesCount: function (callback) {
-    callback(null, [{_id: 'category', value: 1}]);
-  },
-  tagsCount: function (callback) {
-    callback(null, [{_id: 'tag', value: 1}]);
-  },
-  findRange: function (filter, page, callback) {
-    callback(null, [article]);
-  },
-  count: function (filter, callback) {
-    callback(null, 1);
-  },
-  getLast: function (filter, callback) {
-    callback(null, [article]);
-  }
-};
 
-module.exports.ArticleModelEmpty = {
-  find: function (filter, callback) {
-    callback(null, []);
-  },
-  findOne: function (filter, callback) {
-    callback(null, {});
-  },
-  findAll: function (filter, fields, sort, callback) {
-    callback(null, []);
+function ArticleModel() {
+
+  var one = false,
+      behavior = 1;
+
+  this.setBehavior = function (value) {
+    this.behavior = behavior;
   }
-};
-    
-module.exports.ArticleModelKO = {
-  find: function (filter, callback) {
-    callback(new Error('Error'), null);
-  },
-  findOne: function (filter, callback) {
-    callback(new Error('Error'), null);
-  },
-  findAll: function(filter, fields, sort, callback) {
-    callback(new Error('Error'), null);
-  },
-  categoriesCount: function (callback) {
-    callback(new Error('Error'), null);
-  },
-  tagsCount: function (callback) {
-    callback(new Error('Error'), null);
-  },
-  findRange: function (filter, page, callback) {
-    callback(new Error('Error'), null);
-  },
-  count: function (filter, callback) {
-    callback(new Error('Error'), null);
-  },
-  getLast: function (filter, callback) {
-    callback(new Error('Error'), null);
+
+  this.find = function () {
+    this.one = false;
+    return this;
+  };
+
+  this.findOne = function () {
+    this.one = true;
+    return this;
+  };
+
+  this.select = function () {
+    return this;
+  };
+
+  this.sort = function () {
+    return this;
+  };
+
+  this.count = function () {
+    return this;
+  };
+
+  this.skip = function () {
+    return this;
+  };
+
+  this.limit = function () {
+    return this;
+  };
+
+  this.exec = function (callback) {
+    if (behavior === 1) {
+      // return required values
+      if (one) {
+        callback(null, article);
+      } else {
+        callback(null, [article]);
+      }
+    } else if (behavior === 0) {
+      // return empty values
+      if (one) {
+        callback(null, {});
+      } else {
+        callback(null, []);
+      }
+    } else if (behavior === -1) {
+      // throws exception
+      callback(new Error('Error'), null);
+    }
   }
-};
+
+  this.categoriesCount = function (callback) {
+    if (behavior === 1) {
+      // return required values
+      callback(null, [{_id: 'category', value: 1}]);
+    } else if (behavior === 0) {
+      // return empty values
+      callback(null, [{}]);
+    } else if (behavior === -1) {
+      // throws exception
+      callback(new Error('Error'), null);
+    }
+  };
+
+  this.tagsCount = function (callback) {
+    if (behavior === 1) {
+      // return required values
+      callback(null, [{_id: 'tag', value: 1}]);
+    } else if (behavior === 0) {
+      // return empty values
+      callback(null, [{}]);
+    } else if (behavior === -1) {
+      // throws exception
+      callback(new Error('Error'), null);
+    }
+  };
+
+}
+
+module.exports.ArticleModel = new ArticleModel();
 
 module.exports.UserModel = {
   find: function (filter, callback) {

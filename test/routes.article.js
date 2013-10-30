@@ -4,26 +4,36 @@ var support = require('./support'),
 
 describe('routes/article', function () {
   var ArticleModel = support.ArticleModel,
+      article = new Article(ArticleModel),
+      req = support.req,
+      res = support.res,
+      next = support.next;
+
+      /*
+      ArticleModel = support.ArticleModel,
       ArticleModelKO = support.ArticleModelKO,
       ArticleModelEmpty = support.ArticleModelEmpty,
       article = new Article(ArticleModel),
       articleKO = new Article(ArticleModelKO),
       articleEmpty = new Article(ArticleModelEmpty),
-      req = support.req,
-      res = support.res,
-      next = support.next;
+      */
 
   describe('.getArticles(req, res, next)', function () {
 
     it('Articles should be gotten', function () {
+
+      ArticleModel.setBehavior(1);
       var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findAll').once();
+      ArticleModelMock.expects('exec').once();
 
       article.getArticles(req, res, next);
 
       ArticleModelMock.verify();
+      ArticleModelMock.restore();
+
     });
     
+    /*
     it('Response should be rendered', function () {
       res.render = sinon.spy();
 
@@ -41,9 +51,10 @@ describe('routes/article', function () {
       next.called.should.be.true;
       next.reset();
     });
+*/
 
   });
-
+/*
   describe('.getNewArticle(req, res)', function () {
 
     it('View should be rendered', function () {
@@ -122,5 +133,6 @@ describe('routes/article', function () {
     });
 
   });
+*/
 
 });
