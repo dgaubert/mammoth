@@ -51,13 +51,13 @@ module.exports.err = {
 
 // Models mocks
 
-function ArticleModel() {
+var ArticleModel = function ArticleModel(mode) {
 
   var one = false,
-      behavior = 1;
+      behavior = mode || 1;
 
   this.setBehavior = function (value) {
-    this.behavior = behavior;
+    this.behavior = value;
   }
 
   this.find = function () {
@@ -139,7 +139,7 @@ function ArticleModel() {
 
 }
 
-module.exports.ArticleModel = new ArticleModel();
+module.exports.ArticleModel = ArticleModel;
 
 module.exports.UserModel = {
   find: function (filter, callback) {

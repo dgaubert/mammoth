@@ -4,37 +4,30 @@ var support = require('./support'),
 
 describe('routes/article', function () {
   var ArticleModel = support.ArticleModel,
-      article = new Article(ArticleModel),
       req = support.req,
       res = support.res,
       next = support.next;
 
-      /*
-      ArticleModel = support.ArticleModel,
-      ArticleModelKO = support.ArticleModelKO,
-      ArticleModelEmpty = support.ArticleModelEmpty,
-      article = new Article(ArticleModel),
-      articleKO = new Article(ArticleModelKO),
-      articleEmpty = new Article(ArticleModelEmpty),
-      */
-
   describe('.getArticles(req, res, next)', function () {
 
     it('Articles should be gotten', function () {
+      var articleModel = new ArticleModel(1),
+          article = new Article(articleModel),
+          articleModelMock = sinon.mock(articleModel);
 
-      ArticleModel.setBehavior(1);
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('exec').once();
+      articleModelMock.expects('exec').once();
 
       article.getArticles(req, res, next);
 
-      ArticleModelMock.verify();
-      ArticleModelMock.restore();
+      articleModelMock.verify();
+      articleModelMock.restore();
 
     });
     
-    /*
     it('Response should be rendered', function () {
+      var articleModel = new ArticleModel(1),
+          article = new Article(articleModel);
+
       res.render = sinon.spy();
 
       article.getArticles(req, res, next);
@@ -44,20 +37,25 @@ describe('routes/article', function () {
     });
 
     it('Response should not be rendered', function () {
+      var articleModel = new ArticleModel(-1),
+          article = new Article(articleModel);
+
       next = sinon.spy();     
 
-      articleKO.getArticles(req, res, next);
+      article.getArticles(req, res, next);
 
       next.called.should.be.true;
       next.reset();
     });
-*/
 
   });
-/*
+
   describe('.getNewArticle(req, res)', function () {
 
     it('View should be rendered', function () {
+      var articleModel = new ArticleModel(1),
+          article = new Article(articleModel);
+
       res.render = sinon.spy();
 
       article.getNewArticle(req, res);
@@ -71,15 +69,23 @@ describe('routes/article', function () {
   describe('.newArticle(req, res)', function () {
 
     it('Article should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findAll').once();
+      var articleModel = new ArticleModel(1),
+          article = new Article(articleModel),
+          articleModelMock = sinon.mock(articleModel);
+
+      articleModelMock.expects('findOne').once();
 
       article.newArticle(req, res, next);
 
-      ArticleModelMock.verify();
+      articleModelMock.verify();
+      articleModelMock.restore();
+
     });
 
     it('Exists the article to save', function () {
+      var articleModel = new ArticleModel(1),
+          article = new Article(articleModel);
+
       next = sinon.spy();
 
       article.newArticle(req, res, next);
@@ -93,15 +99,21 @@ describe('routes/article', function () {
   describe('.getArticle(req, res, next)', function () {
 
     it('Article should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findAll').once();
+      var articleModel = new ArticleModel(1),
+          article = new Article(articleModel),
+          articleModelMock = sinon.mock(articleModel);
+
+      articleModelMock.expects('findOne').once();
 
       article.getArticle(req, res, next);
 
-      ArticleModelMock.verify();
+      articleModelMock.verify();
     });
     
     it('Response should be rendered', function () {
+       var articleModel = new ArticleModel(1),
+          article = new Article(articleModel);
+
       res.render = sinon.spy();
 
       article.getArticle(req, res, next);
@@ -111,9 +123,12 @@ describe('routes/article', function () {
     });
 
     it('Response should not be rendered', function () {
+      var articleModel = new ArticleModel(-1),
+          article = new Article(articleModel);
+
       next = sinon.spy();
 
-      articleKO.getArticle(req, res, next);
+      article.getArticle(req, res, next);
 
       next.called.should.be.true;
       next.reset();
@@ -124,15 +139,17 @@ describe('routes/article', function () {
   describe('.updateArticle(req, res, next)', function () {
 
     it('Article should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findAll').once();
+      var articleModel = new ArticleModel(-1),
+          article = new Article(articleModel),
+          articleModelMock = sinon.mock(articleModel);
+
+      articleModelMock.expects('findOne').once();
 
       article.updateArticle(req, res, next);
 
-      ArticleModelMock.verify();
+      articleModelMock.verify();
     });
 
   });
-*/
 
 });
