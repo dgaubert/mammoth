@@ -8,20 +8,18 @@ describe('routes/article', function () {
       res = support.res,
       next = support.next;
 
+
   describe('.getArticles(req, res, next)', function () {
 
     it('Articles should be gotten', function () {
       var articleModel = new ArticleModel(1),
-          article = new Article(articleModel),
-          articleModelMock = sinon.mock(articleModel);
-
-      articleModelMock.expects('exec').once();
+          article = new Article(articleModel);
+      
+      articleModel.exec = sinon.spy();
 
       article.getArticles(req, res, next);
 
-      articleModelMock.verify();
-      articleModelMock.restore();
-
+      articleModel.exec.called.should.be.true;
     });
     
     it('Response should be rendered', function () {
@@ -40,7 +38,7 @@ describe('routes/article', function () {
       var articleModel = new ArticleModel(-1),
           article = new Article(articleModel);
 
-      next = sinon.spy();     
+      next = sinon.spy();
 
       article.getArticles(req, res, next);
 
@@ -73,7 +71,7 @@ describe('routes/article', function () {
           article = new Article(articleModel),
           articleModelMock = sinon.mock(articleModel);
 
-      articleModelMock.expects('findOne').once();
+      articleModelMock.expects('exec').once();
 
       article.newArticle(req, res, next);
 
@@ -103,7 +101,7 @@ describe('routes/article', function () {
           article = new Article(articleModel),
           articleModelMock = sinon.mock(articleModel);
 
-      articleModelMock.expects('findOne').once();
+      articleModelMock.expects('exec').once();
 
       article.getArticle(req, res, next);
 
@@ -143,7 +141,7 @@ describe('routes/article', function () {
           article = new Article(articleModel),
           articleModelMock = sinon.mock(articleModel);
 
-      articleModelMock.expects('findOne').once();
+      articleModelMock.expects('exec').once();
 
       article.updateArticle(req, res, next);
 
