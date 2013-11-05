@@ -50,7 +50,6 @@ module.exports.err = {
 };
 
 // Models mocks
-
 var ArticleModel = function ArticleModel(mode) {
 
   var one = false,
@@ -58,7 +57,7 @@ var ArticleModel = function ArticleModel(mode) {
 
   this.setBehavior = function (value) {
     this.behavior = value;
-  }
+  };
 
   this.find = function () {
     this.one = false;
@@ -109,7 +108,7 @@ var ArticleModel = function ArticleModel(mode) {
       // throws exception
       callback(new Error('Error'), null);
     }
-  }
+  };
 
   this.categoriesCount = function (callback) {
     if (behavior === 1) {
@@ -137,13 +136,13 @@ var ArticleModel = function ArticleModel(mode) {
     }
   };
 
-}
+};
 
-module.exports.ArticleModel = ArticleModel;
+module.exports.ArticleModel = new ArticleModel(1);
 
 module.exports.UserModel = {
   find: function (filter, callback) {
-    callback(null, [{ 
+    callback(null, [{
       salt: 'h9Sr0AlBfM+Xi9gJZQeWQKyfPlAur5+7jkELi9tzjJqc0FLVKUO6lWwi8U8OxujnbZY+8Jdz3vRkfalxSWRgeG60Rhm6t4Bb3eGKGifu7To6BUMFAjbB+xcShUY47dB4+H6gzvVVkYDMYfCUmyQuUTs73SUlxbdFdj2A3D8rr9c=',
       hash: '!?L→@,☼G×ã¹?~gQº9ø ↕|?◄p→‼Æ5Â3]BtÆ?äïÂn:♂ð¤▬¤³ Äb☺uèùè?hgÔ▲äbÂù|?E☼ãIºî*l♂Æû?öE¢?ÊAg¸x¼«"\þd‼³&£~►♥♀¶òòñ³K?ö?Pû(C◄ÿr?7ÊK??X+½¦'
     }]);
