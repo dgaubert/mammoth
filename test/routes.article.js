@@ -1,150 +1,145 @@
 var support = require('./support'),
     sinon = require('sinon'),
-    Article = require('../lib/routes/article');
+    Article = require('../lib/routes/article'),
+    ArticleModel = support.ArticleModel,
+    ArticleModelKO = support.ArticleModelKO,
+    ArticleModelEmpty = support.ArticleModelEmpty,
+    article = new Article(ArticleModel),
+    articleKO = new Article(ArticleModelKO),
+    articleEmpty = new Article(ArticleModelEmpty),
+    req = support.req,
+    res = support.res,
+    next = support.next;
 
 describe('routes/article', function () {
-  var ArticleModel = support.ArticleModel,
-      article = new Article(ArticleModel),
-      req = support.req,
-      res = support.res,
-      next = support.next;
 
   describe('.getArticles(req, res, next)', function () {
 
-    it('Articles should be gotten', function () {
+    it('Articles should be gotten', sinon.test(function () {
 
-      ArticleModel.exec = sinon.spy();
+      this.spy(ArticleModel, 'exec');
 
       article.getArticles(req, res, next);
 
       ArticleModel.exec.called.should.be.true;
-      ArticleModel.exec.reset();
 
-    });
+    }));
     
-    it('Response should be rendered', function () {
+    it('Response should be rendered', sinon.test(function () {
 
-      res.render = sinon.spy();
+      this.spy(res, 'render');
 
       article.getArticles(req, res, next);
 
       res.render.calledWith('blog/admin/articles').should.be.true;
-      res.render.reset();
 
-    });
+    }));
 
-    it('Response should not be rendered', function () {
+    it('Response should not be rendered', sinon.test(function () {
 
-      next = sinon.spy();
+      next = this.spy(next);
 
-      article.getArticles(req, res, next);
+      articleKO.getArticles(req, res, next);
 
       next.called.should.be.true;
-      next.reset();
-    });
+
+    }));
 
   });
 
-  // describe('.getNewArticle(req, res)', function () {
+  describe('.getNewArticle(req, res)', function () {
 
-  //   it('View should be rendered', function () {
-  //     var articleModel = new ArticleModel(1),
-  //         article = new Article(articleModel);
+    it('View should be rendered', sinon.test(function () {
 
-  //     res.render = sinon.spy();
+      this.spy(res, 'render');
 
-  //     article.getNewArticle(req, res);
+      article.getNewArticle(req, res);
 
-  //     res.render.calledWith('blog/admin/article').should.be.true;
-  //     res.render.reset();
-  //   });
+      res.render.calledWith('blog/admin/article').should.be.true;
 
-  // });
+    }));
 
-  // describe('.newArticle(req, res)', function () {
+  });
 
-  //   it('Article should be gotten', function () {
-  //     var articleModel = new ArticleModel(1),
-  //         article = new Article(articleModel),
-  //         articleModelMock = sinon.mock(articleModel);
+  describe('.newArticle(req, res)', function () {
 
-  //     articleModelMock.expects('exec').once();
+    it('Article should be gotten', sinon.test(function () {
 
-  //     article.newArticle(req, res, next);
+      this.spy(ArticleModel, 'exec');
 
-  //     articleModelMock.verify();
-  //     articleModelMock.restore();
+      article.newArticle(req, res, next);
 
-  //   });
+      ArticleModel.exec.called.should.be.true;
 
-  //   it('Exists the article to save', function () {
-  //     var articleModel = new ArticleModel(1),
-  //         article = new Article(articleModel);
+    }));
 
-  //     next = sinon.spy();
+    it('Exists the article to save', sinon.test(function () {
 
-  //     article.newArticle(req, res, next);
+      next = this.spy(next);
 
-  //     next.called.should.be.true;
-  //     next.reset();
-  //   });
+      article.newArticle(req, res, next);
 
-  // });
+      next.called.should.be.true;
 
-  // describe('.getArticle(req, res, next)', function () {
+    }));
 
-  //   it('Article should be gotten', function () {
-  //     var articleModel = new ArticleModel(1),
-  //         article = new Article(articleModel),
-  //         articleModelMock = sinon.mock(articleModel);
+  });
 
-  //     articleModelMock.expects('exec').once();
+  describe('.getArticle(req, res, next)', function () {
 
-  //     article.getArticle(req, res, next);
+    it('Article should be gotten', sinon.test(function () {
 
-  //     articleModelMock.verify();
-  //   });
+      this.spy(ArticleModel, 'exec');
+
+      article.getArticle(req, res, next);
+
+      ArticleModel.exec.called.should.be.true;
+
+    }));
     
-  //   it('Response should be rendered', function () {
-  //      var articleModel = new ArticleModel(1),
-  //         article = new Article(articleModel);
+    it('Response should be rendered', sinon.test(function () {
 
-  //     res.render = sinon.spy();
+      this.spy(res, 'render');
 
-  //     article.getArticle(req, res, next);
+      article.getArticle(req, res, next);
 
-  //     res.render.calledWith('blog/admin/article').should.be.true;
-  //     res.render.reset();
-  //   });
+      res.render.calledWith('blog/admin/article').should.be.true;
 
-  //   it('Response should not be rendered', function () {
-  //     var articleModel = new ArticleModel(-1),
-  //         article = new Article(articleModel);
+    }));
 
-  //     next = sinon.spy();
+    it('Response should not be rendered', sinon.test(function () {
 
-  //     article.getArticle(req, res, next);
+      next = this.spy(next);
 
-  //     next.called.should.be.true;
-  //     next.reset();
-  //   });
+      articleKO.getArticle(req, res, next);
 
-  // }); 
+      next.called.should.be.true;
+      
+    }));
 
-  // describe('.updateArticle(req, res, next)', function () {
+  });
 
-  //   it('Article should be gotten', function () {
-  //     var articleModel = new ArticleModel(-1),
-  //         article = new Article(articleModel),
-  //         articleModelMock = sinon.mock(articleModel);
+  describe('.updateArticle(req, res, next)', function () {
 
-  //     articleModelMock.expects('exec').once();
+    it('Article should be gotten', sinon.test(function () {
 
-  //     article.updateArticle(req, res, next);
+      this.spy(ArticleModel, 'exec');
 
-  //     articleModelMock.verify();
-  //   });
+      // fake request body form
+      req.body.title = 'test';
+      req.body.author = 'test';
+      req.body.slug = 'test';
+      req.body.category = 'test';
+      req.body.abstract = 'test';
+      req.body.content = 'test';
+      req.body.tags = 'test,test';
 
-  // });
+      article.updateArticle(req, res, next);
+
+      ArticleModel.exec.called.should.be.true;
+
+    }));
+
+  });
 
 });

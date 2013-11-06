@@ -1,81 +1,93 @@
 var support = require('./support'),
     sinon = require('sinon'),
-    Blog = require('../lib/routes/blog');
+    Blog = require('../lib/routes/blog'),
+    ArticleModel = support.ArticleModel,
+    ArticleModelKO = support.ArticleModelKO,
+    ArticleModelEmpty = support.ArticleModelEmpty,
+    blog = new Blog(ArticleModel),
+    blogKO = new Blog(ArticleModelKO),
+    blogEmpty = new Blog(ArticleModelEmpty),
+    req = support.req,
+    res = support.res,
+    next = support.next;
 
 describe('routes/login', function () {
-  var ArticleModel = support.ArticleModel,
-      blog = new Blog(ArticleModel),
-      ArticleModelKO = support.ArticleModelKO,
-      blogKO = new Blog(ArticleModelKO),
-      req = support.req,
-      res = support.res,
-      next = support.next;
 
   describe('.getSummary', function () {
+
     req.params.page = 0;
     req.params.category = 'category';
     req.params.tag = ['tag'];
 
-    it('Summary should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findRange').once();
-      ArticleModelMock.expects('count').once();
-
+    it('Summary should be gotten', sinon.test(function () {
+      
+      this.spy(ArticleModel, 'exec');
+      this.spy(ArticleModel, 'count');
+      
       blog.getSummary(req, res, next);
+      
+      ArticleModel.exec.called.should.be.true;
+      ArticleModel.count.called.should.be.true;
 
-      ArticleModelMock.verify();
-    });
+    }));
 
-    it('Blog view shouold be rendered', function () {
-      res.render = sinon.spy();
-
+    it('Blog view should be rendered', sinon.test(function () {
+      
+      this.spy(res, 'render');
+      
       blog.getSummary(req, res, next);
-
+      
       res.render.calledWith('blog/blog').should.be.true;
-      res.render.reset();
-    });
+      
+    }));
 
-    it('Error in Model', function () {
-      next = sinon.spy();
+    it('Error in Model', sinon.test(function () {
+
+      next = this.spy(next);
 
       blogKO.getSummary(req, res, next);
 
       next.called.should.be.true;
-      next.reset();
-    });    
+
+    }));
 
   });
 
   describe('.getArticle', function () {
 
-    it('Article should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('find').once();
-      ArticleModelMock.expects('categoriesCount').once();
+    it('Article should be gotten', sinon.test(function () {
+
+      this.spy(ArticleModel, 'exec');
+      this.spy(ArticleModel, 'categoriesCount');
 
       blog.getArticle(req, res, next);
 
-      ArticleModelMock.verify();
-    });
+      ArticleModel.exec.called.should.be.true;
+      ArticleModel.categoriesCount.called.should.be.true;
 
-    it('Render de article view', function () {
-      req.params.slug = '/blog/slug',
-      res.render = sinon.spy();
+    }));
+
+    it('Render de article view', sinon.test(function () {
+
+      req.params.slug = '/blog/slug';
+
+      this.spy(res, 'render');
 
       blog.getArticle(req, res, next);
 
       res.render.calledWith('blog/article').should.be.true;
-      res.render.reset();
-    });
 
-    it('Error in Model', function () {
-      next = sinon.spy();
+    }));
+
+    it('Error in Model', sinon.test(function () {
+
+      next = this.spy(next);
 
       blogKO.getArticle(req, res, next);
 
       next.called.should.be.true;
-      next.reset();
-    });  
+
+    }));  
 
   });  
 

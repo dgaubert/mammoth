@@ -49,17 +49,12 @@ module.exports.err = {
   status: 500
 };
 
-// Models mocks
+// Models fake
 var ArticleModel = function ArticleModel(mode) {
 
-  var one = false,
-      behavior = mode || 1;
+  var one = false;
 
-  this.setBehavior = function (value) {
-    this.behavior = value;
-  };
-
-  this.find = function () {
+  this.find = function () {  
     this.one = false;
     return this;
   };
@@ -77,10 +72,6 @@ var ArticleModel = function ArticleModel(mode) {
     return this;
   };
 
-  this.count = function () {
-    return this;
-  };
-
   this.skip = function () {
     return this;
   };
@@ -90,55 +81,87 @@ var ArticleModel = function ArticleModel(mode) {
   };
 
   this.exec = function (callback) {
-    if (behavior === 1) {
-      // return required values
-      if (one) {
-        callback(null, article);
-      } else {
-        callback(null, [article]);
-      }
-    } else if (behavior === 0) {
-      // return empty values
-      if (one) {
-        callback(null, {});
-      } else {
-        callback(null, []);
-      }
-    } else if (behavior === -1) {
-      // throws exception
-      callback(new Error('Error'), null);
+    // return required values
+    if (one) {
+      callback(null, article);
+    } else {
+      callback(null, [article]);
     }
   };
 
+  this.count = function (callback) {
+    callback(null, 1);
+  };  
+
   this.categoriesCount = function (callback) {
-    if (behavior === 1) {
-      // return required values
-      callback(null, [{_id: 'category', value: 1}]);
-    } else if (behavior === 0) {
-      // return empty values
-      callback(null, [{}]);
-    } else if (behavior === -1) {
-      // throws exception
-      callback(new Error('Error'), null);
-    }
+    // return required values
+    callback(null, [{_id: 'category', value: 1}]);
   };
 
   this.tagsCount = function (callback) {
-    if (behavior === 1) {
-      // return required values
-      callback(null, [{_id: 'tag', value: 1}]);
-    } else if (behavior === 0) {
-      // return empty values
-      callback(null, [{}]);
-    } else if (behavior === -1) {
-      // throws exception
-      callback(new Error('Error'), null);
-    }
+    // return required values
+    callback(null, [{_id: 'tag', value: 1}]);
   };
 
 };
 
-module.exports.ArticleModel = new ArticleModel(1);
+module.exports.ArticleModel = new ArticleModel();
+
+// Fake model: throw error
+// ---------------------------------------------
+
+var ArticleModelKO = new ArticleModel();
+
+ArticleModelKO.exec = function (callback) {
+  // throw exception
+  callback(new Error('Error'), null);
+};
+
+ArticleModelKO.count = function (callback) {
+  callback(new Error('Error'), null);
+};  
+
+ArticleModelKO.categoriesCount = function (callback) {
+  // throw exception
+  callback(new Error('Error'), null);
+};
+
+ArticleModelKO.tagsCount = function (callback) {
+  // throw exception
+  callback(new Error('Error'), null);
+};
+
+module.exports.ArticleModelKO = ArticleModelKO;
+
+// Fake model: return empty values
+// ---------------------------------------------
+
+var ArticleModelEmpty = new ArticleModel();
+
+ArticleModelEmpty.exec = function (callback) {
+  // return empty values
+  if (one) {
+    callback(null, {});
+  } else {
+    callback(null, []);
+  }
+};
+
+ArticleModelEmpty.count = function (callback) {
+  callback(null, 0);
+};
+
+ArticleModelEmpty.categoriesCount = function (callback) {
+  // return empty values
+  callback(null, [{}]);
+};
+
+ArticleModelEmpty.tagsCount = function (callback) {
+  // return empty values
+  callback(null, [{}]);
+};
+
+module.exports.ArticleModelEmpty = ArticleModelEmpty;
 
 module.exports.UserModel = {
   find: function (filter, callback) {
