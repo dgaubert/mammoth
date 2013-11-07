@@ -13,6 +13,15 @@ var support = require('./support'),
 
 describe('routes/article', function () {
 
+  // fake request body form
+  req.body.title = 'test';
+  req.body.author = 'test';
+  req.body.slug = 'test';
+  req.body.category = 'test';
+  req.body.abstract = 'test';
+  req.body.content = 'test';
+  req.body.tags = 'test,test';
+
   describe('.getArticles(req, res, next)', function () {
 
     it('Articles should be gotten', sinon.test(function () {
@@ -124,15 +133,6 @@ describe('routes/article', function () {
     it('Article should be gotten', sinon.test(function () {
 
       this.spy(ArticleModel, 'exec');
-
-      // fake request body form
-      req.body.title = 'test';
-      req.body.author = 'test';
-      req.body.slug = 'test';
-      req.body.category = 'test';
-      req.body.abstract = 'test';
-      req.body.content = 'test';
-      req.body.tags = 'test,test';
 
       article.updateArticle(req, res, next);
 

@@ -13,33 +13,37 @@ describe('routes/home', function () {
 
   describe('.getHome', function () {
 
-    it('Last article written should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('getLast').once();
-      ArticleModelMock.expects('categoriesCount').once();
+    it('Last article written should be gotten', sinon.test(function () {
+
+      this.spy(ArticleModel, 'exec');
+      this.spy(ArticleModel, 'categoriesCount');
 
       home.getHome(req, res, next);
 
-      ArticleModelMock.verify();
-    });
+      ArticleModel.exec.called.should.be.true;
+      ArticleModel.categoriesCount.called.should.be.true;
 
-    it('Render de home view', function () {
-      res.render = sinon.spy();
+    }));
+
+    it('Render de home view', sinon.test(function () {
+
+      this.spy(res, 'render');
       
       home.getHome(req, res, next);
 
       res.render.calledWith('home').should.be.true;
-      res.render.reset();
-    });
 
-    it('Error in Model', function () {
-      next = sinon.spy();
+    }));
+
+    it('Error in Model', sinon.test(function () {
+
+      next = this.spy(next);
 
       homeKO.getHome(req, res, next);
 
       next.called.should.be.true;
-      next.reset();
-    }); 
+
+    }));
 
   });
 

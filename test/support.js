@@ -9,10 +9,14 @@ var article = module.exports.article = {
       abstract: 'abstract',
       content: 'content',
       tags: ['tag'],
-      comments: ['comment'],
+      comments: [{comment: 'comment'}],
       save: function (callback) {
         callback(null);
       }
+    },
+    user = module.exports.user = {
+      salt: 'h9Sr0AlBfM+Xi9gJZQeWQKyfPlAur5+7jkELi9tzjJqc0FLVKUO6lWwi8U8OxujnbZY+8Jdz3vRkfalxSWRgeG60Rhm6t4Bb3eGKGifu7To6BUMFAjbB+xcShUY47dB4+H6gzvVVkYDMYfCUmyQuUTs73SUlxbdFdj2A3D8rr9c=',
+      hash: '!?L→@,☼G×ã¹?~gQº9ø ↕|?◄p→‼Æ5Â3]BtÆ?äïÂn:♂ð¤▬¤³ Äb☺uèùè?hgÔ▲äbÂù|?E☼ãIºî*l♂Æû?öE¢?ÊAg¸x¼«"\þd‼³&£~►♥♀¶òòñ³K?ö?Pû(C◄ÿr?7ÊK??X+½¦'
     };
 
 module.exports.params = {
@@ -31,7 +35,10 @@ module.exports.req = {
   body: {},
   params: {},
   path: '',
-  session: {},
+  session: {
+    regenerate: function () {},
+    destroy: function () {}
+  },
   url: ''
 };
 
@@ -40,6 +47,8 @@ module.exports.res = {
   redirect: function () {},
   render: function () {},
   writeHead: function () {},
+  set: function () {},
+  send: function () {},
   end: function () {}
 };
 
@@ -49,68 +58,102 @@ module.exports.err = {
   status: 500
 };
 
-// Models fake
-var ArticleModel = function ArticleModel(mode) {
+// Article Model fake
+var ArticleModel = function ArticleModel() {
+  this.one = false;
 
-  var one = false;
-
-  this.find = function () {  
-    this.one = false;
-    return this;
+  this.save = function (callback) {
+    callback(null);
   };
-
-  this.findOne = function () {
-    this.one = true;
-    return this;
-  };
-
-  this.select = function () {
-    return this;
-  };
-
-  this.sort = function () {
-    return this;
-  };
-
-  this.skip = function () {
-    return this;
-  };
-
-  this.limit = function () {
-    return this;
-  };
-
-  this.exec = function (callback) {
-    // return required values
-    if (one) {
-      callback(null, article);
-    } else {
-      callback(null, [article]);
-    }
-  };
-
-  this.count = function (callback) {
-    callback(null, 1);
-  };  
-
-  this.categoriesCount = function (callback) {
-    // return required values
-    callback(null, [{_id: 'category', value: 1}]);
-  };
-
-  this.tagsCount = function (callback) {
-    // return required values
-    callback(null, [{_id: 'tag', value: 1}]);
-  };
-
 };
 
-module.exports.ArticleModel = new ArticleModel();
+ArticleModel.find = function () {  
+  this.one = false;
+  return this;
+};
+
+ArticleModel.findOne = function () {
+  this.one = true;
+  return this;
+};
+
+ArticleModel.select = function () {
+  return this;
+};
+
+ArticleModel.sort = function () {
+  return this;
+};
+
+ArticleModel.skip = function () {
+  return this;
+};
+
+ArticleModel.limit = function () {
+  return this;
+};
+
+ArticleModel.exec = function (callback) {
+  // return required values
+  if (this.one) {
+    callback(null, article);
+  } else {
+    callback(null, [article]);
+  }
+};
+
+ArticleModel.count = function (callback) {
+  callback(null, 1);
+};
+
+ArticleModel.categoriesCount = function (callback) {
+  // return required values
+  callback(null, [{_id: 'category', value: 1}]);
+};
+
+ArticleModel.tagsCount = function (callback) {
+  // return required values
+  callback(null, [{_id: 'tag', value: 1}]);
+};
+
+module.exports.ArticleModel = ArticleModel;
 
 // Fake model: throw error
 // ---------------------------------------------
 
-var ArticleModelKO = new ArticleModel();
+var ArticleModelKO = function ArticleModelKO() {
+  this.one = false;
+
+  this.save = function (callback) {
+    callback(null);
+  };
+};
+
+ArticleModelKO.find = function () {  
+  this.one = false;
+  return this;
+};
+
+ArticleModelKO.findOne = function () {
+  this.one = true;
+  return this;
+};
+
+ArticleModelKO.select = function () {
+  return this;
+};
+
+ArticleModelKO.sort = function () {
+  return this;
+};
+
+ArticleModelKO.skip = function () {
+  return this;
+};
+
+ArticleModelKO.limit = function () {
+  return this;
+};
 
 ArticleModelKO.exec = function (callback) {
   // throw exception
@@ -136,11 +179,43 @@ module.exports.ArticleModelKO = ArticleModelKO;
 // Fake model: return empty values
 // ---------------------------------------------
 
-var ArticleModelEmpty = new ArticleModel();
+var ArticleModelEmpty = function ArticleModelEmpty() {
+  this.one = false;
+  
+  this.save = function (callback) {
+    callback(null);
+  };
+};
+
+ArticleModelEmpty.find = function () {  
+  this.one = false;
+  return this;
+};
+
+ArticleModelEmpty.findOne = function () {
+  this.one = true;
+  return this;
+};
+
+ArticleModelEmpty.select = function () {
+  return this;
+};
+
+ArticleModelEmpty.sort = function () {
+  return this;
+};
+
+ArticleModelEmpty.skip = function () {
+  return this;
+};
+
+ArticleModelEmpty.limit = function () {
+  return this;
+};
 
 ArticleModelEmpty.exec = function (callback) {
   // return empty values
-  if (one) {
+  if (this.one) {
     callback(null, {});
   } else {
     callback(null, []);
@@ -163,23 +238,40 @@ ArticleModelEmpty.tagsCount = function (callback) {
 
 module.exports.ArticleModelEmpty = ArticleModelEmpty;
 
-module.exports.UserModel = {
-  find: function (filter, callback) {
-    callback(null, [{
-      salt: 'h9Sr0AlBfM+Xi9gJZQeWQKyfPlAur5+7jkELi9tzjJqc0FLVKUO6lWwi8U8OxujnbZY+8Jdz3vRkfalxSWRgeG60Rhm6t4Bb3eGKGifu7To6BUMFAjbB+xcShUY47dB4+H6gzvVVkYDMYfCUmyQuUTs73SUlxbdFdj2A3D8rr9c=',
-      hash: '!?L→@,☼G×ã¹?~gQº9ø ↕|?◄p→‼Æ5Â3]BtÆ?äïÂn:♂ð¤▬¤³ Äb☺uèùè?hgÔ▲äbÂù|?E☼ãIºî*l♂Æû?öE¢?ÊAg¸x¼«"\þd‼³&£~►♥♀¶òòñ³K?ö?Pû(C◄ÿr?7ÊK??X+½¦'
-    }]);
-  }
+// Models fake
+var UserModel = function UserModel() {
+
+
+  this.find = function () {  
+    return this;
+  };
+
+  this.exec = function (callback) {
+    callback(null, [article]);
+  };
+
 };
 
-module.exports.UserModelEmpty = {
-  find: function (filter, callback) {
-    callback(null, [{}]);
-  }
+module.exports.UserModel = new UserModel();
+
+// Fake model: return empty values
+// ---------------------------------------------
+
+var UserModelEmpty = new UserModel();
+
+UserModelEmpty.exec = function (callback) {
+  callback(null, [{}]);
 };
 
-module.exports.UserModelKO = {
-  find: function (filter, callback) {
-    callback(new Error('Error'), null);
-  }
+module.exports.UserModelEmpty = UserModelEmpty;
+
+// Fake model: return empty values
+// ---------------------------------------------
+
+var UserModelKO = new UserModel();
+
+UserModelKO.exec = function (callback) {
+  callback(new Error('Error'), null);
 };
+
+module.exports.UserModelKO = UserModelKO;
