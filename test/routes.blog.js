@@ -1,17 +1,15 @@
 var support = require('./support'),
     sinon = require('sinon'),
     Blog = require('../lib/routes/blog'),
-    ArticleModel = support.ArticleModel,
-    ArticleModelKO = support.ArticleModelKO,
-    ArticleModelEmpty = support.ArticleModelEmpty,
-    blog = new Blog(ArticleModel),
-    blogKO = new Blog(ArticleModelKO),
-    blogEmpty = new Blog(ArticleModelEmpty),
+    Model = support.Model,
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/login', function () {
+
+  // Set model
+  Model.setModel(support.article);
 
   describe('.getSummary', function () {
 
@@ -20,18 +18,22 @@ describe('routes/login', function () {
     req.params.tag = ['tag'];
 
     it('Summary should be gotten', sinon.test(function () {
+
+      var blog = new Blog(Model.ok());
       
-      this.spy(ArticleModel, 'exec');
-      this.spy(ArticleModel, 'count');
+      this.spy(Model, 'exec');
+      this.spy(Model, 'count');
       
       blog.getSummary(req, res, next);
       
-      ArticleModel.exec.called.should.be.true;
-      ArticleModel.count.called.should.be.true;
+      Model.exec.called.should.be.true;
+      Model.count.called.should.be.true;
 
     }));
 
     it('Blog view should be rendered', sinon.test(function () {
+
+      var blog = new Blog(Model.ok());
       
       this.spy(res, 'render');
       
@@ -43,9 +45,11 @@ describe('routes/login', function () {
 
     it('Error in Model', sinon.test(function () {
 
+      var blog = new Blog(Model.ko());
+
       next = this.spy(next);
 
-      blogKO.getSummary(req, res, next);
+      blog.getSummary(req, res, next);
 
       next.called.should.be.true;
 
@@ -57,17 +61,21 @@ describe('routes/login', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      this.spy(ArticleModel, 'exec');
-      this.spy(ArticleModel, 'categoriesCount');
+      var blog = new Blog(Model.ok());
+
+      this.spy(Model, 'exec');
+      this.spy(Model, 'categoriesCount');
 
       blog.getArticle(req, res, next);
 
-      ArticleModel.exec.called.should.be.true;
-      ArticleModel.categoriesCount.called.should.be.true;
+      Model.exec.called.should.be.true;
+      Model.categoriesCount.called.should.be.true;
 
     }));
 
     it('Render de article view', sinon.test(function () {
+
+       var blog = new Blog(Model.ok());
 
       req.params.slug = '/blog/slug';
 
@@ -81,9 +89,11 @@ describe('routes/login', function () {
 
     it('Error in Model', sinon.test(function () {
 
+      var blog = new Blog(Model.ko());
+
       next = this.spy(next);
 
-      blogKO.getArticle(req, res, next);
+      blog.getArticle(req, res, next);
 
       next.called.should.be.true;
 

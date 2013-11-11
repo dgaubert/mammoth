@@ -1,31 +1,35 @@
 var support = require('./support'),
     sinon = require('sinon'),
-    Home = require('../lib/routes/home');
+    Home = require('../lib/routes/home'),
+    Model = support.Model,
+    req = support.req,
+    res = support.res,
+    next = support.next;
 
 describe('routes/home', function () {
-  var ArticleModel = support.ArticleModel,
-      home = new Home(ArticleModel),
-      ArticleModelKO = support.ArticleModelKO,
-      homeKO = new Home(ArticleModelKO),
-      req = support.req,
-      res = support.res,
-      next = support.next;
+
+  // Set model
+  Model.setModel(support.article);
 
   describe('.getHome', function () {
 
     it('Last article written should be gotten', sinon.test(function () {
 
-      this.spy(ArticleModel, 'exec');
-      this.spy(ArticleModel, 'categoriesCount');
+      var home = new Home(Model.ok());
+
+      this.spy(Model, 'exec');
+      this.spy(Model, 'categoriesCount');
 
       home.getHome(req, res, next);
 
-      ArticleModel.exec.called.should.be.true;
-      ArticleModel.categoriesCount.called.should.be.true;
+      Model.exec.called.should.be.true;
+      Model.categoriesCount.called.should.be.true;
 
     }));
 
     it('Render de home view', sinon.test(function () {
+
+      var home = new Home(Model.ok());
 
       this.spy(res, 'render');
       
@@ -37,9 +41,11 @@ describe('routes/home', function () {
 
     it('Error in Model', sinon.test(function () {
 
+      var home = new Home(Model.ko());
+
       next = this.spy(next);
 
-      homeKO.getHome(req, res, next);
+      home.getHome(req, res, next);
 
       next.called.should.be.true;
 

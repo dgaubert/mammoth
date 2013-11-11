@@ -1,31 +1,35 @@
 var support = require('./support'),
     sinon = require('sinon'),
     Rss = require('../lib/routes/rss')
-    ArticleModel = support.ArticleModel,
-    rss = new Rss(ArticleModel),
-    ArticleModelKO = support.ArticleModelKO,
-    rssKO = new Rss(ArticleModelKO);
+    Model = support.Model,
     req = support.req,
     res = support.res,
     next = support.next;
     
 describe('routes/rss', function () {
 
+  // Set model
+  Model.setModel(support.article);
+
   describe('.getFeed(req, res, next)', function () {
 
-    it('ArticleModels should be gotten', sinon.test(function () {
+    it('Article should be gotten', sinon.test(function () {
 
-      this.spy(ArticleModel, 'find');
-      this.spy(ArticleModel, 'exec');
+      var rss = new Rss(Model.ok());
+
+      this.spy(Model, 'find');
+      this.spy(Model, 'exec');
 
       rss.getFeed(req, res, next);
 
-      ArticleModel.find.called.should.be.true;
-      ArticleModel.exec.called.should.be.true;
+      Model.find.called.should.be.true;
+      Model.exec.called.should.be.true;
 
     }));
     
     it('Response should be sended', sinon.test(function () {
+
+      var rss = new Rss(Model.ok());
       
       this.spy(res, 'set');
       this.spy(res, 'send');
@@ -38,10 +42,12 @@ describe('routes/rss', function () {
     }));
 
     it('Response should not be sended', sinon.test(function () {
+
+      var rss = new Rss(Model.ko());
       
       next = this.spy(next);
 
-      rssKO.getFeed(req, res, next);
+      rss.getFeed(req, res, next);
 
       next.called.should.be.true;
 
