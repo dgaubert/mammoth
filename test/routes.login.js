@@ -1,34 +1,31 @@
-var support = require('./support'),
-    sinon = require('sinon'),
+var sinon = require('sinon'),
+    User = require('./support/user'),
     Login = require('../lib/routes/login'),
-    Model = support.Model,
+    support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/login', function () {
 
-  // Set model
-  Model.setModel(support.article);
-
   describe('.checkUser', function () {
 
     it('User should be found', sinon.test(function () {
 
-      var login = new Login(Model.ok());
+      var login = new Login(User.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(User, 'exec');
 
       login.checkUser(req, res, next);
 
-      Model.exec.called.should.be.true;
+      User.exec.called.should.be.true;
 
     }));
 
     // TODO: something is wrong to test pwd
     it.skip('Login OK, regenerate session', sinon.test(function () {
 
-      var login = new Login(Model.ok());
+      var login = new Login(User.ok());
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -46,7 +43,7 @@ describe('routes/login', function () {
     // TODO: something is wrong to test pwd
     it.skip('Wrong password, redirect', sinon.test(function () {
 
-      var login = new Login(Model.ok());
+      var login = new Login(User.ok());
 
       req.body.username = 'dgaubert';
       req.body.password = 'wrong';
@@ -64,7 +61,7 @@ describe('routes/login', function () {
 
     it('Wrong user, redirect', function () {
 
-      var login = new Login(Model.empty());
+      var login = new Login(User.empty());
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -81,7 +78,7 @@ describe('routes/login', function () {
 
     it('Error in DB', sinon.test(function () {
 
-      var login = new Login(Model.ko());
+      var login = new Login(User.ko());
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -100,7 +97,7 @@ describe('routes/login', function () {
 
     it('Destroy sesion', sinon.test(function () {
 
-      var login = new Login(Model.ok());
+      var login = new Login(User.ok());
 
       this.spy(req.session, 'destroy');
 
@@ -116,7 +113,7 @@ describe('routes/login', function () {
 
     it('Get view to login', sinon.test(function () {
 
-      var login = new Login(Model.ok());
+      var login = new Login(User.ok());
 
       this.spy(res, 'render');
 
@@ -126,6 +123,6 @@ describe('routes/login', function () {
     
     }));
 
-  });  
+  });
 
 });

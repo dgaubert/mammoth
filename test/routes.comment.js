@@ -1,15 +1,12 @@
-var support = require('./support'),
-    sinon = require('sinon'),
+var sinon = require('sinon'),
+    Article = require('./support/article'),
     Comment = require('../lib/routes/comment'),
-    Model = support.Model,
+    support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/comment', function () {
-
-  // Set model
-  Model.setModel(support.article);
 
   req.params.slug = '/blog/admin/comment/slug';
   req.params.commentId = 'commentId';
@@ -21,7 +18,7 @@ describe('routes/comment', function () {
 
     it('Comment should be created', sinon.test(function () {
 
-      var comment = new Comment(Model.ok());
+      var comment = new Comment(Article.ok());
 
       this.spy(res, 'redirect');
 
@@ -33,7 +30,7 @@ describe('routes/comment', function () {
 
     it('Comment should not be created', sinon.test(function () {
 
-      var comment = new Comment(Model.ko());
+      var comment = new Comment(Article.ko());
       
       next = this.spy(next);
 
@@ -43,27 +40,27 @@ describe('routes/comment', function () {
 
     }));
 
-  });      
+  });
 
   describe('.getComments(req, res, next)', function () {
 
     it('Comments should be gotten', sinon.test(function () {
 
-      var comment = new Comment(Model.ok());
+      var comment = new Comment(Article.ok());
 
-      this.spy(Model, 'findOne');
-      this.spy(Model, 'exec');
+      this.spy(Article, 'findOne');
+      this.spy(Article, 'exec');
 
       comment.getComments(req, res, next);
 
-      Model.findOne.called.should.be.true;
-      Model.exec.called.should.be.true;
+      Article.findOne.called.should.be.true;
+      Article.exec.called.should.be.true;
 
     }));
 
     it('Comments views should be rendered', sinon.test(function () {
 
-      var comment = new Comment(Model.ok());
+      var comment = new Comment(Article.ok());
 
       this.spy(res, 'render');
 
@@ -79,21 +76,21 @@ describe('routes/comment', function () {
 
     it('Comment should be found', sinon.test(function () {
 
-      var comment = new Comment(Model.ok());
+      var comment = new Comment(Article.ok());
 
-      this.spy(Model, 'findOne');
-      this.spy(Model, 'exec');
+      this.spy(Article, 'findOne');
+      this.spy(Article, 'exec');
 
       comment.deleteComment(req, res, next);
 
-      Model.findOne.called.should.be.true;
-      Model.exec.called.should.be.true;
+      Article.findOne.called.should.be.true;
+      Article.exec.called.should.be.true;
 
     }));
 
     it('Comment should be deleted', sinon.test(function () {
 
-      var comment = new Comment(Model.ok());
+      var comment = new Comment(Article.ok());
 
       this.spy(res, 'redirect');
 
@@ -103,6 +100,6 @@ describe('routes/comment', function () {
 
     }));
 
-  }); 
+  });
 
 });

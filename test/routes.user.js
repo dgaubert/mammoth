@@ -1,35 +1,32 @@
-var support = require('./support'),
-    sinon = require('sinon'),
+var sinon = require('sinon'),
+    UserModel = require('./support/user'),
     User = require('../lib/routes/user')
-    Model = support.Model,
+    support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/user', function () {
 
-  // Set model
-  Model.setModel(support.user);
-
   describe('.getUsers(req, res)', function () {
 
     it('Users should be gotten', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
-      this.spy(Model, 'find');
-      this.spy(Model, 'exec');
+      this.spy(UserModel, 'find');
+      this.spy(UserModel, 'exec');
 
       user.getUsers(req, res, next);
 
-      Model.find.called.should.be.true;
-      Model.exec.called.should.be.true;
+      UserModel.find.called.should.be.true;
+      UserModel.exec.called.should.be.true;
 
     }));
 
     it('Response should be rendered', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
       
       this.spy(res, 'render');
 
@@ -45,7 +42,7 @@ describe('routes/user', function () {
 
     it('Response should be rendered', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
       this.spy(res, 'render');
 
@@ -61,19 +58,19 @@ describe('routes/user', function () {
 
     it('User should be gotten', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(UserModel, 'exec');
 
       user.newUser(req, res, next);
 
-      Model.exec.called.should.be.true;
+      UserModel.exec.called.should.be.true;
 
     }));
 
     it('Exists the user to save', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
       next = this.spy(next);
 
@@ -90,19 +87,19 @@ describe('routes/user', function () {
 
     it('User should be gotten', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(UserModel, 'exec');
 
       user.getUser(req, res, next);
 
-      Model.exec.called.should.be.true;
+      UserModel.exec.called.should.be.true;
 
     }));
     
     it('Response should be rendered', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
       this.spy(res, 'render');
 
@@ -114,7 +111,7 @@ describe('routes/user', function () {
 
     it('Response should not be rendered', sinon.test(function () {
 
-      var user = new User(Model.ko());
+      var user = new User(UserModel.ko());
 
       next = this.spy(next);
 
@@ -130,16 +127,16 @@ describe('routes/user', function () {
 
     it('User should be gotten', sinon.test(function () {
 
-      var user = new User(Model.ok());
+      var user = new User(UserModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(UserModel, 'exec');
 
       // fake request body form
       req.body.username = 'test';
 
       user.updateUser(req, res, next);
 
-      Model.exec.called.should.be.true;
+      UserModel.exec.called.should.be.true;
 
     }));
 

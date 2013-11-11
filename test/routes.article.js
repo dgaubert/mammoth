@@ -1,15 +1,12 @@
-var support = require('./support'),
-    sinon = require('sinon'),
+var sinon = require('sinon'),
+    ArticleModel = require('./support/article'),
     Article = require('../lib/routes/article'),
-    Model = support.Model,
+    support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/article', function () {
-
-  // Set model
-  Model.setModel(support.article);
 
   // fake request body form
   req.body.title = 'test';
@@ -24,20 +21,20 @@ describe('routes/article', function () {
 
     it('Articles should be gotten', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(ArticleModel, 'exec');
 
       article.getArticles(req, res, next);
 
-      Model.exec.called.should.be.true;
+      ArticleModel.exec.called.should.be.true;
 
     }));
     
     
     it('Response should be rendered', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
       this.spy(res, 'render');
 
@@ -50,7 +47,7 @@ describe('routes/article', function () {
 
     it('Response should not be rendered', sinon.test(function () {
 
-      var article = new Article(Model.ko());
+      var article = new Article(ArticleModel.ko());
 
       next = this.spy(next);
 
@@ -67,7 +64,7 @@ describe('routes/article', function () {
 
     it('View should be rendered', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
       this.spy(res, 'render');
 
@@ -83,19 +80,19 @@ describe('routes/article', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(ArticleModel, 'exec');
 
       article.newArticle(req, res, next);
 
-      Model.exec.called.should.be.true;
+      ArticleModel.exec.called.should.be.true;
 
     }));
 
     it('Exists the article to save', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
       next = this.spy(next);
 
@@ -111,19 +108,19 @@ describe('routes/article', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(ArticleModel, 'exec');
 
       article.getArticle(req, res, next);
 
-      Model.exec.called.should.be.true;
+      ArticleModel.exec.called.should.be.true;
 
     }));
     
     it('Response should be rendered', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
       this.spy(res, 'render');
 
@@ -135,7 +132,7 @@ describe('routes/article', function () {
 
     it('Response should not be rendered', sinon.test(function () {
 
-      var article = new Article(Model.ko());
+      var article = new Article(ArticleModel.ko());
 
       next = this.spy(next);
 
@@ -151,13 +148,13 @@ describe('routes/article', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var article = new Article(Model.ok());
+      var article = new Article(ArticleModel.ok());
 
-      this.spy(Model, 'exec');
+      this.spy(ArticleModel, 'exec');
 
       article.updateArticle(req, res, next);
 
-      Model.exec.called.should.be.true;
+      ArticleModel.exec.called.should.be.true;
 
     }));
 

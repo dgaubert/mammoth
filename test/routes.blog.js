@@ -1,15 +1,12 @@
-var support = require('./support'),
-    sinon = require('sinon'),
+var sinon = require('sinon'),
+    Article = require('./support/article'),
     Blog = require('../lib/routes/blog'),
-    Model = support.Model,
+    support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('routes/login', function () {
-
-  // Set model
-  Model.setModel(support.article);
+describe('routes/blog', function () {
 
   describe('.getSummary', function () {
 
@@ -19,21 +16,21 @@ describe('routes/login', function () {
 
     it('Summary should be gotten', sinon.test(function () {
 
-      var blog = new Blog(Model.ok());
-      
-      this.spy(Model, 'exec');
-      this.spy(Model, 'count');
+      var blog = new Blog(Article.ok());
+
+      this.spy(Article, 'exec');
+      this.spy(Article, 'count');
       
       blog.getSummary(req, res, next);
       
-      Model.exec.called.should.be.true;
-      Model.count.called.should.be.true;
+      Article.exec.called.should.be.true;
+      Article.count.called.should.be.true;
 
     }));
 
     it('Blog view should be rendered', sinon.test(function () {
 
-      var blog = new Blog(Model.ok());
+      var blog = new Blog(Article.ok());
       
       this.spy(res, 'render');
       
@@ -43,9 +40,9 @@ describe('routes/login', function () {
       
     }));
 
-    it('Error in Model', sinon.test(function () {
+    it('Error in Article', sinon.test(function () {
 
-      var blog = new Blog(Model.ko());
+      var blog = new Blog(Article.ko());
 
       next = this.spy(next);
 
@@ -61,21 +58,21 @@ describe('routes/login', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var blog = new Blog(Model.ok());
+      var blog = new Blog(Article.ok());
 
-      this.spy(Model, 'exec');
-      this.spy(Model, 'categoriesCount');
+      this.spy(Article, 'exec');
+      this.spy(Article, 'categoriesCount');
 
       blog.getArticle(req, res, next);
 
-      Model.exec.called.should.be.true;
-      Model.categoriesCount.called.should.be.true;
+      Article.exec.called.should.be.true;
+      Article.categoriesCount.called.should.be.true;
 
     }));
 
     it('Render de article view', sinon.test(function () {
 
-       var blog = new Blog(Model.ok());
+      var blog = new Blog(Article.ok());
 
       req.params.slug = '/blog/slug';
 
@@ -87,9 +84,9 @@ describe('routes/login', function () {
 
     }));
 
-    it('Error in Model', sinon.test(function () {
+    it('Error in Article', sinon.test(function () {
 
-      var blog = new Blog(Model.ko());
+      var blog = new Blog(Article.ko());
 
       next = this.spy(next);
 
@@ -97,8 +94,8 @@ describe('routes/login', function () {
 
       next.called.should.be.true;
 
-    }));  
+    }));
 
-  });  
+  });
 
 });
