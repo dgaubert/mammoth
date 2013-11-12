@@ -1,98 +1,105 @@
-var support = require('./support'),
-    sinon = require('sinon'),
-    Comment = require('../lib/routes/comment');
+var sinon = require('sinon'),
+    Article = require('./support/article'),
+    Comment = require('../lib/routes/comment'),
+    support = require('./support/support'),
+    req = support.req,
+    res = support.res,
+    next = support.next;
 
 describe('routes/comment', function () {
-  var ArticleModel = support.ArticleModel,
-      ArticleModelKO = support.ArticleModelKO,
-      ArticleModelEmpty = support.ArticleModelEmpty,
-      comment = new Comment(ArticleModel),
-      commentKO = new Comment(ArticleModelKO),
-      commentEmpty = new Comment(ArticleModelEmpty),
-      req = support.req,
-      res = support.res,
-      next = support.next;
 
-describe('.newComment(req, res, next)', function () {
+  req.params.slug = '/blog/admin/comment/slug';
+  req.params.commentId = 'commentId';
+  req.body.comment = 'comment';
+  req.body.name = 'Daniel G. Aubert';
+  req.body.mail = 'danielgarciaaubert@gmail.com';
 
-    req.params.slug = '/blog/admin/comment/slug';
-    req.params.commentId = 'commentId';
-    req.body.comment = 'comment';
-    req.body.name = 'Daniel G. Aubert';
-    req.body.mail = 'danielgarciaaubert@gmail.com';
+  describe('.newComment(req, res, next)', function () {
 
+    it('Comment should be created', sinon.test(function () {
 
-    it('Comment should check if the articles exist', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findOne').once();
+      var comment = new Comment(Article.ok());
 
-      comment.getComments(req, res, next);
-
-      ArticleModelMock.verify();
-    });
-
-    it('Comment should be created', function () {
-      res.redirect = sinon.spy();
+      this.spy(res, 'redirect');
 
       comment.newComment(req, res, next);
 
       res.redirect.calledWith('/blog/' + req.params.slug + '#lastCommnent').should.be.true;
-      res.redirect.reset();
-    });
+      
+    }));
 
-    it('Comment should not be created', function () {
-      next = sinon.spy();
+    it('Comment should not be created', sinon.test(function () {
 
-      commentKO.newComment(req, res, next);
+      var comment = new Comment(Article.ko());
+      
+      next = this.spy(next);
+
+      comment.newComment(req, res, next);
 
       next.called.should.be.true;
-      next.reset();
-    });
 
-  });      
+    }));
+
+  });
 
   describe('.getComments(req, res, next)', function () {
 
-    it('Comments should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findOne').once();
+    it('Comments should be gotten', sinon.test(function () {
+
+      var comment = new Comment(Article.ok());
+
+      this.spy(Article, 'findOne');
+      this.spy(Article, 'exec');
 
       comment.getComments(req, res, next);
 
-      ArticleModelMock.verify();
-    });
+      Article.findOne.called.should.be.true;
+      Article.exec.called.should.be.true;
 
-    it('Comments views should be rendered', function () {
-      res.render = sinon.spy();
+    }));
+
+    it('Comments views should be rendered', sinon.test(function () {
+
+      var comment = new Comment(Article.ok());
+
+      this.spy(res, 'render');
 
       comment.getComments(req, res, next);
 
       res.render.calledWith('blog/admin/comments').should.be.true;
-      res.render.reset();
-    });
+
+    }));
 
   });
 
   describe('.deleteComment(req, res, next)', function () {
 
-    it('Comment should be found', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('findOne').once();
+    it('Comment should be found', sinon.test(function () {
+
+      var comment = new Comment(Article.ok());
+
+      this.spy(Article, 'findOne');
+      this.spy(Article, 'exec');
 
       comment.deleteComment(req, res, next);
 
-      ArticleModelMock.verify();
-    });
+      Article.findOne.called.should.be.true;
+      Article.exec.called.should.be.true;
 
-    it('Comment should be deleted', function () {
-      res.redirect = sinon.spy();
+    }));
+
+    it('Comment should be deleted', sinon.test(function () {
+
+      var comment = new Comment(Article.ok());
+
+      this.spy(res, 'redirect');
 
       comment.deleteComment(req, res, next);
 
       res.redirect.calledWith('/blog/admin/articles/' + req.params.slug + '/comments/').should.be.true;
-      res.redirect.reset();
-    });
 
-  });  
+    }));
+
+  });
 
 });

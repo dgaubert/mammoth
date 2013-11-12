@@ -1,4 +1,4 @@
-var support = require('./support'),
+var support = require('./support/support'),
     sinon = require('sinon'),
     Guard = require('../lib/utils/guard');
 

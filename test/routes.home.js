@@ -1,45 +1,52 @@
-var support = require('./support'),
-    sinon = require('sinon'),
-    Home = require('../lib/routes/home');
+var sinon = require('sinon'),
+    Article = require('./support/article'),
+    Home = require('../lib/routes/home'),
+    support = require('./support/support'),
+    req = support.req,
+    res = support.res,
+    next = support.next;
 
 describe('routes/home', function () {
-  var ArticleModel = support.ArticleModel,
-      home = new Home(ArticleModel),
-      ArticleModelKO = support.ArticleModelKO,
-      homeKO = new Home(ArticleModelKO),
-      req = support.req,
-      res = support.res,
-      next = support.next;
 
   describe('.getHome', function () {
 
-    it('Last article written should be gotten', function () {
-      var ArticleModelMock = sinon.mock(ArticleModel);
-      ArticleModelMock.expects('getLast').once();
-      ArticleModelMock.expects('categoriesCount').once();
+    it('Last article written should be gotten', sinon.test(function () {
+
+      var home = new Home(Article.ok());
+
+      this.spy(Article, 'exec');
+      this.spy(Article, 'categoriesCount');
 
       home.getHome(req, res, next);
 
-      ArticleModelMock.verify();
-    });
+      Article.exec.called.should.be.true;
+      Article.categoriesCount.called.should.be.true;
 
-    it('Render de home view', function () {
-      res.render = sinon.spy();
+    }));
+
+    it('Render de home view', sinon.test(function () {
+
+      var home = new Home(Article.ok());
+
+      this.spy(res, 'render');
       
       home.getHome(req, res, next);
 
       res.render.calledWith('home').should.be.true;
-      res.render.reset();
-    });
 
-    it('Error in Model', function () {
-      next = sinon.spy();
+    }));
 
-      homeKO.getHome(req, res, next);
+    it('Error in Article', sinon.test(function () {
+
+      var home = new Home(Article.ko());
+
+      next = this.spy(next);
+
+      home.getHome(req, res, next);
 
       next.called.should.be.true;
-      next.reset();
-    }); 
+
+    }));
 
   });
 

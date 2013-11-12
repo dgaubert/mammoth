@@ -1,22 +1,23 @@
-var support = require('./support'),
-    sinon = require('sinon'),
-    Admin = require('../lib/routes/admin');
+var sinon = require('sinon'),
+    Admin = require('../lib/routes/admin'),
+    admin = new Admin(),
+    support = require('./support/support'),
+    req = support.req,
+    res = support.res;
 
 describe('routes/admin', function () {
-  var admin = new Admin();
-      req = support.req,
-      res = support.res;
 
   describe('.getAdmin', function () {
 
-    it('Blog view shouold be rendered', function () {
-      res.render = sinon.spy();
+    it('Blog view should be rendered', sinon.test(function () {
+      
+      this.spy(res, 'render');
 
       admin.getAdmin(req, res);
 
       res.render.calledWith('blog/admin/admin').should.be.true;
-      res.render.reset();
-    });
+
+    }));
     
   });
 
