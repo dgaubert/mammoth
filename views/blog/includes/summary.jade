@@ -1,19 +1,19 @@
 div#summary
-  - each summary in summaries
+  - each article in articles
     article
       //- title
       h3
-        a(href='/blog/#{summary.slug}') #{summary.title}
+        a(href='/blog/#{article.slug}') #{article.title}
         small  por 
-          strong #{summary.author}
+          strong #{article.author}
         small
-          = (moment(summary.created).format('[ el] DD/MM/YYYY'))
+          = (moment(article.created).format('[ el] DD/MM/YYYY'))
       //- content
-      p!= summary.abstract
+      != article.abstract
       //- button bar
       div.btn-toolbar
-        a.btn.btn-xs.btn-primary(href='/blog/#{summary.slug}') Leer m&aacutes
-        a.btn.btn-xs.btn-default(href='/blog/category/#{summary.category}') #{summary.category}
-        - each tag in summary.tags
+        a.btn.btn-xs.btn-primary(href='/blog/#{article.slug}') Leer m&aacutes
+        a.btn.btn-xs.btn-default(href='/blog/category/#{article.category}') #{article.category}
+        - each tag in article.tags
           a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
-        a(href='/blog/#{summary.slug}#comments') #{summary.commentCounter} Comentarios
+        a(href='/blog/#{article.slug}#comments') #{article.commentCounter} Comentarios

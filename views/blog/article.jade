@@ -13,7 +13,7 @@ block content
               small
                 = (moment(article.created).format('[ el] DD/MM/YYYY'))
             //- content
-            p!= article.content
+            != article.content
             //- button bar
             div.btn-toolbar
               a.btn.btn-xs.btn-default(href='/blog/category/#{article.category}') #{article.category}
