@@ -27,8 +27,8 @@ describe('routes/login', function () {
 
       var login = new Login(User.ok());
 
-      req.body.username = 'dgaubert';
-      req.body.password = 'mammoth';
+      req.body.username = '';
+      req.body.password = '';
 
       this.spy(req.session, 'regenerate');
       this.spy(res, 'redirect');
@@ -40,8 +40,7 @@ describe('routes/login', function () {
 
     }));
 
-    // TODO: something is wrong to test pwd
-    it.skip('Wrong password, redirect', sinon.test(function () {
+    it('Wrong password, redirect', sinon.test(function () {
 
       var login = new Login(User.ok());
 
@@ -57,7 +56,6 @@ describe('routes/login', function () {
       res.redirect.called.should.be.true;
 
     }));
-
 
     it('Wrong user, redirect', function () {
 
