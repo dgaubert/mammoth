@@ -17,7 +17,9 @@ $(document).ready(function() {
     if (!comment[2].value.length) {
       $('form#comment').find('#error-msg').text('Escribe un comentario');
       return 0;
-    } else {
+    }
+
+    /*else {
       for (i = 0; i < tags.length; i++) {
         if (tags[i].search('<a href=') < 0 && tags[i].search('</a>') < 0 &&
           tags[i].search('<code>') < 0 && tags[i].search('</code>') < 0 &&
@@ -46,11 +48,39 @@ $(document).ready(function() {
           }
         }
       }
-    }
+    }*/
     return 1;
   };
+
+  var isHuman = function () {
+    var comment = $('form#comment').serializeArray();
+
+    if(comment[4].value === undefined || comment[3].value === null) {
+      $('form#comment').find('#error-msg').text('Elije una opción para demostar que es humano');
+      return 0;
+    }
+
+    $.post('/blog/human', {
+        id: comment[3].value,
+        option: {
+          value: comment[4].value
+        }
+      })
+      .done(function() {
+        alert('done');
+        return 1;
+      })
+      .fail(function() {
+        alert('fail');
+        $('form#comment').find('#error-msg').text('Ups! Parece que no eres humano.');
+        return 0;
+      });
+  };
+
   $('button#comment').on('click', function (e) {
     if (!checkComment()) {
+      e.preventDefault();
+    } else if (!isHuman()) {
       e.preventDefault();
     }
   });
