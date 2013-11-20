@@ -9,18 +9,18 @@ $(document).ready(function() {
 
     if (comment[0].value.match(/^[\w\s._-]+$/) === null) {
       $('form#comment')
-        .find('#error-msg')
+        .find('#comment-msg')
         .text('Nombre no válido');
       return 0;
     }
     if (comment[1].value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/) === null) {
       $('form#comment')
-        .find('#error-msg')
+        .find('#comment-msg')
         .text('Correo no válido');
       return 0;
     }
     if (!comment[2].value.length) {
-      $('form#comment').find('#error-msg').text('Escribe un comentario');
+      $('form#comment').find('#comment-msg').text('Escribe un comentario');
       return 0;
     }
     /*else {
@@ -29,7 +29,7 @@ $(document).ready(function() {
           tags[i].search('<code>') < 0 && tags[i].search('</code>') < 0 &&
           tags[i].search('<strong>') < 0 && tags[i].search('</strong') < 0 &&
           tags[i].search('<blockquote>') < 0 && tags[i].search('</blockquote>') < 0) {
-          $('form#comment').find('#error-msg').text('Etiqueta HTML ' + tags[i] + ' no válida');
+          $('form#comment').find('#comment-msg').text('Etiqueta HTML ' + tags[i] + ' no válida');
           return 0;
         }
         closed = false;
@@ -47,7 +47,7 @@ $(document).ready(function() {
             }
           }
           if (!closed) {
-            $('form#comment').find('#error-msg').text('Etiqueta HTML ' + tags[i] + ' no cerrada');
+            $('form#comment').find('#comment-msg').text('Etiqueta HTML ' + tags[i] + ' no cerrada');
             return 0;
           }
         }
@@ -56,29 +56,31 @@ $(document).ready(function() {
     */
     if(comment[4].value === undefined || comment[4].value === null) {
       $('form#comment')
-        .find('#error-msg')
+        .find('#comment-msg')
         .text('Elije una opción para demostar que es humano');
       return 0;
     }
     return 1;
   };
 
-  $('button#comment').on('click', function () {
+  $('button#comment').on('click', function (e) {
+    e.preventDefault();
     var comment = $('form#comment').serializeArray();
 
     if (checkComment(comment)) {
-
       $.post(location.pathname, comment)
-        .done(function() {
-
-          // Redirect
-
-        })
-        .fail(function(error) {
+        .done(function(msg) {
           $('form#comment')
-            .find('#error-msg')
-            .text(error);
-
+            .find('#comment-msg')
+            .text(msg);
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
+        })
+        .fail(function(jqXHR, error, errorThrown) {
+          $('form#comment')
+            .find('#comment-msg')
+            .text(errorThrown);
         });
 
     }

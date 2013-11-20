@@ -55,15 +55,15 @@ block content
                   textarea#comment.form-control(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
                 div.form-group
                   p Cual de las siguientes opciones no se corresponde con el resto:
-                  input(type='hidden', name='challenge.id', value='#{challenge.id}')
+                  input(type='hidden', name='challengeId', value='#{challenge.id}')
                   - each option in challenge.options
-                    input(name='option', value='#{option.value}', type='radio')
+                    input(name='challengeValue', value='#{option.value}', type='radio')
                     span  #{option.name}
                     br
                 button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
                   i.icon-comment-alt
                   span  Comentar
-                span#error-msg.text-danger
+                span#comment-msg.text-danger
 
           //- note
           div.row.col-md-11
