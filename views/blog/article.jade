@@ -8,10 +8,9 @@ block content
           article
             //- title
             h3 #{article.title}
-              small  por 
-                strong #{article.author}
-              small
-                = (moment(article.created).format('[ el] DD/MM/YYYY'))
+            small.text-muted
+              = (moment(article.created).format('DD/MM/YYYY [ ]'))
+              strong #{article.author}
             //- content
             != article.content
             //- button bar
@@ -20,50 +19,53 @@ block content
               - each tag in article.tags
                 a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
 
-            hr.featurette-divider
-
           //- comments
 
-          h3#comments Comentarios
+          h3.page-header#comments Comentarios
 
           -if (article.comments.length > 0) {
             - each comment in article.comments
               div.comment
                 h5
                   strong #{comment.author}
-                  span  
-                    = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
+                small.text-muted
+                  = (moment(comment.created).format('[ ] HH:mm [ - ] DD/MM/YYYY'))
                 div
                   p!=comment.comment
-            span#lastCommnent
+                hr.featurette-divider
           - } else {
             span.text-info Se el primero en comentar este artículo.
           - }
 
           //- new comment
-          div.well.col-md-11
+          div.well
             form#comment(action='/blog/#{article.slug}/comment', method='post')
               legend Participa escribiendo un comentario
               fieldset
                 div.form-group.input-group
-                  span.input-group-addon Nombre
-                  input#name.form-control(name='name', type='text', placeholder='Ej: Peter Jackson')
+                  span.input-group-addon
+                    i.icon-user
+                  input#name.form-control(name='name', type='text', placeholder='Ej: Peter Jackson', maxlength="50")
                 div.form-group.input-group
-                  span.input-group-addon Correo
-                  input#mail.form-control(name='mail', type='text', placeholder='Ej: peter.jackson@gmail.com')
+                  span.input-group-addon
+                    i.icon-envelope
+                  input#mail.form-control(name='mail', type='text', placeholder='Ej: peter.jackson@gmail.com', maxlength="80")
                 div.form-group
                   textarea#comment.form-control(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
                 div.form-group
-                  p Cual de las siguientes opciones no se corresponde con el resto:
+                  p 
+                    strong ¿Eres humano?.
+                    |  Cual de las siguientes opciones no se corresponde con el resto:
                   input(type='hidden', name='challengeId', value='#{challenge.id}')
                   - each option in challenge.options
-                    input(name='challengeValue', value='#{option.value}', type='radio')
-                    span  #{option.name}
-                    br
-                button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
-                  i.icon-comment-alt
-                  span  Comentar
-                span#comment-msg.text-danger
+                    div.col-xs-12
+                      input(name='challengeValue', value='#{option.value}', type='radio')
+                      span  #{option.name}
+                div.btn-toolbar
+                  button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
+                    i.icon-comment-alt
+                    span  Comentar
+                  span#comment-msg
 
           //- note
           div.row.col-md-11
