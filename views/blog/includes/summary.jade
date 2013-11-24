@@ -4,10 +4,9 @@ div#summary
       //- title
       h3
         a(href='/blog/#{article.slug}') #{article.title}
-        small  por 
-          strong #{article.author}
-        small
-          = (moment(article.created).format('[ el] DD/MM/YYYY'))
+      small.text-muted
+        = (moment(article.created).format('DD/MM/YYYY [ ]'))
+        strong #{article.author}
       //- content
       != article.abstract
       //- button bar

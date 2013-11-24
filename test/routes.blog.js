@@ -98,4 +98,39 @@ describe('routes/blog', function () {
 
   });
 
+  describe('.newComment(req, res, next)', function () {
+
+    req.body.comment = 'comment';
+    req.body.name = 'Daniel G. Aubert';
+    req.body.mail = 'danielgarciaaubert@gmail.com';
+
+    req.body.challengeId = 1;
+    req.body.challengeValue = 'x';
+
+    it('Comment should be created', sinon.test(function () {
+
+      var blog = new Blog(Article.ok());
+
+      this.spy(res, 'send');
+
+      blog.newComment(req, res, next);
+
+      res.send.calledWith(200).should.be.true;
+      
+    }));
+
+    it('Comment should not be created', sinon.test(function () {
+
+      var blog = new Blog(Article.ko());
+      
+      next = this.spy(next);
+
+      blog.newComment(req, res, next);
+
+      next.called.should.be.true;
+
+    }));
+
+  });
+
 });
