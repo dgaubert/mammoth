@@ -7446,6 +7446,12 @@ a .icon-flip-vertical:before {
 .icon-renren:before {
   content: "\f18b";
 }
+.navbar-custom {
+  max-height: 50px;
+}
+.logo {
+  padding: 5px 0 0 10px;
+}
 body {
   padding: 50px 0 0 0;
 }

@@ -1,4 +1,4 @@
-header.navbar.navbar-default.navbar-fixed-top
+header.navbar.navbar-default.navbar-fixed-top.navbar-custom
   div.container
     div.navbar-header
       //- button mobile
@@ -7,8 +7,9 @@ header.navbar.navbar-default.navbar-fixed-top
         span.icon-bar
         span.icon-bar
       //- logo
-      a.navbar-brand(href="/") 
-        span Daniel Gaubert
+      a.navbar-brand.logo(href="/") 
+        //- span Daniel Gaubert
+        img(src="/images/logo.png")
       //- menu
     div.navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
