@@ -10,37 +10,6 @@ describe('routes/comment', function () {
 
   req.params.slug = '/blog/admin/comment/slug';
   req.params.commentId = 'commentId';
-  req.body.comment = 'comment';
-  req.body.name = 'Daniel G. Aubert';
-  req.body.mail = 'danielgarciaaubert@gmail.com';
-
-  describe('.newComment(req, res, next)', function () {
-
-    it('Comment should be created', sinon.test(function () {
-
-      var comment = new Comment(Article.ok());
-
-      this.spy(res, 'redirect');
-
-      comment.newComment(req, res, next);
-
-      res.redirect.calledWith('/blog/' + req.params.slug + '#lastCommnent').should.be.true;
-      
-    }));
-
-    it('Comment should not be created', sinon.test(function () {
-
-      var comment = new Comment(Article.ko());
-      
-      next = this.spy(next);
-
-      comment.newComment(req, res, next);
-
-      next.called.should.be.true;
-
-    }));
-
-  });
 
   describe('.getComments(req, res, next)', function () {
 

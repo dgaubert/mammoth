@@ -1,17 +1,17 @@
-var nospam = require('../lib/utils/nospam');
+var challenger = require('../lib/utils/challenger');
 
-describe('utils/nospam', function() {
+describe('utils/challenger', function() {
     
-  describe('.getRandom()', function () {
+  describe('.getChallenge()', function () {
         
     it('Return a challenge object', function () {
-      var challenge = nospam.getChallenge();
+      var challenge = challenger.getChallenge();
 
       challenge.should.have.property('id');
       challenge.should.have.property('options');
       challenge.options.should.be.an.instanceof(Array);
 
-      var option = challenge[0];
+      var option = challenge.options[0];
       option.should.have.property('name');
       option.should.have.property('value');
       option.should.have.property('valid');
