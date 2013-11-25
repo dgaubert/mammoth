@@ -85,8 +85,20 @@ block content
                 li
                   a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
           div.well
+            h4 Tags
+            ul.list-unstyled
+              - each tag in tags
+                li
+                  a(href='/blog/tag/#{tag._id}') #{tag._id} (#{tag.value})
+          div.well
             h4 Artículos similares
             ul.list-unstyled
               - each similar in similars
                 li
                   a(href='/blog/#{similar.slug}') #{similar.title}
+          div.well
+            h4 Artículos recientes
+            ul.list-unstyled
+              - each last in lasts
+                li
+                  a(href='/blog/#{last.slug}') #{last.title}
