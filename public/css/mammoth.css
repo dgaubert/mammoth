@@ -7446,11 +7446,18 @@ a .icon-flip-vertical:before {
 .icon-renren:before {
   content: "\f18b";
 }
-.navbar-custom {
-  max-height: 50px;
-}
 .logo {
+  margin: 0 0 -20px;
   padding: 5px 0 0 10px;
+}
+@media (max-width: 767px) {
+  .navbar-collapse {
+    padding-top: 15px;
+  }
+  .collapsing {
+    border-top: none;
+    box-shadow: none;
+  }
 }
 body {
   padding: 50px 0 0 0;
@@ -7488,9 +7495,6 @@ footer a:hover {
 }
 .btn-toolbar {
   margin-top: 15px;
-}
-.btn-toolbar > a {
-  margin-left: 5px;
 }
 .portfolio-img-mammoth {
   background-image: url(../images/project-mammoth.png);

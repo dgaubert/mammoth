@@ -9,13 +9,13 @@ block content
             //- title
             h3 #{article.title}
             small.text-muted
-              = (moment(article.created).format('DD/MM/YYYY [ ]'))
+              = (moment(article.created).format('DD/MM/YYYY [ - ]'))
               strong #{article.author}
             //- content
             != article.content
             //- button bar
             div.btn-toolbar
-              a.btn.btn-xs.btn-default(href='/blog/category/#{article.category}') #{article.category}
+              a.btn.btn-xs.btn-primary(href='/blog/category/#{article.category}') #{article.category}
               - each tag in article.tags
                 a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
 
@@ -34,7 +34,7 @@ block content
                   p!=comment.comment
                 hr.featurette-divider
           - } else {
-            span.text-info Se el primero en comentar este artículo.
+            p.text-info Se el primero en comentar este artículo.
           - }
 
           //- new comment
@@ -85,8 +85,20 @@ block content
                 li
                   a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
           div.well
+            h4 Tags
+            ul.list-unstyled
+              - each tag in tags
+                li
+                  a(href='/blog/tag/#{tag._id}') #{tag._id} (#{tag.value})
+          div.well
             h4 Artículos similares
             ul.list-unstyled
               - each similar in similars
                 li
                   a(href='/blog/#{similar.slug}') #{similar.title}
+          div.well
+            h4 Artículos recientes
+            ul.list-unstyled
+              - each last in lasts
+                li
+                  a(href='/blog/#{last.slug}') #{last.title}
