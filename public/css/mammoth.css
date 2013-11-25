@@ -7496,9 +7496,6 @@ footer a:hover {
 .btn-toolbar {
   margin-top: 15px;
 }
-.btn-toolbar > a {
-  margin-left: 5px;
-}
 .portfolio-img-mammoth {
   background-image: url(../images/project-mammoth.png);
 }
