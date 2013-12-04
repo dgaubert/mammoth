@@ -14,7 +14,8 @@
     "pwd": "0.0.2",
     "moment": ">=1.6.2",
     "feed": ">=0.0.7",
-    "marked": "~0.2.9"
+    "marked": "~0.2.9",
+    "GridFS": "~0.3.0"
   },
   "devDependencies": {
     "mocha": ">=1.13.0",
