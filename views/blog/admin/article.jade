@@ -54,12 +54,25 @@ block content
                 - if (article) {
                   input(type="hidden", name="_method", value="put")
                 -}
-          - if (article) {    
-          form(method='post', action='/blog/admin/articles/#{article.slug}/picture/new', enctype='multipart/form-data')
-            div.form-group
-              input(type='file', name='picture')
-            div.btn-toolbar
-              button.btn.btn-success.pull-right(type='submit')
-                i.icon-upload
-                span  Subir imagen
+          - if (article) {
+            legend 
+              h2 Imágenes adjuntas:
+            - each picture in pictures
+              div.btn-toolbar
+                form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/#{picture}')
+                  a(href='/blog/pictures/#{picture}') #{picture}
+                  button.btn.btn-xs.btn-danger.pull-right(type='submit')
+                    i.icon-remove
+                    span  Eliminar
+                  input(type="hidden", name="_method", value="delete")
+                  
+            legend 
+              h2 Subir una imagen
+            form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/new', enctype='multipart/form-data')
+              div.form-group
+                input(type='file', name='picture')
+              div.btn-toolbar
+                button.btn.btn-success.pull-right(type='submit')
+                  i.icon-upload
+                  span  Subir imagen
           - }
