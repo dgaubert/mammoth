@@ -7451,7 +7451,7 @@ a .icon-flip-vertical:before {
   padding: 10px 0 0 10px;
 }
 .navbar-text {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 5px;
 }
 @media (max-width: 767px) {
