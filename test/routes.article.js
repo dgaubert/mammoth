@@ -1,6 +1,7 @@
 var sinon = require('sinon'),
     ArticleModel = require('./support/article'),
     Article = require('../lib/routes/article'),
+    Picture = require('./support/picture'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
@@ -21,7 +22,7 @@ describe('routes/article', function () {
 
     it('Articles should be gotten', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(ArticleModel, 'exec');
 
@@ -34,7 +35,7 @@ describe('routes/article', function () {
     
     it('Response should be rendered', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(res, 'render');
 
@@ -47,7 +48,7 @@ describe('routes/article', function () {
 
     it('Response should not be rendered', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ko());
+      var article = new Article(ArticleModel.ko(), Picture);
 
       next = this.spy(next);
 
@@ -64,7 +65,7 @@ describe('routes/article', function () {
 
     it('View should be rendered', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(res, 'render');
 
@@ -80,7 +81,7 @@ describe('routes/article', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(ArticleModel, 'exec');
 
@@ -92,7 +93,7 @@ describe('routes/article', function () {
 
     it('Exists the article to save', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       next = this.spy(next);
 
@@ -108,7 +109,7 @@ describe('routes/article', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(ArticleModel, 'exec');
 
@@ -120,7 +121,7 @@ describe('routes/article', function () {
     
     it('Response should be rendered', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(res, 'render');
 
@@ -132,7 +133,7 @@ describe('routes/article', function () {
 
     it('Response should not be rendered', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ko());
+      var article = new Article(ArticleModel.ko(), Picture);
 
       next = this.spy(next);
 
@@ -148,7 +149,7 @@ describe('routes/article', function () {
 
     it('Article should be gotten', sinon.test(function () {
 
-      var article = new Article(ArticleModel.ok());
+      var article = new Article(ArticleModel.ok(), Picture);
 
       this.spy(ArticleModel, 'exec');
 
