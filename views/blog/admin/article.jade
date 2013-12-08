@@ -33,17 +33,17 @@ block content
               textarea.form-control(name='content', rows='30') #{article === undefined ? "" : article.content}
             div.form-group
               label
-                - if (article === undefined) {
-                input.form-control(type='checkbox', name='published')
-                - } else {
+                - if (article) {
                 input(type='checkbox', name='published', checked=(article.published ? "checked" : undefined))
+                - } else {
+                input.form-control(type='checkbox', name='published')
                 - }
                 span  Publicado
             div.btn-toolbar
               a.btn.btn-primary(href='/blog/admin/articles')
                 i.icon-arrow-left
                 span  Volver
-              - if (article !== undefined) {
+              - if (article) {
               a.btn.btn-warning.pull-right(href='/blog/admin/articles/#{article.slug}/comments')
                 i.icon-comments-alt
                 span  Comentarios
@@ -51,6 +51,29 @@ block content
               button.btn.btn-success.pull-right(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
                 i.icon-ok
                 span  #{article === undefined ? "Crear" : "Actualizar"}
-                - if (article !== undefined) {
+                - if (article) {
                   input(type="hidden", name="_method", value="put")
-                - }
+                -}
+          - if (article) {
+            - if (pictures.length) {
+              legend 
+                h2 Imágenes adjuntas:
+              - each picture in pictures
+                div.btn-toolbar
+                  form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/#{picture.filename}')
+                    a(href='/blog/pictures/#{picture.filename}') /blog/pictures/#{picture.filename}
+                    button.btn.btn-xs.btn-danger.pull-right(type='submit')
+                      i.icon-remove
+                      span  Eliminar
+                    input(type="hidden", name="_method", value="delete")
+            - }
+            legend 
+              h2 Subir imagen
+            form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/new', enctype='multipart/form-data')
+              div.form-group
+                input(type='file', name='picture')
+              div.btn-toolbar
+                button.btn.btn-success.pull-right(type='submit')
+                  i.icon-upload
+                  span  Subir imagen
+          - }
