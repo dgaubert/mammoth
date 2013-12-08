@@ -7480,6 +7480,10 @@ section {
 article {
   padding: 0 0 15px 0;
 }
+article img {
+  display: block;
+  margin: 20px auto;
+}
 #wellcome {
   color: #eeeeee;
   background-color: #4f6089;
