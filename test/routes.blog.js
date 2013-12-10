@@ -1,4 +1,5 @@
 var sinon = require('sinon'),
+    ArticleService = require('../lib/services/article-service'),
     Article = require('./support/article'),
     Blog = require('../lib/routes/blog'),
     support = require('./support/support'),
@@ -15,38 +16,41 @@ describe('routes/blog', function () {
     req.params.tag = ['tag'];
 
     it('Summary should be gotten', sinon.test(function () {
-
-      var blog = new Blog(Article.ok());
-
-      this.spy(Article, 'exec');
-      this.spy(Article, 'count');
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
       
       blog.getSummary(req, res, next);
       
-      Article.exec.called.should.be.true;
-      Article.count.called.should.be.true;
+      ArticleServiceStub.findPublishedByCategoryOrTag.called.should.be.true;
+      ArticleServiceStub.countPublishedByCategoryOrTag.called.should.be.true;
 
     }));
 
-    it('Blog view should be rendered', sinon.test(function () {
 
-      var blog = new Blog(Article.ok());
+    it('Blog view should be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
       
       this.spy(res, 'render');
       
       blog.getSummary(req, res, next);
+
+      ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, null, [new Article()]);
+      ArticleServiceStub.countPublishedByCategoryOrTag.callArgWith(2, null, 1);
       
       res.render.calledWith('blog/blog').should.be.true;
       
     }));
 
     it('Error in Article', sinon.test(function () {
-
-      var blog = new Blog(Article.ko());
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
 
       next = this.spy(next);
 
       blog.getSummary(req, res, next);
+
+      ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, new Error(), null);
 
       next.called.should.be.true;
 
@@ -57,40 +61,47 @@ describe('routes/blog', function () {
   describe('.getArticle', function () {
 
     it('Article should be gotten', sinon.test(function () {
-
-      var blog = new Blog(Article.ok());
-
-      this.spy(Article, 'exec');
-      this.spy(Article, 'categoriesCount');
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
 
       blog.getArticle(req, res, next);
 
-      Article.exec.called.should.be.true;
-      Article.categoriesCount.called.should.be.true;
+      ArticleServiceStub.findBySlug.called.should.be.true;
+      ArticleServiceStub.categoriesCount.called.should.be.true;
+      ArticleServiceStub.tagsCount.called.should.be.true;
+      ArticleServiceStub.findLastThree.called.should.be.true;
 
     }));
 
     it('Render de article view', sinon.test(function () {
-
-      var blog = new Blog(Article.ok());
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
 
       req.params.slug = '/blog/slug';
-
+      
       this.spy(res, 'render');
-
+      
       blog.getArticle(req, res, next);
 
+      ArticleServiceStub.findBySlug.callArgWith(1, null, new Article());
+      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
+      ArticleServiceStub.tagsCount.callArgWith(0, null, 1);
+      ArticleServiceStub.findLastThree.callArgWith(0, null, [new Article()]);
+      ArticleServiceStub.findByCategory.callArgWith(1, null, [new Article()]);
+      
       res.render.calledWith('blog/article').should.be.true;
 
     }));
 
     it('Error in Article', sinon.test(function () {
-
-      var blog = new Blog(Article.ko());
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
 
       next = this.spy(next);
 
       blog.getArticle(req, res, next);
+
+      ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 
       next.called.should.be.true;
 
@@ -109,23 +120,28 @@ describe('routes/blog', function () {
 
     it('Comment should be created', sinon.test(function () {
 
-      var blog = new Blog(Article.ok());
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
 
       this.spy(res, 'send');
 
       blog.newComment(req, res, next);
+
+      ArticleServiceStub.findBySlug.callArgWith(1, null, new Article());
 
       res.send.calledWith(200).should.be.true;
       
     }));
 
     it('Comment should not be created', sinon.test(function () {
-
-      var blog = new Blog(Article.ko());
+      var ArticleServiceStub = this.stub(ArticleService),
+          blog = new Blog(ArticleServiceStub);
       
       next = this.spy(next);
 
       blog.newComment(req, res, next);
+
+      ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 
       next.called.should.be.true;
 
