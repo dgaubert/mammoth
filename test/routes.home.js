@@ -1,36 +1,35 @@
 var sinon = require('sinon'),
     Article = require('./support/article'),
-    Home = require('../lib/routes/home'),
+    ArticleService = require('../lib/services/article-service'),
+    HomeRouter = require('../lib/routes/home'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/home', function () {
+  var ArticleServiceStub = sinon.stub(ArticleService),
+      home = new HomeRouter(ArticleServiceStub);
 
   describe('.getHome', function () {
 
     it('Last article written should be gotten', sinon.test(function () {
 
-      var home = new Home(Article.ok());
-
-      this.spy(Article, 'exec');
-      this.spy(Article, 'categoriesCount');
-
       home.getHome(req, res, next);
 
-      Article.exec.called.should.be.true;
-      Article.categoriesCount.called.should.be.true;
+      ArticleServiceStub.findLast.called.should.be.true;
+      ArticleServiceStub.categoriesCount.called.should.be.true;
 
     }));
 
     it('Render de home view', sinon.test(function () {
 
-      var home = new Home(Article.ok());
-
       this.spy(res, 'render');
       
       home.getHome(req, res, next);
+
+      ArticleServiceStub.findLast.callArgWith(0, null, [new Article()]);
+      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
 
       res.render.calledWith('home').should.be.true;
 
@@ -38,11 +37,12 @@ describe('routes/home', function () {
 
     it('Error in Article', sinon.test(function () {
 
-      var home = new Home(Article.ko());
-
       next = this.spy(next);
 
       home.getHome(req, res, next);
+
+      ArticleServiceStub.findLast.callArgWith(0, new Error(), null);
+      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);      
 
       next.called.should.be.true;
 

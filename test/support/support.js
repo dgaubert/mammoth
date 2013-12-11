@@ -18,7 +18,13 @@ module.exports.req = {
     regenerate: function () {},
     destroy: function () {}
   },
-  url: ''
+  url: '',
+  files: {
+    picture: {
+      path: '',
+      name: ''
+    }
+  }
 };
 
 module.exports.res = {

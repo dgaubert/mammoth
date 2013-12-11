@@ -1,12 +1,15 @@
 var sinon = require('sinon'),
     Article = require('./support/article'),
-    Comment = require('../lib/routes/comment'),
+    ArticleService = require('../lib/services/article-service'),
+    CommentRouter = require('../lib/routes/comment'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/comment', function () {
+  var ArticleServiceStub = sinon.stub(ArticleService),
+      comment = new CommentRouter(ArticleServiceStub);
 
   req.params.slug = '/blog/admin/comment/slug';
   req.params.commentId = 'commentId';
@@ -15,25 +18,19 @@ describe('routes/comment', function () {
 
     it('Comments should be gotten', sinon.test(function () {
 
-      var comment = new Comment(Article.ok());
-
-      this.spy(Article, 'findOne');
-      this.spy(Article, 'exec');
-
       comment.getComments(req, res, next);
 
-      Article.findOne.called.should.be.true;
-      Article.exec.called.should.be.true;
+      ArticleServiceStub.findBySlug.called.should.be.true;
 
     }));
 
     it('Comments views should be rendered', sinon.test(function () {
 
-      var comment = new Comment(Article.ok());
-
       this.spy(res, 'render');
 
       comment.getComments(req, res, next);
+
+      ArticleService.findBySlug.callArgWith(1, null, new Article());
 
       res.render.calledWith('blog/admin/comments').should.be.true;
 
@@ -45,27 +42,21 @@ describe('routes/comment', function () {
 
     it('Comment should be found', sinon.test(function () {
 
-      var comment = new Comment(Article.ok());
-
-      this.spy(Article, 'findOne');
-      this.spy(Article, 'exec');
-
       comment.deleteComment(req, res, next);
 
-      Article.findOne.called.should.be.true;
-      Article.exec.called.should.be.true;
+      ArticleService.findBySlug.called.should.be.true;
 
     }));
 
     it('Comment should be deleted', sinon.test(function () {
 
-      var comment = new Comment(Article.ok());
-
       this.spy(res, 'redirect');
 
       comment.deleteComment(req, res, next);
 
-      res.redirect.calledWith('/blog/admin/articles/' + req.params.slug + '/comments/').should.be.true;
+      ArticleService.findBySlug.callArgWith(1, null, new Article());
+
+      res.redirect.called.should.be.true;
 
     }));
 

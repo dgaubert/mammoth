@@ -1,13 +1,15 @@
 var sinon = require('sinon'),
     ArticleService = require('../lib/services/article-service'),
     Article = require('./support/article'),
-    Blog = require('../lib/routes/blog'),
+    BlogRouter = require('../lib/routes/blog'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
 describe('routes/blog', function () {
+  var ArticleServiceStub = sinon.stub(ArticleService),
+      blog = new BlogRouter(ArticleServiceStub);
 
   describe('.getSummary', function () {
 
@@ -16,8 +18,6 @@ describe('routes/blog', function () {
     req.params.tag = ['tag'];
 
     it('Summary should be gotten', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
       
       blog.getSummary(req, res, next);
       
@@ -28,8 +28,6 @@ describe('routes/blog', function () {
 
 
     it('Blog view should be rendered', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
       
       this.spy(res, 'render');
       
@@ -42,9 +40,7 @@ describe('routes/blog', function () {
       
     }));
 
-    it('Error in Article', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
+    it('Error to find articles publised', sinon.test(function () {
 
       next = this.spy(next);
 
@@ -61,8 +57,6 @@ describe('routes/blog', function () {
   describe('.getArticle', function () {
 
     it('Article should be gotten', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
 
       blog.getArticle(req, res, next);
 
@@ -74,8 +68,6 @@ describe('routes/blog', function () {
     }));
 
     it('Render de article view', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
 
       req.params.slug = '/blog/slug';
       
@@ -94,8 +86,6 @@ describe('routes/blog', function () {
     }));
 
     it('Error in Article', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
 
       next = this.spy(next);
 
@@ -120,9 +110,6 @@ describe('routes/blog', function () {
 
     it('Comment should be created', sinon.test(function () {
 
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
-
       this.spy(res, 'send');
 
       blog.newComment(req, res, next);
@@ -134,8 +121,6 @@ describe('routes/blog', function () {
     }));
 
     it('Comment should not be created', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new Blog(ArticleServiceStub);
       
       next = this.spy(next);
 
