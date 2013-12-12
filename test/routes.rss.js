@@ -8,13 +8,13 @@ var sinon = require('sinon'),
     next = support.next;
     
 describe('routes/rss', function () {
-  var ArticleServiceStub = sinon.stub(ArticleService),
-      rss = new RssRouter(ArticleServiceStub);  
 
   describe('.getFeed(req, res, next)', function () {
 
     it('Article should be gotten', sinon.test(function () {
-
+      var ArticleServiceStub = this.stub(ArticleService),
+          rss = new RssRouter(ArticleServiceStub);
+          
       rss.getFeed(req, res, next);
 
       ArticleService.findAllPublished.called.should.be.true;
@@ -22,6 +22,8 @@ describe('routes/rss', function () {
     }));
     
     it('Response should be sended', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          rss = new RssRouter(ArticleServiceStub);
 
       this.spy(res, 'set');
       this.spy(res, 'send');
@@ -36,6 +38,8 @@ describe('routes/rss', function () {
     }));
 
     it('Response should not be sended', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          rss = new RssRouter(ArticleServiceStub);
 
       next = this.spy(next);
 

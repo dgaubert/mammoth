@@ -10,9 +10,6 @@ var sinon = require('sinon'),
     next = support.next;
 
 describe('routes/article', function () {
-  var ArticleServiceStub = sinon.stub(ArticleService),
-      PictureServiceStub = sinon.stub(PictureService),
-      article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
   // fake request body form
   req.body.title = 'test';
@@ -26,6 +23,9 @@ describe('routes/article', function () {
   describe('.getArticles(req, res, next)', function () {
 
     it('Articles should be gotten', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       article.getArticles(req, res, next);
 
@@ -35,6 +35,9 @@ describe('routes/article', function () {
     
     
     it('Response should be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'render');
 
@@ -48,6 +51,9 @@ describe('routes/article', function () {
 
 
     it('Response should not be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
@@ -65,6 +71,9 @@ describe('routes/article', function () {
   describe('.getNewArticle(req, res)', function () {
 
     it('View should be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'render');
 
@@ -79,6 +88,9 @@ describe('routes/article', function () {
   describe('.newArticle(req, res)', function () {
 
     it('Article should be gotten', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       article.newArticle(req, res, next);
 
@@ -87,6 +99,9 @@ describe('routes/article', function () {
     }));
 
     it('Exists the article to save', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
@@ -103,6 +118,9 @@ describe('routes/article', function () {
   describe('.getArticle(req, res, next)', function () {
 
     it('Article should be gotten', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       article.getArticle(req, res, next);
 
@@ -112,6 +130,9 @@ describe('routes/article', function () {
     }));
     
     it('Response should be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'render');
 
@@ -125,6 +146,9 @@ describe('routes/article', function () {
     }));
 
     it('Response should not be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
@@ -142,6 +166,9 @@ describe('routes/article', function () {
   describe('.updateArticle(req, res, next)', function () {
 
     it('Article should be gotten', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       article.updateArticle(req, res, next);
 
@@ -150,10 +177,13 @@ describe('routes/article', function () {
     }));
 
     it('Article updated, should be redirected', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'redirect');
 
-      article.getArticle(req, res, next);
+      article.updateArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new Article());
 
@@ -162,10 +192,13 @@ describe('routes/article', function () {
     }));
 
     it('Article not updated', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+        PictureServiceStub = this.stub(PictureService),
+        article = new ArticleRouter(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
-      article.getArticle(req, res, next);
+      article.updateArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 

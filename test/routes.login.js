@@ -8,12 +8,12 @@ var sinon = require('sinon'),
     next = support.next;
 
 describe('routes/login', function () {
-  var UserServiceStub = sinon.stub(UserService),
-      login = new LoginRouter(UserServiceStub);
 
   describe('.checkUser', function () {
 
     it('User should be found', sinon.test(function () {
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       login.checkUser(req, res, next);
 
@@ -23,6 +23,8 @@ describe('routes/login', function () {
 
     // TODO: something is wrong to test pwd
     it.skip('Login OK, regenerate session', sinon.test(function () {
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       req.body.username = '';
       req.body.password = '';
@@ -40,8 +42,8 @@ describe('routes/login', function () {
     }));
 
     it.skip('Wrong password, redirect', sinon.test(function () {
-
-      var login = new Login(User.ok());
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       req.body.username = 'dgaubert';
       req.body.password = 'wrong';
@@ -56,7 +58,9 @@ describe('routes/login', function () {
 
     }));
 
-    it('Wrong user, redirect', function () {
+    it('Wrong user, redirect', sinon.test(function () {
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -66,14 +70,16 @@ describe('routes/login', function () {
 
       login.checkUser(req, res, next);
 
-      UserServiceStub.findByUsername.callArgWith(1, null, {});
+      UserServiceStub.findByUsername.callArgWith(1, null);
 
       req.session.regenerate.called.should.be.false;
       res.redirect.called.should.be.true;
 
-    });
+    }));
 
     it('Error in DB', sinon.test(function () {
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -93,6 +99,8 @@ describe('routes/login', function () {
   describe('.logout', function () {
 
     it('Destroy sesion', sinon.test(function () {
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       this.spy(req.session, 'destroy');
 
@@ -107,6 +115,8 @@ describe('routes/login', function () {
   describe('.getLogin', function () {
 
     it('Get view to login', sinon.test(function () {
+      var UserServiceStub = this.stub(UserService),
+          login = new LoginRouter(UserServiceStub);
 
       this.spy(res, 'render');
 

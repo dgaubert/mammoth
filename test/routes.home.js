@@ -8,12 +8,13 @@ var sinon = require('sinon'),
     next = support.next;
 
 describe('routes/home', function () {
-  var ArticleServiceStub = sinon.stub(ArticleService),
-      home = new HomeRouter(ArticleServiceStub);
+
 
   describe('.getHome', function () {
 
     it('Last article written should be gotten', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          home = new HomeRouter(ArticleServiceStub);
 
       home.getHome(req, res, next);
 
@@ -23,6 +24,8 @@ describe('routes/home', function () {
     }));
 
     it('Render de home view', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          home = new HomeRouter(ArticleServiceStub);
 
       this.spy(res, 'render');
       
@@ -36,13 +39,15 @@ describe('routes/home', function () {
     }));
 
     it('Error in Article', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          home = new HomeRouter(ArticleServiceStub);
 
       next = this.spy(next);
 
       home.getHome(req, res, next);
 
       ArticleServiceStub.findLast.callArgWith(0, new Error(), null);
-      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);      
+      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
 
       next.called.should.be.true;
 
@@ -51,4 +56,3 @@ describe('routes/home', function () {
   });
 
 });
-

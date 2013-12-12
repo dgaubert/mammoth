@@ -8,12 +8,12 @@ var sinon = require('sinon'),
     next = support.next;
 
 describe('routes/article', function () {
-  var PictureServiceStub = sinon.stub(PictureService),
-      picture = new PictureRouter(PictureServiceStub);
 
   describe('.getPicture(req, res, next)', function () {
 
     it('Picture should be gotten', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       picture.getPicture(req, res, next);
 
@@ -22,6 +22,8 @@ describe('routes/article', function () {
     }));
 
     it('Picture should be returned', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       this.spy(res, 'send');
 
@@ -34,6 +36,8 @@ describe('routes/article', function () {
     }));
 
     it('Response should not be sended', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       next = this.spy(next);
 
@@ -50,6 +54,8 @@ describe('routes/article', function () {
   describe('.newPicture(req, res, next)', function () {
 
     it('Picture should be saved', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       this.spy(res, 'redirect');
 
@@ -62,6 +68,8 @@ describe('routes/article', function () {
     }));
 
     it('Response should not be sended', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       next = this.spy(next);
 
@@ -78,6 +86,8 @@ describe('routes/article', function () {
   describe('.deletePicture(req, res, next)', function () {
 
     it('Picture should be removed', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       this.spy(res, 'redirect');
 
@@ -90,6 +100,8 @@ describe('routes/article', function () {
     }));
 
     it('Response should not be removed', sinon.test(function () {
+      var PictureServiceStub = this.stub(PictureService),
+          picture = new PictureRouter(PictureServiceStub);
 
       next = this.spy(next);
 
@@ -101,6 +113,6 @@ describe('routes/article', function () {
 
     }));
 
-  });  
+  });
 
 });

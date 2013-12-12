@@ -3,7 +3,7 @@
 // Setup the enviroment (Production or development enviroments)
 require('./lib/conf/env');
 
-// For testing purpose it's needed to export the application
+// For testing purpose, it's needed to export the application
 var mongoose = require('mongoose'),
     app = module.exports = require('./lib/app');
 
@@ -17,4 +17,3 @@ mongoose.connect(require('./lib/conf/db'), function (err, res) {
     });
   }
 });
-

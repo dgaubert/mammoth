@@ -8,8 +8,6 @@ var sinon = require('sinon'),
     next = support.next;
 
 describe('routes/comment', function () {
-  var ArticleServiceStub = sinon.stub(ArticleService),
-      comment = new CommentRouter(ArticleServiceStub);
 
   req.params.slug = '/blog/admin/comment/slug';
   req.params.commentId = 'commentId';
@@ -17,6 +15,8 @@ describe('routes/comment', function () {
   describe('.getComments(req, res, next)', function () {
 
     it('Comments should be gotten', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          comment = new CommentRouter(ArticleServiceStub);
 
       comment.getComments(req, res, next);
 
@@ -25,6 +25,8 @@ describe('routes/comment', function () {
     }));
 
     it('Comments views should be rendered', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          comment = new CommentRouter(ArticleServiceStub);
 
       this.spy(res, 'render');
 
@@ -41,6 +43,8 @@ describe('routes/comment', function () {
   describe('.deleteComment(req, res, next)', function () {
 
     it('Comment should be found', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          comment = new CommentRouter(ArticleServiceStub);
 
       comment.deleteComment(req, res, next);
 
@@ -49,6 +53,8 @@ describe('routes/comment', function () {
     }));
 
     it('Comment should be deleted', sinon.test(function () {
+      var ArticleServiceStub = this.stub(ArticleService),
+          comment = new CommentRouter(ArticleServiceStub);
 
       this.spy(res, 'redirect');
 
