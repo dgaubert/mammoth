@@ -1,20 +1,20 @@
 var sinon = require('sinon'),
     Article = require('./support/article'),
-    ArticleService = require('../lib/services/article-service'),
-    HomeRouter = require('../lib/routes/home'),
+    ArticleService = require('../lib/services/article'),
+    HomeController = require('../lib/controllers/home'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('routes/home', function () {
+describe('controllers/home', function () {
 
 
   describe('.getHome', function () {
 
     it('Last article written should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          home = new HomeRouter(ArticleServiceStub);
+          home = new HomeController(ArticleServiceStub);
 
       home.getHome(req, res, next);
 
@@ -25,7 +25,7 @@ describe('routes/home', function () {
 
     it('Render de home view', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          home = new HomeRouter(ArticleServiceStub);
+          home = new HomeController(ArticleServiceStub);
 
       this.spy(res, 'render');
       
@@ -40,7 +40,7 @@ describe('routes/home', function () {
 
     it('Error in Article', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          home = new HomeRouter(ArticleServiceStub);
+          home = new HomeController(ArticleServiceStub);
 
       next = this.spy(next);
 

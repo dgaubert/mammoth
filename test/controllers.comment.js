@@ -1,13 +1,13 @@
 var sinon = require('sinon'),
     Article = require('./support/article'),
-    ArticleService = require('../lib/services/article-service'),
-    CommentRouter = require('../lib/routes/comment'),
+    ArticleService = require('../lib/services/article'),
+    CommentController = require('../lib/controllers/comment'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('routes/comment', function () {
+describe('controllers/comment', function () {
 
   req.params.slug = '/blog/admin/comment/slug';
   req.params.commentId = 'commentId';
@@ -16,7 +16,7 @@ describe('routes/comment', function () {
 
     it('Comments should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentRouter(ArticleServiceStub);
+          comment = new CommentController(ArticleServiceStub);
 
       comment.getComments(req, res, next);
 
@@ -26,7 +26,7 @@ describe('routes/comment', function () {
 
     it('Comments views should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentRouter(ArticleServiceStub);
+          comment = new CommentController(ArticleServiceStub);
 
       this.spy(res, 'render');
 
@@ -44,7 +44,7 @@ describe('routes/comment', function () {
 
     it('Comment should be found', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentRouter(ArticleServiceStub);
+          comment = new CommentController(ArticleServiceStub);
 
       comment.deleteComment(req, res, next);
 
@@ -54,7 +54,7 @@ describe('routes/comment', function () {
 
     it('Comment should be deleted', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentRouter(ArticleServiceStub);
+          comment = new CommentController(ArticleServiceStub);
 
       this.spy(res, 'redirect');
 

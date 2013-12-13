@@ -1,19 +1,19 @@
 var sinon = require('sinon'),
     User = require('./support/user'),
-    UserService = require('../lib/services/user-service'),
-    LoginRouter = require('../lib/routes/login'),
+    UserService = require('../lib/services/user'),
+    LoginController = require('../lib/controllers/login'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('routes/login', function () {
+describe('controllers/login', function () {
 
   describe('.checkUser', function () {
 
     it('User should be found', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       login.checkUser(req, res, next);
 
@@ -24,7 +24,7 @@ describe('routes/login', function () {
     // TODO: something is wrong to test pwd
     it.skip('Login OK, regenerate session', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       req.body.username = '';
       req.body.password = '';
@@ -43,7 +43,7 @@ describe('routes/login', function () {
 
     it.skip('Wrong password, redirect', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       req.body.username = 'dgaubert';
       req.body.password = 'wrong';
@@ -60,7 +60,7 @@ describe('routes/login', function () {
 
     it('Wrong user, redirect', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -79,7 +79,7 @@ describe('routes/login', function () {
 
     it('Error in DB', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       req.body.username = 'dgaubert';
       req.body.password = 'mammoth';
@@ -100,7 +100,7 @@ describe('routes/login', function () {
 
     it('Destroy sesion', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       this.spy(req.session, 'destroy');
 
@@ -116,7 +116,7 @@ describe('routes/login', function () {
 
     it('Get view to login', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          login = new LoginRouter(UserServiceStub);
+          login = new LoginController(UserServiceStub);
 
       this.spy(res, 'render');
 

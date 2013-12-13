@@ -1,19 +1,19 @@
 var sinon = require('sinon'),
-    PictureService = require('../lib/services/picture-service'),
+    PictureService = require('../lib/services/picture'),
     Picture = require('./support/picture'),
     support = require('./support/support'),
-    PictureRouter = require('../lib/routes/picture'),
+    PictureController = require('../lib/controllers/picture'),
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('routes/article', function () {
+describe('controllers/article', function () {
 
   describe('.getPicture(req, res, next)', function () {
 
     it('Picture should be gotten', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       picture.getPicture(req, res, next);
 
@@ -23,7 +23,7 @@ describe('routes/article', function () {
 
     it('Picture should be returned', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       this.spy(res, 'send');
 
@@ -37,7 +37,7 @@ describe('routes/article', function () {
 
     it('Response should not be sended', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       next = this.spy(next);
 
@@ -55,7 +55,7 @@ describe('routes/article', function () {
 
     it('Picture should be saved', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       this.spy(res, 'redirect');
 
@@ -69,7 +69,7 @@ describe('routes/article', function () {
 
     it('Response should not be sended', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       next = this.spy(next);
 
@@ -87,7 +87,7 @@ describe('routes/article', function () {
 
     it('Picture should be removed', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       this.spy(res, 'redirect');
 
@@ -101,7 +101,7 @@ describe('routes/article', function () {
 
     it('Response should not be removed', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureRouter(PictureServiceStub);
+          picture = new PictureController(PictureServiceStub);
 
       next = this.spy(next);
 

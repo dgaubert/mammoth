@@ -1,5 +1,5 @@
 var sinon = require('sinon'),
-    Error = require('../lib/routes/error'),
+    Error = require('../lib/controllers/error'),
     error = new Error(),
     support = require('./support/support'),
     err = support.err,
@@ -7,7 +7,7 @@ var sinon = require('sinon'),
     res = support.res,
     next = support.next;
 
-describe('routes/error', function () {
+describe('controllers/error', function () {
 
   describe('.notFound', function () {
 

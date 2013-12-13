@@ -1,11 +1,11 @@
 var sinon = require('sinon'),
-    Admin = require('../lib/routes/admin'),
+    Admin = require('../lib/controllers/admin'),
     admin = new Admin(),
     support = require('./support/support'),
     req = support.req,
     res = support.res;
 
-describe('routes/admin', function () {
+describe('controllers/admin', function () {
 
   describe('.getAdmin', function () {
 

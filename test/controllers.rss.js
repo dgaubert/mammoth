@@ -1,19 +1,19 @@
 var sinon = require('sinon'),
-    ArticleService = require('../lib/services/article-service'),
+    ArticleService = require('../lib/services/article'),
     Article = require('./support/article'),
-    RssRouter = require('../lib/routes/rss'),
+    RssController = require('../lib/controllers/rss'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
     
-describe('routes/rss', function () {
+describe('controllers/rss', function () {
 
   describe('.getFeed(req, res, next)', function () {
 
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          rss = new RssRouter(ArticleServiceStub);
+          rss = new RssController(ArticleServiceStub);
           
       rss.getFeed(req, res, next);
 
@@ -23,7 +23,7 @@ describe('routes/rss', function () {
     
     it('Response should be sended', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          rss = new RssRouter(ArticleServiceStub);
+          rss = new RssController(ArticleServiceStub);
 
       this.spy(res, 'set');
       this.spy(res, 'send');
@@ -39,7 +39,7 @@ describe('routes/rss', function () {
 
     it('Response should not be sended', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          rss = new RssRouter(ArticleServiceStub);
+          rss = new RssController(ArticleServiceStub);
 
       next = this.spy(next);
 

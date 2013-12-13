@@ -1,19 +1,19 @@
 var sinon = require('sinon'),
     User = require('./support/user'),
-    UserService = require('../lib/services/user-service'),
-    UserRouter = require('../lib/routes/user')
+    UserService = require('../lib/services/user'),
+    UserController = require('../lib/controllers/user'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('routes/user', function () {
+describe('controllers/user', function () {
 
   describe('.getUsers(req, res)', function () {
 
     it('Users should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
       
       user.getUsers(req, res, next);
 
@@ -23,7 +23,7 @@ describe('routes/user', function () {
 
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       this.spy(res, 'render');
 
@@ -41,7 +41,7 @@ describe('routes/user', function () {
 
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       this.spy(res, 'render');
 
@@ -57,7 +57,7 @@ describe('routes/user', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       user.newUser(req, res, next);
 
@@ -67,7 +67,7 @@ describe('routes/user', function () {
 
     it('Exists the user to save', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       next = this.spy(next);
 
@@ -86,7 +86,7 @@ describe('routes/user', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       user.getUser(req, res, next);
 
@@ -96,7 +96,7 @@ describe('routes/user', function () {
     
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       this.spy(res, 'render');
 
@@ -110,7 +110,7 @@ describe('routes/user', function () {
 
     it('Response should not be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       next = this.spy(next);
 
@@ -128,7 +128,7 @@ describe('routes/user', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserRouter(UserServiceStub);
+          user = new UserController(UserServiceStub);
 
       // fake request body form
       req.body.username = 'test';
