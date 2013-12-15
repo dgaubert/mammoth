@@ -1,6 +1,6 @@
 var support = require('./support/support'),
     sinon = require('sinon'),
-    Guard = require('../lib/utils/guard');
+    Guard = require('../lib/middlewares/guard');
 
 describe('utils/guard', function () {
   var guard = new Guard(),

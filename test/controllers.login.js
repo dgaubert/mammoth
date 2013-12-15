@@ -1,6 +1,6 @@
 var sinon = require('sinon'),
-    User = require('./support/user'),
-    UserService = require('../lib/services/user'),
+    User = require('../lib/models/user'),
+    UserService = require('../lib/services/user')(User),
     LoginController = require('../lib/controllers/login'),
     support = require('./support/support'),
     req = support.req,

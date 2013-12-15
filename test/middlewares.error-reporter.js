@@ -1,13 +1,12 @@
 var sinon = require('sinon'),
-    Error = require('../lib/controllers/error'),
-    error = new Error(),
+    error = require('../lib/middlewares/error-reporter')(),
     support = require('./support/support'),
     err = support.err,
     req = support.req,
     res = support.res,
     next = support.next;
 
-describe('controllers/error', function () {
+describe('middlewares/error', function () {
 
   describe('.notFound', function () {
 

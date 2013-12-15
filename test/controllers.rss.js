@@ -1,6 +1,6 @@
 var sinon = require('sinon'),
-    ArticleService = require('../lib/services/article'),
-    Article = require('./support/article'),
+    Article = require('../lib/models/article'),
+    ArticleService = require('../lib/services/article')(Article),
     RssController = require('../lib/controllers/rss'),
     support = require('./support/support'),
     req = support.req,

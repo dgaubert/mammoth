@@ -1,8 +1,8 @@
 var sinon = require('sinon'),
-    PictureService = require('../lib/services/picture'),
-    Picture = require('./support/picture'),
-    support = require('./support/support'),
+    Picture = require('../lib/models/picture'),
+    PictureService = require('../lib/services/picture')(Picture),
     PictureController = require('../lib/controllers/picture'),
+    support = require('./support/support'),
     req = support.req,
     res = support.res,
     next = support.next;
