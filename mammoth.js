@@ -5,9 +5,9 @@ var enviroment = require('./lib/conf/env');
 // setup the enviroment
 enviroment.init();
 
-var urlConnection = require('./lib/conf/db').url,
-    mongoose = require('mongoose'),
-    app = require('./lib/app');
+var urlConnection = require('./lib/conf/db').url;
+var mongoose = require('mongoose');
+var app = require('./lib/app');
 
 mongoose.connect(urlConnection, function (err, res) {
   if (err) {
