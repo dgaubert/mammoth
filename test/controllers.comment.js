@@ -2,6 +2,7 @@ var sinon = require('sinon'),
     Article = require('../lib/models/article'),
     ArticleService = require('../lib/services/article')(Article),
     CommentController = require('../lib/controllers/comment'),
+    ArticleFake = require('./support/article'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
@@ -32,7 +33,7 @@ describe('controllers/comment', function () {
 
       comment.getComments(req, res, next);
 
-      ArticleService.findBySlug.callArgWith(1, null, new Article());
+      ArticleService.findBySlug.callArgWith(1, null, new ArticleFake());
 
       res.render.calledWith('blog/admin/comments').should.be.true;
 
@@ -60,7 +61,7 @@ describe('controllers/comment', function () {
 
       comment.deleteComment(req, res, next);
 
-      ArticleService.findBySlug.callArgWith(1, null, new Article());
+      ArticleService.findBySlug.callArgWith(1, null, new ArticleFake());
 
       res.redirect.called.should.be.true;
 

@@ -2,6 +2,7 @@ var sinon = require('sinon'),
     Article = require('../lib/models/article'),
     ArticleService = require('../lib/services/article')(Article),
     RssController = require('../lib/controllers/rss'),
+    ArticleFake = require('./support/article'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
@@ -30,7 +31,7 @@ describe('controllers/rss', function () {
 
       rss.getFeed(req, res, next);
 
-      ArticleServiceStub.findAllPublished.callArgWith(0, null, [new Article()]);
+      ArticleServiceStub.findAllPublished.callArgWith(0, null, [new ArticleFake()]);
 
       res.set.calledWith('Content-Type', 'application/rss+xml').should.be.true;
       res.send.called.should.be.true;

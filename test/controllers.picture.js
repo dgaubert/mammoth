@@ -2,6 +2,7 @@ var sinon = require('sinon'),
     Picture = require('../lib/models/picture'),
     PictureService = require('../lib/services/picture')(Picture),
     PictureController = require('../lib/controllers/picture'),
+    PictureFake = require('./support/picture'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
@@ -29,7 +30,7 @@ describe('controllers/article', function () {
 
       picture.getPicture(req, res, next);
 
-      PictureServiceStub.readPicture.callArgWith(1, null, [new Picture()]);
+      PictureServiceStub.readPicture.callArgWith(1, null, [new PictureFake()]);
 
       res.send.called.should.be.true;
 

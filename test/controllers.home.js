@@ -3,6 +3,7 @@ var sinon = require('sinon'),
     ArticleService = require('../lib/services/article')(Article),
     HomeController = require('../lib/controllers/home'),
     support = require('./support/support'),
+    ArticleFake = require('./support/article'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -31,7 +32,7 @@ describe('controllers/home', function () {
       
       home.getHome(req, res, next);
 
-      ArticleServiceStub.findLast.callArgWith(0, null, [new Article()]);
+      ArticleServiceStub.findLast.callArgWith(0, null, [new ArticleFake()]);
       ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
 
       res.render.calledWith('home').should.be.true;

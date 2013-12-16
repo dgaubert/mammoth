@@ -1,7 +1,7 @@
 var User = function User () {
-  this.username = 'test';
-  this.salt = '';
-  this.hash = '';
+  this.username = 'username';
+  this.salt = 'salt';
+  this.hash = 'hash';
 };
 
 User.prototype.save = function (callback) {

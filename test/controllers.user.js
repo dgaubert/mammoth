@@ -2,6 +2,7 @@ var sinon = require('sinon'),
     User = require('../lib/models/user'),
     UserService = require('../lib/services/user')(User),
     UserController = require('../lib/controllers/user'),
+    UserFake = require('./support/user'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
@@ -29,7 +30,7 @@ describe('controllers/user', function () {
 
       user.getUsers(req, res, next);
 
-      UserServiceStub.findAll.callArgWith(0, null, [new User()]);
+      UserServiceStub.findAll.callArgWith(0, null, [new UserFake()]);
 
       res.render.calledWith('blog/admin/users').should.be.true;
 
@@ -73,7 +74,7 @@ describe('controllers/user', function () {
 
       user.newUser(req, res, next);
 
-      UserServiceStub.findByUsername.callArgWith(1, null, new User());
+      UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
       next.called.should.be.true;
 
@@ -102,7 +103,7 @@ describe('controllers/user', function () {
 
       user.getUser(req, res, next);
 
-      UserServiceStub.findByUsername.callArgWith(1, null, new User());
+      UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
       res.render.calledWith('blog/admin/user').should.be.true;
 

@@ -2,6 +2,7 @@ var sinon = require('sinon'),
     Article = require('../lib/models/article'),
     ArticleService = require('../lib/services/article')(Article),
     BlogController = require('../lib/controllers/blog'),
+    ArticleFake = require('./support/article'),
     support = require('./support/support'),
     req = support.req,
     res = support.res,
@@ -35,7 +36,7 @@ describe('controllers/blog', function () {
       
       blog.getSummary(req, res, next);
 
-      ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, null, [new Article()]);
+      ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, null, [new ArticleFake()]);
       ArticleServiceStub.countPublishedByCategoryOrTag.callArgWith(2, null, 1);
       
       res.render.calledWith('blog/blog').should.be.true;
@@ -83,11 +84,11 @@ describe('controllers/blog', function () {
       
       blog.getArticle(req, res, next);
 
-      ArticleServiceStub.findBySlug.callArgWith(1, null, new Article());
+      ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
       ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
       ArticleServiceStub.tagsCount.callArgWith(0, null, 1);
-      ArticleServiceStub.findLastThree.callArgWith(0, null, [new Article()]);
-      ArticleServiceStub.findByCategory.callArgWith(1, null, [new Article()]);
+      ArticleServiceStub.findLastThree.callArgWith(0, null, [new ArticleFake()]);
+      ArticleServiceStub.findByCategory.callArgWith(1, null, [new ArticleFake()]);
       
       res.render.calledWith('blog/article').should.be.true;
 
@@ -126,7 +127,7 @@ describe('controllers/blog', function () {
 
       blog.newComment(req, res, next);
 
-      ArticleServiceStub.findBySlug.callArgWith(1, null, new Article());
+      ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
 
       res.send.calledWith(200).should.be.true;
       
