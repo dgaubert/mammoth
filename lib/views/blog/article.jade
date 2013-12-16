@@ -1,0 +1,104 @@
+extends ../layout
+block content
+  section#article
+    div.container
+      div.row
+        div#article.col-sm-9.col-md-offset-1.col-md-7
+          //- article
+          article
+            //- title
+            h3 #{article.title}
+            small.text-muted
+              = (moment(article.created).format('DD/MM/YYYY [ - ]'))
+              strong #{article.author}
+            //- content
+            != article.content
+            //- button bar
+            div.btn-toolbar
+              a.btn.btn-xs.btn-primary(href='/blog/category/#{article.category}') #{article.category}
+              - each tag in article.tags
+                a.btn.btn-xs.btn-default(href='/blog/tag/#{tag}') #{tag}
+
+          //- comments
+
+          h3.page-header#comments Comentarios
+
+          - if (article.comments.length > 0) {
+            - each comment in article.comments
+              div.comment
+                h5
+                  strong #{comment.author}
+                small.text-muted
+                  = (moment(comment.created).format('[ ] HH:mm [ - ] DD/MM/YYYY'))
+                div
+                  p!=comment.comment
+                hr.featurette-divider
+          - } else {
+            p.text-info Se el primero en comentar este artículo.
+          - }
+
+          //- new comment
+          div.well
+            form#comment(action='/blog/#{article.slug}/comment', method='post')
+              legend Participa escribiendo un comentario
+              fieldset
+                div.form-group.input-group
+                  span.input-group-addon
+                    i.icon-user
+                  input#name.form-control(name='name', type='text', placeholder='Ej: Peter Jackson', maxlength="50")
+                div.form-group.input-group
+                  span.input-group-addon
+                    i.icon-envelope
+                  input#mail.form-control(name='mail', type='text', placeholder='Ej: peter.jackson@gmail.com', maxlength="80")
+                div.form-group
+                  textarea#comment.form-control(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
+                div.form-group
+                  p 
+                    strong ¿Eres humano?.
+                    |  Cual de las siguientes opciones no se corresponde con el resto:
+                  input(type='hidden', name='challengeId', value='#{challenge.id}')
+                  - each option in challenge.options
+                    div.col-xs-12
+                      input(name='challengeValue', value='#{option.value}', type='radio')
+                      span  #{option.name}
+                div.btn-toolbar
+                  button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
+                    i.icon-comment-alt
+                    span  Comentar
+                  span#comment-msg
+
+          //- note
+          div.row.col-md-11
+            p 
+              strong Aviso: 
+              i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
+                | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
+                | sean inapropiados serán eliminados.
+                | Vamos a añadir valor al blog. Gracias.
+
+        //- side bar
+        aside.col-sm-3.col-md-3
+          div.well
+            h4 Categorias
+            ul.list-unstyled
+              - each category in categories
+                li
+                  a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
+          div.well
+            h4 Tags
+            ul.list-unstyled
+              - each tag in tags
+                li
+                  a(href='/blog/tag/#{tag._id}') #{tag._id} (#{tag.value})
+          div.well
+            h4 Artículos similares
+            ul.list-unstyled
+              - each similar in similars
+                li
+                  a(href='/blog/#{similar.slug}') #{similar.title}
+          div.well
+            h4 Artículos recientes
+            ul.list-unstyled
+              - each last in lasts
+                li
+                  a(href='/blog/#{last.slug}') #{last.title}

@@ -1,11 +1,11 @@
-var Article = require('./support/article'),
+var ArticleFake = new require('./support/article'),
     parser = require('../lib/utils/mdparser');
 
 describe('utils/mdparser', function() {
     
   describe('parser(toParser)', function () {
 
-    var article = new Article(),
+    var article = new ArticleFake(),
         result;
 
     it('With HTML string should return the same HTML', function () {

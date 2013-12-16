@@ -1,3 +1,7 @@
+var Article = require('../../lib/models/article'),
+    Picture = require('../../lib/models/picture'),
+    User = require('../../lib/models/user');
+
 module.exports.params = {
   slug: '/blog/article/slug'
 };
@@ -18,7 +22,13 @@ module.exports.req = {
     regenerate: function () {},
     destroy: function () {}
   },
-  url: ''
+  url: '',
+  files: {
+    picture: {
+      path: '',
+      name: ''
+    }
+  }
 };
 
 module.exports.res = {
