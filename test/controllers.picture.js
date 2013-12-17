@@ -18,7 +18,7 @@ describe('controllers/article', function () {
 
       picture.getPicture(req, res, next);
 
-      PictureServiceStub.readPicture.called.should.be.true;
+      PictureServiceStub.read.called.should.be.true;
 
     }));
 
@@ -30,7 +30,7 @@ describe('controllers/article', function () {
 
       picture.getPicture(req, res, next);
 
-      PictureServiceStub.readPicture.callArgWith(1, null, [new PictureFake()]);
+      PictureServiceStub.read.callArgWith(1, null, [new PictureFake()]);
 
       res.send.called.should.be.true;
 
@@ -44,7 +44,7 @@ describe('controllers/article', function () {
 
       picture.getPicture(req, res, next);
 
-      PictureServiceStub.readPicture.callArgWith(1, new Error(), null);
+      PictureServiceStub.read.callArgWith(1, new Error(), null);
 
       next.called.should.be.true;
 
@@ -62,7 +62,7 @@ describe('controllers/article', function () {
 
       picture.newPicture(req, res, next);
 
-      PictureServiceStub.savePicture.callArgWith(3, null);
+      PictureServiceStub.save.callArgWith(3, null);
 
       res.redirect.called.should.be.true;
 
@@ -76,7 +76,7 @@ describe('controllers/article', function () {
 
       picture.newPicture(req, res, next);
 
-      PictureServiceStub.savePicture.callArgWith(3, new Error());
+      PictureServiceStub.save.callArgWith(3, new Error());
 
       next.called.should.be.true;
 
@@ -94,7 +94,7 @@ describe('controllers/article', function () {
 
       picture.deletePicture(req, res, next);
 
-      PictureServiceStub.removePicture.callArgWith(1, null);
+      PictureServiceStub.remove.callArgWith(1, null);
 
       res.redirect.called.should.be.true;
 
@@ -108,7 +108,7 @@ describe('controllers/article', function () {
 
       picture.deletePicture(req, res, next);
 
-      PictureServiceStub.removePicture.callArgWith(1, new Error());
+      PictureServiceStub.remove.callArgWith(1, new Error());
 
       next.called.should.be.true;
 

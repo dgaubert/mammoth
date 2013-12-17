@@ -68,8 +68,8 @@ describe('controllers/blog', function () {
       blog.getArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.called.should.be.true;
-      ArticleServiceStub.categoriesCount.called.should.be.true;
-      ArticleServiceStub.tagsCount.called.should.be.true;
+      ArticleServiceStub.countCategories.called.should.be.true;
+      ArticleServiceStub.countTags.called.should.be.true;
       ArticleServiceStub.findLastThree.called.should.be.true;
 
     }));
@@ -85,8 +85,8 @@ describe('controllers/blog', function () {
       blog.getArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
-      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
-      ArticleServiceStub.tagsCount.callArgWith(0, null, 1);
+      ArticleServiceStub.countCategories.callArgWith(0, null, 1);
+      ArticleServiceStub.countTags.callArgWith(0, null, 1);
       ArticleServiceStub.findLastThree.callArgWith(0, null, [new ArticleFake()]);
       ArticleServiceStub.findByCategory.callArgWith(1, null, [new ArticleFake()]);
       

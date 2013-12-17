@@ -125,7 +125,7 @@ describe('controllers/article', function () {
       articleController.getArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.called.should.be.true;
-      PictureServiceStub.getPicturesByArticle.called.should.be.true;
+      PictureServiceStub.findByArticle.called.should.be.true;
 
     }));
     
@@ -139,7 +139,7 @@ describe('controllers/article', function () {
       articleController.getArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
-      PictureServiceStub.getPicturesByArticle.callArgWith(1, null, [new PictureFake()]);
+      PictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
 
       res.render.calledWith('blog/admin/article').should.be.true;
 
@@ -155,7 +155,7 @@ describe('controllers/article', function () {
       articleController.getArticle(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
-      PictureServiceStub.getPicturesByArticle.callArgWith(1, null, [new PictureFake()]);
+      PictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
 
       next.called.should.be.true;
       

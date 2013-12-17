@@ -1,5 +1,5 @@
-var sinon = require('sinon'),
-    error = require('../lib/middlewares/error-reporter')(),
+  var sinon = require('sinon'),
+    errorMiddleware = require('../lib/middlewares/error')(),
     support = require('./support/support'),
     err = support.err,
     req = support.req,
@@ -14,7 +14,7 @@ describe('middlewares/error', function () {
       this.spy(res, 'status');
       this.spy(res, 'render');
 
-      error.notFound(req, res, next);
+      errorMiddleware.notFound(req, res, next);
 
       res.status.calledWith(404).should.be.true;
       res.render.calledWith('error/404').should.be.true;
@@ -30,7 +30,7 @@ describe('middlewares/error', function () {
       this.spy(res, 'status');
       this.spy(res, 'render');
 
-      error.serverError(err, req, res, next);
+      errorMiddleware.serverError(err, req, res, next);
 
       res.status.calledWith(500).should.be.true;
       res.render.calledWith('error/500').should.be.true;
@@ -42,7 +42,7 @@ describe('middlewares/error', function () {
       this.spy(res, 'status');
       this.spy(res, 'render');
 
-      error.serverError(err, req, res, next);
+      errorMiddleware.serverError(err, req, res, next);
 
       res.status.calledWith(500).should.be.true;
       res.render.calledWith('error/500').should.be.true;

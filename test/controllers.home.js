@@ -20,7 +20,7 @@ describe('controllers/home', function () {
       home.getHome(req, res, next);
 
       ArticleServiceStub.findLast.called.should.be.true;
-      ArticleServiceStub.categoriesCount.called.should.be.true;
+      ArticleServiceStub.countCategories.called.should.be.true;
 
     }));
 
@@ -33,7 +33,7 @@ describe('controllers/home', function () {
       home.getHome(req, res, next);
 
       ArticleServiceStub.findLast.callArgWith(0, null, [new ArticleFake()]);
-      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
+      ArticleServiceStub.countCategories.callArgWith(0, null, 1);
 
       res.render.calledWith('home').should.be.true;
 
@@ -48,7 +48,7 @@ describe('controllers/home', function () {
       home.getHome(req, res, next);
 
       ArticleServiceStub.findLast.callArgWith(0, new Error(), null);
-      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
+      ArticleServiceStub.countCategories.callArgWith(0, null, 1);
 
       next.called.should.be.true;
 
