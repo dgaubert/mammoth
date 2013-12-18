@@ -18,7 +18,7 @@ describe('controllers/rss', function () {
           
       rss.getFeed(req, res, next);
 
-      ArticleService.findAllPublished.called.should.be.true;
+      ArticleService.findPublished.called.should.be.true;
 
     }));
     
@@ -31,7 +31,7 @@ describe('controllers/rss', function () {
 
       rss.getFeed(req, res, next);
 
-      ArticleServiceStub.findAllPublished.callArgWith(0, null, [new ArticleFake()]);
+      ArticleServiceStub.findPublished.callArgWith(0, null, [new ArticleFake()]);
 
       res.set.calledWith('Content-Type', 'application/rss+xml').should.be.true;
       res.send.called.should.be.true;
@@ -46,7 +46,7 @@ describe('controllers/rss', function () {
 
       rss.getFeed(req, res, next);
 
-      ArticleServiceStub.findAllPublished.callArgWith(0, new Error(), null);
+      ArticleServiceStub.findPublished.callArgWith(0, new Error(), null);
 
       next.called.should.be.true;
 

@@ -31,7 +31,7 @@ describe('controllers/article', function () {
 
       articleController.getArticles(req, res, next);
 
-      ArticleServiceStub.findAll.called.should.be.true;
+      ArticleServiceStub.find.called.should.be.true;
 
     }));
     
@@ -44,7 +44,7 @@ describe('controllers/article', function () {
 
       articleController.getArticles(req, res, next);
 
-      ArticleServiceStub.findAll.callArgWith(0, null, [new ArticleFake()]);
+      ArticleServiceStub.find.callArgWith(0, null, [new ArticleFake()]);
 
       res.render.calledWith('blog/admin/articles').should.be.true;
 
@@ -59,7 +59,7 @@ describe('controllers/article', function () {
 
       articleController.getArticles(req, res, next);
 
-      ArticleServiceStub.findAll.callArgWith(0, new Error(), null);
+      ArticleServiceStub.find.callArgWith(0, new Error(), null);
 
       next.called.should.be.true;
 

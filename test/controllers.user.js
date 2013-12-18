@@ -18,7 +18,7 @@ describe('controllers/user', function () {
       
       user.getUsers(req, res, next);
 
-      UserServiceStub.findAll.called.should.be.true;
+      UserServiceStub.find.called.should.be.true;
 
     }));
 
@@ -30,7 +30,7 @@ describe('controllers/user', function () {
 
       user.getUsers(req, res, next);
 
-      UserServiceStub.findAll.callArgWith(0, null, [new UserFake()]);
+      UserServiceStub.find.callArgWith(0, null, [new UserFake()]);
 
       res.render.calledWith('blog/admin/users').should.be.true;
 
