@@ -9,13 +9,13 @@ var sinon = require('sinon'),
 
 describe('controllers/login', function () {
 
-  describe('.checkUser', function () {
+  describe('.check', function () {
 
     it('User should be found', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
           login = new LoginController(UserServiceStub);
 
-      login.checkUser(req, res, next);
+      login.check(req, res, next);
 
       UserServiceStub.findByUsername.called.should.be.true;
 
@@ -32,7 +32,7 @@ describe('controllers/login', function () {
       this.spy(req.session, 'regenerate');
       this.spy(res, 'redirect');
 
-      login.checkUser(req, res, next);
+      login.check(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, null, new User());
 
@@ -51,7 +51,7 @@ describe('controllers/login', function () {
       this.spy(req.session, 'regenerate');
       this.spy(res, 'redirect');
 
-      login.checkUser(req, res, next);
+      login.check(req, res, next);
 
       req.session.regenerate.called.should.be.false;
       res.redirect.called.should.be.true;
@@ -68,7 +68,7 @@ describe('controllers/login', function () {
       this.spy(req.session, 'regenerate');
       this.spy(res, 'redirect');
 
-      login.checkUser(req, res, next);
+      login.check(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, null);
 
@@ -86,7 +86,7 @@ describe('controllers/login', function () {
 
       next = this.spy(next);
 
-      login.checkUser(req, res, next);
+      login.check(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, new Error(), null);
 
@@ -112,7 +112,7 @@ describe('controllers/login', function () {
 
   });
 
-  describe('.getLogin', function () {
+  describe('.show', function () {
 
     it('Get view to login', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
@@ -120,7 +120,7 @@ describe('controllers/login', function () {
 
       this.spy(res, 'render');
 
-      login.getLogin(req, res);
+      login.show(req, res);
 
       res.render.calledWith('blog/admin/login').should.be.true;
     

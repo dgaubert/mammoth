@@ -10,13 +10,13 @@ var sinon = require('sinon'),
 
 describe('controllers/article', function () {
 
-  describe('.getPicture(req, res, next)', function () {
+  describe('.retrieve(req, res, next)', function () {
 
     it('Picture should be gotten', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
           picture = new PictureController(PictureServiceStub);
 
-      picture.getPicture(req, res, next);
+      picture.retrieve(req, res, next);
 
       PictureServiceStub.read.called.should.be.true;
 
@@ -28,7 +28,7 @@ describe('controllers/article', function () {
 
       this.spy(res, 'send');
 
-      picture.getPicture(req, res, next);
+      picture.retrieve(req, res, next);
 
       PictureServiceStub.read.callArgWith(1, null, [new PictureFake()]);
 
@@ -42,7 +42,7 @@ describe('controllers/article', function () {
 
       next = this.spy(next);
 
-      picture.getPicture(req, res, next);
+      picture.retrieve(req, res, next);
 
       PictureServiceStub.read.callArgWith(1, new Error(), null);
 
@@ -52,7 +52,7 @@ describe('controllers/article', function () {
 
   });
 
-  describe('.newPicture(req, res, next)', function () {
+  describe('.create(req, res, next)', function () {
 
     it('Picture should be saved', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
@@ -60,7 +60,7 @@ describe('controllers/article', function () {
 
       this.spy(res, 'redirect');
 
-      picture.newPicture(req, res, next);
+      picture.create(req, res, next);
 
       PictureServiceStub.save.callArgWith(3, null);
 
@@ -74,7 +74,7 @@ describe('controllers/article', function () {
 
       next = this.spy(next);
 
-      picture.newPicture(req, res, next);
+      picture.create(req, res, next);
 
       PictureServiceStub.save.callArgWith(3, new Error());
 
@@ -84,7 +84,7 @@ describe('controllers/article', function () {
 
   });
 
-  describe('.deletePicture(req, res, next)', function () {
+  describe('.remove(req, res, next)', function () {
 
     it('Picture should be removed', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
@@ -92,7 +92,7 @@ describe('controllers/article', function () {
 
       this.spy(res, 'redirect');
 
-      picture.deletePicture(req, res, next);
+      picture.remove(req, res, next);
 
       PictureServiceStub.remove.callArgWith(1, null);
 
@@ -106,7 +106,7 @@ describe('controllers/article', function () {
 
       next = this.spy(next);
 
-      picture.deletePicture(req, res, next);
+      picture.remove(req, res, next);
 
       PictureServiceStub.remove.callArgWith(1, new Error());
 

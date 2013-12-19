@@ -11,13 +11,13 @@ var sinon = require('sinon'),
 describe('controllers/home', function () {
 
 
-  describe('.getHome', function () {
+  describe('.show', function () {
 
     it('Last article written should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           home = new HomeController(ArticleServiceStub);
 
-      home.getHome(req, res, next);
+      home.show(req, res, next);
 
       ArticleServiceStub.findLast.called.should.be.true;
       ArticleServiceStub.countCategories.called.should.be.true;
@@ -30,7 +30,7 @@ describe('controllers/home', function () {
 
       this.spy(res, 'render');
       
-      home.getHome(req, res, next);
+      home.show(req, res, next);
 
       ArticleServiceStub.findLast.callArgWith(0, null, [new ArticleFake()]);
       ArticleServiceStub.countCategories.callArgWith(0, null, 1);
@@ -45,7 +45,7 @@ describe('controllers/home', function () {
 
       next = this.spy(next);
 
-      home.getHome(req, res, next);
+      home.show(req, res, next);
 
       ArticleServiceStub.findLast.callArgWith(0, new Error(), null);
       ArticleServiceStub.countCategories.callArgWith(0, null, 1);

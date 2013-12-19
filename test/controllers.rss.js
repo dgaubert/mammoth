@@ -10,13 +10,13 @@ var sinon = require('sinon'),
     
 describe('controllers/rss', function () {
 
-  describe('.getFeed(req, res, next)', function () {
+  describe('.list(req, res, next)', function () {
 
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           rss = new RssController(ArticleServiceStub);
           
-      rss.getFeed(req, res, next);
+      rss.list(req, res, next);
 
       ArticleService.findPublished.called.should.be.true;
 
@@ -29,7 +29,7 @@ describe('controllers/rss', function () {
       this.spy(res, 'set');
       this.spy(res, 'send');
 
-      rss.getFeed(req, res, next);
+      rss.list(req, res, next);
 
       ArticleServiceStub.findPublished.callArgWith(0, null, [new ArticleFake()]);
 
@@ -44,7 +44,7 @@ describe('controllers/rss', function () {
 
       next = this.spy(next);
 
-      rss.getFeed(req, res, next);
+      rss.list(req, res, next);
 
       ArticleServiceStub.findPublished.callArgWith(0, new Error(), null);
 
