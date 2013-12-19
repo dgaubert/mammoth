@@ -10,15 +10,15 @@ var sinon = require('sinon'),
 
 describe('controllers/user', function () {
 
-  describe('.getUsers(req, res)', function () {
+  describe('.list(req, res)', function () {
 
     it('Users should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
           user = new UserController(UserServiceStub);
       
-      user.getUsers(req, res, next);
+      user.list(req, res, next);
 
-      UserServiceStub.findAll.called.should.be.true;
+      UserServiceStub.find.called.should.be.true;
 
     }));
 
@@ -28,9 +28,9 @@ describe('controllers/user', function () {
 
       this.spy(res, 'render');
 
-      user.getUsers(req, res, next);
+      user.list(req, res, next);
 
-      UserServiceStub.findAll.callArgWith(0, null, [new UserFake()]);
+      UserServiceStub.find.callArgWith(0, null, [new UserFake()]);
 
       res.render.calledWith('blog/admin/users').should.be.true;
 
@@ -38,7 +38,7 @@ describe('controllers/user', function () {
 
   });
 
-  describe('.getNewUser(req, res)', function () {
+  describe('.show(req, res)', function () {
 
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
@@ -46,7 +46,7 @@ describe('controllers/user', function () {
 
       this.spy(res, 'render');
 
-      user.getNewUser(req, res, next);
+      user.show(req, res, next);
 
       res.render.calledWith('blog/admin/user').should.be.true;
 
@@ -54,13 +54,13 @@ describe('controllers/user', function () {
 
   });
 
-  describe('.newUser(req, res, next)', function () {
+  describe('.create(req, res, next)', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
           user = new UserController(UserServiceStub);
 
-      user.newUser(req, res, next);
+      user.create(req, res, next);
 
       UserServiceStub.findByUsername.called.should.be.true;
 
@@ -72,7 +72,7 @@ describe('controllers/user', function () {
 
       next = this.spy(next);
 
-      user.newUser(req, res, next);
+      user.create(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
@@ -83,13 +83,13 @@ describe('controllers/user', function () {
   });
 
 
-  describe('.getUser(req, res, next)', function () {
+  describe('.retrieve(req, res, next)', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
           user = new UserController(UserServiceStub);
 
-      user.getUser(req, res, next);
+      user.retrieve(req, res, next);
 
       UserServiceStub.findByUsername.called.should.be.true;
 
@@ -101,7 +101,7 @@ describe('controllers/user', function () {
 
       this.spy(res, 'render');
 
-      user.getUser(req, res, next);
+      user.retrieve(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
@@ -115,7 +115,7 @@ describe('controllers/user', function () {
 
       next = this.spy(next);
 
-      user.getUser(req, res, next);
+      user.retrieve(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, new Error(), null);
 
@@ -125,7 +125,7 @@ describe('controllers/user', function () {
 
   });
 
-  describe('.updateUser(req, res, next)', function () {
+  describe('.update(req, res, next)', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
@@ -134,7 +134,7 @@ describe('controllers/user', function () {
       // fake request body form
       req.body.username = 'test';
 
-      user.updateUser(req, res, next);
+      user.update(req, res, next);
 
       UserServiceStub.findByUsername.called.should.be.true;
 

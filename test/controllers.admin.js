@@ -7,13 +7,13 @@ var sinon = require('sinon'),
 
 describe('controllers/admin', function () {
 
-  describe('.getAdmin', function () {
+  describe('.show', function () {
 
     it('Blog view should be rendered', sinon.test(function () {
       
       this.spy(res, 'render');
 
-      admin.getAdmin(req, res);
+      admin.show(req, res);
 
       res.render.calledWith('blog/admin/admin').should.be.true;
 

@@ -10,7 +10,7 @@ var sinon = require('sinon'),
 
 describe('controllers/blog', function () {
 
-  describe('.getSummary', function () {
+  describe('.list', function () {
 
     req.params.page = 0;
     req.params.category = 'category';
@@ -20,7 +20,7 @@ describe('controllers/blog', function () {
       var ArticleServiceStub = this.stub(ArticleService),
           blog = new BlogController(ArticleServiceStub);
       
-      blog.getSummary(req, res, next);
+      blog.list(req, res, next);
       
       ArticleServiceStub.findPublishedByCategoryOrTag.called.should.be.true;
       ArticleServiceStub.countPublishedByCategoryOrTag.called.should.be.true;
@@ -34,7 +34,7 @@ describe('controllers/blog', function () {
 
       this.spy(res, 'render');
       
-      blog.getSummary(req, res, next);
+      blog.list(req, res, next);
 
       ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, null, [new ArticleFake()]);
       ArticleServiceStub.countPublishedByCategoryOrTag.callArgWith(2, null, 1);
@@ -49,7 +49,7 @@ describe('controllers/blog', function () {
 
       next = this.spy(next);
 
-      blog.getSummary(req, res, next);
+      blog.list(req, res, next);
 
       ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, new Error(), null);
 
@@ -59,17 +59,17 @@ describe('controllers/blog', function () {
 
   });
 
-  describe('.getArticle', function () {
+  describe('.retrieve', function () {
 
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           blog = new BlogController(ArticleServiceStub);
 
-      blog.getArticle(req, res, next);
+      blog.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.called.should.be.true;
-      ArticleServiceStub.categoriesCount.called.should.be.true;
-      ArticleServiceStub.tagsCount.called.should.be.true;
+      ArticleServiceStub.countCategories.called.should.be.true;
+      ArticleServiceStub.countTags.called.should.be.true;
       ArticleServiceStub.findLastThree.called.should.be.true;
 
     }));
@@ -82,11 +82,11 @@ describe('controllers/blog', function () {
       
       this.spy(res, 'render');
       
-      blog.getArticle(req, res, next);
+      blog.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
-      ArticleServiceStub.categoriesCount.callArgWith(0, null, 1);
-      ArticleServiceStub.tagsCount.callArgWith(0, null, 1);
+      ArticleServiceStub.countCategories.callArgWith(0, null, 1);
+      ArticleServiceStub.countTags.callArgWith(0, null, 1);
       ArticleServiceStub.findLastThree.callArgWith(0, null, [new ArticleFake()]);
       ArticleServiceStub.findByCategory.callArgWith(1, null, [new ArticleFake()]);
       
@@ -100,46 +100,7 @@ describe('controllers/blog', function () {
 
       next = this.spy(next);
 
-      blog.getArticle(req, res, next);
-
-      ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
-
-      next.called.should.be.true;
-
-    }));
-
-  });
-
-  describe('.newComment(req, res, next)', function () {
-
-    req.body.comment = 'comment';
-    req.body.name = 'Daniel G. Aubert';
-    req.body.mail = 'danielgarciaaubert@gmail.com';
-
-    req.body.challengeId = 1;
-    req.body.challengeValue = 'x';
-
-    it('Comment should be created', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new BlogController(ArticleServiceStub);
-
-      this.spy(res, 'send');
-
-      blog.newComment(req, res, next);
-
-      ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
-
-      res.send.calledWith(200).should.be.true;
-      
-    }));
-
-    it('Comment should not be created', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          blog = new BlogController(ArticleServiceStub);
-      
-      next = this.spy(next);
-
-      blog.newComment(req, res, next);
+      blog.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 

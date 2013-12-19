@@ -1,10 +1,9 @@
 var support = require('./support/support'),
     sinon = require('sinon'),
-    Guard = require('../lib/middlewares/guard');
+    guardMiddleware = require('../lib/middlewares/guard')();
 
 describe('utils/guard', function () {
-  var guard = new Guard(),
-      req = support.req,
+  var req = support.req,
       res = support.res,
       next = support.next;
 
@@ -15,7 +14,7 @@ describe('utils/guard', function () {
       req.session.user = 'user';
       next = sinon.spy();
       
-      guard.secure(req, res, next);
+      guardMiddleware.secure(req, res, next);
 
       next.called.should.be.true;
       next.reset();
@@ -26,7 +25,7 @@ describe('utils/guard', function () {
       req.session.user = null;
       next = sinon.spy();
       
-      guard.secure(req, res, next);
+      guardMiddleware.secure(req, res, next);
 
       next.called.should.be.true;
       next.reset();
@@ -38,7 +37,7 @@ describe('utils/guard', function () {
       res.redirect = sinon.spy();
       next = sinon.spy();
       
-      guard.secure(req, res, next);
+      guardMiddleware.secure(req, res, next);
 
       next.called.should.be.true;
       res.redirect.called.should.be.false;
@@ -52,7 +51,7 @@ describe('utils/guard', function () {
       res.redirect = sinon.spy();
       next = sinon.spy();
       
-      guard.secure(req, res, next);
+      guardMiddleware.secure(req, res, next);
 
       next.called.should.be.false;
       res.redirect.called.should.be.true;
@@ -66,7 +65,7 @@ describe('utils/guard', function () {
       res.redirect = sinon.spy();
       next = sinon.spy();
       
-      guard.secure(req, res, next);
+      guardMiddleware.secure(req, res, next);
 
       next.called.should.be.true;
       res.redirect.called.should.be.false;
@@ -80,7 +79,7 @@ describe('utils/guard', function () {
       res.redirect = sinon.spy();
       next = sinon.spy();
       
-      guard.secure(req, res, next);
+      guardMiddleware.secure(req, res, next);
 
       next.called.should.be.false;
       res.redirect.called.should.be.true;

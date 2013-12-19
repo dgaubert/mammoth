@@ -19,4 +19,4 @@ For more info visit https://github.com/dgaubert/mammoth to view source code.
 
 Mammoth implements the [model of development](https://github.com/dgaubert/mammoth/wiki/Workflow) based on [nvie post](http://nvie.com/posts/a-successful-git-branching-model/). This git branching model has turned out to be very successful.
 
-Javascript is the main language used in Mammoth project. For this reason, I try to follow the Code Conventions for the JavaScript Programming Language proposed by Douglas Crockford.
+Javascript is the main language used in Mammoth project. For this reason, I try to follow the Code Conventions for the [JavaScript Programming Language](http://javascript.crockford.com/code.html), proposed by Douglas Crockford. Furthermore, it's been used style guides like [Node.js Style Guide](https://github.com/felixge/node-style-guide), [Node.js: Style and structure](http://caolanmcmahon.com/posts/nodejs_style_and_structure/), and [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript). When there are conflicts between them, I will follow the Node.js community rule.

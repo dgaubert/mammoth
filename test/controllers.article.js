@@ -22,29 +22,29 @@ describe('controllers/article', function () {
   req.body.content = 'test';
   req.body.tags = 'test,test';
 
-  describe('.getArticles(req, res, next)', function () {
+  describe('.list(req, res, next)', function () {
 
     it('Articles should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
-      articleController.getArticles(req, res, next);
+      articleController.list(req, res, next);
 
-      ArticleServiceStub.findAll.called.should.be.true;
+      ArticleServiceStub.find.called.should.be.true;
 
     }));
     
     it('Response should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'render');
 
-      articleController.getArticles(req, res, next);
+      articleController.list(req, res, next);
 
-      ArticleServiceStub.findAll.callArgWith(0, null, [new ArticleFake()]);
+      ArticleServiceStub.find.callArgWith(0, null, [new ArticleFake()]);
 
       res.render.calledWith('blog/admin/articles').should.be.true;
 
@@ -53,13 +53,13 @@ describe('controllers/article', function () {
     it('Response should not be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
-      articleController.getArticles(req, res, next);
+      articleController.list(req, res, next);
 
-      ArticleServiceStub.findAll.callArgWith(0, new Error(), null);
+      ArticleServiceStub.find.callArgWith(0, new Error(), null);
 
       next.called.should.be.true;
 
@@ -73,11 +73,11 @@ describe('controllers/article', function () {
     it('View should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'render');
 
-      articleController.getNewArticle(req, res);
+      articleController.show(req, res);
 
       res.render.calledWith('blog/admin/article').should.be.true;
 
@@ -85,14 +85,14 @@ describe('controllers/article', function () {
 
   });
 
-  describe('.newArticle(req, res)', function () {
+  describe('.create(req, res)', function () {
 
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
-      articleController.newArticle(req, res, next);
+      articleController.create(req, res, next);
 
       ArticleServiceStub.findBySlug.called.should.be.true;
 
@@ -101,11 +101,11 @@ describe('controllers/article', function () {
     it('Exists the article to save', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
-      articleController.newArticle(req, res, next);
+      articleController.create(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
 
@@ -120,26 +120,26 @@ describe('controllers/article', function () {
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
-      articleController.getArticle(req, res, next);
+      articleController.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.called.should.be.true;
-      PictureServiceStub.getPicturesByArticle.called.should.be.true;
+      PictureServiceStub.findByArticle.called.should.be.true;
 
     }));
     
     it('Response should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'render');
 
-      articleController.getArticle(req, res, next);
+      articleController.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
-      PictureServiceStub.getPicturesByArticle.callArgWith(1, null, [new PictureFake()]);
+      PictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
 
       res.render.calledWith('blog/admin/article').should.be.true;
 
@@ -148,14 +148,14 @@ describe('controllers/article', function () {
     it('Response should not be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
-      articleController.getArticle(req, res, next);
+      articleController.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
-      PictureServiceStub.getPicturesByArticle.callArgWith(1, null, [new PictureFake()]);
+      PictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
 
       next.called.should.be.true;
       
@@ -168,9 +168,9 @@ describe('controllers/article', function () {
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+          articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
-      articleController.updateArticle(req, res, next);
+      articleController.update(req, res, next);
 
       ArticleServiceStub.findBySlug.called.should.be.true;
 
@@ -179,11 +179,11 @@ describe('controllers/article', function () {
     it('Article updated, should be redirected', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
         PictureServiceStub = this.stub(PictureService),
-        articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+        articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       this.spy(res, 'redirect');
 
-      articleController.updateArticle(req, res, next);
+      articleController.update(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
 
@@ -194,11 +194,11 @@ describe('controllers/article', function () {
     it('Article not updated', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
         PictureServiceStub = this.stub(PictureService),
-        articleController = new ArticleController(ArticleServiceStub, PictureServiceStub);
+        articleController = ArticleController(ArticleServiceStub, PictureServiceStub);
 
       next = this.spy(next);
 
-      articleController.updateArticle(req, res, next);
+      articleController.update(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 
