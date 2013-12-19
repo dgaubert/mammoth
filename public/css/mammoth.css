@@ -7446,6 +7446,10 @@ a .icon-flip-vertical:before {
 .icon-renren:before {
   content: "\f18b";
 }
+html,
+body {
+  height: 100%;
+}
 .logo {
   margin: 0 0 -20px;
   padding: 10px 0 0 10px;
@@ -7480,6 +7484,17 @@ section {
 article {
   padding: 0 0 15px 0;
 }
+article img {
+  display: block;
+  margin: 20px auto;
+}
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -180px;
+  padding: 0 0 180px;
+}
 #wellcome {
   color: #eeeeee;
   background-color: #4f6089;
@@ -7494,10 +7509,10 @@ article {
   background-color: #dadeea;
 }
 #admin {
-  min-height: 400px;
   padding: 50px;
 }
 footer {
+  height: 180px;
   background-color: #222;
   color: #999;
   padding: 40px 20px 40px 20px;

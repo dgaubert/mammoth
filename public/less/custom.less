@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 .logo {
   margin: 0 0 -20px;
   padding: 10px 0 0 10px;
@@ -39,6 +44,19 @@ article {
   padding: 0 0 15px 0;
 }
 
+article img {
+  display: block;
+  margin: 20px auto;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -180px;
+  padding: 0 0 180px;
+}
+
 #wellcome {
   color: @gray-lighter;
   background-color: @brand-secondary;
@@ -57,11 +75,11 @@ article {
 }
 
 #admin {
-  min-height: 400px;
   padding: 50px;
 }
 
 footer {
+  height: 180px;
   background-color: #222;
   color: #999;
   padding: 40px 20px 40px 20px;
@@ -146,7 +164,6 @@ footer a:hover {
 
 .img-item-info {
   position: absolute;
-  //background: rgba(63, 147, 147, 0.8);
   background: rgb(79, 96, 137, 0.8);
   width: inherit;
   height: inherit;

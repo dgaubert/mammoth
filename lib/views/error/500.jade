@@ -1,0 +1,10 @@
+extends error
+block content
+  section#error
+    div.container
+      div.row
+        h1 Ooops!! An error occurred!
+        h2 Error: #{error.message}
+        - if (settings['verbose errors']) {
+          pre= error.stack
+        - }
