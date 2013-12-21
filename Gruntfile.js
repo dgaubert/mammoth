@@ -45,7 +45,7 @@ module.exports = function (grunt) {
     },
     watch: {
       files: ['<%= jshint.files %>', 'public/js/**/*.js', 'public/less/**/*.less'],
-      tasks: ['jshint', 'concat', 'uglify', 'less']
+      tasks: ['default']
     }
   });
 
@@ -61,6 +61,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['jshint']);
 
   // run typing "grunt"
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less']);
 
 };
