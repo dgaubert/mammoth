@@ -9,10 +9,9 @@ var urlConnection = require('./lib/conf/db').url;
 var mongoose = require('mongoose');
 var app = require('./lib/app');
 
-mongoose.connect(urlConnection, function (err, res) {
+mongoose.connect(urlConnection, function (err) {
   if (err) {
-     console.log('Error connecting to DB: ' + err);
-     return;
+    return console.log('Error connecting to DB: ' + err);
   }
   app.listen(process.env.PORT, process.env.IP, function () {
     console.log('Server running at http://' +

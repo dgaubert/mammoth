@@ -1,7 +1,7 @@
 {
   "name": "mammoth",
   "description": "My personal web",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "http://dgaubert.com",
   "author": "Daniel García Aubert (danielgarciaaubert@gmail.com)",
   "private": true,
