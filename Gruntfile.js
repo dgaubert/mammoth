@@ -12,10 +12,28 @@ module.exports = function (grunt) {
         }
       }
     },
+    mochaTest: {
+      all: {
+        options: {
+          reporter: 'dot',
+          require: 'should',
+          ui: 'bdd'
+        },
+        src: ['test/**/*.js']
+      },
+      unit: {
+        options: {
+          reporter: 'dot',
+          require: 'should',
+          ui: 'bdd'
+        },
+        src: ['test/*.js']
+      }
+    },
     concat: {
       files: {
         src: ['public/vendor/jquery/jquery-1.8.2.min.js', 'public/vendor/bootstrap/js/bootstrap.min.js', 'public/js/*.js'],
-        dest: 'public/js/build/<%= pkg.name %>-<%= pkg.version %>.js',
+        dest: 'public/js/build/<%= pkg.name %>.js',
       }
     },
     uglify: {
@@ -23,7 +41,7 @@ module.exports = function (grunt) {
         banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("yyyy/mm/dd hh:MM:ss") %> */\n'
       },
       build: {
-        src: ['public/js/build/<%= pkg.name %>-<%= pkg.version %>.js'],
+        src: ['public/js/build/<%= pkg.name %>.js'],
         dest: 'public/js/build/<%= pkg.name %>.min.js'
       }
     },
@@ -38,9 +56,9 @@ module.exports = function (grunt) {
         }
       }
     },
-    forever: {
-      options: {
-        index: '<%= pkg.name %>.js'
+    nodemon: {
+      dev: {
+        script: '<%= pkg.name %>.js'
       }
     },
     watch: {
@@ -51,16 +69,20 @@ module.exports = function (grunt) {
 
   // load plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-forever');
+  grunt.loadNpmTasks('grunt-nodemon');
 
   // run typing "grunt test"
-  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('test', ['jshint', 'mochaTest:all']);
 
-  // run typing "grunt"
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less']);
+  // run typing "grunt test-unit"
+  grunt.registerTask('test-unit', ['jshint', 'mochaTest:unit']);
+
+  // run typing "grunt build"
+  grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'less']);
 
 };

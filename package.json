@@ -23,11 +23,13 @@
     "sinon": ">=1.7.3",
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.2",
+    "grunt-mocha-test": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-less": "~0.8.3",
-    "grunt-forever": "~0.4.1"
+    "grunt-forever": "~0.4.1",
+    "grunt-nodemon": "~0.2.0"
   },
   "engines": {
     "node": ">=0.6",
@@ -38,7 +40,7 @@
     "url": "git://github.com/dgaubert/mammoth.git"
   },
   "scripts": {
-    "test": "make test",
+    "test": "grunt test",
     "start": "node mammoth.js"
   },
   "main": "mammoth.js"

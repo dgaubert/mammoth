@@ -16,13 +16,13 @@ describe('utils/paginator', function() {
       pagination.pages.should.be.an.instanceof(Array);
       pagination.pages[0].should.be.an.instanceof(Object);
       pagination.pages[0].should.have.property('count');
-      pagination.pages[0].count.should.be.a('number');
+      pagination.pages[0].count.should.be.a.Number;
       pagination.pages[0].should.have.property('selected');
-      pagination.pages[0].selected.should.be.a('boolean');
+      pagination.pages[0].selected.should.be.a.Boolean;
       pagination.should.have.property('previousPage');
-      pagination.previousPage.should.be.a('number');
+      pagination.previousPage.should.be.a.Number;
       pagination.should.have.property('nextPage');
-      pagination.nextPage.should.be.a('number');
+      pagination.nextPage.should.be.a.Number;
       
       pagination.pages.should.have.length(1);
       pagination.pages[0].selected.should.be.true;
