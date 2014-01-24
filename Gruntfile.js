@@ -56,9 +56,9 @@ module.exports = function (grunt) {
         }
       }
     },
-    forever: {
-      options: {
-        index: '<%= pkg.name %>.js'
+    nodemon: {
+      dev: {
+        script: '<%= pkg.name %>.js'
       }
     },
     watch: {
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-forever');
+  grunt.loadNpmTasks('grunt-nodemon');
 
   // run typing "grunt test"
   grunt.registerTask('test', ['jshint', 'mochaTest:all']);
@@ -82,7 +82,7 @@ module.exports = function (grunt) {
   // run typing "grunt test-unit"
   grunt.registerTask('test-unit', ['jshint', 'mochaTest:unit']);
 
-  // run typing "grunt"
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less']);
+  // run typing "grunt build"
+  grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'less']);
 
 };
