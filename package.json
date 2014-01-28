@@ -14,7 +14,8 @@
     "pwd": "0.0.2",
     "moment": ">=1.6.2",
     "feed": ">=0.0.7",
-    "marked": "~0.2.9"
+    "marked": "~0.2.9",
+    "sanitizer": "~0.1.1"
   },
   "devDependencies": {
     "mocha": ">=1.13.0",
@@ -28,8 +29,7 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-less": "~0.8.3",
-    "grunt-nodemon": "~0.2.0",
-    "sanitizer": "~0.1.1"
+    "grunt-nodemon": "~0.2.0"
   },
   "engines": {
     "node": ">=0.6",
