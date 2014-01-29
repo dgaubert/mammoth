@@ -8,7 +8,8 @@ module.exports = function (grunt) {
         expr: true,
         globals: {
           console: true,
-          module: true
+          module: true,
+          exports: true
         }
       }
     },
@@ -32,13 +33,18 @@ module.exports = function (grunt) {
     },
     concat: {
       files: {
-        src: ['public/vendor/jquery/jquery-1.8.2.min.js', 'public/vendor/bootstrap/js/bootstrap.min.js', 'public/js/*.js'],
+        src: [
+          'public/vendor/jquery/jquery-1.8.2.min.js',
+          'public/vendor/bootstrap/js/bootstrap.min.js',
+          'public/js/*.js'
+        ],
         dest: 'public/js/build/<%= pkg.name %>.js',
       }
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("yyyy/mm/dd hh:MM:ss") %> */\n'
+        banner: '/*! <%= pkg.name %> v<%= pkg.version %> ' +
+          '<%= grunt.template.today("yyyy/mm/dd hh:MM:ss") %> */\n'
       },
       build: {
         src: ['public/js/build/<%= pkg.name %>.js'],
@@ -84,5 +90,5 @@ module.exports = function (grunt) {
 
   // run typing "grunt build"
   grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'less']);
-
+  
 };

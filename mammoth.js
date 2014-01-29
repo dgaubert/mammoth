@@ -1,5 +1,8 @@
 #!/bin/env node
 
+/* jslint node: true */
+'use strict';
+
 var enviroment = require('./lib/conf/env');
 
 // setup the enviroment

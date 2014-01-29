@@ -1,3 +1,7 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
 var ArticleFake = new require('./support/article'),
     parser = require('../lib/utils/mdparser');
 

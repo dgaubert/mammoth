@@ -16,7 +16,7 @@ describe('utils/guard', function () {
       
       guardMiddleware.secure(req, res, next);
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
       next.reset();
     });
 
@@ -27,7 +27,7 @@ describe('utils/guard', function () {
       
       guardMiddleware.secure(req, res, next);
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
       next.reset();
     });
 
@@ -39,8 +39,8 @@ describe('utils/guard', function () {
       
       guardMiddleware.secure(req, res, next);
 
-      next.called.should.be.true;
-      res.redirect.called.should.be.false;
+      next.called.should.equal(true);
+      res.redirect.called.should.equal(false);
       next.reset();
       res.redirect.reset();
     });
@@ -53,8 +53,8 @@ describe('utils/guard', function () {
       
       guardMiddleware.secure(req, res, next);
 
-      next.called.should.be.false;
-      res.redirect.called.should.be.true;
+      next.called.should.equal(false);
+      res.redirect.called.should.equal(true);
       next.reset();
       res.redirect.reset();
     });
@@ -67,8 +67,8 @@ describe('utils/guard', function () {
       
       guardMiddleware.secure(req, res, next);
 
-      next.called.should.be.true;
-      res.redirect.called.should.be.false;
+      next.called.should.equal(true);
+      res.redirect.called.should.equal(false);
       next.reset();
       res.redirect.reset();
     });
@@ -81,8 +81,8 @@ describe('utils/guard', function () {
       
       guardMiddleware.secure(req, res, next);
 
-      next.called.should.be.false;
-      res.redirect.called.should.be.true;
+      next.called.should.equal(false);
+      res.redirect.called.should.equal(true);
       next.reset();
       res.redirect.reset();
     });

@@ -1,7 +1,11 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
 var sinon = require('sinon'),
     User = require('../lib/models/user'),
-    UserService = require('../lib/services/user')(User),
-    UserController = require('../lib/controllers/user'),
+    userService = require('../lib/services/user')(User),
+    userController = require('../lib/controllers/user'),
     UserFake = require('./support/user'),
     support = require('./support/support'),
     req = support.req,
@@ -13,26 +17,26 @@ describe('controllers/user', function () {
   describe('.list(req, res)', function () {
 
     it('Users should be gotten', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
       
-      user.list(req, res, next);
+      userCntlr.list(req, res, next);
 
-      UserServiceStub.find.called.should.be.true;
+      userServiceStub.find.called.should.equal(true);
 
     }));
 
     it('Response should be rendered', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
       this.spy(res, 'render');
 
-      user.list(req, res, next);
+      userCntlr.list(req, res, next);
 
-      UserServiceStub.find.callArgWith(0, null, [new UserFake()]);
+      userServiceStub.find.callArgWith(0, null, [new UserFake()]);
 
-      res.render.calledWith('blog/admin/users').should.be.true;
+      res.render.calledWith('blog/admin/users').should.equal(true);
 
     }));
 
@@ -41,14 +45,14 @@ describe('controllers/user', function () {
   describe('.show(req, res)', function () {
 
     it('Response should be rendered', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
       this.spy(res, 'render');
 
-      user.show(req, res, next);
+      userCntlr.show(req, res, next);
 
-      res.render.calledWith('blog/admin/user').should.be.true;
+      res.render.calledWith('blog/admin/user').should.equal(true);
 
     }));
 
@@ -57,26 +61,26 @@ describe('controllers/user', function () {
   describe('.create(req, res, next)', function () {
 
     it('User should be gotten', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
-      user.create(req, res, next);
+      userCntlr.create(req, res, next);
 
-      UserServiceStub.findByUsername.called.should.be.true;
+      userServiceStub.findByUsername.called.should.equal(true);
 
     }));
 
     it('Exists the user to save', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
       next = this.spy(next);
 
-      user.create(req, res, next);
+      userCntlr.create(req, res, next);
 
-      UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
+      userServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 
@@ -86,40 +90,40 @@ describe('controllers/user', function () {
   describe('.retrieve(req, res, next)', function () {
 
     it('User should be gotten', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
-      user.retrieve(req, res, next);
+      userCntlr.retrieve(req, res, next);
 
-      UserServiceStub.findByUsername.called.should.be.true;
+      userServiceStub.findByUsername.called.should.equal(true);
 
     }));
     
     it('Response should be rendered', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
       this.spy(res, 'render');
 
-      user.retrieve(req, res, next);
+      userCntlr.retrieve(req, res, next);
 
-      UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
+      userServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
-      res.render.calledWith('blog/admin/user').should.be.true;
+      res.render.calledWith('blog/admin/user').should.equal(true);
 
     }));
 
     it('Response should not be rendered', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
       next = this.spy(next);
 
-      user.retrieve(req, res, next);
+      userCntlr.retrieve(req, res, next);
 
-      UserServiceStub.findByUsername.callArgWith(1, new Error(), null);
+      userServiceStub.findByUsername.callArgWith(1, new Error(), null);
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
       
     }));
 
@@ -128,15 +132,15 @@ describe('controllers/user', function () {
   describe('.update(req, res, next)', function () {
 
     it('User should be gotten', sinon.test(function () {
-      var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+      var userServiceStub = this.stub(userService),
+          userCntlr = new userController(userServiceStub);
 
       // fake request body form
       req.body.username = 'test';
 
-      user.update(req, res, next);
+      userCntlr.update(req, res, next);
 
-      UserServiceStub.findByUsername.called.should.be.true;
+      userServiceStub.findByUsername.called.should.equal(true);
 
     }));
 
