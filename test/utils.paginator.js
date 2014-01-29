@@ -1,3 +1,7 @@
+/* jslint node:true */
+/* global describe: true, it:true, before:true*/
+'use strict';
+
 var Paginator = require('../lib/utils/paginator');
 
 describe('utils/paginator', function() {
@@ -16,16 +20,16 @@ describe('utils/paginator', function() {
       pagination.pages.should.be.an.instanceof(Array);
       pagination.pages[0].should.be.an.instanceof(Object);
       pagination.pages[0].should.have.property('count');
-      pagination.pages[0].count.should.be.a.Number;
+      pagination.pages[0].count.should.be.type('number');
       pagination.pages[0].should.have.property('selected');
-      pagination.pages[0].selected.should.be.a.Boolean;
+      pagination.pages[0].selected.should.be.type('boolean');
       pagination.should.have.property('previousPage');
-      pagination.previousPage.should.be.a.Number;
+      pagination.previousPage.should.be.type('number');
       pagination.should.have.property('nextPage');
-      pagination.nextPage.should.be.a.Number;
+      pagination.nextPage.should.be.type('number');
       
       pagination.pages.should.have.length(1);
-      pagination.pages[0].selected.should.be.true;
+      pagination.pages[0].selected.should.equal(true);
       pagination.previousPage.should.equal(-1);
       pagination.nextPage.should.equal(-1);
     });
@@ -40,7 +44,7 @@ describe('utils/paginator', function() {
     
     it('On first page, two pages, eleven items, no previous page, next page', function () {
       pagination.pages.should.have.length(2);
-      pagination.pages[0].selected.should.be.true;
+      pagination.pages[0].selected.should.equal(true);
       pagination.previousPage.should.equal(-1);
       pagination.nextPage.should.equal(1);
     });
@@ -55,8 +59,8 @@ describe('utils/paginator', function() {
 
     it('On second page, two pages, eleven items, previous page, no next page', function () {
       pagination.pages.should.have.length(2);
-      pagination.pages[0].selected.should.be.false;
-      pagination.pages[1].selected.should.be.true;
+      pagination.pages[0].selected.should.equal(false);
+      pagination.pages[1].selected.should.equal(true);
       pagination.previousPage.should.equal(0);
       pagination.nextPage.should.equal(-1);
     });

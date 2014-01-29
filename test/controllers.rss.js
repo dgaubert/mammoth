@@ -1,7 +1,11 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
 var sinon = require('sinon'),
     Article = require('../lib/models/article'),
-    ArticleService = require('../lib/services/article')(Article),
-    RssController = require('../lib/controllers/rss'),
+    articleService = require('../lib/services/article')(Article),
+    rssController = require('../lib/controllers/rss'),
     ArticleFake = require('./support/article'),
     support = require('./support/support'),
     req = support.req,
@@ -13,42 +17,42 @@ describe('controllers/rss', function () {
   describe('.list(req, res, next)', function () {
 
     it('Article should be gotten', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          rss = new RssController(ArticleServiceStub);
+      var articleServiceStub = this.stub(articleService),
+          rssCntlr = new rssController(articleServiceStub);
           
-      rss.list(req, res, next);
+      rssCntlr.list(req, res, next);
 
-      ArticleService.findPublished.called.should.be.true;
+      articleService.findPublished.called.should.equal(true);
 
     }));
     
     it('Response should be sended', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          rss = new RssController(ArticleServiceStub);
+      var articleServiceStub = this.stub(articleService),
+          rssCntlr = new rssController(articleServiceStub);
 
       this.spy(res, 'set');
       this.spy(res, 'send');
 
-      rss.list(req, res, next);
+      rssCntlr.list(req, res, next);
 
-      ArticleServiceStub.findPublished.callArgWith(0, null, [new ArticleFake()]);
+      articleServiceStub.findPublished.callArgWith(0, null, [new ArticleFake()]);
 
-      res.set.calledWith('Content-Type', 'application/rss+xml').should.be.true;
-      res.send.called.should.be.true;
+      res.set.calledWith('Content-Type', 'application/rss+xml').should.equal(true);
+      res.send.called.should.equal(true);
 
     }));
 
     it('Response should not be sended', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          rss = new RssController(ArticleServiceStub);
+      var articleServiceStub = this.stub(articleService),
+          rssCntlr = new rssController(articleServiceStub);
 
       next = this.spy(next);
 
-      rss.list(req, res, next);
+      rssCntlr.list(req, res, next);
 
-      ArticleServiceStub.findPublished.callArgWith(0, new Error(), null);
+      articleServiceStub.findPublished.callArgWith(0, new Error(), null);
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 

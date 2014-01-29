@@ -1,6 +1,9 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
 var sinon = require('sinon'),
-    Admin = require('../lib/controllers/admin'),
-    admin = new Admin(),
+    adminController = require('../lib/controllers/admin'),
     support = require('./support/support'),
     req = support.req,
     res = support.res;
@@ -10,12 +13,13 @@ describe('controllers/admin', function () {
   describe('.show', function () {
 
     it('Blog view should be rendered', sinon.test(function () {
+      var adminCntlr = adminController();
       
       this.spy(res, 'render');
 
-      admin.show(req, res);
+      adminCntlr.show(req, res);
 
-      res.render.calledWith('blog/admin/admin').should.be.true;
+      res.render.calledWith('blog/admin/admin').should.equal(true);
 
     }));
     
