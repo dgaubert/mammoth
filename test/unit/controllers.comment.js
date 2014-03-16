@@ -1,9 +1,9 @@
 var sinon = require('sinon'),
-    Article = require('../lib/models/article'),
-    ArticleService = require('../lib/services/article')(Article),
-    CommentController = require('../lib/controllers/comment'),
-    ArticleFake = require('./support/article'),
-    support = require('./support/support'),
+    Article = require('../../lib/models/article'),
+    ArticleService = require('../../lib/services/article')(Article),
+    CommentController = require('../../lib/controllers/comment'),
+    ArticleFake = require('../fixtures/article'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -89,13 +89,13 @@ describe('controllers/comment', function () {
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
 
       res.send.calledWith(200).should.be.true;
-      
+
     }));
 
     it('Comment should not be created', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           comment = new CommentController(ArticleServiceStub);
-      
+
       next = this.spy(next);
 
       comment.create(req, res, next);

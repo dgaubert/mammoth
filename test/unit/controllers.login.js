@@ -1,8 +1,8 @@
 var sinon = require('sinon'),
-    User = require('../lib/models/user'),
-    UserService = require('../lib/services/user')(User),
-    LoginController = require('../lib/controllers/login'),
-    support = require('./support/support'),
+    User = require('../../lib/models/user'),
+    UserService = require('../../lib/services/user')(User),
+    LoginController = require('../../lib/controllers/login'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -47,7 +47,7 @@ describe('controllers/login', function () {
 
       req.body.username = 'dgaubert';
       req.body.password = 'wrong';
-      
+
       this.spy(req.session, 'regenerate');
       this.spy(res, 'redirect');
 
@@ -123,7 +123,7 @@ describe('controllers/login', function () {
       login.show(req, res);
 
       res.render.calledWith('blog/admin/login').should.be.true;
-    
+
     }));
 
   });

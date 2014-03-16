@@ -1,8 +1,8 @@
-var ArticleFake = new require('./support/article'),
-    parser = require('../lib/utils/mdparser');
+var ArticleFake = new require('../fixtures/article'),
+    parser = require('../../lib/utils/mdparser');
 
 describe('utils/mdparser', function() {
-    
+
   describe('parser(toParser)', function () {
 
     var article = new ArticleFake(),

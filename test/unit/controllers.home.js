@@ -1,9 +1,9 @@
 var sinon = require('sinon'),
-    Article = require('../lib/models/article'),
-    ArticleService = require('../lib/services/article')(Article),
-    HomeController = require('../lib/controllers/home'),
-    support = require('./support/support'),
-    ArticleFake = require('./support/article'),
+    Article = require('../../lib/models/article'),
+    ArticleService = require('../../lib/services/article')(Article),
+    HomeController = require('../../lib/controllers/home'),
+    support = require('../fixtures/support'),
+    ArticleFake = require('../fixtures/article'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -12,6 +12,10 @@ describe('controllers/home', function () {
 
 
   describe('.show', function () {
+
+    console.log('message');
+    console.log('message');
+
 
     it('Last article written should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
@@ -29,7 +33,7 @@ describe('controllers/home', function () {
           home = new HomeController(ArticleServiceStub);
 
       this.spy(res, 'render');
-      
+
       home.show(req, res, next);
 
       ArticleServiceStub.findLast.callArgWith(0, null, [new ArticleFake()]);

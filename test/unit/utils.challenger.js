@@ -1,9 +1,9 @@
-var challenger = require('../lib/utils/challenger');
+var challenger = require('../../lib/utils/challenger');
 
 describe('utils/challenger', function() {
-    
+
   describe('.getChallenge()', function () {
-        
+
     it('Return a challenge object', function () {
       var challenge = challenger.getChallenge();
 

@@ -1,15 +1,15 @@
-var Paginator = require('../lib/utils/paginator');
+var Paginator = require('../../lib/utils/paginator');
 
 describe('utils/paginator', function() {
 
   var pagination;
-    
+
   describe('.create(0,10)', function () {
-    
+
     before(function () {
       pagination = new Paginator(0, 10);
     });
-    
+
     it('On first page, one page, ten items, no previous page, no next page', function () {
       pagination.should.be.an.instanceof(Object);
       pagination.should.have.property('pages');
@@ -23,7 +23,7 @@ describe('utils/paginator', function() {
       pagination.previousPage.should.be.a.Number;
       pagination.should.have.property('nextPage');
       pagination.nextPage.should.be.a.Number;
-      
+
       pagination.pages.should.have.length(1);
       pagination.pages[0].selected.should.be.true;
       pagination.previousPage.should.equal(-1);
@@ -33,22 +33,22 @@ describe('utils/paginator', function() {
   });
 
   describe('.create(0,11):', function () {
-    
+
     before(function () {
       pagination = new Paginator(0, 11);
     });
-    
+
     it('On first page, two pages, eleven items, no previous page, next page', function () {
       pagination.pages.should.have.length(2);
       pagination.pages[0].selected.should.be.true;
       pagination.previousPage.should.equal(-1);
       pagination.nextPage.should.equal(1);
     });
-    
+
   });
 
   describe('.create(1, 11):', function () {
-    
+
     before(function () {
       pagination = new Paginator(1, 11);
     });

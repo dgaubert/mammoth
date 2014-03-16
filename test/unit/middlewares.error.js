@@ -1,6 +1,6 @@
   var sinon = require('sinon'),
-    errorMiddleware = require('../lib/middlewares/error')(),
-    support = require('./support/support'),
+    errorMiddleware = require('../../lib/middlewares/error')(),
+    support = require('../fixtures/support'),
     err = support.err,
     req = support.req,
     res = support.res,
@@ -34,7 +34,7 @@ describe('middlewares/error', function () {
 
       res.status.calledWith(500).should.be.true;
       res.render.calledWith('error/500').should.be.true;
-    
+
     }));
 
     it('Render a 500 view with error code 503', sinon.test(function () {
@@ -46,7 +46,7 @@ describe('middlewares/error', function () {
 
       res.status.calledWith(500).should.be.true;
       res.render.calledWith('error/500').should.be.true;
-    
+
     }));
 
   });

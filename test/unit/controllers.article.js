@@ -1,12 +1,12 @@
 var sinon = require('sinon'),
-    Article = require('../lib/models/article'),
-    Picture = require('../lib/models/picture'),
-    ArticleService = require('../lib/services/article')(Article),
-    PictureService = require('../lib/services/picture')(Picture),
-    ArticleController = require('../lib/controllers/article'),
-    ArticleFake = require('./support/article'),
-    PictureFake = require('./support/picture'),
-    support = require('./support/support'),
+    Article = require('../../lib/models/article'),
+    Picture = require('../../lib/models/picture'),
+    ArticleService = require('../../lib/services/article')(Article),
+    PictureService = require('../../lib/services/picture')(Picture),
+    ArticleController = require('../../lib/controllers/article'),
+    ArticleFake = require('../fixtures/article'),
+    PictureFake = require('../fixtures/picture'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -34,7 +34,7 @@ describe('controllers/article', function () {
       ArticleServiceStub.find.called.should.be.true;
 
     }));
-    
+
     it('Response should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
@@ -64,7 +64,7 @@ describe('controllers/article', function () {
       next.called.should.be.true;
 
     }));
-    
+
 
   });
 
@@ -128,7 +128,7 @@ describe('controllers/article', function () {
       PictureServiceStub.findByArticle.called.should.be.true;
 
     }));
-    
+
     it('Response should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           PictureServiceStub = this.stub(PictureService),
@@ -158,7 +158,7 @@ describe('controllers/article', function () {
       PictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
 
       next.called.should.be.true;
-      
+
     }));
 
   });
@@ -203,7 +203,7 @@ describe('controllers/article', function () {
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 
       next.called.should.be.true;
-      
+
     }));
 
   });
