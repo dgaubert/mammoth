@@ -1,9 +1,9 @@
 var sinon = require('sinon'),
-    Article = require('../lib/models/article'),
-    ArticleService = require('../lib/services/article')(Article),
-    BlogController = require('../lib/controllers/blog'),
-    ArticleFake = require('./support/article'),
-    support = require('./support/support'),
+    Article = require('../../lib/models/article'),
+    ArticleService = require('../../lib/services/article')(Article),
+    BlogController = require('../../lib/controllers/blog'),
+    ArticleFake = require('../fixtures/article'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -19,9 +19,9 @@ describe('controllers/blog', function () {
     it('Summary should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           blog = new BlogController(ArticleServiceStub);
-      
+
       blog.list(req, res, next);
-      
+
       ArticleServiceStub.findPublishedByCategoryOrTag.called.should.be.true;
       ArticleServiceStub.countPublishedByCategoryOrTag.called.should.be.true;
 
@@ -33,14 +33,14 @@ describe('controllers/blog', function () {
           blog = new BlogController(ArticleServiceStub);
 
       this.spy(res, 'render');
-      
+
       blog.list(req, res, next);
 
       ArticleServiceStub.findPublishedByCategoryOrTag.callArgWith(3, null, [new ArticleFake()]);
       ArticleServiceStub.countPublishedByCategoryOrTag.callArgWith(2, null, 1);
-      
+
       res.render.calledWith('blog/blog').should.be.true;
-      
+
     }));
 
     it('Error to find articles publised', sinon.test(function () {
@@ -79,9 +79,9 @@ describe('controllers/blog', function () {
           blog = new BlogController(ArticleServiceStub);
 
       req.params.slug = '/blog/slug';
-      
+
       this.spy(res, 'render');
-      
+
       blog.retrieve(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
@@ -89,7 +89,7 @@ describe('controllers/blog', function () {
       ArticleServiceStub.countTags.callArgWith(0, null, 1);
       ArticleServiceStub.findLastThree.callArgWith(0, null, [new ArticleFake()]);
       ArticleServiceStub.findByCategory.callArgWith(1, null, [new ArticleFake()]);
-      
+
       res.render.calledWith('blog/article').should.be.true;
 
     }));

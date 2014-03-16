@@ -1,9 +1,9 @@
 var sinon = require('sinon'),
-    User = require('../lib/models/user'),
-    UserService = require('../lib/services/user')(User),
-    UserController = require('../lib/controllers/user'),
-    UserFake = require('./support/user'),
-    support = require('./support/support'),
+    User = require('../../lib/models/user'),
+    UserService = require('../../lib/services/user')(User),
+    UserController = require('../../lib/controllers/user'),
+    UserFake = require('../fixtures/user'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -15,7 +15,7 @@ describe('controllers/user', function () {
     it('Users should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
           user = new UserController(UserServiceStub);
-      
+
       user.list(req, res, next);
 
       UserServiceStub.find.called.should.be.true;
@@ -94,7 +94,7 @@ describe('controllers/user', function () {
       UserServiceStub.findByUsername.called.should.be.true;
 
     }));
-    
+
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
           user = new UserController(UserServiceStub);
@@ -120,7 +120,7 @@ describe('controllers/user', function () {
       UserServiceStub.findByUsername.callArgWith(1, new Error(), null);
 
       next.called.should.be.true;
-      
+
     }));
 
   });

@@ -1,13 +1,13 @@
 var sinon = require('sinon'),
-    Article = require('../lib/models/article'),
-    ArticleService = require('../lib/services/article')(Article),
-    RssController = require('../lib/controllers/rss'),
-    ArticleFake = require('./support/article'),
-    support = require('./support/support'),
+    Article = require('../../lib/models/article'),
+    ArticleService = require('../../lib/services/article')(Article),
+    RssController = require('../../lib/controllers/rss'),
+    ArticleFake = require('../fixtures/article'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
-    
+
 describe('controllers/rss', function () {
 
   describe('.list(req, res, next)', function () {
@@ -15,13 +15,13 @@ describe('controllers/rss', function () {
     it('Article should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           rss = new RssController(ArticleServiceStub);
-          
+
       rss.list(req, res, next);
 
       ArticleService.findPublished.called.should.be.true;
 
     }));
-    
+
     it('Response should be sended', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
           rss = new RssController(ArticleServiceStub);
