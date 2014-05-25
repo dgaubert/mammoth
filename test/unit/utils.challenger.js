@@ -1,9 +1,13 @@
-var challenger = require('../lib/utils/challenger');
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
+var challenger = require('../../lib/utils/challenger');
 
 describe('utils/challenger', function() {
-    
+
   describe('.getChallenge()', function () {
-        
+
     it('Return a challenge object', function () {
       var challenge = challenger.getChallenge();
 

@@ -1,6 +1,10 @@
-  var sinon = require('sinon'),
-    errorMiddleware = require('../lib/middlewares/error')(),
-    support = require('./support/support'),
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
+var sinon = require('sinon'),
+    errorMiddleware = require('../../lib/middlewares/error')(),
+    support = require('../fixtures/support'),
     err = support.err,
     req = support.req,
     res = support.res,
@@ -16,8 +20,8 @@ describe('middlewares/error', function () {
 
       errorMiddleware.notFound(req, res, next);
 
-      res.status.calledWith(404).should.be.true;
-      res.render.calledWith('error/404').should.be.true;
+      res.status.calledWith(404).should.equal(true);
+      res.render.calledWith('error/404').should.equal(true);
 
     }));
 
@@ -32,9 +36,8 @@ describe('middlewares/error', function () {
 
       errorMiddleware.serverError(err, req, res, next);
 
-      res.status.calledWith(500).should.be.true;
-      res.render.calledWith('error/500').should.be.true;
-    
+      res.status.calledWith(500).should.equal(true);
+      res.render.calledWith('error/500').should.equal(true);
     }));
 
     it('Render a 500 view with error code 503', sinon.test(function () {
@@ -43,10 +46,8 @@ describe('middlewares/error', function () {
       this.spy(res, 'render');
 
       errorMiddleware.serverError(err, req, res, next);
-
-      res.status.calledWith(500).should.be.true;
-      res.render.calledWith('error/500').should.be.true;
-    
+      res.status.calledWith(500).should.equal(true);
+      res.render.calledWith('error/500').should.equal(true);
     }));
 
   });

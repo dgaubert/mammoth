@@ -38,7 +38,7 @@ block content
           - }
 
           //- new comment
-          div.well
+          //- div.well
             form#comment(action='/blog/#{article.slug}/comment', method='post')
               legend Participa escribiendo un comentario
               fieldset
@@ -53,7 +53,7 @@ block content
                 div.form-group
                   textarea#comment.form-control(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
                 div.form-group
-                  p 
+                  p
                     strong ¿Eres humano?.
                     |  Cual de las siguientes opciones no se corresponde con el resto:
                   input(type='hidden', name='challengeId', value='#{challenge.id}')
@@ -68,11 +68,11 @@ block content
                   span#comment-msg
 
           //- note
-          div.row.col-md-11
-            p 
-              strong Aviso: 
-              i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote). 
-                | Prefiero no moderar los comentarios, pero los que estén fuera de tema o 
+          //- div.row.col-md-11
+            p
+              strong Aviso:
+              i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote).
+                | Prefiero no moderar los comentarios, pero los que estén fuera de tema o
                 | sean inapropiados serán eliminados.
                 | Vamos a añadir valor al blog. Gracias.
 

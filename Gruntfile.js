@@ -1,5 +1,18 @@
 module.exports = function (grunt) {
 
+  module.exports = function (grunt) {
+    grunt.initConfig({
+      pkg: grunt.file.readJSON('package.json'),
+    });
+
+    // load plugins
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-shell');
+
+    grunt.registerTask('ut', ['watch:ut']);
+
+  };
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
@@ -8,22 +21,54 @@ module.exports = function (grunt) {
         expr: true,
         globals: {
           console: true,
-          module: true
+          module: true,
+          exports: true
         }
+      }
+    },
+    mochaTest: {
+      all: {
+        options: {
+          reporter: 'dot',
+          require: 'should',
+          ui: 'bdd'
+        },
+        src: ['test/**/*.js']
+      },
+      unit: {
+        options: {
+          reporter: 'dot',
+          require: 'should',
+          ui: 'bdd'
+        },
+        src: ['test/unit/**/*.js']
+      },
+      integration: {
+        options: {
+          reporter: 'dot',
+          require: 'should',
+          ui: 'bdd'
+        },
+        src: ['test/integration/**/*.js']
       }
     },
     concat: {
       files: {
-        src: ['public/vendor/jquery/jquery-1.8.2.min.js', 'public/vendor/bootstrap/js/bootstrap.min.js', 'public/js/*.js'],
-        dest: 'public/js/build/<%= pkg.name %>-<%= pkg.version %>.js',
+        src: [
+          'public/vendor/jquery/jquery-1.8.2.min.js',
+          'public/vendor/bootstrap/js/bootstrap.min.js',
+          'public/js/*.js'
+        ],
+        dest: 'public/js/build/<%= pkg.name %>.js',
       }
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("yyyy/mm/dd hh:MM:ss") %> */\n'
+        banner: '/*! <%= pkg.name %> v<%= pkg.version %> ' +
+          '<%= grunt.template.today("yyyy/mm/dd hh:MM:ss") %> */\n'
       },
       build: {
-        src: ['public/js/build/<%= pkg.name %>-<%= pkg.version %>.js'],
+        src: ['public/js/build/<%= pkg.name %>.js'],
         dest: 'public/js/build/<%= pkg.name %>.min.js'
       }
     },
@@ -38,29 +83,87 @@ module.exports = function (grunt) {
         }
       }
     },
-    forever: {
+    nodemon: {
+      dev: {
+        script: '<%= pkg.name %>.js'
+      },
       options: {
-        index: '<%= pkg.name %>.js'
+        callback: function (nodemon) {
+          nodemon.on('log', function (event) {
+            console.log(event.colour);
+          });
+
+          // opens browser on initial server start
+          nodemon.on('config:update', function () {
+            // Delay before server listens on port
+            setTimeout(function() {
+              require('open')('http://localhost:5455');
+            }, 1000);
+          });
+
+          // refreshes browser when server reboots
+          nodemon.on('restart', function () {
+            // Delay before server listens on port
+            setTimeout(function() {
+              require('fs').writeFileSync('.rebooted', 'rebooted');
+            }, 1000);
+          });
+        }
       }
     },
     watch: {
-      files: ['<%= jshint.files %>', 'public/js/**/*.js', 'public/less/**/*.less'],
-      tasks: ['default']
+      'lint': {
+        files: ['<%= jshint.files %>', 'public/js/**/*.js', 'public/less/**/*.less'],
+        tasks: ['jshint', 'mochaTest:unit', 'concat', 'uglify', 'less'],
+      },
+      'ut': {
+        files: '<%= jshint.files %>',
+        tasks: ['shell:ut']
+      }
+    },
+    concurrent: {
+      tasks: ['nodemon', 'watch'],
+      options: {
+          logConcurrentOutput: true
+      }
+    },
+    shell: {
+      ut: {
+        command: 'grunt mochaTest:unit',
+        options: {
+          stderr: false
+        }
+      }
     }
   });
 
   // load plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-forever');
+  grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-shell');
+
+  // run typing "grunt ut"
+  grunt.registerTask('ut', ['watch:ut']);
 
   // run typing "grunt test"
-  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('test', ['jshint', 'mochaTest:all']);
 
-  // run typing "grunt"
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less']);
+  // run typing "grunt test-unit"
+  grunt.registerTask('unit-test', ['jshint', 'mochaTest:unit']);
+
+  // run typing "grunt test-integration"
+  grunt.registerTask('integration-test', ['jshint', 'mochaTest:integration']);
+
+  // run typing "grunt build"
+  grunt.registerTask('build', ['jshint', 'mochaTest:all', 'concat', 'uglify', 'less']);
+
+  // run typing "grunt start"
+  grunt.registerTask('start', ['concurrent']);
 
 };

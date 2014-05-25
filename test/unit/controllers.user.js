@@ -1,9 +1,13 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
 var sinon = require('sinon'),
-    User = require('../lib/models/user'),
-    UserService = require('../lib/services/user')(User),
-    UserController = require('../lib/controllers/user'),
-    UserFake = require('./support/user'),
-    support = require('./support/support'),
+    User = require('../../lib/models/user'),
+    UserService = require('../../lib/services/user')(User),
+    UserController = require('../../lib/controllers/user'),
+    UserFake = require('../fixtures/user'),
+    support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
     next = support.next;
@@ -14,25 +18,25 @@ describe('controllers/user', function () {
 
     it('Users should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
-      
-      user.list(req, res, next);
+          userController = UserController(UserServiceStub);
 
-      UserServiceStub.find.called.should.be.true;
+      userController.list(req, res, next);
+
+      UserServiceStub.find.called.should.equal(true);
 
     }));
 
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
       this.spy(res, 'render');
 
-      user.list(req, res, next);
+      userController.list(req, res, next);
 
       UserServiceStub.find.callArgWith(0, null, [new UserFake()]);
 
-      res.render.calledWith('blog/admin/users').should.be.true;
+      res.render.calledWith('blog/admin/users').should.equal(true);
 
     }));
 
@@ -42,13 +46,13 @@ describe('controllers/user', function () {
 
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
       this.spy(res, 'render');
 
-      user.show(req, res, next);
+      userController.show(req, res, next);
 
-      res.render.calledWith('blog/admin/user').should.be.true;
+      res.render.calledWith('blog/admin/user').should.equal(true);
 
     }));
 
@@ -58,25 +62,25 @@ describe('controllers/user', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
-      user.create(req, res, next);
+      userController.create(req, res, next);
 
-      UserServiceStub.findByUsername.called.should.be.true;
+      UserServiceStub.findByUsername.called.should.equal(true);
 
     }));
 
     it('Exists the user to save', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
       next = this.spy(next);
 
-      user.create(req, res, next);
+      userController.create(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 
@@ -87,40 +91,40 @@ describe('controllers/user', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
-      user.retrieve(req, res, next);
+      userController.retrieve(req, res, next);
 
-      UserServiceStub.findByUsername.called.should.be.true;
+      UserServiceStub.findByUsername.called.should.equal(true);
 
     }));
-    
+
     it('Response should be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
       this.spy(res, 'render');
 
-      user.retrieve(req, res, next);
+      userController.retrieve(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, null, new UserFake());
 
-      res.render.calledWith('blog/admin/user').should.be.true;
+      res.render.calledWith('blog/admin/user').should.equal(true);
 
     }));
 
     it('Response should not be rendered', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
       next = this.spy(next);
 
-      user.retrieve(req, res, next);
+      userController.retrieve(req, res, next);
 
       UserServiceStub.findByUsername.callArgWith(1, new Error(), null);
 
-      next.called.should.be.true;
-      
+      next.called.should.equal(true);
+
     }));
 
   });
@@ -129,14 +133,14 @@ describe('controllers/user', function () {
 
     it('User should be gotten', sinon.test(function () {
       var UserServiceStub = this.stub(UserService),
-          user = new UserController(UserServiceStub);
+          userController = UserController(UserServiceStub);
 
       // fake request body form
       req.body.username = 'test';
 
-      user.update(req, res, next);
+      userController.update(req, res, next);
 
-      UserServiceStub.findByUsername.called.should.be.true;
+      UserServiceStub.findByUsername.called.should.equal(true);
 
     }));
 
