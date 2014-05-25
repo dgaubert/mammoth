@@ -1,3 +1,7 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
+
 var sinon = require('sinon'),
     Picture = require('../../lib/models/picture'),
     PictureService = require('../../lib/services/picture')(Picture),
@@ -14,39 +18,38 @@ describe('controllers/article', function () {
 
     it('Picture should be gotten', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
-      picture.retrieve(req, res, next);
+      pictureController.retrieve(req, res, next);
 
-      PictureServiceStub.read.called.should.be.true;
+      PictureServiceStub.read.called.should.equal(true);
 
     }));
 
     it('Picture should be returned', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
       this.spy(res, 'send');
 
-      picture.retrieve(req, res, next);
+      pictureController.retrieve(req, res, next);
 
       PictureServiceStub.read.callArgWith(1, null, [new PictureFake()]);
-
-      res.send.called.should.be.true;
+      res.send.called.should.equal(true);
 
     }));
 
     it('Response should not be sended', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
       next = this.spy(next);
 
-      picture.retrieve(req, res, next);
+      pictureController.retrieve(req, res, next);
 
       PictureServiceStub.read.callArgWith(1, new Error(), null);
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 
@@ -56,29 +59,27 @@ describe('controllers/article', function () {
 
     it('Picture should be saved', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
       this.spy(res, 'redirect');
 
-      picture.create(req, res, next);
+      pictureController.create(req, res, next);
 
       PictureServiceStub.save.callArgWith(3, null);
-
-      res.redirect.called.should.be.true;
+      res.redirect.called.should.equal(true);
 
     }));
 
     it('Response should not be sended', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
       next = this.spy(next);
 
-      picture.create(req, res, next);
+      pictureController.create(req, res, next);
 
       PictureServiceStub.save.callArgWith(3, new Error());
-
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 
@@ -88,29 +89,27 @@ describe('controllers/article', function () {
 
     it('Picture should be removed', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
       this.spy(res, 'redirect');
 
-      picture.remove(req, res, next);
+      pictureController.remove(req, res, next);
 
       PictureServiceStub.remove.callArgWith(1, null);
-
-      res.redirect.called.should.be.true;
+      res.redirect.called.should.equal(true);
 
     }));
 
     it('Response should not be removed', sinon.test(function () {
       var PictureServiceStub = this.stub(PictureService),
-          picture = new PictureController(PictureServiceStub);
+          pictureController = PictureController(PictureServiceStub);
 
       next = this.spy(next);
 
-      picture.remove(req, res, next);
+      pictureController.remove(req, res, next);
 
       PictureServiceStub.remove.callArgWith(1, new Error());
-
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 

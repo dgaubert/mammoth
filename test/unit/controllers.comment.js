@@ -1,3 +1,6 @@
+/* jslint node:true */
+/* global describe: true, it:true*/
+'use strict';
 var sinon = require('sinon'),
     Article = require('../../lib/models/article'),
     ArticleService = require('../../lib/services/article')(Article),
@@ -17,25 +20,25 @@ describe('controllers/comment', function () {
 
     it('Comments should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentController(ArticleServiceStub);
+          commentController = CommentController(ArticleServiceStub);
 
-      comment.list(req, res, next);
+      commentController.list(req, res, next);
 
-      ArticleServiceStub.findBySlug.called.should.be.true;
+      ArticleServiceStub.findBySlug.called.should.equal(true);
 
     }));
 
     it('Comments views should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentController(ArticleServiceStub);
+          commentController = CommentController(ArticleServiceStub);
 
       this.spy(res, 'render');
 
-      comment.list(req, res, next);
+      commentController.list(req, res, next);
 
       ArticleService.findBySlug.callArgWith(1, null, new ArticleFake());
 
-      res.render.calledWith('blog/admin/comments').should.be.true;
+      res.render.calledWith('blog/admin/comments').should.equal(true);
 
     }));
 
@@ -45,25 +48,25 @@ describe('controllers/comment', function () {
 
     it('Comment should be found', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentController(ArticleServiceStub);
+          commentController = CommentController(ArticleServiceStub);
 
-      comment.remove(req, res, next);
+      commentController.remove(req, res, next);
 
-      ArticleService.findBySlug.called.should.be.true;
+      ArticleService.findBySlug.called.should.equal(true);
 
     }));
 
     it('Comment should be deleted', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentController(ArticleServiceStub);
+          commentController = CommentController(ArticleServiceStub);
 
       this.spy(res, 'redirect');
 
-      comment.remove(req, res, next);
+      commentController.remove(req, res, next);
 
       ArticleService.findBySlug.callArgWith(1, null, new ArticleFake());
 
-      res.redirect.called.should.be.true;
+      res.redirect.called.should.equal(true);
 
     }));
 
@@ -80,33 +83,32 @@ describe('controllers/comment', function () {
 
     it('Comment should be created', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentController(ArticleServiceStub);
+          commentController = CommentController(ArticleServiceStub);
 
       this.spy(res, 'send');
 
-      comment.create(req, res, next);
+      commentController.create(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
 
-      res.send.calledWith(200).should.be.true;
+      res.send.calledWith(200).should.equal(true);
 
     }));
 
     it('Comment should not be created', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          comment = new CommentController(ArticleServiceStub);
+          commentController = CommentController(ArticleServiceStub);
 
       next = this.spy(next);
 
-      comment.create(req, res, next);
+      commentController.create(req, res, next);
 
       ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 
-      next.called.should.be.true;
+      next.called.should.equal(true);
 
     }));
 
   });
-
 
 });

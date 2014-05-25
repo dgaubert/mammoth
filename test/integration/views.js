@@ -27,11 +27,10 @@ var getResponse = function (path) {
         .end(function (err, res) {
       should.not.exist(err);
       if (err) {
-        done(err);
-      } else {
-        response = res;
-        done();
+        return done(err);
       }
+      response = res;
+      done();
     });
   });
 };
