@@ -28,7 +28,7 @@
     "grunt-forever": "~0.4.1",
     "grunt-mocha-test": "~0.10.0",
     "grunt-nodemon": "~0.2.1",
-    "grunt-shell": "^0.7.0",
+    "grunt-shell": "~0.7.0",
     "mocha": ">=1.13.0",
     "should": ">=1.3.0",
     "sinon": ">=1.7.3",
