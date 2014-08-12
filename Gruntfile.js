@@ -133,6 +133,12 @@ module.exports = function (grunt) {
         options: {
           stderr: false
         }
+      },
+      'ut-debug': {
+        command: 'mocha --require should --debug --debug-brk test/unit/**/*.js',
+        options: {
+          stderr: false
+        }
       }
     }
   });
@@ -151,13 +157,16 @@ module.exports = function (grunt) {
   // run typing "grunt ut"
   grunt.registerTask('ut', ['watch:ut']);
 
+  // run typing "grunt ut-debug"
+  grunt.registerTask('ut-debug', ['shell:ut-debug']);
+
   // run typing "grunt test"
   grunt.registerTask('test', ['jshint', 'mochaTest:all']);
 
-  // run typing "grunt test-unit"
+  // run typing "grunt unit-test"
   grunt.registerTask('unit-test', ['jshint', 'mochaTest:unit']);
 
-  // run typing "grunt test-integration"
+  // run typing "grunt integration-test"
   grunt.registerTask('integration-test', ['jshint', 'mochaTest:integration']);
 
   // run typing "grunt build"
