@@ -1,0 +1,30 @@
+extends ../../layout
+block content
+  section#admin
+    div.container
+      div.row
+        div.col-md-6.col-md-offset-3
+          legend
+            h2 #{title}:
+          div.btn-toolbar
+            a.btn.btn-primary(href='/blog/admin')
+              i.icon-arrow-left
+              span  Volver
+          ul.nav.nav-list
+            - each captcha in captchas
+              li
+                div.btn-toolbar
+                  form(method='post', action='/blog/admin/captcha/#{captcha.filename}')
+                    a(href='/blog/captcha/#{captcha.filename}') /blog/captcha/#{captcha.filename}
+                    label &nbsp;(#{captcha.metadata.value})
+                    button.btn.btn-xs.btn-danger.pull-right(type='submit')
+                      i.icon-remove
+                      span  Eliminar
+                    input(type="hidden", name="_method", value="delete")
+          div.btn-toolbar
+            a.btn.btn-primary(href='/blog/admin')
+              i.icon-arrow-left
+              span  Volver
+            a.btn.btn-success.pull-right(href='/blog/admin/captcha/new')
+              i.icon-picture
+              span  Nuevo

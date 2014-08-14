@@ -38,7 +38,7 @@ block content
           - }
 
           //- new comment
-          //- div.well
+          div.well
             form#comment(action='/blog/#{article.slug}/comment', method='post')
               legend Participa escribiendo un comentario
               fieldset
@@ -54,13 +54,14 @@ block content
                   textarea#comment.form-control(name='comment', rows='10', placeholder='Participa escribiendo un comentario')
                 div.form-group
                   p
-                    strong ¿Eres humano?.
-                    |  Cual de las siguientes opciones no se corresponde con el resto:
-                  input(type='hidden', name='challengeId', value='#{challenge.id}')
-                  - each option in challenge.options
-                    div.col-xs-12
-                      input(name='challengeValue', value='#{option.value}', type='radio')
-                      span  #{option.name}
+                    strong ¿Eres humano?
+                  p
+                    img(src="/blog/captcha/#{captcha}")
+                div.form-group.input-group
+                  span.input-group-addon
+                    i.icon-question
+                  input#captcha.form-control(name='captcha', type='text', placeholder='Introduce el código que se indica en la imagen', maxlength="80")
+                  input(type="hidden", name="captchaName", value="#{captcha}")
                 div.btn-toolbar
                   button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
                     i.icon-comment-alt
@@ -68,7 +69,7 @@ block content
                   span#comment-msg
 
           //- note
-          //- div.row.col-md-11
+          div.row.col-md-11
             p
               strong Aviso:
               i.text-info Se permite el uso de etiquetas HTML (a href, strong, code, blockquote).
