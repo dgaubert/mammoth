@@ -109,4 +109,6 @@ $(document).ready(function() {
 
   });
 
+  $('#carousel-home').carousel();
+
 });

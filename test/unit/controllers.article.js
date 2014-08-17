@@ -30,7 +30,7 @@ describe('controllers/article', function () {
     it('Articles should be gotten', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController  = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController  = new ArticleController(articleServiceStub, pictureServiceStub);
 
       articleController.list(req, res, next);
 
@@ -41,7 +41,7 @@ describe('controllers/article', function () {
     it('Response should be rendered', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       this.spy(res, 'render');
 
@@ -56,7 +56,7 @@ describe('controllers/article', function () {
     it('Response should not be rendered', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       next = this.spy(next);
 
@@ -76,7 +76,7 @@ describe('controllers/article', function () {
     it('View should be rendered', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       this.spy(res, 'render');
 
@@ -93,7 +93,7 @@ describe('controllers/article', function () {
     it('Article should be gotten', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       articleController.create(req, res, next);
 
@@ -104,7 +104,7 @@ describe('controllers/article', function () {
     it('Exists the article to save', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       next = this.spy(next);
 
@@ -123,7 +123,7 @@ describe('controllers/article', function () {
     it('Article should be gotten', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       articleController.retrieve(req, res, next);
 
@@ -135,7 +135,7 @@ describe('controllers/article', function () {
     it('Response should be rendered', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       this.spy(res, 'render');
 
@@ -151,7 +151,7 @@ describe('controllers/article', function () {
     it('Response should not be rendered', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       next = this.spy(next);
 
@@ -171,7 +171,7 @@ describe('controllers/article', function () {
     it('Article should be gotten', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
-          articleController = ArticleController(articleServiceStub, pictureServiceStub);
+          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       articleController.update(req, res, next);
 
@@ -182,7 +182,7 @@ describe('controllers/article', function () {
     it('Article updated, should be redirected', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
         pictureServiceStub = this.stub(PictureService),
-        articleController = ArticleController(articleServiceStub, pictureServiceStub);
+        articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       this.spy(res, 'redirect');
 
@@ -197,7 +197,7 @@ describe('controllers/article', function () {
     it('Article not updated', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
         pictureServiceStub = this.stub(PictureService),
-        articleController = ArticleController(articleServiceStub, pictureServiceStub);
+        articleController = new ArticleController(articleServiceStub, pictureServiceStub);
 
       next = this.spy(next);
 

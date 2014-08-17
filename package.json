@@ -6,15 +6,16 @@
   "author": "Daniel García Aubert (danielgarciaaubert@gmail.com)",
   "private": true,
   "dependencies": {
+    "async": "0.1.22",
     "express": "3.0.0rc3",
     "express-params": "0.0.3",
-    "mongoose": "3.0.3",
-    "jade": "0.27.2",
-    "async": "0.1.22",
-    "pwd": "0.0.2",
-    "moment": ">=1.6.2",
     "feed": ">=0.0.7",
+    "jade": "0.27.2",
     "marked": "~0.2.9",
+    "moment": ">=1.6.2",
+    "mongoose": "3.0.3",
+    "open": "0.0.5",
+    "pwd": "0.0.2",
     "sanitizer": "~0.1.1"
   },
   "devDependencies": {
