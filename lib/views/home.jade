@@ -1,37 +1,60 @@
 extends layout
 block content
 
-  //- wellcome
-  section#wellcome
-    div.container
-      div.row
-        div.col-sm-4.text-center
-          span.icon-stack.icon-4x
-            i.icon-circle.icon-stack-base
-            i.icon-bullhorn.icon-light
-          h3 ¡Bienvenido!
-          p Me llamo <strong>Daniel Gª Aubert</strong>, soy desarrollador y
-            | construyo software de calidad.
-        div.col-sm-4.text-center
-          span.icon-stack.icon-4x
-            i.icon-circle.icon-stack-base
-            i.icon-rocket.icon-light
-          h3 TDD developer
-          p <strong>Back-End:</strong> aplicaciones y servidores de alto
-            | rendimiento. <strong>Front-End:</strong> webs, single
-            | page applications & design.
-        div.col-sm-4.text-center
-          span.icon-stack.icon-4x
-            i.icon-circle.icon-stack-base
-            i.icon-comments.icon-light
-          h3 ¿Necesitas ayuda?
-          p ¿Tienes una <strong>idea</strong>?, ¿quieres desarrollar una aplicación o servicio?,
-            | Ponte en contacto conmigo y <strong>hablamos</strong>.
+  //- carousel
+  div#carousel-home.carousel.slide
+    div.carousel-inner
+      div.item.active
+        img(src="/images/carousel-1.png")
+        div.container
+          div.carousel-caption
+            h1 ¡Bienvenido!
+            p.lead Me llamo <strong>Daniel Gª Aubert</strong>, soy desarrollador software y
+              | construyo aplicaciones de calidad.
+            div.row
+              ul.list-inline.text-center
+                li
+                  a.info(href='https://github.com/dgaubert')
+                    span.icon-stack.icon-2x
+                      i.icon-circle.icon-stack-base
+                      i.icon-github.icon-light
+                li
+                  a.info(href='http://www.linkedin.com/in/danielgarciaaubert')
+                    span.icon-stack.icon-2x
+                      i.icon-circle.icon-stack-base
+                      i.icon-linkedin.icon-light
+                li
+                  a.info(href='https://twitter.com/danigaubert')
+                    span.icon-stack.icon-2x
+                      i.icon-circle.icon-stack-base
+                      i.icon-twitter.icon-light
+      div.item
+        img(src="/images/carousel-2.png")
+        div.container
+          div.carousel-caption
+            h1 Full stack developer
+            p.lead <strong>Back-End:</strong> aplicaciones y servidores de alto
+              | rendimiento. <strong>Front-End:</strong> webs, single
+              | page applications & design.
+            div.row
+              ul.list-inline.text-center
+                li
+                  a.btn.btn-large.btn-info(href="#tools") Ver mis skills
+                li
+                  a.btn.btn-large.btn-info(href="#portfolio") Mis trabajos
+      div.item
+        img(src="/images/carousel-3.png")
+        div.container
+          div.carousel-caption
+            h1 ¿Necesitas ayuda?
+            p.lead ¿Tienes una <strong>idea</strong>?, ¿quieres desarrollar una aplicación o servicio?,
+              | Ponte en contacto conmigo y <strong>hablamos</strong>.
+            a.btn.btn-large.btn-info(href="mailto:danielgarciaaubert@gmail.com") danielgarciaaubert@gmail.com
 
   //- Blog
-  section#last-article
+  section.home#last-article
     div.container
-      h2 Blog:
+      h1.page-header Blog:
       div.row
         div.col-md-8
           include blog/includes/summary
@@ -44,9 +67,9 @@ block content
                   a(href='/blog/category/#{category._id}') #{category._id} (#{category.value})
 
   //- portfolio
-  section#portfolio
+  section.home#portfolio
     div.container
-      h2 Portfolio:
+      h1.page-header Portfolio:
       div.row
         div.col-sm-4.col-md-3.text-center
           div.img-item.portfolio-img-item.portfolio-img-mammoth
@@ -76,9 +99,9 @@ block content
             a(href='http://www.artegaubert.com') Arte Gaubert
 
   //- tools
-  section#tools
+  section.home#tools
     div.container
-      h2 Herramientas:
+      h1.page-header Herramientas:
       div.row
         div.col-sm-4.text-center
           div.img-item.tool-img-item.tool-img-nodejs

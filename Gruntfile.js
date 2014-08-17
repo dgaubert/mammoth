@@ -97,7 +97,7 @@ module.exports = function (grunt) {
           nodemon.on('config:update', function () {
             // Delay before server listens on port
             setTimeout(function() {
-              require('open')('http://localhost:5455');
+              require('open')('http://localhost:8000');
             }, 1000);
           });
 
@@ -170,7 +170,7 @@ module.exports = function (grunt) {
   grunt.registerTask('integration-test', ['jshint', 'mochaTest:integration']);
 
   // run typing "grunt build"
-  grunt.registerTask('build', ['jshint', 'mochaTest:all', 'concat', 'uglify', 'less']);
+  grunt.registerTask('build', [/*'jshint', 'mochaTest:all',*/ 'concat', 'uglify', 'less']);
 
   // run typing "grunt start"
   grunt.registerTask('start', ['concurrent']);
