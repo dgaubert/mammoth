@@ -168,7 +168,7 @@ describe('controllers/article', function () {
 
   describe('.updateArticle(req, res, next)', function () {
 
-    it('Article should be gotten', sinon.test(function () {
+    it('Article should be gotten', sinon.test(function (done) {
       var articleServiceStub = this.stub(ArticleService),
           pictureServiceStub = this.stub(PictureService),
           articleController = new ArticleController(articleServiceStub, pictureServiceStub);
@@ -179,7 +179,7 @@ describe('controllers/article', function () {
 
     }));
 
-    it('Article updated, should be redirected', sinon.test(function () {
+    it.only('Article updated, should be redirected', sinon.test(function (done) {
       var articleServiceStub = this.stub(ArticleService),
         pictureServiceStub = this.stub(PictureService),
         articleController = new ArticleController(articleServiceStub, pictureServiceStub);

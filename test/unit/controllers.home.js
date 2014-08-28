@@ -17,10 +17,6 @@ describe('controllers/home', function () {
 
   describe('.show', function () {
 
-    console.log('message');
-    console.log('message');
-
-
     it('Last article written should be gotten', sinon.test(function () {
       var articleServiceStub = this.stub(ArticleService),
           homeController = HomeController(articleServiceStub);

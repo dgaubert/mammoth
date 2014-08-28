@@ -3,9 +3,12 @@
 'use strict';
 var sinon = require('sinon'),
     Article = require('../../lib/models/article'),
+    Captcha = require('../../lib/models/captcha'),
     ArticleService = require('../../lib/services/article')(Article),
+    CaptchaService = require('../../lib/services/captcha')(Captcha),
     CommentController = require('../../lib/controllers/comment'),
     ArticleFake = require('../fixtures/article'),
+    CaptchaFake = require('../fixtures/captcha'),
     support = require('../fixtures/support'),
     req = support.req,
     res = support.res,
@@ -20,7 +23,7 @@ describe('controllers/comment', function () {
 
     it('Comments should be gotten', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          commentController = CommentController(ArticleServiceStub);
+          commentController = new CommentController(ArticleServiceStub);
 
       commentController.list(req, res, next);
 
@@ -30,7 +33,7 @@ describe('controllers/comment', function () {
 
     it('Comments views should be rendered', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          commentController = CommentController(ArticleServiceStub);
+          commentController = new CommentController(ArticleServiceStub);
 
       this.spy(res, 'render');
 
@@ -48,7 +51,7 @@ describe('controllers/comment', function () {
 
     it('Comment should be found', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          commentController = CommentController(ArticleServiceStub);
+          commentController = new CommentController(ArticleServiceStub);
 
       commentController.remove(req, res, next);
 
@@ -58,7 +61,7 @@ describe('controllers/comment', function () {
 
     it('Comment should be deleted', sinon.test(function () {
       var ArticleServiceStub = this.stub(ArticleService),
-          commentController = CommentController(ArticleServiceStub);
+          commentController = new CommentController(ArticleServiceStub);
 
       this.spy(res, 'redirect');
 
@@ -78,34 +81,38 @@ describe('controllers/comment', function () {
     req.body.name = 'Daniel G. Aubert';
     req.body.mail = 'danielgarciaaubert@gmail.com';
 
-    req.body.challengeId = 1;
-    req.body.challengeValue = 'x';
+    req.body.captcha = 1;
+    req.body.captchaName = '1.png';
 
     it('Comment should be created', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          commentController = CommentController(ArticleServiceStub);
+      var articleServiceStub = this.stub(ArticleService),
+          captchaServiceStub = this.stub(CaptchaService),
+          commentController = new CommentController(articleServiceStub, captchaServiceStub);
 
       this.spy(res, 'send');
 
       commentController.create(req, res, next);
 
-      ArticleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
+      captchaServiceStub.findByValue.callArgWith(1, null, [new CaptchaFake()]);
+      articleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
 
       res.send.calledWith(200).should.equal(true);
 
     }));
 
     it('Comment should not be created', sinon.test(function () {
-      var ArticleServiceStub = this.stub(ArticleService),
-          commentController = CommentController(ArticleServiceStub);
+      var articleServiceStub = this.stub(ArticleService),
+          captchaServiceStub = this.stub(CaptchaService),
+          commentController = new CommentController(articleServiceStub, captchaServiceStub);
 
-      next = this.spy(next);
+      this.spy(res, 'send');
 
       commentController.create(req, res, next);
 
-      ArticleServiceStub.findBySlug.callArgWith(1, new Error(), null);
+      captchaServiceStub.findByValue.callArgWith(1, null, [new CaptchaFake()]);
+      articleServiceStub.findBySlug.callArgWith(1, new Error());
 
-      next.called.should.equal(true);
+      res.send.calledWith(500).should.equal(true);
 
     }));
 

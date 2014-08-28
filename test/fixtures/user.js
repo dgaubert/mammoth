@@ -1,5 +1,5 @@
 var User = function User () {
-  this.username = 'username';
+  this.username = 'dgauber';
   this.salt = 'salt';
   this.hash = 'hash';
 };

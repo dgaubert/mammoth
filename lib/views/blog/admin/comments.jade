@@ -5,18 +5,18 @@ block content
       div.row
         div.col-md-10.col-md-offset-1
           div.btn-toolbar
-            a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
+            a.btn.btn-primary(href='/blog/admin/articles/#{slug}')
               i.icon-arrow-left
               span  Volver
-          legend 
+          legend
             h2 #{title}:
           ul.list-unstyled
-            - each comment in article.comments
+            - each comment in comments
               li
-                form(method='post', action='/blog/admin/articles/#{article.slug}/comments/#{comment._id}')
+                form(method='post', action='/blog/admin/articles/#{slug}/comments/#{comment._id}')
                   h5
                     strong #{comment.author}
-                    span  
+                    span
                       = (moment(comment.created).format('[el] DD/MM/YYYY [ ] HH:mm'))
                   div
                     p!=comment.comment
@@ -26,6 +26,6 @@ block content
                       span  Eliminar
                     input(type="hidden", name="_method", value="delete")
           div.btn-toolbar
-            a.btn.btn-primary(href='/blog/admin/articles/#{article.slug}')
+            a.btn.btn-primary(href='/blog/admin/articles/#{slug}')
               i.icon-arrow-left
               span  Volver

@@ -94,13 +94,14 @@ describe('controllers/blog', function () {
 
       blogController.retrieve(req, res, next);
 
-      // articleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
+      articleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
       articleServiceStub.countCategories.callArgWith(0, null, 1);
       articleServiceStub.countTags.callArgWith(0, null, 1);
       articleServiceStub.findLastThree.callArgWith(0, null, [new ArticleFake()]);
-      // articleServiceStub.findByCategory.callArgWith(1, null, [new ArticleFake()]);
+      captchaServiceStub.count.callArgWith(0, null, '1.png');
+      articleServiceStub.findByCategory.callArgWith(1, null, [new ArticleFake()]);
 
-      res.render.calledWith('blog/article').should.equal(true);
+      res.render.called.should.equal(true);
 
     }));
 
