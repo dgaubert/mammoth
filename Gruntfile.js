@@ -85,7 +85,10 @@ module.exports = function (grunt) {
     },
     nodemon: {
       dev: {
-        script: '<%= pkg.name %>.js'
+        script: '<%= pkg.name %>.js',
+        options: {
+          nodeArgs: ['--debug']
+        }
       },
       options: {
         callback: function (nodemon) {
