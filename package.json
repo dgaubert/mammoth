@@ -11,6 +11,7 @@
     "express-params": "0.0.3",
     "feed": ">=0.0.7",
     "jade": "0.27.2",
+    "lodash": "^2.4.1",
     "marked": "~0.2.9",
     "moment": ">=1.6.2",
     "mongoose": "3.0.3",
