@@ -1,5 +1,3 @@
-/* jslint node:true */
-/* global describe: true, it:true, before:true*/
 'use strict';
 
 var Paginator = require('../../lib/utils/paginator');

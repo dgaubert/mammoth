@@ -1,3 +1,5 @@
+'use strict';
+
 var support = require('../fixtures/support'),
     sinon = require('sinon'),
     guardMiddleware = require('../../lib/middlewares/guard')();

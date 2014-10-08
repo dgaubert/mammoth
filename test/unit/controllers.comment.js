@@ -1,6 +1,5 @@
-/* jslint node:true */
-/* global describe: true, it:true*/
 'use strict';
+
 var sinon = require('sinon'),
     Article = require('../../lib/models/article'),
     Captcha = require('../../lib/models/captcha'),

@@ -1,7 +1,3 @@
-var Article = require('../../lib/models/article'),
-    Picture = require('../../lib/models/picture'),
-    User = require('../../lib/models/user');
-
 module.exports.params = {
   slug: '/blog/article/slug'
 };

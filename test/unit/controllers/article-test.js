@@ -1,20 +1,15 @@
-/* jslint node:true */
-/* global describe: true, it:true, beforeEach: true*/
 'use strict';
-var sinon = require('sinon'),
-    Article = require('../../lib/models/article'),
-    Picture = require('../../lib/models/picture'),
-    ArticleService = require('../../lib/services/article')(Article),
-    PictureService = require('../../lib/services/picture')(Picture),
-    ArticleController = require('../../lib/controllers/article'),
-    ArticleFake = require('../fixtures/article'),
-    PictureFake = require('../fixtures/picture'),
-    support = require('../fixtures/support'),
-    req = support.req,
-    res = support.res,
-    next = support.next;
+var sinon = require('sinon');
 
 describe('controllers/article', function () {
+  var ArticleService = {};
+  var ArticleController = require('../../lib/controllers/article');
+  // var ArticleFake = require('../fixtures/article');
+  // var PictureFake = require('../fixtures/picture');
+  var support = require('../fixtures/support');
+  var req = support.req;
+  var res = support.res;
+  var next = support.next;
 
   // fake request body form
   req.body.title = 'test';
@@ -27,9 +22,8 @@ describe('controllers/article', function () {
 
   describe('.list(req, res, next)', function () {
 
-    it('Articles should be gotten', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
+    it('should render a view with a list of articles', sinon.test(function () {
+      var articleServiceStub = this.stub(new ArticleService()),
           articleController  = new ArticleController(articleServiceStub, pictureServiceStub);
 
       articleController.list(req, res, next);

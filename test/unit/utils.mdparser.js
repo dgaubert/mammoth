@@ -1,5 +1,3 @@
-/* jslint node:true */
-/* global describe: true, it:true*/
 'use strict';
 
 var ArticleFake = new require('../fixtures/article'),
