@@ -1,207 +1,184 @@
 'use strict';
+
 var sinon = require('sinon');
 
 describe('controllers/article', function () {
-  var ArticleService = {};
-  var ArticleController = require('../../lib/controllers/article');
-  // var ArticleFake = require('../fixtures/article');
-  // var PictureFake = require('../fixtures/picture');
-  var support = require('../fixtures/support');
-  var req = support.req;
-  var res = support.res;
-  var next = support.next;
 
-  // fake request body form
-  req.body.title = 'test';
-  req.body.author = 'test';
-  req.body.slug = 'test';
-  req.body.category = 'test';
-  req.body.abstract = 'test';
-  req.body.content = 'test';
-  req.body.tags = 'test,test';
+  var ArticleController = require('../../../lib/controllers/article');
+  var articleController;
+  var res = {
+    render: function () {},
+    redirect: function () {}
+  };
+  var req = {
+    body: {
+      title: 'irrelevantTitle',
+      author: 'irrelevantAuthor',
+      slug: 'irrelevantSlug',
+      category: 'irrelevantCategory',
+      abstract: 'irrelevantAbstract',
+      content: 'irrelevantContent',
+      tags: 'irrelevantTag1,irrelevantTag2'
+    },
+    params: {
+      slug: 'irrelevantSlug'
+    }
+  };
+  var next = function () {};
 
-  describe('.list(req, res, next)', function () {
+  var ArticleService = function () {};
+  ArticleService.prototype.list = function () {};
+  ArticleService.prototype.create = function () {};
+  ArticleService.prototype.retrieve = function () {};
+  ArticleService.prototype.update = function () {};
 
-    it('should render a view with a list of articles', sinon.test(function () {
-      var articleServiceStub = this.stub(new ArticleService()),
-          articleController  = new ArticleController(articleServiceStub, pictureServiceStub);
+  var sandbox;
+  var articleServiceStub;
+  var article = req.body;
 
-      articleController.list(req, res, next);
+  beforeEach(function () {
+    sandbox = sinon.sandbox.create();
 
-      articleServiceStub.find.called.should.equal(true);
+    res.render = sandbox.spy(res, 'render');
+    res.redirect = sandbox.spy(res, 'redirect');
+    next = sandbox.spy(next);
 
-    }));
-
-    it('Response should be rendered', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      this.spy(res, 'render');
-
-      articleController.list(req, res, next);
-
-      articleServiceStub.find.callArgWith(0, null, [new ArticleFake()]);
-
-      res.render.calledWith('blog/admin/articles').should.equal(true);
-
-    }));
-
-    it('Response should not be rendered', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      next = this.spy(next);
-
-      articleController.list(req, res, next);
-
-      articleServiceStub.find.callArgWith(0, new Error(), null);
-
-      next.called.should.equal(true);
-
-    }));
-
-
+    articleServiceStub = sandbox.stub(new ArticleService()),
+    articleController  = new ArticleController(articleServiceStub);
   });
 
-  describe('.getNewArticle(req, res)', function () {
-
-    it('View should be rendered', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      this.spy(res, 'render');
-
-      articleController.show(req, res);
-
-      res.render.calledWith('blog/admin/article').should.equal(true);
-
-    }));
-
+  afterEach(function () {
+    sandbox.restore();
   });
 
   describe('.create(req, res)', function () {
 
-    it('Article should be gotten', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
+    it('should delegate to the service the article\'s creation', function () {
+      articleServiceStub.create.callsArgWith(1, null, article);
 
       articleController.create(req, res, next);
 
-      articleServiceStub.findBySlug.called.should.equal(true);
+      articleServiceStub.create.called.should.be.true;
+    });
 
-    }));
-
-    it('Exists the article to save', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      next = this.spy(next);
+    it('should redirect to the article created', function () {
+      articleServiceStub.create.callsArgWith(1, null, article);
 
       articleController.create(req, res, next);
 
-      articleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
+      res.redirect.calledWith('/blog/admin/articles/' + article.slug).should.be.true;
+    });
+
+    it('when something went wrong it should manage the incoming error', function () {
+      var err = new Error();
+
+      articleServiceStub.create.callsArgWith(1, err, null);
+
+      articleController.create(req, res, next);
 
       next.called.should.equal(true);
-
-    }));
+    });
 
   });
 
-  describe('.getArticle(req, res, next)', function () {
+  describe('.list(req, res, next)', function () {
 
-    it('Article should be gotten', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
+    it('should use the "list" method of article service', function () {
+      articleServiceStub.list.callsArgWith(0, null, [article]);
 
-      articleController.retrieve(req, res, next);
+      articleController.list(req, res, next);
 
-      articleServiceStub.findBySlug.called.should.equal(true);
-      pictureServiceStub.findByArticle.called.should.equal(true);
+      articleServiceStub.list.called.should.be.true;
+    });
 
-    }));
+    it('should render "blog/admin/articles" view', function () {
+      articleServiceStub.list.callsArgWith(0, null, [article]);
 
-    it('Response should be rendered', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
+      articleController.list(req, res, next);
 
-      this.spy(res, 'render');
+      res.render.calledWith('blog/admin/articles').should.be.true;
+    });
 
-      articleController.retrieve(req, res, next);
+    it('when something went wrong it should manage the incoming error', function () {
+      var err = new Error();
 
-      articleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
-      pictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
+      articleServiceStub.list.callsArgWith(0, err, null);
+
+      articleController.list(req, res, next);
+
+      next.calledWith(err).should.be.true;
+    });
+
+  });
+
+  describe('.show(req, res)', function () {
+
+    it('should render "blog/admin/article" view', function () {
+      articleController.show(req, res);
 
       res.render.calledWith('blog/admin/article').should.equal(true);
-
-    }));
-
-    it('Response should not be rendered', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      next = this.spy(next);
-
-      articleController.retrieve(req, res, next);
-
-      articleServiceStub.findBySlug.callArgWith(1, new Error(), null);
-      pictureServiceStub.findByArticle.callArgWith(1, null, [new PictureFake()]);
-
-      next.called.should.equal(true);
-
-    }));
+    });
 
   });
 
-  describe('.updateArticle(req, res, next)', function () {
 
-    it('Article should be gotten', sinon.test(function (done) {
-      var articleServiceStub = this.stub(ArticleService),
-          pictureServiceStub = this.stub(PictureService),
-          articleController = new ArticleController(articleServiceStub, pictureServiceStub);
+  describe('.retrieve(req, res, next)', function () {
+
+    it('should use the "retrieve" method of article service', function () {
+      articleServiceStub.retrieve.callsArgWith(1, null, article);
+
+      articleController.retrieve(req, res, next);
+
+      articleServiceStub.retrieve.called.should.be.true;
+    });
+
+    it('should render "blog/admin/article" article view', function () {
+      articleServiceStub.retrieve.callsArgWith(1, null, article);
+
+      articleController.retrieve(req, res, next);
+
+      res.render.calledWith('blog/admin/article').should.be.true;
+    });
+
+    it('when something went wrong it should manage the incoming error', function () {
+      var err = new Error();
+
+      articleServiceStub.retrieve.callsArgWith(1, err, null);
+
+      articleController.retrieve(req, res, next);
+
+      next.calledWith(err).should.be.true;
+    });
+
+  });
+
+  describe('.update(req, res, next)', function () {
+
+    it('should delegate to article\'s service', function () {
+      articleServiceStub.update.callsArgWith(1, null, article);
 
       articleController.update(req, res, next);
 
-      articleServiceStub.findBySlug.called.should.equal(true);
+      articleServiceStub.update.called.should.be.true;
+    });
 
-    }));
-
-    it.only('Article updated, should be redirected', sinon.test(function (done) {
-      var articleServiceStub = this.stub(ArticleService),
-        pictureServiceStub = this.stub(PictureService),
-        articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      this.spy(res, 'redirect');
+    it('should redirect to updated article', function () {
+      articleServiceStub.update.callsArgWith(1, null, article);
 
       articleController.update(req, res, next);
 
-      articleServiceStub.findBySlug.callArgWith(1, null, new ArticleFake());
+      res.redirect.calledWith('/blog/admin/articles/' + article.slug).should.be.true;
+    });
 
-      res.redirect.called.should.equal(true);
+    it('when something went wrong it should manage the incoming error', function () {
+      var err = new Error();
 
-    }));
-
-    it('Article not updated', sinon.test(function () {
-      var articleServiceStub = this.stub(ArticleService),
-        pictureServiceStub = this.stub(PictureService),
-        articleController = new ArticleController(articleServiceStub, pictureServiceStub);
-
-      next = this.spy(next);
+      articleServiceStub.update.callsArgWith(1, err, null);
 
       articleController.update(req, res, next);
-
-      articleServiceStub.findBySlug.callArgWith(1, new Error(), null);
 
       next.called.should.equal(true);
-
-    }));
+    });
 
   });
 

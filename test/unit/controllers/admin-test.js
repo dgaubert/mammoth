@@ -1,22 +1,35 @@
 'use strict';
+
 var sinon = require('sinon');
 
 describe('controllers/admin', function () {
   var AdminController = require('../../../lib/controllers/admin');
-  var support = require('../../fixtures/support');
-  var req = support.req;
-  var res = support.res;
+  var adminController;
+  var req = {};
+  var res = {
+    render: function () {},
+  };
+  var next = function () {};
+  var sandbox;
+
+  beforeEach(function () {
+    sandbox = sinon.sandbox.create();
+    res.render = sandbox.spy(res, 'render');
+
+    adminController  = new AdminController();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
+  });
 
   describe('.show', function () {
 
-    it('should render admin view', sinon.test(function () {
-      var adminController = new AdminController();
-      this.spy(res, 'render');
-
+    it('should render admin view', function () {
       adminController.show(req, res);
 
       res.render.calledWith('blog/admin/admin').should.equal(true);
-    }));
+    });
 
   });
 
