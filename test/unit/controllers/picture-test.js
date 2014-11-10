@@ -35,7 +35,6 @@ describe('controllers/picture', function () {
   var sandbox;
   var pictureServiceStub;
   var picture = 0; // bytes
-  var article = { slug: 'irrelevantSlug' };
 
   beforeEach(function () {
     sandbox = sinon.sandbox.create();
@@ -43,7 +42,6 @@ describe('controllers/picture', function () {
     res.set = sandbox.spy(res, 'set');
     res.redirect = sandbox.spy(res, 'redirect');
     res.send = sandbox.spy(res, 'send');
-    res.set = sandbox.spy(res, 'set');
     next = sandbox.spy(next);
 
     pictureServiceStub = sandbox.stub(new PictureService()),
