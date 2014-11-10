@@ -1,14 +1,19 @@
 'use strict';
 
-var ArticleFake = new require('../fixtures/article'),
-    parser = require('../../lib/utils/mdparser');
+var parser = require('../../../lib/utils/mdparser');
 
 describe('utils/mdparser', function() {
-
   describe('parser(toParser)', function () {
-
-    var article = new ArticleFake(),
-        result;
+    var article = {
+      title: 'irrelevantTitle',
+      author: 'irrelevantAuthor',
+      slug: 'irrelevantSlug',
+      category: 'irrelevantCategory',
+      abstract: 'irrelevantAbstract',
+      content: 'irrelevantContent',
+      tags: 'irrelevantTag1,irrelevantTag2'
+    };
+    var result;
 
     it('With HTML string should return the same HTML', function () {
 
@@ -19,7 +24,7 @@ describe('utils/mdparser', function() {
     });
 
     it('With markdown string should return the HTML', function () {
-      var html = '<h1>Hi! it is a test</h1>\n';
+      var html = '<h1 id="hi-it-is-a-test">Hi! it is a test</h1>\n';
 
       article.content = '# Hi! it is a test';
 
@@ -28,7 +33,5 @@ describe('utils/mdparser', function() {
       result.content.should.equal(html);
 
     });
-
   });
-
 });

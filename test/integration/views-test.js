@@ -1,3 +1,5 @@
+/* jshint expr: true */
+
 var mammoth = require('../../mammoth'),
     request = require('supertest'),
     should = require('should'),
@@ -40,7 +42,9 @@ describe('Testing views:', function () {
     describe('GET ' + view.path + ':', function () {
       getResponse(view.path);
       it('should have status ' + view.status, function () {
-        response.should.have.status(view.status);
+        response.should
+          .have.property('status')
+          .and.equal(view.status);
       });
       if (view.status === 200) {
         it('should be a html', function () {

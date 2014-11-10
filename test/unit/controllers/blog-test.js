@@ -1,4 +1,6 @@
+/* jshint expr: true */
 'use strict';
+
 var sinon = require('sinon');
 
 describe('controllers/blog', function () {

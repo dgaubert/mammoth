@@ -1,3 +1,4 @@
+/* jshint expr: true */
 'use strict';
 
 var sinon = require('sinon');
@@ -9,7 +10,6 @@ describe('controllers/admin', function () {
   var res = {
     render: function () {},
   };
-  var next = function () {};
   var sandbox;
 
   beforeEach(function () {

@@ -1,6 +1,6 @@
 'use strict';
 
-var Paginator = require('../../lib/utils/paginator');
+var Paginator = require('../../../lib/utils/paginator');
 
 describe('utils/paginator', function() {
 
