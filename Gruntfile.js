@@ -49,7 +49,7 @@ module.exports = function configGrunt(grunt) {
     express: {
       dev: {
         options: {
-          script: 'mammoth.js',
+          script: 'index.js',
           debug: true
         }
       }
