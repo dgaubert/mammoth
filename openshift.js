@@ -14,7 +14,7 @@ process.env.IP = process.env.OPENSHIFT_INTERNAL_IP || '0.0.0.0';
 // setup DB configuration
 process.env.MONGO_USER = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
 process.env.MONGO_PASSWORD = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
-process.env.MONGO_URL = 'moongodb://';
+process.env.MONGO_URL = 'mongodb://';
 
 // compose mongo url in production
 if (process.env.MONGO_USER !== 'undefined' && process.env.MONGO_PASSWORD !== 'undefined') {

@@ -133,6 +133,7 @@ module.exports = function configGrunt(grunt) {
 
   // use when you are developing
   grunt.registerTask('develop', [ 'jshint', 'mochaTest:unit', 'express:dev', 'watch:develop' ]);
+  grunt.registerTask('evil', [ 'jshint', 'express:dev', 'watch:evilDevelop' ]);
   grunt.registerTask('ut', [ 'mochaTest:unit' ]);
   grunt.registerTask('it', [ 'mochaTest:integration']);
   grunt.registerTask('hint', [ 'jshint' ]);
