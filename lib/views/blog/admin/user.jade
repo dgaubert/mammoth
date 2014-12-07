@@ -4,7 +4,7 @@ block content
     div.container
       div.row
         div.col-md-6.col-md-offset-3
-          form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : user.username}')
+          form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : (user.username + "?_method=PUT")}')
             legend 
               h2 #{title}:
             div.form-group.input-group
@@ -20,7 +20,12 @@ block content
               button.btn.btn-success.pull-right(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
                 i.icon-ok
                 span  #{user === undefined ? "Crear" : "Actualizar"}
-              - if (user !== undefined) {
-                input(type="hidden", name="_method", value="put")
-              - }
-            
+      if (user)
+        div.row
+          div.col-md-6.col-md-offset-3                
+            div.alert.alert-danger
+              form.bg-danger(method='post', action='/blog/admin/users/#{user.username + "?_method=DELETE"}')
+                div.btn-toolbar                
+                  button.btn.btn-danger.pull-right(type='submit')
+                    i.icon-remove
+                      span  Eliminar            

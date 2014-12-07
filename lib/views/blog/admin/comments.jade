@@ -13,7 +13,7 @@ block content
           ul.list-unstyled
             - each comment in comments
               li
-                form(method='post', action='/blog/admin/articles/#{slug}/comments/#{comment._id}')
+                form(method='post', action='/blog/admin/articles/#{slug}/comments/#{comment._id}?_method=DELETE')
                   h5
                     strong #{comment.author}
                     span
@@ -24,7 +24,6 @@ block content
                     button.btn.btn-danger.pull-right(type='submit')
                       i.icon-remove
                       span  Eliminar
-                    input(type="hidden", name="_method", value="delete")
           div.btn-toolbar
             a.btn.btn-primary(href='/blog/admin/articles/#{slug}')
               i.icon-arrow-left

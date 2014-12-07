@@ -7,15 +7,15 @@ block content
           a.btn.btn-primary(href='/blog/admin/articles')
             i.icon-arrow-left
             span  Volver
-          form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : article.slug}')
-            legend 
+          form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : (article.slug + "?_method=PUT")}')
+            legend
               h2 #{title}:
             div.form-group.input-group
               span.input-group-addon Título
               input.form-control(type='text', name='title', value='#{article === undefined ? "" : article.title}')
             div.form-group.input-group
               span.input-group-addon Slug
-              input.form-control(type='text', name='slug', value='#{article === undefined ? "" : article.slug}') 
+              input.form-control(type='text', name='slug', value='#{article === undefined ? "" : article.slug}')
             div.form-group.input-group
               span.input-group-addon Autor
               input.form-control(type='text', name='author', value='#{article === undefined ? "" : article.author}')
@@ -51,23 +51,19 @@ block content
               button.btn.btn-success.pull-right(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
                 i.icon-ok
                 span  #{article === undefined ? "Crear" : "Actualizar"}
-                - if (article) {
-                  input(type="hidden", name="_method", value="put")
-                -}
           - if (article) {
             - if (pictures.length) {
-              legend 
+              legend
                 h2 Imágenes adjuntas:
               - each picture in pictures
                 div.btn-toolbar
-                  form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/#{picture.filename}')
+                  form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/#{picture.filename}?_method=DELETE')
                     a(href='/blog/pictures/#{picture.filename}') /blog/pictures/#{picture.filename}
                     button.btn.btn-xs.btn-danger.pull-right(type='submit')
                       i.icon-remove
                       span  Eliminar
-                    input(type="hidden", name="_method", value="delete")
             - }
-            legend 
+            legend
               h2 Subir imagen
             form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/new', enctype='multipart/form-data')
               div.form-group

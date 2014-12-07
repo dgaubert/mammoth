@@ -14,13 +14,12 @@ block content
             - each captcha in captchas
               li
                 div.btn-toolbar
-                  form(method='post', action='/blog/admin/captcha/#{captcha.filename}')
+                  form(method='post', action='/blog/admin/captcha/#{captcha.filename}?_method=DELETE')
                     a(href='/blog/captcha/#{captcha.filename}') /blog/captcha/#{captcha.filename}
                     label &nbsp;(#{captcha.metadata.value})
                     button.btn.btn-xs.btn-danger.pull-right(type='submit')
                       i.icon-remove
                       span  Eliminar
-                    input(type="hidden", name="_method", value="delete")
           div.btn-toolbar
             a.btn.btn-primary(href='/blog/admin')
               i.icon-arrow-left
