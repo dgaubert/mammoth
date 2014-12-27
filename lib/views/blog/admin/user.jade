@@ -4,28 +4,25 @@ block content
     div.container
       div.row
         div.col-md-6.col-md-offset-3
-          form(method='post', action='/blog/admin/users/#{user === undefined ? "new" : (user.username + "?_method=PUT")}')
+          form(method='post', action='/blog/admin/users/#{entity === undefined ? "new" : (entity.username + "?_method=PUT")}')
             legend 
               h2 #{title}:
             div.form-group.input-group
               span.input-group-addon Nombre
-              input.form-control(type='text', name='username', value='#{user === undefined ? "" : user.username}')
+              input.form-control(type='text', name='username', value='#{entity ? entity.username : ""}')
             div.form-group.input-group
-              span.input-group-addon #{user === undefined ? 'Contraseña' : 'Nueva contraseña'}
+              span.input-group-addon #{entity ? 'Nueva contraseña' : 'Contraseña'}
               input.form-control(type='password', name='password')
             div.btn-toolbar
               a.btn.btn-primary(href='/blog/admin/users')
                 i.icon-arrow-left
                 span  Volver
-              button.btn.btn-success.pull-right(type='submit', value='#{user === undefined ? "Crear" : "Actualizar"}')
+              button.btn.btn-success.pull-right(type='submit')
                 i.icon-ok
-                span  #{user === undefined ? "Crear" : "Actualizar"}
-      if (user)
-        div.row
-          div.col-md-6.col-md-offset-3                
-            div.alert.alert-danger
-              form.bg-danger(method='post', action='/blog/admin/users/#{user.username + "?_method=DELETE"}')
-                div.btn-toolbar                
-                  button.btn.btn-danger.pull-right(type='submit')
-                    i.icon-remove
-                      span  Eliminar            
+                span  #{entity ? "Actualizar" : "Crear"}
+          if (entity)                
+            form(method='post', action='/blog/admin/users/#{entity.username + "?_method=DELETE"}')
+              div.btn-toolbar                
+                button.btn.btn-danger.pull-right(type='submit')
+                  i.icon-remove
+                    span  Eliminar            

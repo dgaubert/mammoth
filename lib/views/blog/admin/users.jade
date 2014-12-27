@@ -7,7 +7,7 @@ block content
           legend 
             h2 #{title}:
           ul.nav.nav-list
-            - each user in users
+            - each user in entities
               li
                 a(href="/blog/admin/users/#{user.username}") #{user.username}
           div.btn-toolbar
