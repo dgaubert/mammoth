@@ -2,7 +2,7 @@ div.text-center
   ul.pagination
     - if (pagination.previousPage > -1)
       li
-        a(href='/blog/#{pagination.previousPage}')
+        a(href='/blog?page=#{pagination.previousPage}')
           i.icon-angle-left
     - else
       li.disabled
@@ -11,13 +11,13 @@ div.text-center
     - each page in pagination.pages
       - if (!page.selected)
         li  
-          a(href='/blog/#{page.count}') #{page.count + 1}
+          a(href='/blog?page=#{page.count}') #{page.count + 1}
       - else
         li.active
           span #{page.count + 1}
     -if (pagination.nextPage > -1)
       li
-        a(href='/blog/#{pagination.nextPage}')
+        a(href='/blog?page=#{pagination.nextPage}')
           i.icon-angle-right
     - else
       li.disabled
