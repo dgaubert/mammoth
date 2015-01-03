@@ -7,7 +7,7 @@ block content
           legend 
             h2 #{title}:
           ul.nav.nav-list
-            - each article in articles
+            - each article in entities
               li
                 a(href="/blog/admin/articles/#{article.slug}") #{article.title}
           div.btn-toolbar

@@ -1,0 +1,18 @@
+extends ../../layout
+block content
+  section#admin
+    div.container
+      div.row
+        div.col-md-6.col-md-offset-3
+          legend
+            h2 Subir imagen
+          form(method='post', action='/blog/admin/articles/#{slug}/pictures/new', enctype='multipart/form-data')
+            div.form-group
+              input(type='file', name='picture')
+            div.btn-toolbar
+              a.btn.btn-primary(href='/blog/admin/articles/#{slug}/pictures')
+                i.icon-arrow-left
+                span  Volver
+              button.btn.btn-success.pull-right(type='submit')
+                i.icon-picture
+                span  Subir pictures

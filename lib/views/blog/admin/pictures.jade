@@ -1,0 +1,28 @@
+extends ../../layout
+block content
+  section#admin
+    div.container
+      div.row
+        div.col-md-8.col-md-offset-2
+          legend
+            h2 #{title}:
+          div.btn-toolbar
+            a.btn.btn-primary(href='/blog/admin/articles/#{slug}')
+              i.icon-arrow-left
+              span  Volver
+          ul.nav.nav-list
+            - each picture in entities
+              li
+                div.btn-toolbar
+                  form(method='post', action='/blog/admin/articles/#{slug}/pictures/#{picture.filename}?_method=DELETE')
+                    a(href='/blog/pictures/#{picture.filename}') /blog/pictures/#{picture.filename}
+                    button.btn.btn-xs.btn-danger.pull-right(type='submit')
+                      i.icon-remove
+                      span  Eliminar
+          div.btn-toolbar
+            a.btn.btn-primary(href='/blog/admin/articles/#{slug}')
+              i.icon-arrow-left
+              span  Volver
+            a.btn.btn-success.pull-right(href='/blog/admin/articles/#{slug}/pictures/new')
+              i.icon-picture
+              span  Nuevo

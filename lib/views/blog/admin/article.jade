@@ -7,69 +7,46 @@ block content
           a.btn.btn-primary(href='/blog/admin/articles')
             i.icon-arrow-left
             span  Volver
-          form(method='post', action='/blog/admin/articles/#{article == undefined ? "new" : (article.slug + "?_method=PUT")}')
+          form(method='post', action='/blog/admin/articles/#{entity ? entity.slug + "?_method=PUT" : "new"}')
             legend
               h2 #{title}:
             div.form-group.input-group
               span.input-group-addon Título
-              input.form-control(type='text', name='title', value='#{article === undefined ? "" : article.title}')
+              input.form-control(type='text', name='title', value='#{entity ? entity.title : "" }')
             div.form-group.input-group
               span.input-group-addon Slug
-              input.form-control(type='text', name='slug', value='#{article === undefined ? "" : article.slug}')
+              input.form-control(type='text', name='slug', value='#{entity ? entity.slug : ""}')
             div.form-group.input-group
               span.input-group-addon Autor
-              input.form-control(type='text', name='author', value='#{article === undefined ? "" : article.author}')
+              input.form-control(type='text', name='author', value='#{entity ? entity.author : "" }')
             div.form-group.input-group
               span.input-group-addon Categoria
-              input.form-control(type='text', name='category', value='#{article === undefined ? "" : article.category}')
+              input.form-control(type='text', name='category', value='#{entity ? entity.category : ""}')
             div.form-group.input-group
               span.input-group-addon Tags (separados por comas)
-              input.form-control(type='text', name='tags', value='#{article === undefined ? "" : article.tags}')
+              input.form-control(type='text', name='tags', value='#{entity ? entity.tags : ""}')
             div.form-group
               label Resumen:
-              textarea.form-control(name='abstract', rows='10') #{article === undefined ? "" : article.abstract}
+              textarea.form-control(name='abstract', rows='10') #{entity ? entity.abstract : "" }
             div.form-group
               label Contenido del artículo
-              textarea.form-control(name='content', rows='30') #{article === undefined ? "" : article.content}
+              textarea.form-control(name='content', rows='30') #{entity ? entity.content : "" }
             div.form-group
-              label
-                - if (article) {
-                input(type='checkbox', name='published', checked=(article.published ? "checked" : undefined))
-                - } else {
-                input(type='checkbox', name='published')
-                - }
+              label                
+                input(type='checkbox', name='published', checked=(entity.published ? "checked" : ""))
                 span  Publicado
             div.btn-toolbar
               a.btn.btn-primary(href='/blog/admin/articles')
                 i.icon-arrow-left
                 span  Volver
-              - if (article) {
-              a.btn.btn-warning.pull-right(href='/blog/admin/articles/#{article.slug}/comments')
+              - if (entity) {
+              a.btn.btn-warning.pull-right(href='/blog/admin/articles/#{entity.slug}/comments')
                 i.icon-comments-alt
                 span  Comentarios
+              a.btn.btn-warning.pull-right(href='/blog/admin/articles/#{entity.slug}/pictures')
+                i.icon-picture
+                span  Pictures
               - }
-              button.btn.btn-success.pull-right(type='submit', value='#{article === undefined ? "Crear" : "Actualizar"}')
+              button.btn.btn-success.pull-right(type='submit', value='#{entity ? "Crear" : "Actualizar"}')
                 i.icon-ok
-                span  #{article === undefined ? "Crear" : "Actualizar"}
-          - if (article) {
-            - if (pictures.length) {
-              legend
-                h2 Imágenes adjuntas:
-              - each picture in pictures
-                div.btn-toolbar
-                  form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/#{picture.filename}?_method=DELETE')
-                    a(href='/blog/pictures/#{picture.filename}') /blog/pictures/#{picture.filename}
-                    button.btn.btn-xs.btn-danger.pull-right(type='submit')
-                      i.icon-remove
-                      span  Eliminar
-            - }
-            legend
-              h2 Subir imagen
-            form(method='post', action='/blog/admin/articles/#{article.slug}/pictures/new', enctype='multipart/form-data')
-              div.form-group
-                input(type='file', name='picture')
-              div.btn-toolbar
-                button.btn.btn-success.pull-right(type='submit')
-                  i.icon-upload
-                  span  Subir imagen
-          - }
+                span  #{entity ? "Actualizar" : "Crear"}

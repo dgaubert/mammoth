@@ -32,7 +32,8 @@ var defaultConfig = {
         timestamp: true
       }
     }
-  }
+  },
+  uploadDir: process.env.UPLOAD_DIR
 };
 
 module.exports = defaultConfig;

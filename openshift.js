@@ -30,3 +30,4 @@ process.env.MONGO_URL = process.env.MONGO_URL + process.env.MONGO_HOST + ':' +
                         process.env.APP_NAME;
 
 process.env.LOG_DIR = process.env.OPENSHIFT_LOG_DIR || './';
+process.env.UPLOAD_DIR = process.env.OPENSHIFT_TMP_DIR || './.uploads/';
