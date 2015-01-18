@@ -2,7 +2,7 @@
 
 'use strict';
 
-// set openshift enviroment
+// set openshift environment
 require('./openshift');
 
 var cluster = require('cluster');
