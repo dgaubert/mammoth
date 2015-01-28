@@ -56,14 +56,14 @@ block content
                   p
                     strong ¿Eres humano?
                   p
-                    img(src="/blog/captcha/#{captcha}")
+                    img(src="/blog/captchas/#{captcha}")
                 div.form-group.input-group
                   span.input-group-addon
                     i.icon-question
-                  input#captcha.form-control(name='captcha', type='text', placeholder='Introduce el código que se indica en la imagen', maxlength="80")
-                  input(type="hidden", name="captchaName", value="#{captcha}")
+                  input#captcha.form-control(name='captchaValue', type='text', placeholder='Introduce el código que se indica en la imagen', maxlength="80")
+                  input(type='hidden', name='captchaFilename', value='#{captcha}')
                 div.btn-toolbar
-                  button#comment.btn.btn-primary.pull-right(type="submit", value="Comentar")
+                  button#comment.btn.btn-primary.pull-right(type='submit', value='Comentar')
                     i.icon-comment-alt
                     span  Comentar
                   span#comment-msg

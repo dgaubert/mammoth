@@ -33,7 +33,7 @@ block content
               textarea.form-control(name='content', rows='30') #{entity ? entity.content : "" }
             div.form-group
               label                
-                input(type='checkbox', name='published', checked=(entity.published ? "checked" : ""))
+                input(type='checkbox', name='published', checked=(entity && entity.published ? "checked" : undefined))
                 span  Publicado
             div.btn-toolbar
               a.btn.btn-primary(href='/blog/admin/articles')

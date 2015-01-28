@@ -11,7 +11,7 @@ block content
           legend
             h2 #{title}:
           ul.list-unstyled
-            - each comment in comments
+            - each comment in entities
               li
                 form(method='post', action='/blog/admin/articles/#{slug}/comments/#{comment._id}?_method=DELETE')
                   h5
